@@ -1,9 +1,6 @@
 package com.mainproject.udog_server.api.member;
 
 import com.mainproject.udog_server.auth.utils.CustomAuthorityUtils;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

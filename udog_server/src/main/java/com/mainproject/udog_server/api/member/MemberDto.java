@@ -27,7 +27,8 @@ public class MemberDto {
     @Setter
     @Getter
     public static class NicknamePatch{
-        @Pattern(regexp = "^.{2,10}$", message = "두글자 이상 10글자 이하로 작성해주세요")
+        //Todo : 공백 체크, 한영숫자만 가능한지
+        @Pattern(regexp = "^[A-Za-z0-9]{2,10}$", message = "두글자 이상 10글자 이하로 작성해주세요")
         private String nickname;
 
         private long memberId;
