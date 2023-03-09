@@ -4,7 +4,8 @@ import useNickname from '../hooks/useNickname';
 import useEmail from '../hooks/useEmail';
 import usePassword from '../hooks/usePassword';
 import useConfirmPassword from '../hooks/useConfirmPassword';
-import axios from 'axios';
+import API from '../modules/API';
+import {useNavigate} from 'react-router-dom';
 
 function SignupForm() {
 	const [value, setValue] = useState({
@@ -20,6 +21,7 @@ function SignupForm() {
 	const {validPasswordText, isValidPassword} = usePassword(password);
 	const {validConfirmPasswordText, isValidConfirmPassword} = useConfirmPassword(confirmPassword, password);
 	const inputRef = useRef([]);
+	const navigate = useNavigate();
 
 	const onChange = (e) => {
 		const changeValue = {
@@ -31,30 +33,23 @@ function SignupForm() {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		if (isValidNickname) {
-			inputRef.current[0].focus();
-			return;
+		const input = [isValidNickname, isValidEmail, isValidPassword, isValidConfirmPassword];
+
+		for (let i = 0; i <= input.length; i++) {
+			if (input[i]) {
+				inputRef.current[i].focus();
+				return;
+			}
 		}
-		if (isValidEmail) {
-			inputRef.current[1].focus();
-			return;
-		}
-		if (isValidPassword) {
-			inputRef.current[2].focus();
-			return;
-		}
-		if (isValidConfirmPassword) {
-			inputRef.current[3].focus();
-			return;
-		}
-		axios
-			.post('/members/sign-up', {
-				nickname,
-				email,
-				password,
-			})
+
+		API.post('/members', {
+			nickname,
+			email,
+			password,
+		})
 			.then((res) => {
-				console.log(res.data);
+				console.log('회원가입 성공', res.data);
+				navigate('/login');
 			})
 			.catch((err) => {
 				console.log(err);
@@ -66,7 +61,7 @@ function SignupForm() {
 			<S.Container>
 				<S.Border>
 					<S.FormWrapper>
-						<S.Logo>UDog</S.Logo>
+						<S.Logo onClick={() => navigate('/')}>UDog</S.Logo>
 						<S.Form>
 							<S.LabelContainer>
 								<S.Label>닉네임</S.Label>

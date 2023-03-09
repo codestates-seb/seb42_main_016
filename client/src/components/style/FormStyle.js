@@ -41,6 +41,7 @@ export const Logo = styled.h1`
 	margin: 0 auto;
 	margin-bottom: 30px;
 	padding-top: 40px;
+	cursor: pointer;
 `;
 
 export const Form = styled.form`

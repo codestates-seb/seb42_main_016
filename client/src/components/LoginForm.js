@@ -3,7 +3,9 @@ import {useRef, useState} from 'react';
 import useEmail from '../hooks/useEmail';
 import usePassword from '../hooks/usePassword';
 import {useNavigate} from 'react-router-dom';
-import axios from 'axios';
+import API from '../modules/API';
+import {useDispatch} from 'react-redux';
+import {login} from '../modules/redux/userSlice';
 
 function LoginForm() {
 	const [value, setValue] = useState({
@@ -16,6 +18,7 @@ function LoginForm() {
 	const {validPasswordText, isValidPassword} = usePassword(password);
 	const inputRef = useRef([]);
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const onChange = (e) => {
 		const changeValue = {
@@ -35,15 +38,16 @@ function LoginForm() {
 			inputRef.current[1].focus();
 			return;
 		}
-		axios
-			.post('/auth/login', {
-				email,
-				password,
-			})
+
+		API.post('/login', {
+			email,
+			password,
+		})
 			.then((res) => {
 				console.log('로그인 성공!', res.data);
 				localStorage.setItem('accessToken', res.headers.authorization);
-				localStorage.setItem('username', res.data.username);
+				dispatch(login(email));
+				navigate('/');
 			})
 			.catch((err) => {
 				console.log(err);
@@ -55,7 +59,7 @@ function LoginForm() {
 			<S.Container>
 				<S.Border>
 					<S.FormWrapper>
-						<S.Logo>UDog</S.Logo>
+						<S.Logo onClick={() => navigate('/')}>UDog</S.Logo>
 						<S.Form>
 							<S.LabelContainer>
 								<S.Label>이메일</S.Label>
