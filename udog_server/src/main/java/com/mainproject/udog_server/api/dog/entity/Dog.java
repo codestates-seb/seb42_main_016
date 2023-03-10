@@ -1,5 +1,6 @@
 package com.mainproject.udog_server.api.dog.entity;
 
+import com.mainproject.udog_server.api.member.Member;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,9 +30,9 @@ public class Dog {
     @Column
     private String dogDescription;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "member_id")
-//    private Member member;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @Builder
     public Dog (long dogId, String dogName, LocalDate dogBirthDate, String dogSpecies, int dogWeight, String dogDescription) {

@@ -27,7 +27,6 @@ public class MemberController {
 
     @PostMapping
     public ResponseEntity postMember(@Valid @RequestBody MemberDto.Post memberPost){
-        log.info("*".repeat(70));
         Member member = mapper.MemberPostToMember(memberPost);
 
         Member createdMember = memberService.createMember(member);

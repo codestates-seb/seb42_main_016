@@ -1,5 +1,6 @@
 package com.mainproject.udog_server.api.review.entity;
 
+import com.mainproject.udog_server.api.member.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,9 +30,9 @@ public class Review {
     @Column(name = "LAST_MODIFIED_AT")
     private LocalDateTime modified_at;
 
-//    @ManyToOne
-//    @JoinColumn(name = "MEMBER_ID")
-//    private Member member;
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
 //    @ManyToOne
 //    @JoinColumn(name = "HAIR_SHOP_ID")
