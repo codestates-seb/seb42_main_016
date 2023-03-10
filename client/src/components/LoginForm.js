@@ -39,14 +39,14 @@ function LoginForm() {
 			return;
 		}
 
-		API.post('/login', {
+		API.post('udog/login', {
 			email,
 			password,
 		})
 			.then((res) => {
-				console.log('로그인 성공!', res.data);
+				console.log('로그인 성공!');
 				localStorage.setItem('accessToken', res.headers.authorization);
-				dispatch(login(email));
+				dispatch(login(true));
 				navigate('/');
 			})
 			.catch((err) => {
