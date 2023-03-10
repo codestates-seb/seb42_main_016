@@ -1,5 +1,7 @@
 package com.mainproject.udog_server.api.member;
 
+import com.mainproject.udog_server.api.dog.entity.Dog;
+import com.mainproject.udog_server.api.review.entity.Review;
 import com.mainproject.udog_server.audit.Auditable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,6 +39,14 @@ public class Member extends Auditable {
 
     @Enumerated(value = EnumType.STRING)
     private MemberStatus memberStatus = MemberStatus.MEMBER_ACTIVE;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Review> reviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Dog> dogs = new ArrayList<>();
+
+
 
     public enum MemberStatus {
         MEMBER_ACTIVE("활동중"),
