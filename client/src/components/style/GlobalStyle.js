@@ -16,6 +16,9 @@ button {
 input {
 	padding: 0px 12px;
 }
+li {
+	list-style: none;
+}
 `;
 
 export default GlobalStyle;
