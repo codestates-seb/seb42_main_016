@@ -5,7 +5,7 @@ import styled from 'styled-components';
 //Stylebook
 export const StylebookWrap = styled.div`
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   top:120px;
 `
@@ -13,10 +13,11 @@ export const StylebookWrap = styled.div`
 export const Container = styled.div`
     /* width: 100vw;
     height: 100vh; */
-    padding: 2rem;
+    padding: 2rem 12rem;
     display: grid;
     grid-template-columns:repeat(3,1fr);
     gap:2rem;
+    border-top: 1px solid #ddd;
 `;
 
 //Item
@@ -60,3 +61,15 @@ export const Itembar = styled.div`
 
 `
 
+export const Topcontainer = styled.div`
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  z-index: 1;
+  .icon {
+    font-size: 2rem;
+  }
+  .icon:hover{
+    color: #ddd;
+  }
+`
