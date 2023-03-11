@@ -6,8 +6,6 @@ import usePassword from '../hooks/usePassword';
 import useConfirmPassword from '../hooks/useConfirmPassword';
 import API from '../modules/API';
 import {useNavigate} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
-import {user} from '../modules/redux/userSlice';
 
 function SignupForm() {
 	const [value, setValue] = useState({
@@ -24,7 +22,6 @@ function SignupForm() {
 	const {validConfirmPasswordText, isValidConfirmPassword} = useConfirmPassword(confirmPassword, password);
 	const inputRef = useRef([]);
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
 
 	const onChange = (e) => {
 		const changeValue = {
@@ -52,7 +49,6 @@ function SignupForm() {
 		})
 			.then((res) => {
 				console.log('회원가입 성공', res.data);
-				dispatch(user(res.data));
 				navigate('/login');
 			})
 			.catch((err) => {
