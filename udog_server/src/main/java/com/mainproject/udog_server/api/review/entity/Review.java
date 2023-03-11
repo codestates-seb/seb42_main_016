@@ -19,16 +19,16 @@ public class Review {
     private Long id;
 
     @Column(nullable = false)
-    private String review_text;
+    private String reviewText;
 
     @Column
-    private String review_pic;
+    private String reviewImage;
 
     @Column(nullable = false)
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "LAST_MODIFIED_AT")
-    private LocalDateTime modified_at;
+    private LocalDateTime modifiedAt;
 
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
