@@ -6,7 +6,10 @@ function useDogAge(value) {
 
 	useEffect(() => {
 		const age = new Date().getFullYear() - value.slice(0, 4);
-		if (value.length > 0 && (age < 0 || age > 20)) {
+		const isMonth = value.slice(4, 6) > 13 || value.slice(4, 6) === '00';
+		const isDay = value.slice(-2) > 31 || value.slice(-2) === '00';
+
+		if (value.length > 0 && (age < 0 || age > 20 || isMonth || isDay)) {
 			setValidText('올바른 생년월일을 입력해주세요.');
 			setIsValid(true);
 		} else {
