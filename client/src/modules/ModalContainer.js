@@ -1,26 +1,32 @@
 import {useSelector} from 'react-redux';
 import {selectModal} from './redux/modalSlice';
-import Modal from '../components/Modal';
+import WeightModal from '../components/modal/WeightModal';
+import TypeModal from '../components/modal/TypeModal';
+import ConfirmModal from '../components/modal/ConfirmModal';
 import * as S from '../components/style/ModalStyle';
 
 const MODAL_TYPES = {
-	// LoginModal: 'LoginModal',
-	BasicModal: 'BasicModal',
+	WeightModal: 'WeightModal',
+	TypeModal: 'TypeModal',
+	ConfirmModal: 'ConfirmModal',
 };
 
 const MODAL_COMPONENTS = [
-	// {
-	// 	type: MODAL_TYPES.LoginModal,
-	// 	component: <FirstModal />,
-	// },
 	{
-		type: MODAL_TYPES.BasicModal,
-		component: <Modal />,
+		type: MODAL_TYPES.WeightModal,
+		component: <WeightModal />,
+	},
+	{
+		type: MODAL_TYPES.TypeModal,
+		component: <TypeModal />,
+	},
+	{
+		type: MODAL_TYPES.ConfirmModal,
+		component: <ConfirmModal />,
 	},
 ];
 
 function ModalContainer() {
-	// modal type을 string 형태로 받습니다.
 	const {modalType, isOpen} = useSelector(selectModal);
 	if (!isOpen) return;
 
