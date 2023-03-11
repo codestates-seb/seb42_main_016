@@ -136,3 +136,51 @@ export const ValidText = styled.p`
 	margin-bottom: 8px;
 	margin-top: 0px;
 `;
+
+export const EditorContainer = styled.div`
+	width: 500px;
+	margin-left: 8em;
+	.relative {
+		position: relative;
+	}
+	.select {
+		position: absolute;
+		bottom: 18px;
+		right: 16px;
+	}
+`;
+
+export const NomalInput = styled.input`
+	width: 100%;
+	height: 50px;
+	min-height: 50px;
+	padding: 0px 12px;
+	outline: none;
+	background-color: transparent;
+	border: 1px solid #e1e2e3;
+	color: #333;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: 400;
+	margin-bottom: 8px;
+	&:focus {
+		border-color: #6495ed;
+	}
+`;
+
+export const Textarea = styled.textarea`
+	width: 100%;
+	padding: 0px 12px;
+	outline: none;
+	background-color: transparent;
+	border: 1px solid #e1e2e3;
+	color: #333;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: 400;
+	padding-top: 15px;
+	margin-bottom: 8px;
+	&:focus {
+		border-color: #6495ed;
+	}
+`;
