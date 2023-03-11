@@ -16,9 +16,9 @@ public class ReviewDto {
     @AllArgsConstructor
     public static class Post {
         @NotBlank
-        private String review_pic;
+        private String reviewImage;
         @NotBlank
-        private String review_text;
+        private String reviewText;
 //        private Long memberId;
     }
 
@@ -29,9 +29,9 @@ public class ReviewDto {
     public static class Patch {
         private Long id;
         @Nullable
-        private String review_pic;
+        private String reviewImage;
         @Nullable
-        private String review_text;
+        private String reviewText;
         private Long memberId;
     }
 
@@ -40,9 +40,9 @@ public class ReviewDto {
     @AllArgsConstructor
     public static class Response {
         private Long id;
-        private String review_pic;
-        private String review_text;
-        private LocalDateTime created_at;
-        private LocalDateTime modified_at;
+        private String reviewImage;
+        private String reviewText;
+        private LocalDateTime createdAt;
+        private LocalDateTime modifiedAt;
     }
 }
