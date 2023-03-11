@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import API from '../modules/API';
 
-const useAxiosGet = (url) => {
+const useFetch = (url) => {
 	const [data, setData] = useState([]);
 	useEffect(() => {
 		if (window) window.scrollTo(0, 0);
@@ -9,7 +9,7 @@ const useAxiosGet = (url) => {
 			setData(res.data);
 		});
 	}, [url]);
-	return data;
+	return {data, setData};
 };
 
-export default useAxiosGet;
+export default useFetch;
