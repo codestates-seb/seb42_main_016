@@ -44,9 +44,10 @@ function LoginForm() {
 			password,
 		})
 			.then((res) => {
-				console.log('로그인 성공!');
+				console.log('로그인 성공!', res);
 				localStorage.setItem('accessToken', res.headers.authorization);
-				dispatch(login(true));
+				localStorage.setItem('refresh', res.headers.refresh);
+				dispatch(login(email));
 				navigate('/');
 			})
 			.catch((err) => {
