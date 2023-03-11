@@ -1,10 +1,10 @@
 import * as S from './style/DogStyle';
-import useAxiosGet from '../hooks/useAxiosGet';
+import useFetch from '../hooks/useFetch';
 import DogCard from './DogCard';
 import AddCard from './AddCard';
 
 function DogList() {
-	const data = useAxiosGet('/mydog');
+	const {data, setData} = useFetch('/mydog');
 
 	return (
 		<S.Container>
@@ -18,7 +18,7 @@ function DogList() {
 						{data &&
 							data.map((dog) => {
 								return (
-									<DogCard dog={dog} key={dog.id}>
+									<DogCard dog={dog} key={dog.id} data={data} setData={setData}>
 										{dog.name}
 									</DogCard>
 								);
