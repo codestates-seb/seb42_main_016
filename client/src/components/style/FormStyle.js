@@ -147,6 +147,7 @@ export const EditorContainer = styled.div`
 		position: absolute;
 		bottom: 18px;
 		right: 16px;
+		color: gray;
 	}
 `;
 
