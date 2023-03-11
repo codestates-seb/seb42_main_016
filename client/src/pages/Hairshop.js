@@ -1,6 +1,6 @@
 import HairshopList from '../components/HairshopList';
 import Location from '../components/Location';
-import useAxiosGet from '../hooks/useAxiosGet';
+import useFetch from '../hooks/useFetch';
 import styled from 'styled-components';
 
 const Nav = styled.nav`
@@ -9,7 +9,7 @@ const Nav = styled.nav`
 `;
 
 function Hairshop() {
-	const data = useAxiosGet('/hairshop');
+	const data = useFetch('/hairshop');
 
 	return (
 		<>
