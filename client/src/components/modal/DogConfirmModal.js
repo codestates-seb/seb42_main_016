@@ -34,7 +34,7 @@ function DogConfirmModal() {
 	};
 
 	const onClickDelete = () => {
-		DELETE(url);
+		DELETE();
 		dispatch(deleteDog(id));
 	};
 
