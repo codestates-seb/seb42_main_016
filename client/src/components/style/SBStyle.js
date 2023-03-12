@@ -70,6 +70,6 @@ export const Topcontainer = styled.div`
     font-size: 2rem;
   }
   .icon:hover{
-    color: #ddd;
+    color: #ddd
   }
 `
