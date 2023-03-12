@@ -1,5 +1,5 @@
 import React from 'react'
-import * as S from './style/MyPageStyle'
+import * as S from '../style/MyPageStyle'
 import { NavLink } from 'react-router-dom'
 export default function MypageSidebar() {
 //style={{textDecoration: 'none', color: 'black'}}

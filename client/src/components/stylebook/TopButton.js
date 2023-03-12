@@ -1,5 +1,5 @@
 import React from 'react'
-import * as S from './style/SBStyle'
+import * as S from '../style/SBStyle'
 import { BsArrowUpCircle } from 'react-icons/bs'
 
 export default function TopButton() {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import * as S from './style/MyPageStyle'
+import * as S from '../style/MyPageStyle'
 import { IoIosCut } from 'react-icons/io' 
 
 export default function ReserveItem() {

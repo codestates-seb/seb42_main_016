@@ -1,7 +1,7 @@
 import React from 'react'
-import StylebookList from '../components/StylebookList' 
+import StylebookList from '../components/stylebook/StylebookList' 
 import * as S from '../components/style/SBStyle'
-import TopButton from '../components/TopButton'
+import TopButton from '../components/stylebook/TopButton'
 
 
 export default function Stylebook() {

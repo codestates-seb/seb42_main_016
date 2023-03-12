@@ -1,6 +1,6 @@
 import React from 'react'
 import * as S from '../components/style/MyPageStyle'
-import ReserveItem from '../components/ReserveItem'
+import ReserveItem from '../components/mypage/ReserveItem'
 
 export default function ReserveList() {
 
