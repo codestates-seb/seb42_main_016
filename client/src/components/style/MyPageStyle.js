@@ -68,7 +68,11 @@ export const RIWrap = styled.div`
     width:700px;
     height:200px;
     /* border: 1px solid #ddd; */
-  
+    .upper{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
 
     `
 export const HairshopName = styled.div`
@@ -106,6 +110,17 @@ export const ReserveInfo = styled.div`
         padding: 10px 20px;
     }
 `
-export const CancelButton = styled.div`
-
+export const CancelButton = styled.button`
+    font-size: 1rem;
+    padding: 0 2px;
+    width: 80px;
+    height: 25px;
+    margin-bottom: 6px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 2px;
+    :hover{
+        background-color: white;
+    }
 `

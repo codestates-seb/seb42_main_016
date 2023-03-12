@@ -8,13 +8,13 @@ import { Routes, Route } from 'react-router-dom'
 import { createGlobalStyle } from "styled-components";
 import ReserveList from './pages/ReserveList';
 import ReviewList from './pages/ReviewList';
-import Mypagemain from './pages/Mypagemain';
+import MypageMyInfo from './pages/MypageMyInfo';
 
 
 		<GlobalStyle/>
 		<Routes>
 		<Route path='/mypage/*' element={<Mypage/>}>
-			<Route index element={<Mypagemain/>}/>
+			<Route index element={<MypageMyInfo/>}/>
 			<Route path='reserve' element={<ReserveList/>}/>
 			<Route path='review' element={<ReviewList/>}/>
 			{/* <Route path='puppyinfo' element={<ReserveList/>}/> */}
