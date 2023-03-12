@@ -2,13 +2,13 @@ import * as S from './style/CardStyle';
 import {edit} from '../modules/redux/editSlice';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import useAxios from '../hooks/useAxios';
+import {openModal} from '../modules/redux/modalSlice';
+import {deleteUrl, deleteId} from '../modules/redux/deleteSlice';
 
-function DogCard({dog, data, setData}) {
+function DogCard({dog}) {
 	const age = `${new Date().getFullYear() - dog.birth.slice(0, 4)}살`;
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const {DELETE} = useAxios();
 
 	const onNavigateEdit = () => {
 		dispatch(edit(dog));
@@ -16,12 +16,14 @@ function DogCard({dog, data, setData}) {
 	};
 
 	const handleOpenConfirmModal = () => {
-		DELETE(`/mydog/${dog.id}`);
-		setData(
-			data.filter((data) => {
-				return data.id !== dog.id;
+		dispatch(
+			openModal({
+				modalType: 'DogConfirmModal',
+				isOpen: true,
 			})
 		);
+		dispatch(deleteUrl(`/mydog/${dog.id}`));
+		dispatch(deleteId(dog.id));
 	};
 
 	return (

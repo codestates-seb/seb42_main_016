@@ -1,10 +1,17 @@
 import * as S from './style/DogStyle';
-import useFetch from '../hooks/useFetch';
 import DogCard from './DogCard';
 import AddCard from './AddCard';
+import {asyncUpFetch, selectDog} from '../modules/redux/dogSlice';
+import {useSelector, useDispatch} from 'react-redux';
+import {useEffect} from 'react';
 
 function DogList() {
-	const {data, setData} = useFetch('/mydog');
+	const dispatch = useDispatch();
+	const dogs = useSelector(selectDog);
+
+	useEffect(() => {
+		dispatch(asyncUpFetch());
+	}, [dispatch]);
 
 	return (
 		<S.Container>
@@ -15,10 +22,10 @@ function DogList() {
 						<S.Title>강아지 정보</S.Title>
 					</S.TitleBox>
 					<S.CardFlex>
-						{data &&
-							data.map((dog) => {
+						{dogs &&
+							dogs.map((dog) => {
 								return (
-									<DogCard dog={dog} key={dog.id} data={data} setData={setData}>
+									<DogCard dog={dog} key={dog.id}>
 										{dog.name}
 									</DogCard>
 								);

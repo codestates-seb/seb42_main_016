@@ -2,13 +2,13 @@ import {useSelector} from 'react-redux';
 import {selectModal} from './redux/modalSlice';
 import WeightModal from '../components/modal/WeightModal';
 import TypeModal from '../components/modal/TypeModal';
-import ConfirmModal from '../components/modal/ConfirmModal';
+import DogConfirmModal from '../components/modal/DogConfirmModal';
 import * as S from '../components/style/ModalStyle';
 
 const MODAL_TYPES = {
 	WeightModal: 'WeightModal',
 	TypeModal: 'TypeModal',
-	ConfirmModal: 'ConfirmModal',
+	DogConfirmModal: 'DogConfirmModal',
 };
 
 const MODAL_COMPONENTS = [
@@ -21,8 +21,8 @@ const MODAL_COMPONENTS = [
 		component: <TypeModal />,
 	},
 	{
-		type: MODAL_TYPES.ConfirmModal,
-		component: <ConfirmModal />,
+		type: MODAL_TYPES.DogConfirmModal,
+		component: <DogConfirmModal />,
 	},
 ];
 
