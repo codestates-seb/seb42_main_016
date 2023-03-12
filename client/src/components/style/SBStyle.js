@@ -11,9 +11,7 @@ export const StylebookWrap = styled.div`
 `
 //List
 export const Container = styled.div`
-    /* width: 100vw;
-    height: 100vh; */
-    padding: 2rem 12rem;
+    padding: 2rem 10rem;
     display: grid;
     grid-template-columns:repeat(3,1fr);
     gap:2rem;
@@ -32,8 +30,8 @@ export const ItemWrap = styled.div`
     border: 1px solid #ddd;
 
   :hover {
-    background-color: rgba(247, 247, 247, 0.836);
-    box-shadow: 3px 3px 3px #3f00c71a;
+    /* background-color: rgba(247, 247, 247, 0.836);
+    box-shadow: 3px 3px 3px #3f00c71a; */
   }
 `
 export const ItemImage = styled.div`
@@ -46,17 +44,19 @@ export const ItemImage = styled.div`
 
 `
 export const Itembar = styled.div`
-  display: flex;
   width: 100%;
+  display: flex;
   justify-content: space-between;
-  align-items: flex-end;
   border-top: 1px solid #ddd;
   .icon {
-    padding:5px 10px;
-    font-size: 1.2rem;
+    margin:3px 7px;
+    font-size: 1.3rem;
+    color: gray;
   }
+  
   .icon:hover{
     cursor: pointer;
+    color: black;
   }
 
 `

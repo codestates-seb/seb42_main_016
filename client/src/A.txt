@@ -13,7 +13,8 @@ import MypageMyInfo from './pages/MypageMyInfo';
 
 		<GlobalStyle/>
 		<Routes>
-		<Route path='/mypage/*' element={<Mypage/>}>
+			<Route path='/stylebook' element={<Stylebook/>}/>
+			<Route path='/mypage/*' element={<Mypage/>}>
 			<Route path='myinfo' element={<MypageMyInfo/>}/>
 			<Route index element={<MypageMyInfo/>}/>
 			<Route path='reserve' element={<ReserveList/>}/>
