@@ -5,15 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReviewLikeDto {
-    @NotBlank
+public class ReviewLikeResponseDto {
+    private Long id;
     private Long memberId;
-    @NotBlank
     private Long reviewId;
 }
