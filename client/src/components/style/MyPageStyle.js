@@ -35,8 +35,7 @@ export const SidebarContainer = styled.div`
         
     }
     .nav-link.active{
-        /* color:red; */
-        text-decoration: none;
+        font-weight: bold;
     }
 `
 
@@ -123,4 +122,24 @@ export const CancelButton = styled.button`
     :hover{
         background-color: white;
     }
+`
+export const CancelMWrap = styled.div`
+     width:500px;
+     height: 200px;
+     border: 1px solid black;
+     border-radius: 5px;
+     text-align: center;
+     top:30%;
+     background-color: white;
+     position: fixed;
+     p{
+        font-size: 1.5rem;
+     }
+     button{
+        background-color: white;
+        width: 70px;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 3px;
+     }
 `
