@@ -1,7 +1,7 @@
 import React from 'react'
-import StylebookList from '../components/stylebook/StylebookList' 
+import StylebookList from '../components/MPstylebook/StylebookList' 
 import * as S from '../components/style/SBStyle'
-import TopButton from '../components/stylebook/TopButton'
+import TopButton from '../components/MPstylebook/TopButton'
 
 
 export default function MainPage() {
