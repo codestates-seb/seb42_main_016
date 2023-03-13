@@ -20,8 +20,9 @@ public class ReviewLikeService {
         return reviewLikeRepository.countByReviewId(reviewId);
     }
 
-    public void deleteReviewLike(Long reviewLikeId) {
+    public void deleteReviewLike(Long reviewLikeId, Long memberId) {
         ReviewLike findReviewLike = findVerifiedReviewLike(reviewLikeId);
+        compareIdAndLoginId(findReviewLike.getMember().getMemberId(), memberId);
 
         reviewLikeRepository.delete(findReviewLike);
     }
@@ -33,5 +34,10 @@ public class ReviewLikeService {
                 optionalReviewLike.orElseThrow(() -> null);
 //        new BusinessLogicException(ExceptionCode.REVIEWLIKE_NOT_FOUND));
         return findReviewLike;
+    }
+
+    private void compareIdAndLoginId(Long id, Long memberId) {
+        if(!id.equals(memberId))
+            throw null;
     }
 }
