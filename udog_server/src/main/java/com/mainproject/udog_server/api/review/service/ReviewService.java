@@ -32,7 +32,7 @@ public class ReviewService {
         // 존재하는 리뷰인지 확인
         Review findReview = findVerifiedReview(review.getId());
         // TODO : 멤버id와 로그인 멤버id를 비교하는 로직 필요
-        compareIdAndLoginId(findReview.getId(), memberId);
+        compareIdAndLoginId(findReview.getMember().getMemberId(), memberId);
 
         Optional.ofNullable(review.getReviewImage())
                 .ifPresent(review_pic -> findReview.setReviewImage(review_pic));
@@ -55,8 +55,9 @@ public class ReviewService {
         return reviewRepository.findAll(Sort.by("id").descending());
     }
 
-    public void deleteReview(Long reviewId) {
+    public void deleteReview(Long reviewId, Long memberId) {
         Review findReview = findVerifiedReview(reviewId);
+        compareIdAndLoginId(findReview.getMember().getMemberId(), memberId);
 
         reviewRepository.delete(findReview);
     }

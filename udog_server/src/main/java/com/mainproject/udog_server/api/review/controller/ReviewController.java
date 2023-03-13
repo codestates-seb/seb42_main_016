@@ -75,8 +75,8 @@ public class ReviewController {
 
     @DeleteMapping("/{review-id}")
     public ResponseEntity deleteReview(@PathVariable("review-id") @Positive Long reviewId, Principal principal) {
-        memberService.findLoginMemberByEmail(principal.getName());
-        reviewService.deleteReview(reviewId);
+        Member member = memberService.findLoginMemberByEmail(principal.getName());
+        reviewService.deleteReview(reviewId, member.getMemberId());
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
