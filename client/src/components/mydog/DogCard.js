@@ -1,9 +1,9 @@
-import * as S from './style/CardStyle';
-import {edit} from '../modules/redux/editSlice';
+import * as S from '../style/CardStyle';
+import {edit} from '../../modules/redux/editSlice';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
-import {openModal} from '../modules/redux/modalSlice';
-import {deleteUrl, deleteId} from '../modules/redux/deleteSlice';
+import {openModal} from '../../modules/redux/modalSlice';
+import {deleteUrl, deleteId} from '../../modules/redux/deleteSlice';
 
 function DogCard({dog}) {
 	const age = `${new Date().getFullYear() - dog.birth.slice(0, 4)}살`;

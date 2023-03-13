@@ -1,12 +1,5 @@
 import styled from 'styled-components';
 
-export const Sidebar = styled.div`
-	width: 169px;
-	height: 100vh;
-	padding-left: 10px;
-	background-color: gainsboro;
-`;
-
 export const Container = styled.div`
 	width: 100%;
 	height: 100vh;

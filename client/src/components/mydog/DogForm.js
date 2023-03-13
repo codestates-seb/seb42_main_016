@@ -1,11 +1,11 @@
-import * as S from './style/FormStyle';
+import * as S from '../style/FormStyle';
 import {useState, useEffect} from 'react';
 import {FiChevronDown} from 'react-icons/fi';
-import useDogAge from '../hooks/useDogAge';
+import useDogAge from '../../hooks/useDogAge';
 import {useDispatch, useSelector} from 'react-redux';
-import {openModal, selectModal, selectOption} from '../modules/redux/modalSlice';
-import {selectEdit} from '../modules/redux/editSlice';
-import useAxios from '../hooks/useAxios';
+import {openModal, selectModal, selectOption} from '../../modules/redux/modalSlice';
+import {selectEdit} from '../../modules/redux/editSlice';
+import useAxios from '../../hooks/useAxios';
 
 function DogForm() {
 	const [value, setValue] = useState({
