@@ -55,7 +55,6 @@ public class MemberDto {
         private long memberId;
         private String email;
         private String nickname;
-        private LocalDateTime createdAt;
-        private LocalDateTime modifiedAt;
+        private LocalDateTime signUpAt;
     }
 }
