@@ -38,9 +38,9 @@ public class ReviewLikeController {
     @DeleteMapping("/{reviewLike-id}")
     public ResponseEntity<Void> deleteReviewLike(@PathVariable("reviewLike-id") @Positive Long reviewLikeId,
                                                  Principal principal) {
-        memberService.findLoginMemberByEmail(principal.getName());
+        Member member = memberService.findLoginMemberByEmail(principal.getName());
 
-        reviewLikeService.deleteReviewLike(reviewLikeId);
+        reviewLikeService.deleteReviewLike(reviewLikeId, member.getMemberId());
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
