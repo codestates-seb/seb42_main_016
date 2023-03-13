@@ -1,6 +1,9 @@
 package com.mainproject.udog_server.api.member;
 
+import com.mainproject.udog_server.auth.filter.JwtVerificationFilter;
 import com.mainproject.udog_server.auth.utils.CustomAuthorityUtils;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -103,5 +106,12 @@ public class MemberService {
         //Todo : exeption
         if(member.getMemberStatus().equals(Member.MemberStatus.MEMBER_QUIT))
             throw null;
+    }
+
+    public Member findLoginMemberByEmail(String email){
+        Optional<Member> optionalMember = memberRepository.findByEmail(email);
+        //Todo : exeption
+        Member member = optionalMember.orElseThrow(() -> null);
+        return member;
     }
 }

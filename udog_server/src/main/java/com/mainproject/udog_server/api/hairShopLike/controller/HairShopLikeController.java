@@ -33,10 +33,12 @@ public class HairShopLikeController {
     @PostMapping("/{hair-shops-id}/likes")
     public ResponseEntity<?> addLike(@Positive @PathVariable("hair-shops-id") long hairShopId, Principal principal,
                                         @RequestBody HairShopLikeDto.Post post) {
-        HairShopLike hairShopLike = mapper.hairShopLikePostDtoToHairShopLike(post);
-        Member member = memberService.findVerifiedMember(Long.parseLong(principal.getName()));
 
-        hairShopLike.setMember(member);
+        Member member = memberService.findLoginMemberByEmail(principal.getName());
+
+        post.setMember(member);
+
+        HairShopLike hairShopLike = mapper.hairShopLikePostDtoToHairShopLike(post);
 
         hairShopLikeService.addLike(hairShopId, hairShopLike);
 
@@ -48,7 +50,7 @@ public class HairShopLikeController {
                                         @Positive @PathVariable("hair-shop-likes-id") long hairShopLikeId,
                                         Principal principal){
 
-        Member member = memberService.findVerifiedMember(Long.parseLong(principal.getName()));
+        Member member = memberService.findLoginMemberByEmail(principal.getName());
 
         hairShopLikeService.deleteLike(hairShopId, hairShopLikeId, member);
 
