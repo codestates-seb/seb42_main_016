@@ -51,17 +51,21 @@ public class ReviewController {
 
         Review review = mapper.reviewPatchDtoToReview(patchDto);
 
-        Review response = reviewService.updateReview(review, member.getMemberId());
+        Review reviewDto = reviewService.updateReview(review, member.getMemberId());
+        ReviewDto.Response response = mapper.reviewToReviewResponseDto(reviewDto);
+        response.setReviewLikeCount(reviewLikeService.getReviewLikeCount(reviewId));
 //        Review response = reviewService.updateReview(review, patchDto.getMemberId());
 
-        return new ResponseEntity<>(mapper.reviewToReviewResponseDto(response), HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/{review-id}")
     public ResponseEntity getReview(@PathVariable("review-id") @Positive Long reviewId) {
-        Review response = reviewService.findReview(reviewId);
+        Review review = reviewService.findReview(reviewId);
+        ReviewDto.Response response = mapper.reviewToReviewResponseDto(review);
+        response.setReviewLikeCount(reviewLikeService.getReviewLikeCount(reviewId));
 
-        return new ResponseEntity<>(mapper.reviewToReviewResponseDto(response), HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 //    @GetMapping

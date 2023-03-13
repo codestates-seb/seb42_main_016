@@ -11,5 +11,5 @@ public interface ReviewMapper {
     Review reviewPostDtoToReview(ReviewDto.Post postDto);
     Review reviewPatchDtoToReview(ReviewDto.Patch patchDto);
     ReviewDto.Response reviewToReviewResponseDto(Review review);
-    List<ReviewDto.Response> reviewsToReviewResponseDto(List<Review> reviews);
+    List<ReviewDto.listResponse> reviewsToReviewResponseDto(List<Review> reviews);
 }
