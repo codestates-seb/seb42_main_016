@@ -3,6 +3,7 @@ import * as S from '../components/style/DogStyle';
 import DogForm from '../components/mydog/DogForm';
 import {useSelector} from 'react-redux';
 import {selectEdit} from '../modules/redux/editSlice';
+import MypageSidebar from '../components/mypage/MypageSidebar';
 
 const Nav = styled.nav`
 	background-color: cornflowerblue;
@@ -17,7 +18,7 @@ function MydogEditor() {
 			<Nav />
 			<S.Container>
 				<S.ContentBox>
-					<S.Sidebar>사이드바</S.Sidebar>
+					<MypageSidebar />
 					<S.Content>
 						<S.TitleBox>
 							<S.Title>{edit ? '강아지 수정' : '강아지 등록'}</S.Title>
