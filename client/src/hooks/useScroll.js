@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 
-const useScroll = () => {
+function useScroll() {
 	useEffect(() => {
 		document.body.style.cssText = `
     position: fixed; 
@@ -13,6 +13,6 @@ const useScroll = () => {
 			window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
 		};
 	}, []);
-};
+}
 
 export default useScroll;

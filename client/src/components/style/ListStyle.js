@@ -14,6 +14,7 @@ export const List = styled.li`
 	overflow: hidden;
 	position: relative;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+	cursor: pointer;
 `;
 
 export const ListFlex = styled.div`

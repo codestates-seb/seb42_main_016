@@ -6,6 +6,7 @@ import Hairshop from './pages/Hairshop';
 import Mydog from './pages/Mydog';
 import MydogEditor from './pages/MydogEditor';
 import DeleteHome from './pages/DeleteHome';
+import HairshopDetail from './pages/HairshopDetail';
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/hairshop" element={<Hairshop />} />
+				<Route path="/hairshop/:id" element={<HairshopDetail />} />
 				<Route path="/mydog" element={<Mydog />} />
 				<Route path="/mydog-edit" element={<MydogEditor />} />
 			</Routes>

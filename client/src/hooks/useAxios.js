@@ -1,7 +1,7 @@
 import API from '../modules/API';
 import {useNavigate} from 'react-router-dom';
 
-const useAxios = (url, body, path) => {
+function useAxios(url, body, path) {
 	const token = localStorage.getItem('accessToken');
 	const refresh = localStorage.getItem('refresh');
 	const navigate = useNavigate();
@@ -39,6 +39,6 @@ const useAxios = (url, body, path) => {
 	};
 
 	return {POST, PATCH};
-};
+}
 
 export default useAxios;
