@@ -33,7 +33,7 @@ public class ReviewDto {
         private String reviewImage;
         @Nullable
         private String reviewText;
-        private Long memberId;
+        private Member member;
     }
 
     @Getter
