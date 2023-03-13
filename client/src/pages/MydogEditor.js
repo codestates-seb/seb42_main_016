@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import * as S from '../components/style/DogStyle';
-import DogForm from '../components/DogForm';
+import DogForm from '../components/mydog/DogForm';
 import {useSelector} from 'react-redux';
 import {selectEdit} from '../modules/redux/editSlice';
 

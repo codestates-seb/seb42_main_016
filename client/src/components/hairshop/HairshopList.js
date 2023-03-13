@@ -1,5 +1,5 @@
-import * as S from './style/ListStyle';
-import img from '../utils/img.jpeg';
+import * as S from '../style/ListStyle';
+import img from '../../utils/img.jpeg';
 import {AiFillHeart} from 'react-icons/ai';
 
 function HairshopList({shop}) {

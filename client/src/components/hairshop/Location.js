@@ -1,5 +1,5 @@
-import * as S from './style/ListStyle';
-import useGeolocation from '../hooks/useGeolocation';
+import * as S from '../style/ListStyle';
+import useGeolocation from '../../hooks/useGeolocation';
 
 function Location() {
 	const location = useGeolocation();

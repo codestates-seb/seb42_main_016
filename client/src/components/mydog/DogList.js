@@ -1,7 +1,7 @@
-import * as S from './style/DogStyle';
+import * as S from '../style/DogStyle';
 import DogCard from './DogCard';
 import AddCard from './AddCard';
-import {asyncUpFetch, selectDog} from '../modules/redux/dogSlice';
+import {asyncUpFetch, selectDog} from '../../modules/redux/dogSlice';
 import {useSelector, useDispatch} from 'react-redux';
 import {useEffect} from 'react';
 

@@ -1,7 +1,8 @@
-import HairshopList from '../components/HairshopList';
-import Location from '../components/Location';
+import HairshopList from '../components/hairshop/HairshopList';
+import Location from '../components/hairshop/Location';
 import useFetch from '../hooks/useFetch';
 import styled from 'styled-components';
+import TopButton from '../components/stylebook/TopButton';
 
 const Nav = styled.nav`
 	background-color: cornflowerblue;
@@ -18,6 +19,7 @@ function Hairshop() {
 			{data.map((shop) => {
 				return <HairshopList shop={shop} key={shop.id} />;
 			})}
+			<TopButton />
 		</>
 	);
 }
