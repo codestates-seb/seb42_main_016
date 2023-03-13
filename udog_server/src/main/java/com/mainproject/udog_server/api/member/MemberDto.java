@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 
 public class MemberDto {
     @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class Post{
         @NotBlank
         @Email
