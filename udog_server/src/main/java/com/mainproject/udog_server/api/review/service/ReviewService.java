@@ -1,11 +1,13 @@
 package com.mainproject.udog_server.api.review.service;
 
+import com.mainproject.udog_server.api.member.Member;
 import com.mainproject.udog_server.api.review.repository.ReviewRepository;
 import com.mainproject.udog_server.api.review.entity.Review;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -26,11 +28,11 @@ public class ReviewService {
     }
 
 //    public Review updateReview(Review review, Long memberId) {
-    public Review updateReview(Review review) {
+    public Review updateReview(Review review, Long memberId) {
         // 존재하는 리뷰인지 확인
         Review findReview = findVerifiedReview(review.getId());
         // TODO : 멤버id와 로그인 멤버id를 비교하는 로직 필요
-//        memberService.compareIdAndLoginId(memberId);
+        compareIdAndLoginId(findReview.getMember().getMemberId(), memberId);
 
         Optional.ofNullable(review.getReviewImage())
                 .ifPresent(review_pic -> findReview.setReviewImage(review_pic));
@@ -53,8 +55,9 @@ public class ReviewService {
         return reviewRepository.findAll(Sort.by("id").descending());
     }
 
-    public void deleteReview(Long reviewId) {
+    public void deleteReview(Long reviewId, Long memberId) {
         Review findReview = findVerifiedReview(reviewId);
+        compareIdAndLoginId(findReview.getMember().getMemberId(), memberId);
 
         reviewRepository.delete(findReview);
     }
@@ -76,7 +79,10 @@ public class ReviewService {
 
         return findReview;
     }
-
     // principal로 받아온 memberId랑 DB에 저장된 Review의 memberId 같은지 검증하는 로직
     // 틀리면 -> 요청 오류
+    private void compareIdAndLoginId(Long id, Long memberId) {
+        if(!id.equals(memberId))
+            throw null;
+    }
 }

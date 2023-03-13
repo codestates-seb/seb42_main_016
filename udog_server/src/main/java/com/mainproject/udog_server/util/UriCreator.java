@@ -1,4 +1,4 @@
-package com.mainproject.udog_server.utils;
+package com.mainproject.udog_server.util;
 
 import org.springframework.web.util.UriComponentsBuilder;
 

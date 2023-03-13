@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class Dog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,16 +31,16 @@ public class Dog {
     private String dogDescription;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @Builder
-    public Dog (long dogId, String dogName, LocalDate dogBirthDate, String dogSpecies, int dogWeight, String dogDescription) {
-        this.dogId = dogId;
-        this.dogName = dogName;
-        this.dogBirthDate = dogBirthDate;
-        this.dogSpecies = dogSpecies;
-        this.dogWeight = dogWeight;
-        this.dogDescription = dogDescription;
-    }
+//    @Builder
+//    public Dog (long dogId, String dogName, LocalDate dogBirthDate, String dogSpecies, int dogWeight, String dogDescription) {
+//        this.dogId = dogId;
+//        this.dogName = dogName;
+//        this.dogBirthDate = dogBirthDate;
+//        this.dogSpecies = dogSpecies;
+//        this.dogWeight = dogWeight;
+//        this.dogDescription = dogDescription;
+//    }
 }

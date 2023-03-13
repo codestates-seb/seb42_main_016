@@ -1,7 +1,8 @@
 package com.mainproject.udog_server.auth.utils;
 
 import com.google.gson.Gson;
-import com.mainproject.udog_server.response.ErrorResponse;
+import com.mainproject.udog_server.auth.response.ErrorResponse;
+//import com.mainproject.udog_server.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 

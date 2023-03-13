@@ -1,6 +1,7 @@
 package com.mainproject.udog_server.audit;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -23,4 +24,5 @@ public abstract class Auditable {
     @Column(name = "LAST_MODIFIED_AT")
     @Setter
     private LocalDateTime modifiedAt;
+
 }

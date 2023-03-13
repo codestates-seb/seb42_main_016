@@ -1,6 +1,7 @@
 package com.mainproject.udog_server.api.member;
 
 import com.mainproject.udog_server.api.dog.entity.Dog;
+import com.mainproject.udog_server.api.hairShopLike.entity.HairShopLike;
 import com.mainproject.udog_server.api.review.entity.Review;
 import com.mainproject.udog_server.audit.Auditable;
 import lombok.AllArgsConstructor;
@@ -53,6 +54,11 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Dog> dogs = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<HairShopLike> hairShopLikes = new ArrayList<>();
+
+
+
     public enum MemberStatus {
         MEMBER_ACTIVE("활동중"),
         MEMBER_QUIT("탈퇴 상태");
@@ -63,5 +69,7 @@ public class Member {
         MemberStatus(String status) {
             this.status = status;
         }
+
     }
+
 }

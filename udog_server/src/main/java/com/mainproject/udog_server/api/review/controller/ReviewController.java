@@ -41,12 +41,15 @@ public class ReviewController {
 
     @PatchMapping("/{review-id}")
     public ResponseEntity patchReview(@PathVariable("review-id") @Positive Long reviewId,
-                                      @RequestBody ReviewDto.Patch patchDto) {
+                                      @RequestBody ReviewDto.Patch patchDto, Principal principal) {
+        Member member = memberService.findLoginMemberByEmail(principal.getName());
+
+        patchDto.setMember(member);
         patchDto.setId(reviewId);
 
         Review review = mapper.reviewPatchDtoToReview(patchDto);
 
-        Review response = reviewService.updateReview(review);
+        Review response = reviewService.updateReview(review, member.getMemberId());
 //        Review response = reviewService.updateReview(review, patchDto.getMemberId());
 
         return new ResponseEntity<>(mapper.reviewToReviewResponseDto(response), HttpStatus.OK);
@@ -71,8 +74,9 @@ public class ReviewController {
     }
 
     @DeleteMapping("/{review-id}")
-    public ResponseEntity deleteReview(@PathVariable("review-id") @Positive Long reviewId) {
-        reviewService.deleteReview(reviewId);
+    public ResponseEntity deleteReview(@PathVariable("review-id") @Positive Long reviewId, Principal principal) {
+        Member member = memberService.findLoginMemberByEmail(principal.getName());
+        reviewService.deleteReview(reviewId, member.getMemberId());
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
