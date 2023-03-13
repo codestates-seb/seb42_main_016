@@ -1,6 +1,7 @@
 package com.mainproject.udog_server.api.member;
 
 import com.mainproject.udog_server.api.dog.entity.Dog;
+import com.mainproject.udog_server.api.hairShopLike.entity.HairShopLike;
 import com.mainproject.udog_server.api.review.entity.Review;
 import com.mainproject.udog_server.audit.Auditable;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +48,9 @@ public class Member extends Auditable {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Dog> dogs = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<HairShopLike> hairShopLikes = new ArrayList<>();
+
 
 
     public enum MemberStatus {
@@ -58,5 +63,7 @@ public class Member extends Auditable {
         MemberStatus(String status) {
             this.status = status;
         }
+
     }
+
 }

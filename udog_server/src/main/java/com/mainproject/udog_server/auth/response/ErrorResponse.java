@@ -1,4 +1,4 @@
-package com.mainproject.udog_server.response;
+package com.mainproject.udog_server.auth.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

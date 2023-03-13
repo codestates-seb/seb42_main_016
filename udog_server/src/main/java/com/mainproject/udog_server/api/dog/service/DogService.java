@@ -2,6 +2,7 @@ package com.mainproject.udog_server.api.dog.service;
 
 import com.mainproject.udog_server.api.dog.repository.DogRepository;
 import com.mainproject.udog_server.api.dog.entity.Dog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 @Transactional
 @Service
+@Slf4j
 public class DogService {
     private final DogRepository dogRepository;
 
@@ -21,6 +23,7 @@ public class DogService {
         return dogRepository.save(dog);
     }
 
+    @Transactional(readOnly = true)
     public Dog updateDog(Dog dog) {
         Dog findDog = findVerifiedDog(dog.getDogId());
 
@@ -38,9 +41,11 @@ public class DogService {
         return dogRepository.save(findDog);
     }
 
+    @Transactional(readOnly = true)
     public Dog findDog(long dogId) {
         return findVerifiedDog(dogId);
     }
+
 
     public List<Dog> findDogs() {
         return (List<Dog>) dogRepository.findAll();
@@ -52,6 +57,7 @@ public class DogService {
         dogRepository.delete(findDog);
     }
 
+    @Transactional(readOnly = true)
     public Dog findVerifiedDog(long dogId) {
         Optional<Dog> optionalDog = dogRepository.findById(dogId);
         Dog findDog = optionalDog.orElseThrow(() -> null);
