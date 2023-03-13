@@ -2,7 +2,7 @@ import API from '../modules/API';
 import {useDispatch} from 'react-redux';
 import {closeModal} from '../modules/redux/modalSlice';
 
-const useDelete = (url) => {
+function useDelete(url) {
 	const token = localStorage.getItem('accessToken');
 	const refresh = localStorage.getItem('refresh');
 	const dispatch = useDispatch();
@@ -26,6 +26,6 @@ const useDelete = (url) => {
 	};
 
 	return {DELETE};
-};
+}
 
 export default useDelete;

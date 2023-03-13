@@ -1,12 +1,15 @@
 import * as S from '../style/ListStyle';
 import img from '../../utils/img.jpeg';
 import {AiFillHeart} from 'react-icons/ai';
+import {useNavigate} from 'react-router-dom';
 
 function HairshopList({shop}) {
+	const navigate = useNavigate();
+
 	return (
 		<S.ListContainer>
 			<S.ListWrapper>
-				<S.List>
+				<S.List onClick={() => navigate(`/hairshop/${shop.id}`)}>
 					<S.ListFlex>
 						<S.ImgBox>
 							<S.Img src={img} alt="img" />
