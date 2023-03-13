@@ -1,5 +1,7 @@
 package com.mainproject.udog_server.api.review.controller;
 
+import com.mainproject.udog_server.api.member.Member;
+import com.mainproject.udog_server.api.member.MemberService;
 import com.mainproject.udog_server.api.review.dto.ReviewDto;
 import com.mainproject.udog_server.api.review.entity.Review;
 import com.mainproject.udog_server.api.review.mapper.ReviewMapper;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Positive;
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,9 +23,14 @@ import java.util.stream.Collectors;
 public class ReviewController {
     private final ReviewService reviewService;
     private final ReviewLikeService reviewLikeService;
+    private final MemberService memberService;
     private final ReviewMapper mapper;
     @PostMapping
-    public ResponseEntity postReview(@RequestBody ReviewDto.Post postDto) {
+    public ResponseEntity postReview(@RequestBody ReviewDto.Post postDto, Principal principal) {
+        Member member = memberService.findLoginMemberByEmail(principal.getName());
+
+        postDto.setMember(member);
+
         Review review = mapper.reviewPostDtoToReview(postDto);
 
         Review response = reviewService.createReview(review);
