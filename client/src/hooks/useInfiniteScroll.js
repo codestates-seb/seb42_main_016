@@ -1,37 +1,30 @@
 import {useState, useEffect} from 'react';
 import API from '../modules/API';
 
-function useInfiniteScroll(url, size) {
+function useInfiniteScroll(url, perPage) {
 	const [data, setData] = useState([]);
-	const [last, setLast] = useState(0);
+	const [loading, setLoading] = useState(false);
+	const [hasMore, setHasMore] = useState(true);
+	const [page, setPage] = useState(1);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const res = await API.get(`${url}?_page=${size}&_limit=${last}`);
-				setData(res);
-			} catch (err) {
-				console.log(err);
-			}
-		};
-	}, []);
+		setLoading(true);
+		API.get(`${url}?_page=${page}&_limit=${perPage}`)
+			.then((res) => {
+				setData((prevData) => [...prevData, ...res.data]);
+				setHasMore(res.data.length > 0);
+			})
+			.finally(() => setLoading(false));
+	}, [page, url, perPage]);
 
-	useEffect(() => {
-		const onScroll = () => {
-			if (window.scrollY + document.documentElement.clientHeight > document.documentElement.scrollHeight - 10) {
-				if (data) {
-					const lastId = data[data.length - 1].id;
-					setData(API.get(`${url}?size=${size}&_last=${lastId}`));
-				}
-			}
-		};
+	const handleScroll = (e) => {
+		const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+		if (bottom && !loading && hasMore) {
+			setPage((prevPage) => prevPage + 1);
+		}
+	};
 
-		window.addEventListener('scroll', onScroll);
-		return () => {
-			console.log(data);
-			window.removeEventListener('scroll', onScroll);
-		};
-	}, []);
-	return data;
+	return {data, loading, handleScroll};
 }
+
 export default useInfiniteScroll;
