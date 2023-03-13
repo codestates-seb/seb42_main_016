@@ -1,7 +1,7 @@
 package com.mainproject.udog_server.auth.handler;
 
 import com.google.gson.Gson;
-import com.mainproject.udog_server.response.ErrorResponse;
+import com.mainproject.udog_server.auth.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
