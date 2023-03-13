@@ -1,8 +1,10 @@
 package com.mainproject.udog_server.api.member;
 
+import com.mainproject.udog_server.auth.filter.JwtVerificationFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -10,6 +12,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.net.URI;
+import java.security.Principal;
 
 @CrossOrigin
 @RestController
