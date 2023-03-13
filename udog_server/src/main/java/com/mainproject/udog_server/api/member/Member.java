@@ -46,6 +46,7 @@ public class Member {
     @Column(name = "SIGN_UP_AT", updatable = false)
     private LocalDateTime signUpAt = LocalDateTime.now();
 
+
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
 

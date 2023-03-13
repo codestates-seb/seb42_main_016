@@ -20,7 +20,7 @@ public class ReviewService {
 //        Member member = verifyMember(memberId);
 
 //        review.setMember(member);
-        review.setCreated_at(LocalDateTime.now());
+        review.setCreatedAt(LocalDateTime.now());
 
         return reviewRepository.save(review);
     }
@@ -32,12 +32,12 @@ public class ReviewService {
         // TODO : 멤버id와 로그인 멤버id를 비교하는 로직 필요
 //        memberService.compareIdAndLoginId(memberId);
 
-        Optional.ofNullable(review.getReview_pic())
-                .ifPresent(review_pic -> findReview.setReview_pic(review_pic));
-        Optional.ofNullable(review.getReview_text())
-                .ifPresent(review_text -> findReview.setReview_text(review_text));
+        Optional.ofNullable(review.getReviewImage())
+                .ifPresent(review_pic -> findReview.setReviewImage(review_pic));
+        Optional.ofNullable(review.getReviewText())
+                .ifPresent(review_text -> findReview.setReviewText(review_text));
 
-        findReview.setModified_at(LocalDateTime.now());
+        findReview.setModifiedAt(LocalDateTime.now());
 
         return reviewRepository.save(findReview);
     }
