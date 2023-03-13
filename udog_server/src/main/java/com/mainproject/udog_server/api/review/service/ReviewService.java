@@ -76,4 +76,6 @@ public class ReviewService {
 
         return findReview;
     }
+    // principal로 받아온 memberId랑 DB에 저장된 Review의 memberId 같은지 검증하는 로직
+    // 틀리면 -> 요청 오류
 }
