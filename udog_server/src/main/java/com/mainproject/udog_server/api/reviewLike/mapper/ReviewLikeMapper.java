@@ -16,7 +16,7 @@ public interface ReviewLikeMapper {
         ReviewLike reviewLike = new ReviewLike();
 
         review.setId(reviewLikeDto.getReviewId());
-        member.setMemberId(reviewLikeDto.getMemberId());
+        member.setMemberId(reviewLikeDto.getMember().getMemberId());
 
         reviewLike.setReview(review);
         reviewLike.setMember(member);
