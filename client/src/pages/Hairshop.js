@@ -1,8 +1,10 @@
 import HairshopList from '../components/hairshop/HairshopList';
 import Location from '../components/hairshop/Location';
 import styled from 'styled-components';
-import TopButton from '../components/stylebook/TopButton';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
+import * as S from '../components/style/ListStyle';
+import {useRef} from 'react';
+import ScrollTopButton from '../components/ScrollTopButton';
 
 const Nav = styled.nav`
 	background-color: cornflowerblue;
@@ -13,17 +15,18 @@ function Hairshop() {
 	const PER_PAGE = 15;
 	const url = '/hairshop';
 	const {data, loading, handleScroll} = useInfiniteScroll(url, PER_PAGE);
+	const scrollAreaRef = useRef(null);
 
 	return (
-		<div style={{height: '100vh', overflowY: 'scroll'}} onScroll={handleScroll}>
+		<S.ScrollArea className="scrollArea" onScroll={handleScroll} ref={scrollAreaRef}>
 			<Nav />
 			<Location />
 			{data.map((shop) => {
 				return <HairshopList shop={shop} key={shop.id} />;
 			})}
 			{loading && <div>Loading...</div>}
-			<TopButton />
-		</div>
+			<ScrollTopButton area={scrollAreaRef} />
+		</S.ScrollArea>
 	);
 }
 

@@ -85,3 +85,12 @@ export const LocationStyle = styled.h1`
 	margin-top: 50px;
 	margin-bottom: 10px;
 `;
+
+export const ScrollArea = styled.div`
+	/* border: 1px solid;
+	display: flex;
+	flex-direction: column;
+	flex: 1; */
+	height: 100vh;
+	overflow-y: auto;
+`;
