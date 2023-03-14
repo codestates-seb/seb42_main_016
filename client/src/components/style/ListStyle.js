@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ListContainer = styled.div`
 	display: flex;
 	justify-content: center;
+	line-height: normal;
 `;
 
 export const ListWrapper = styled.div`
@@ -30,7 +31,7 @@ export const ListFlex = styled.div`
 export const ImgBox = styled.div`
 	min-width: 200px;
 	height: 200px;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 	@media (max-width: 700px) {
 		display: none;
 	}

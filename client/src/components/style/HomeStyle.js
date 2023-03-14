@@ -8,6 +8,7 @@ export const HomeContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	line-height: normal;
 `;
 
 export const HomeContent = styled.div`
@@ -75,8 +76,13 @@ export const CommentBox = styled.div`
 	margin-bottom: 26px;
 `;
 
+export const CommentTitleBox = styled.div`
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+`;
+
 export const CommentTitle = styled.strong`
-	margin-bottom: 15px;
 	font-size: 16px;
 	color: rgba(0, 0, 0, 0.87);
 `;
@@ -89,6 +95,9 @@ export const CommentButton = styled.button`
 	border: none;
 	font-size: 16px;
 	color: rgba(0, 0, 0, 0.56);
+	&:hover {
+		opacity: 0.5;
+	}
 `;
 
 export const CommentText = styled.div`
@@ -106,32 +115,15 @@ export const CommentText = styled.div`
 
 export const InfoText = styled.div`
 	margin: 10px 0;
+	font-size: 16px;
 	color: rgba(0, 0, 0, 0.56);
 	display: flex;
-	i {
-		align-items: center;
-	}
+	align-items: center;
 	svg {
 		margin-right: 10px;
 		fill: #9e9e9e;
 		width: 16px;
 		height: 18px;
-	}
-`;
-
-export const LittleText = styled.div`
-	margin: 10px 0;
-	display: flex;
-	font-size: 14px;
-	color: rgba(0, 0, 0, 0.56);
-	font-weight: 600;
-`;
-
-export const IconText = styled.div`
-	display: flex;
-	margin-right: 25px;
-	i {
-		align-items: center;
 	}
 `;
 
