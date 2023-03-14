@@ -7,6 +7,7 @@ export const BgColor = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	line-height: normal;
 `;
 
 export const Container = styled.div`
@@ -34,7 +35,7 @@ export const FormWrapper = styled.div`
 	padding: 20px;
 `;
 
-export const Logo = styled.h1`
+export const Logo = styled.h2`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -50,7 +51,7 @@ export const Form = styled.form`
 `;
 
 export const LabelContainer = styled.div`
-	margin: 17px 0px 7px;
+	margin-bottom: 7px;
 `;
 
 export const Label = styled.label`

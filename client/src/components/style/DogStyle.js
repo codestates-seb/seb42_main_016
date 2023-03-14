@@ -4,6 +4,7 @@ export const Container = styled.div`
 	width: 100%;
 	height: 100vh;
 	margin-top: 30px;
+	line-height: normal;
 `;
 
 export const ContentBox = styled.div`
@@ -24,7 +25,6 @@ export const TitleBox = styled.div`
 	overflow: hidden;
 	position: relative;
 	width: 100%;
-	padding: 36px 0 7px;
 `;
 
 export const Title = styled.h2`

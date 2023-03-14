@@ -5,6 +5,8 @@ import modalSlice from './modalSlice';
 import editSlice from './editSlice';
 import deleteSlice from './deleteSlice';
 import dogSlice from './dogSlice';
+import tabSlice from './tabSlice';
+import loadingSlice from './loadingSlice';
 import reserveSlice from './reserveSlice';
 
 const store = configureStore({
@@ -15,6 +17,8 @@ const store = configureStore({
 		edit: editSlice,
 		delete: deleteSlice,
 		dog: dogSlice,
+		tab: tabSlice,
+		loading: loadingSlice,
 		reserve: reserveSlice,
 	},
 });
