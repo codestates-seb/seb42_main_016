@@ -12,10 +12,12 @@ import Mypage from './pages/Mypage';
 import MypageMyInfo from './pages/MypageMyInfo';
 import Myreserve from './pages/Myreserve';
 import Myreview from './pages/Myreview';
+import ModalContainer from './modules/ModalContainer';
 
 function App() {
 	return (
 		<BrowserRouter>
+			<ModalContainer />
 			<GlobalStyle />
 			<Routes>
 				<Route path="/" element={<DeleteHome />} />

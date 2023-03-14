@@ -66,9 +66,9 @@ function DogForm() {
 		e.preventDefault();
 		if (edit) {
 			const {id} = data;
-			PATCH(`/mydog/${id}`, {name, birth, weight, type, memo}, '/mydog');
+			PATCH(`/mydog/${id}`, {name, birth, weight, type, memo}, '/mypage/mydog');
 		} else {
-			POST('/mydog', {name, birth, weight, type, memo}, '/mydog');
+			POST('/mydog', {name, birth, weight, type, memo}, '/mypage/mydog');
 		}
 	};
 
