@@ -5,6 +5,7 @@ import modalSlice from './modalSlice';
 import editSlice from './editSlice';
 import deleteSlice from './deleteSlice';
 import dogSlice from './dogSlice';
+import tabSlice from './tabSlice';
 
 const store = configureStore({
 	reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
 		edit: editSlice,
 		delete: deleteSlice,
 		dog: dogSlice,
+		tab: tabSlice,
 	},
 });
 
