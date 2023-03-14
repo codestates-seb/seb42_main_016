@@ -9,6 +9,9 @@ export const TabBarBox = styled.div`
 	margin: 0 auto;
 	height: 50px;
 	width: 60%;
+	@media (max-width: 1000px) {
+		width: 90%;
+	}
 `;
 
 export const TabBar = styled.nav`

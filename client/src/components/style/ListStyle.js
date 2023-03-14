@@ -8,6 +8,9 @@ export const ListContainer = styled.div`
 export const ListWrapper = styled.div`
 	margin-top: 40px;
 	width: 60%;
+	@media (max-width: 1000px) {
+		width: 90%;
+	}
 `;
 
 export const List = styled.li`
@@ -28,6 +31,9 @@ export const ImgBox = styled.div`
 	min-width: 200px;
 	height: 200px;
 	margin-bottom: 20px;
+	@media (max-width: 700px) {
+		display: none;
+	}
 `;
 
 export const Img = styled.img`
@@ -43,6 +49,10 @@ export const TextBox = styled.div`
 	margin-left: 15px;
 	height: 100%;
 	color: #2d3436;
+	@media (max-width: 700px) {
+		margin-bottom: 30px;
+		width: 100%;
+	}
 `;
 
 export const ShopName = styled.h2`
@@ -84,6 +94,9 @@ export const LocationStyle = styled.h1`
 	font-size: 40px;
 	margin-top: 50px;
 	margin-bottom: 10px;
+	@media (max-width: 1000px) {
+		width: 50%;
+	}
 `;
 
 export const ScrollArea = styled.div`

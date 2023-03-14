@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import HomTab from '../components/tab/HomeTab';
+import HomeTab from '../components/tab/HomeTab';
 import BookTab from '../components/tab/BookTab';
 import ReviewTab from '../components/tab/ReviewTab';
 import {useDispatch, useSelector} from 'react-redux';
@@ -14,7 +14,7 @@ const Nav = styled.nav`
 const tabTitle = ['홈', '예약', '리뷰'];
 
 const tabContent = {
-	0: <HomTab />,
+	0: <HomeTab />,
 	1: <BookTab />,
 	2: <ReviewTab />,
 };
