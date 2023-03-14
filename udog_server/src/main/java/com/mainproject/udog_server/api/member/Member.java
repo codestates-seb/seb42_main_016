@@ -57,6 +57,13 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<HairShopLike> hairShopLikes = new ArrayList<>();
 
+    public void addHairShopLike(HairShopLike hairShopLike) {
+        hairShopLikes.add(hairShopLike);
+        if(hairShopLike.getMember() != this) {
+            hairShopLike.setMember(this);
+        }
+    }
+
 
 
     public enum MemberStatus {

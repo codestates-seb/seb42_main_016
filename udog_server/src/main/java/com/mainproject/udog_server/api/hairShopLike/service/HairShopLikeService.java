@@ -17,23 +17,27 @@ import java.util.Optional;
 public class HairShopLikeService {
     private final HairShopLikeRepository hairShopLikeRepository;
     private final HairShopRepository hairShopRepository;
-    private final HairShopLikeMapper mapper;
 
 
-    public void addLike(long hairShopId, HairShopLike hairShopLike) {
-//        HairShop hairShop = hairShopRepository.findById(hairShopId).orElseThrow(() ->new RuntimeException("HairShop not found"));
+
+    public HairShopLike addLike(long hairShopId, HairShopLike hairShopLike) {
 
         hairShopLike.setHairShop(findVerifiedHairShop(hairShopId));
 
-        hairShopLikeRepository.save(hairShopLike);
+       return  hairShopLikeRepository.save(hairShopLike);
     }
 
     public void deleteLike(long hairShopLikeId, long hairShopId, Member member) {
-//        HairShop hairShop = hairShopRepository.findById(hairShopId).orElseThrow(() -> new RuntimeException("HairShop not found"));
+
         HairShop hairShop = findVerifiedHairShop(hairShopId);
         HairShopLike hairShopLike = findVerifiedHairShopLike(hairShopLikeId, hairShop, member);
 
         hairShopLikeRepository.delete(hairShopLike);
+    }
+
+    public int likeCount(long hairShopId) {
+        HairShop hairShop = findVerifiedHairShop(hairShopId);
+        return hairShopLikeRepository.countByHairShopHairShopId(hairShopId);
     }
 
     public HairShop findVerifiedHairShop(long hairShopId) {

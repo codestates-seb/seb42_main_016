@@ -4,6 +4,7 @@ import com.mainproject.udog_server.api.dog.dto.DogDto;
 import com.mainproject.udog_server.api.dog.entity.Dog;
 import com.mainproject.udog_server.api.dog.mapper.DogMapper;
 import com.mainproject.udog_server.api.dog.service.DogService;
+import com.mainproject.udog_server.api.member.Member;
 import com.mainproject.udog_server.api.member.MemberService;
 import com.mainproject.udog_server.util.UriCreator;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.net.URI;
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -30,12 +32,16 @@ public class DogController {
     private final DogMapper dogMapper;
 
     private final DogService dogService;
-//    private final MemberService memberService;
+    private final MemberService memberService;
 
     @PostMapping
-    public ResponseEntity postDog (@Valid @RequestBody DogDto.Post post,
-                                   @RequestBody @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate birthdate) {
+    public ResponseEntity postDog (@Valid @RequestBody DogDto.Post post, Principal principal){
 
+        Member member = memberService.findLoginMemberByEmail(principal.getName());
+
+        post.setMember(member);
+
+        LocalDate birthdate = post.getDogBirthDate();
         Dog postDog = dogMapper.dogPostDtoToDog(post);
         postDog.setDogBirthDate(birthdate);
         Dog createdDogs = dogService.createDog(postDog);
@@ -47,16 +53,22 @@ public class DogController {
 
     @PatchMapping("/{dog-id}")
     public ResponseEntity patchDog (@Positive @PathVariable("dog-id") long dogId,
-                                     @Valid @RequestBody DogDto.Patch patch,
-                                    @RequestBody @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate birthdate) {
+                                     @Valid @RequestBody DogDto.Patch patch, Principal principal)
+                                    {
+        Member member = memberService.findLoginMemberByEmail(principal.getName());
+
+        patch.setMember(member);
+
+        LocalDate birthdate = patch.getDogBirthDate();
         Dog patchDog = dogMapper.dogPatchDtoToDog(patch);
         patchDog.setDogId(dogId);
         patchDog.setDogBirthDate(birthdate);
-        Dog updateDog = dogService.updateDog(patchDog);
+        Dog updateDog = dogService.updateDog(patchDog, member);
         DogDto.Response response = dogMapper.dogToDogResponse(updateDog);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+    //todo 멤버 로그인 검증
 
     @GetMapping("/{dog-id}")
     public ResponseEntity getDog (@Positive @PathVariable("dog-id") long dogId) {
@@ -74,12 +86,14 @@ public class DogController {
     }
 
     @DeleteMapping("/{dog-id}")
-    public ResponseEntity deleteDog (@Positive @PathVariable("dog-id") long dogId) {
-        dogService.deleteDog(dogId);
+    public ResponseEntity deleteDog (@Positive @PathVariable("dog-id") long dogId, Principal principal) {
+        Member member = memberService.findLoginMemberByEmail(principal.getName());
 
+        dogService.deleteDog(dogId, member);
+//        hairShopLikeService.deleteLike(hairShopId, hairShopLikeId, member);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
 
 //todo 강아지 품종을 enum 으로 수정?
-//todo 인증된 member가 강아지를 등록하는 걸로 수정
+

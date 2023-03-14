@@ -9,4 +9,5 @@ import java.util.Optional;
 
 public interface HairShopLikeRepository extends JpaRepository<HairShopLike, Long> {
     Optional<HairShopLike> findByHairShopLikeIdAndHairShopAndMember(Long hairShopId, HairShop hairShop, Member member);
+    int countByHairShopHairShopId(Long hairShopId);
 }

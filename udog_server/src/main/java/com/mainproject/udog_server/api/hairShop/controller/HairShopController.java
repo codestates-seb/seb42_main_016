@@ -3,6 +3,7 @@ package com.mainproject.udog_server.api.hairShop.controller;
 import com.mainproject.udog_server.api.hairShop.entity.HairShop;
 import com.mainproject.udog_server.api.hairShop.mapper.HairShopMapper;
 import com.mainproject.udog_server.api.hairShop.service.HairShopService;
+import com.mainproject.udog_server.api.hairShopLike.service.HairShopLikeService;
 import com.mainproject.udog_server.dto.MultiResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,11 +27,13 @@ public class HairShopController {
     private final HairShopMapper hairShopMapper;
 
     private final HairShopService hairShopService;
+    private final HairShopLikeService hairShopLikeService;
 
     //미용실 상세페이지
     @GetMapping("/{hair-shops-id}")
     public ResponseEntity getHairShop(@PathVariable("hair-shop-id") @Positive long hairShopId) {
         HairShop response = hairShopService.findHairShop(hairShopId);
+
 
         return new ResponseEntity<>(hairShopMapper.hairShopToHairShopResponse(response), HttpStatus.OK);
     }

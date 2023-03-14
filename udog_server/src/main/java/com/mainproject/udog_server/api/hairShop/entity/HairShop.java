@@ -51,4 +51,6 @@ public class HairShop {
         this.hairShopDescription = hairShopDescription;
         this.hairShopImage = hairShopImage;
     }
+
+
 }

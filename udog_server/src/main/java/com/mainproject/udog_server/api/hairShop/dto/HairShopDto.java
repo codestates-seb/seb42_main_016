@@ -1,5 +1,6 @@
 package com.mainproject.udog_server.api.hairShop.dto;
 
+import com.mainproject.udog_server.api.hairShopLike.service.HairShopLikeService;
 import lombok.*;
 
 public class HairShopDto {
@@ -15,6 +16,11 @@ public class HairShopDto {
         private String hairShopImage;
         private int likeCount;
         private int reviewCount;
+
+        public int getLikeCount(HairShopLikeService hairShopLikeService) {
+            int likeCount = hairShopLikeService.likeCount(hairShopId);
+            return likeCount;
+        }
 
         @Builder
         public Response(long hairShopId, String hairShopName, String hairShopAddress, int hairShopPhone, String hairShopDescription, String hairShopImage, int likeCount, int reviewCount) {

@@ -1,5 +1,7 @@
 package com.mainproject.udog_server.api.dog.dto;
 
+import com.mainproject.udog_server.api.dog.entity.Dog;
+import com.mainproject.udog_server.api.member.Member;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,6 +12,7 @@ import java.time.LocalDate;
 
 public class DogDto {
     @Getter
+    @Setter
     @AllArgsConstructor
 //    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Post {
@@ -22,14 +25,16 @@ public class DogDto {
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate dogBirthDate;
 
-        @NotBlank
-        private String dogSpecies;
+        @NotNull
+        private Dog.DogSpecies dogSpecies;
 
         @NotNull
-        @Pattern(regexp = "^\\d*$", message = "숫자만 입력해 주세요.")
+//        @Pattern(regexp = "^\\d*$", message = "숫자만 입력해 주세요.")
         private int dogWeight;
 
         private String dogDescription;
+
+        private Member member;
 
 //        @Builder
 //        public Post(String dogName, LocalDate dogBirthDate, String dogSpecies, int dogWeight, String dogDescription) {
@@ -41,6 +46,7 @@ public class DogDto {
 //        }
     }
     @Getter
+    @Setter
     @AllArgsConstructor
 //    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Patch {
@@ -50,10 +56,10 @@ public class DogDto {
         private String dogName;
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate dogBirthDate;
-        private String dogSpecies;
-        @Pattern(regexp = "^\\d*$", message = "숫자만 입력해 주세요.")
+//        @Pattern(regexp = "^\\d*$", message = "숫자만 입력해 주세요.")
         private int dogWeight;
         private String dogDescription;
+        private Member member;
 
 
 //        @Builder
@@ -69,13 +75,16 @@ public class DogDto {
 //    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @AllArgsConstructor
     @Getter
+    @Setter
+    @NoArgsConstructor
     public static class Response {
         private long dogId;
         private String dogName;
         private String dogBirthDate;
-        private String dogSpecies;
+        private Dog.DogSpecies dogSpecies;
         private int dogWeight;
         private String dogDescription;
+        private Member member;
 
 //        @Builder
 //        public Response(long dogId, String dogName, String dogBirthDate, String dogSpecies, int dogWeight, String dogDescription) {
