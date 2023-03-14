@@ -54,9 +54,11 @@ function HomeTab() {
 						</S.InfoText>
 					</S.Info>
 					<S.CommentBox>
-						<S.CommentTitle>매장 소개</S.CommentTitle>
-						<S.CommentButton onClick={() => setShow(!show)}>더보기</S.CommentButton>
-						<S.CommentText className={show ? '' : 'hide'}>{show ? comment : `${comment.slice(0, 64)} ...`}</S.CommentText>
+						<S.CommentTitleBox>
+							<S.CommentTitle>매장 소개</S.CommentTitle>
+							<S.CommentButton onClick={() => setShow(!show)}>{show ? '접기' : '더보기'}</S.CommentButton>
+						</S.CommentTitleBox>
+						<S.CommentText className={show ? '' : 'hide'}>{show ? comment : `${comment.slice(0, 63)} ...`}</S.CommentText>
 					</S.CommentBox>
 				</S.TextContainer>
 			</S.HomeContent>
