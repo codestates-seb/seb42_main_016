@@ -1,11 +1,11 @@
-//index.js
-import { BrowserRouter } from 'react-router-dom';
 
 
 //App
-import Mypage from './pages/Mypage'
-import { Routes, Route } from 'react-router-dom'
+
+
 import { createGlobalStyle } from "styled-components";
+import Mypage from './pages/Mypage'
+import Stylebook from './pages/Stylebook'
 import ReserveList from './pages/ReserveList';
 import ReviewList from './pages/ReviewList';
 import MypageMyInfo from './pages/MypageMyInfo';

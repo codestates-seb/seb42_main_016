@@ -9,7 +9,7 @@ const Nav = styled.nav`
 function Mydog() {
 	return (
 		<>
-			<Nav />
+			{/* <Nav /> */}
 			<DogList />
 		</>
 	);

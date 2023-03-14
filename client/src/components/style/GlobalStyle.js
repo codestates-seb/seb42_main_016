@@ -9,6 +9,10 @@ body {
 	padding: 0;
 	width: 100%;
 	height: 100%;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.8;
 }
 button {
 	cursor: pointer;
