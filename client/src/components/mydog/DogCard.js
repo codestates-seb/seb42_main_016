@@ -12,7 +12,7 @@ function DogCard({dog}) {
 
 	const onNavigateEdit = () => {
 		dispatch(edit(dog));
-		navigate('/mydog-edit');
+		navigate('edit');
 	};
 
 	const handleOpenConfirmModal = () => {
