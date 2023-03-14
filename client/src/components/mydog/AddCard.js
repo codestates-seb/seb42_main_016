@@ -1,9 +1,9 @@
-import * as S from './style/CardStyle';
-import AddButton from '../utils/AddButton';
+import * as S from '../style/CardStyle';
+import AddButton from '../../utils/AddButton';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import {cancleEdit} from '../modules/redux/editSlice';
-import {selectOption} from '../modules/redux/modalSlice';
+import {cancleEdit} from '../../modules/redux/editSlice';
+import {selectOption} from '../../modules/redux/modalSlice';
 
 function AddCard() {
 	const navigate = useNavigate();

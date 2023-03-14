@@ -14,6 +14,7 @@ export const List = styled.li`
 	overflow: hidden;
 	position: relative;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+	cursor: pointer;
 `;
 
 export const ListFlex = styled.div`
@@ -83,4 +84,13 @@ export const LocationStyle = styled.h1`
 	font-size: 40px;
 	margin-top: 50px;
 	margin-bottom: 10px;
+`;
+
+export const ScrollArea = styled.div`
+	/* border: 1px solid;
+	display: flex;
+	flex-direction: column;
+	flex: 1; */
+	height: 100vh;
+	overflow-y: auto;
 `;

@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import API from '../modules/API';
 
-const useFetch = (url) => {
+function useFetch(url) {
 	const [data, setData] = useState([]);
 	useEffect(() => {
 		if (window) window.scrollTo(0, 0);
@@ -10,6 +10,6 @@ const useFetch = (url) => {
 		});
 	}, [url]);
 	return data;
-};
+}
 
 export default useFetch;

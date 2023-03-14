@@ -1,9 +1,10 @@
-import * as S from './style/DogStyle';
+import * as S from '../style/DogStyle';
 import DogCard from './DogCard';
 import AddCard from './AddCard';
-import {asyncUpFetch, selectDog} from '../modules/redux/dogSlice';
+import {asyncUpFetch, selectDog} from '../../modules/redux/dogSlice';
 import {useSelector, useDispatch} from 'react-redux';
 import {useEffect} from 'react';
+// import MypageSidebar from '../mypage/MypageSidebar';
 
 function DogList() {
 	const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function DogList() {
 	return (
 		<S.Container>
 			<S.ContentBox>
-				<S.Sidebar>사이드바</S.Sidebar>
+				{/* <MypageSidebar /> */}
 				<S.Content>
 					<S.TitleBox>
 						<S.Title>강아지 정보</S.Title>

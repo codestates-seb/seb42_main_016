@@ -6,12 +6,13 @@ import Hairshop from './pages/Hairshop';
 import Mydog from './pages/Mydog';
 import MydogEditor from './pages/MydogEditor';
 import DeleteHome from './pages/DeleteHome';
-import Mypage from './pages/Mypage'
+import HairshopDetail from './pages/HairshopDetail';
 import Stylebook from './pages/Stylebook'
+import Mypage from './pages/Mypage'
+import MypageMyInfo from './pages/MypageMyInfo'
 import Myreserve from './pages/Myreserve'
-import MypageMyInfo from './pages/MypageMyInfo';
-import Myreview from './pages/Myreview';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Myreview from './pages/Myreview'
+
 function App() {
 	return (
 		<BrowserRouter>
@@ -21,6 +22,8 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/hairshop" element={<Hairshop />} />
+				<Route path="/hairshop/:id" element={<HairshopDetail />} />
+				<Route path="/mydog" element={<Mydog />} />
 				<Route path="/mydog-edit" element={<MydogEditor />} />
 				<Route path='/stylebook' element={<Stylebook/>}/>
 				<Route path='/mypage/*' element={<Mypage/>}>

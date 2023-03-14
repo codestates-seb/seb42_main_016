@@ -1,6 +1,6 @@
-import React from 'react'
-import * as S from '../style/MyPageStyle'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import * as S from '../style/MyPageStyle';
+import {NavLink} from 'react-router-dom';
 export default function MypageSidebar() {
 
   return (
@@ -23,7 +23,3 @@ export default function MypageSidebar() {
     </S.SidebarContainer>
   )
 }
-
-
-
- 
