@@ -1,7 +1,7 @@
 import * as S from '../style/ListStyle';
 import img from '../../utils/img.jpeg';
-import {AiFillHeart} from 'react-icons/ai';
 import {useNavigate} from 'react-router-dom';
+import {IoHeart} from 'react-icons/io5';
 
 function HairshopList({shop}) {
 	const navigate = useNavigate();
@@ -17,7 +17,7 @@ function HairshopList({shop}) {
 						<S.TextBox>
 							<S.ShopName>{shop.name}</S.ShopName>
 							<S.Like>
-								<AiFillHeart color="#ff7675" className="like" />
+								<IoHeart color="#ff7675" className="like" />
 								{shop.like.toLocaleString()}
 							</S.Like>
 							<S.Review>리뷰 {shop.review.toLocaleString()}</S.Review>
