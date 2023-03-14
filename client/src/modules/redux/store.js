@@ -6,6 +6,7 @@ import editSlice from './editSlice';
 import deleteSlice from './deleteSlice';
 import dogSlice from './dogSlice';
 import tabSlice from './tabSlice';
+import loadingSlice from './loadingSlice';
 
 const store = configureStore({
 	reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
 		delete: deleteSlice,
 		dog: dogSlice,
 		tab: tabSlice,
+		loading: loadingSlice,
 	},
 });
 
