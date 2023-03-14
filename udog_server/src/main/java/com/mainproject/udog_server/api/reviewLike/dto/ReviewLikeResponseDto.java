@@ -1,19 +1,16 @@
 package com.mainproject.udog_server.api.reviewLike.dto;
 
-import com.mainproject.udog_server.api.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReviewLikeDto {
-    private Member member;
-    @NotBlank
+public class ReviewLikeResponseDto {
+    private Long id;
+    private Long memberId;
     private Long reviewId;
 }

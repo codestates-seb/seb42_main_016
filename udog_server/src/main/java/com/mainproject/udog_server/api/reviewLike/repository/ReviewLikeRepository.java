@@ -1,4 +1,8 @@
 package com.mainproject.udog_server.api.reviewLike.repository;
 
-public interface ReviewLikeRepository {
+import com.mainproject.udog_server.api.reviewLike.entity.ReviewLike;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReviewLikeRepository extends JpaRepository<ReviewLike, Long> {
+    int countByReviewId(Long reviewId);
 }

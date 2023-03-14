@@ -1,5 +1,6 @@
 package com.mainproject.udog_server.api.review.dto;
 
+import com.mainproject.udog_server.api.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,7 @@ public class ReviewDto {
         private String reviewImage;
         @NotBlank
         private String reviewText;
-//        private Long memberId;
+        private Member member;
     }
 
     @Getter
@@ -32,7 +33,7 @@ public class ReviewDto {
         private String reviewImage;
         @Nullable
         private String reviewText;
-        private Long memberId;
+        private Member member;
     }
 
     @Getter
