@@ -10,7 +10,6 @@ export const Logo = styled.div`
 `
 export const Menu = styled.ul`
     list-style: none;
-
 `
 export const List = styled.li`
     margin-left: 30px;
