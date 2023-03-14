@@ -7,6 +7,7 @@ import deleteSlice from './deleteSlice';
 import dogSlice from './dogSlice';
 import tabSlice from './tabSlice';
 import loadingSlice from './loadingSlice';
+import reserveSlice from './reserveSlice';
 
 const store = configureStore({
 	reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
 		dog: dogSlice,
 		tab: tabSlice,
 		loading: loadingSlice,
+		reserve: reserveSlice,
 	},
 });
 
