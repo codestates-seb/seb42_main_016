@@ -5,13 +5,13 @@ spring:
       path: /h2
   datasource:
     url: jdbc:h2:mem:test
-  #  sql:
-  #    init:
-  #      schema-locations: classpath*:h2/schema.sql
-  #      data-locations: classpath*:h2/data.sql
+  sql:
+    init:
+      schema-locations: classpath*:h2/schema.sql
+      data-locations: classpath*:h2/data.sql
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:

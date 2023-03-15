@@ -37,10 +37,11 @@ public class MemberController {
         return new ResponseEntity<>(mapper.MemberToMemberResponseDto(createdMember), HttpStatus.CREATED);
     }
 
-    @PatchMapping("nickname/{member-id}")
-    public ResponseEntity patchMemberNickname(@PathVariable("member-id") @Positive long memberId,
+    @PatchMapping("nickname")
+    public ResponseEntity patchMemberNickname(Principal principal,
                                       @Valid @RequestBody MemberDto.NicknamePatch memberPatch){
-        memberPatch.setMemberId(memberId);
+        long loginMemberId = memberService.findLoginMemberByEmail(principal.getName()).getMemberId();
+        memberPatch.setMemberId(loginMemberId);
 
         Member member = mapper.MemberNicknamePatchDtoToMember(memberPatch);
         Member updateMember = memberService.updateMemberNickname(member);
@@ -48,11 +49,12 @@ public class MemberController {
         return new ResponseEntity<>(mapper.MemberToMemberResponseDto(updateMember), HttpStatus.OK);
     }
 
-    @PatchMapping("password/{member-id}")
-    public ResponseEntity patchMemberPassword(@PathVariable("member-id") @Positive long memberId,
+    @PatchMapping("password")
+    public ResponseEntity patchMemberPassword(Principal principal,
                                       @Valid @RequestBody MemberDto.PasswordPatch memberPatch){
-        memberPatch.setMemberId(memberId);
-        memberService.verifyPasswordMatch(memberId, memberPatch.getPrevPassword());
+        long loginMemberId = memberService.findLoginMemberByEmail(principal.getName()).getMemberId();
+        memberPatch.setMemberId(loginMemberId);
+        memberService.verifyPasswordMatch(loginMemberId, memberPatch.getPrevPassword());
 
         Member member = mapper.MemberPasswordPatchDtoToMember(memberPatch);
         Member updateMember = memberService.updateMemberPassword(member);
@@ -60,16 +62,19 @@ public class MemberController {
         return new ResponseEntity<>(mapper.MemberToMemberResponseDto(updateMember), HttpStatus.OK);
     }
 
-    @GetMapping("{member-id}")
-    public ResponseEntity getMember(@PathVariable("member-id") @Positive long memberId){
-        Member response = memberService.findMember(memberId);
+    @GetMapping
+    public ResponseEntity getMember(Principal principal){
+        long loginMemberId = memberService.findLoginMemberByEmail(principal.getName()).getMemberId();
+
+        Member response = memberService.findMember(loginMemberId);
         return new ResponseEntity<>(mapper.MemberToMemberResponseDto(response), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{member-id}")
-    public ResponseEntity deleteMember(
-            @PathVariable("member-id") @Positive long memberId) {
-        memberService.deleteMember(memberId);
+    @DeleteMapping
+    public ResponseEntity deleteMember(Principal principal) {
+        long loginMemberId = memberService.findLoginMemberByEmail(principal.getName()).getMemberId();
+
+        memberService.deleteMember(loginMemberId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

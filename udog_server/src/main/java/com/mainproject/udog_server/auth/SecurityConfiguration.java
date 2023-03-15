@@ -41,6 +41,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .headers().frameOptions().sameOrigin()
+                .httpStrictTransportSecurity().disable()
                 .and()
                 .csrf().disable()
                 .cors(withDefaults())
