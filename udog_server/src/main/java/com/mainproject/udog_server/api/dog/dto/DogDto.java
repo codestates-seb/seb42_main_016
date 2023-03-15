@@ -1,5 +1,10 @@
 package com.mainproject.udog_server.api.dog.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.mainproject.udog_server.api.dog.entity.Dog;
 import com.mainproject.udog_server.api.member.Member;
 import lombok.*;
@@ -9,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
+
 
 public class DogDto {
     @Getter
@@ -23,6 +29,9 @@ public class DogDto {
 
         @NotNull
         @DateTimeFormat(pattern = "yyyy-MM-dd")
+//        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+//        @JsonDeserialize(using = LocalDateDeserializer.class)
+//        @JsonSerialize(using = LocalDateSerializer.class)
         private LocalDate dogBirthDate;
 
         @NotNull
@@ -55,6 +64,7 @@ public class DogDto {
                 , message = "강아지 이름은 영어(대, 소문자), 한글, 숫자로 이루어져야 합니다.")
         private String dogName;
         @DateTimeFormat(pattern = "yyyy-MM-dd")
+//        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         private LocalDate dogBirthDate;
 //        @Pattern(regexp = "^\\d*$", message = "숫자만 입력해 주세요.")
         private int dogWeight;
@@ -76,7 +86,7 @@ public class DogDto {
     @AllArgsConstructor
     @Getter
     @Setter
-    @NoArgsConstructor
+//    @NoArgsConstructor
     public static class Response {
         private long dogId;
         private String dogName;

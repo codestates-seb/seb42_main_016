@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring",uses = {MemberMapper.class})
+@Mapper(componentModel = "spring")
 public interface DogMapper {
     Dog dogPostDtoToDog(DogDto.Post postDto);
 
@@ -19,4 +19,6 @@ public interface DogMapper {
     DogDto.Response dogToDogResponse(Dog dog);
 
     List<DogDto.Response> dogsToDogResponsesDtos(List<Dog> dogs);
+
+
 }

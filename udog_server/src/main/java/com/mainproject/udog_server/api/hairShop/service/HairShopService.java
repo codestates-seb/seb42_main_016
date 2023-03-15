@@ -19,13 +19,17 @@ public class HairShopService {
     public HairShopService(HairShopRepository hairShopRepository) {
         this.hairShopRepository = hairShopRepository;
     }
+
+    public HairShop createHairShop(HairShop hairShop) {
+        return hairShopRepository.save(hairShop);
+    }
     @Transactional(readOnly = true)
     public HairShop findHairShop(long hairShopId) {
         return findVerifiedHairShop(hairShopId);
     }
 
     public Page<HairShop> findHairShops(int page, int size) {
-        return hairShopRepository.findAll(PageRequest.of(page, size, Sort.by("hairShopId)").descending()));
+        return hairShopRepository.findAll(PageRequest.of(page, size, Sort.by("hairShopId").descending()));
     }
 
     @Transactional(readOnly = true)

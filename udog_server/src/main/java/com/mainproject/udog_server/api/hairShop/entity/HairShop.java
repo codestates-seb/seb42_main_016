@@ -23,7 +23,7 @@ public class HairShop {
     private String hairShopAddress;
 
     @Column(nullable = false)
-    private int hairShopPhone;
+    private String hairShopPhone;
 
     @Lob
     @Column
@@ -44,8 +44,9 @@ public class HairShop {
     }
 
     @Builder
-    public HairShop(long hairShopId, String hairShopName, String hairShopAddress, int hairShopPhone, String hairShopDescription, String hairShopImage) {
+    public HairShop(long hairShopId, String hairShopName, String hairShopAddress, String hairShopPhone, String hairShopDescription, String hairShopImage) {
         this.hairShopId = hairShopId;
+        this.hairShopName = hairShopName;
         this.hairShopAddress = hairShopAddress;
         this.hairShopPhone = hairShopPhone;
         this.hairShopDescription = hairShopDescription;

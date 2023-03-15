@@ -41,9 +41,9 @@ public class DogController {
 
         post.setMember(member);
 
-        LocalDate birthdate = post.getDogBirthDate();
+//        LocalDate birthdate = post.getDogBirthDate();
         Dog postDog = dogMapper.dogPostDtoToDog(post);
-        postDog.setDogBirthDate(birthdate);
+//        postDog.setDogBirthDate(birthdate);
         Dog createdDogs = dogService.createDog(postDog);
         URI location = UriCreator.createUri(DOG_DEFAULT_URL, createdDogs.getDogId());
 
@@ -68,7 +68,7 @@ public class DogController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-    //todo 멤버 로그인 검증
+
 
     @GetMapping("/{dog-id}")
     public ResponseEntity getDog (@Positive @PathVariable("dog-id") long dogId) {
@@ -95,5 +95,4 @@ public class DogController {
     }
 }
 
-//todo 강아지 품종을 enum 으로 수정?
-
+//todo 포스트맨으로 post 요청은 되는데 get,patch 요청이 안됨
