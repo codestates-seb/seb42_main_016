@@ -3,12 +3,13 @@ import userSlice from './userSlice';
 import emptySlice from './emptySlice';
 import modalSlice from './modalSlice';
 import editSlice from './editSlice';
-import deleteSlice from './deleteSlice';
+import setSlice from './setSlice';
 import dogSlice from './dogSlice';
 import tabSlice from './tabSlice';
 import loadingSlice from './loadingSlice';
 import reserveSlice from './reserveSlice';
 import likeSlice from './likeSlice';
+import shopSlice from './shopSlice';
 
 const store = configureStore({
 	reducer: {
@@ -16,12 +17,13 @@ const store = configureStore({
 		empty: emptySlice,
 		modal: modalSlice,
 		edit: editSlice,
-		delete: deleteSlice,
+		set: setSlice,
 		dog: dogSlice,
 		tab: tabSlice,
 		loading: loadingSlice,
 		reserve: reserveSlice,
 		like: likeSlice,
+		shop: shopSlice,
 	},
 });
 

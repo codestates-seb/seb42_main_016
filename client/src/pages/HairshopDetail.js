@@ -5,8 +5,10 @@ import ReviewTab from '../components/tab/ReviewTab';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectTab, activeTab} from '../modules/redux/tabSlice';
 import * as S from '../components/style/TabBarStyle';
-import useFetch from '../hooks/useFetch';
 import {useParams} from 'react-router-dom';
+import {useEffect} from 'react';
+import {selectShop, asyncUpFetch} from '../modules/redux/shopSlice';
+import {setId} from '../modules/redux/setSlice';
 
 const Nav = styled.nav`
 	background-color: cornflowerblue;
@@ -17,7 +19,13 @@ function HairshopDetail() {
 	const dispatch = useDispatch();
 	const {tab, isOn} = useSelector(selectTab);
 	const {id} = useParams();
-	const data = useFetch(`/hair-shops/${id}`);
+	const data = useSelector(selectShop);
+
+	useEffect(() => {
+		dispatch(setId(id));
+		dispatch(asyncUpFetch());
+		// eslint-disable-next-line
+	}, [dispatch]);
 
 	const tabTitle = ['홈', '예약', '리뷰'];
 

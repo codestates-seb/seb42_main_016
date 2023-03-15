@@ -3,7 +3,7 @@ import {edit} from '../../modules/redux/editSlice';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {openModal} from '../../modules/redux/modalSlice';
-import {deleteUrl, deleteId} from '../../modules/redux/deleteSlice';
+import {setUrl, setId} from '../../modules/redux/setSlice';
 
 function DogCard({dog}) {
 	const age = `${new Date().getFullYear() - dog.dogBirthDate.slice(0, 4)}살`;
@@ -22,8 +22,8 @@ function DogCard({dog}) {
 				isOpen: true,
 			})
 		);
-		dispatch(deleteUrl(`/my-dogs/${dog.id}`));
-		dispatch(deleteId(dog.id));
+		dispatch(setUrl(`/my-dogs/${dog.id}`));
+		dispatch(setId(dog.id));
 	};
 
 	return (
