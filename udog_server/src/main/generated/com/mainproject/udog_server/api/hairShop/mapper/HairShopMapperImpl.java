@@ -1,8 +1,10 @@
 package com.mainproject.udog_server.api.hairShop.mapper;
 
+import com.mainproject.udog_server.api.hairShop.dto.HairShopDto.Post;
 import com.mainproject.udog_server.api.hairShop.dto.HairShopDto.Response;
 import com.mainproject.udog_server.api.hairShop.dto.HairShopDto.Response.ResponseBuilder;
 import com.mainproject.udog_server.api.hairShop.entity.HairShop;
+import com.mainproject.udog_server.api.hairShop.entity.HairShop.HairShopBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -10,11 +12,28 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-13T03:16:20+0900",
+    date = "2023-03-15T13:38:35+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component
 public class HairShopMapperImpl implements HairShopMapper {
+
+    @Override
+    public HairShop hairShopPostDtoToHairShop(Post postDto) {
+        if ( postDto == null ) {
+            return null;
+        }
+
+        HairShopBuilder hairShop = HairShop.builder();
+
+        hairShop.hairShopName( postDto.getHairShopName() );
+        hairShop.hairShopAddress( postDto.getHairShopAddress() );
+        hairShop.hairShopPhone( postDto.getHairShopPhone() );
+        hairShop.hairShopDescription( postDto.getHairShopDescription() );
+        hairShop.hairShopImage( postDto.getHairShopImage() );
+
+        return hairShop.build();
+    }
 
     @Override
     public Response hairShopToHairShopResponse(HairShop hairShop) {

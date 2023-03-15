@@ -53,7 +53,7 @@ public class MemberService {
         Member foundMember = findVerifiedMember(patchMember.getMemberId());
 
         Optional.ofNullable(patchMember.getPassword())
-                .ifPresent(password -> foundMember.setPassword(password));
+                .ifPresent(password -> foundMember.setPassword(passwordEncoder.encode(password)));
 
         Member updateMember = memberRepository.save(foundMember);
         return updateMember;
@@ -96,9 +96,8 @@ public class MemberService {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
         //Todo : exeption
         Member foundMember = optionalMember.orElseThrow(() -> null);
-        String encryptedPassword = passwordEncoder.encode(prevPassword);
         //Todo : exeption
-        if(!foundMember.getPassword().equals(encryptedPassword))
+        if(!passwordEncoder.matches(prevPassword, foundMember.getPassword()))
             throw null;
     }
 

@@ -31,12 +31,6 @@ mail:
     admin: admin@gmail.com
 jwt:
   key: GlFU9fJQv7qL6pIcxQQwHZe1WQIeja6Cpt6WKjFEPcYMhKm2LEkj4xbKdA3d
-<<<<<<< HEAD
-#  key: ${JWT_SECRET_KEY}
-  access-token-expiration-minutes: 40
-  refresh-token-expiration-minutes: 420
-=======
   #  key: ${JWT_SECRET_KEY}
   access-token-expiration-minutes: 40
   refresh-token-expiration-minutes: 420
->>>>>>> d71c4f9a5d699c49d3196fd135699e5105837294
