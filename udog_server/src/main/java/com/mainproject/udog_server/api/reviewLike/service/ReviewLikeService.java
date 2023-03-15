@@ -16,6 +16,16 @@ public class ReviewLikeService {
         return reviewLikeRepository.save(reviewLike);
     }
 
+//    public ReviewLike addReviewLike(ReviewLike reviewLike, Long memberId, Long reviewId) {
+//        ReviewLike existingReviewLike = reviewLikeRepository.findByMemberIdAndReviewId(memberId, reviewId);
+//
+//        if(existingReviewLike != null) {
+//            deleteReviewLike(memberId, reviewId);
+//        }
+//        else
+//    }
+
+
     public int getReviewLikeCount(Long reviewId) {
         return reviewLikeRepository.countByReviewId(reviewId);
     }
@@ -39,5 +49,9 @@ public class ReviewLikeService {
     private void compareIdAndLoginId(Long id, Long memberId) {
         if(!id.equals(memberId))
             throw null;
+    }
+
+    public ReviewLike findByMemberIdAndReviewId(Long memberId, Long reviewId) {
+        return reviewLikeRepository.findByMember_memberIdAndReviewId(memberId, reviewId);
     }
 }
