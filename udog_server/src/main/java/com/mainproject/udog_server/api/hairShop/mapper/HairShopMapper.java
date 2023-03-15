@@ -8,6 +8,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface HairShopMapper {
+    HairShop hairShopPostDtoToHairShop(HairShopDto.Post postDto);
     HairShopDto.Response hairShopToHairShopResponse(HairShop hairShop);
 
     List<HairShopDto.Response> hairShopsToHairShopResponses(List<HairShop> hairShops);
