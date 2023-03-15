@@ -7,12 +7,16 @@ import com.mainproject.udog_server.api.review.entity.Review;
 import com.mainproject.udog_server.api.review.mapper.ReviewMapper;
 import com.mainproject.udog_server.api.review.service.ReviewService;
 import com.mainproject.udog_server.api.reviewLike.service.ReviewLikeService;
+import com.mainproject.udog_server.dto.MultiResponseDto;
+import com.mainproject.udog_server.util.UriCreator;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Positive;
+import java.net.URI;
 import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +40,8 @@ public class ReviewController {
         Review response = reviewService.createReview(review);
 //        Review response = reviewService.createReview(review, postDto.getMemberId());
 
-        return new ResponseEntity<>(mapper.reviewToReviewResponseDto(response), HttpStatus.CREATED);
+//        return new ResponseEntity<>(mapper.reviewToReviewResponseDto(response), HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).location(URI.create("/reviews")).body(mapper.reviewToReviewResponseDto(response));
     }
 
     @PatchMapping("/{review-id}")
@@ -49,28 +54,42 @@ public class ReviewController {
 
         Review review = mapper.reviewPatchDtoToReview(patchDto);
 
-        Review response = reviewService.updateReview(review, member.getMemberId());
+        Review reviewDto = reviewService.updateReview(review, member.getMemberId());
+        ReviewDto.Response response = mapper.reviewToReviewResponseDto(reviewDto);
+        response.setReviewLikeCount(reviewLikeService.getReviewLikeCount(reviewId));
 //        Review response = reviewService.updateReview(review, patchDto.getMemberId());
 
-        return new ResponseEntity<>(mapper.reviewToReviewResponseDto(response), HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/{review-id}")
     public ResponseEntity getReview(@PathVariable("review-id") @Positive Long reviewId) {
-        Review response = reviewService.findReview(reviewId);
-
-        return new ResponseEntity<>(mapper.reviewToReviewResponseDto(response), HttpStatus.OK);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<ReviewDto.Response>> getReviews() {
-        List<Review> reviews = reviewService.findReviews();
-
-        List<ReviewDto.Response> response = reviews.stream()
-                .map(review -> mapper.reviewToReviewResponseDto(review))
-                .collect(Collectors.toList());
+        Review review = reviewService.findReview(reviewId);
+        ReviewDto.Response response = mapper.reviewToReviewResponseDto(review);
+        response.setReviewLikeCount(reviewLikeService.getReviewLikeCount(reviewId));
 
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+//    @GetMapping
+//    public ResponseEntity<List<ReviewDto.Response>> getReviews() {
+//        List<Review> reviews = reviewService.findReviews();
+//
+//        List<ReviewDto.Response> response = reviews.stream()
+//                .map(review -> mapper.reviewToReviewResponseDto(review))
+//                .collect(Collectors.toList());
+//
+//        return new ResponseEntity<>(response, HttpStatus.OK);
+//    }
+    @GetMapping
+    public ResponseEntity getReviews(@Positive @RequestParam int page,
+                                     @Positive @RequestParam int size) {
+        Page<Review> pageReviews = reviewService.findReviews(page - 1, size);
+        List<Review> reviews = pageReviews.getContent();
+
+        MultiResponseDto response = new MultiResponseDto(mapper.reviewsToReviewResponseDto(reviews), pageReviews);
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @DeleteMapping("/{review-id}")
