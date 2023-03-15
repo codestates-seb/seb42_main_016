@@ -5,17 +5,17 @@ import ReviewList from '../components/mypageReview/ReviewList'
 import styled from 'styled-components'
 
 export default function Myreview() {
-  const [currentTab, setCurrentTab] = useState(0);
-  const menuArr = [
-    {name: '작성 가능한 리뷰', content: <ReserveList/>},
-    {name: '작성한 리뷰', content: <ReviewList/>}
-  ]
-  const selectMenuHandler = (index) => {
-    setCurrentTab(index);
-  };
+  // const [currentTab, setCurrentTab] = useState(0);
+  // const menuArr = [
+  //   {name: '작성 가능한 리뷰', content: <ReserveList/>},
+  //   {name: '작성한 리뷰', content: <ReviewList/>}
+  // ]
+  // const selectMenuHandler = (index) => {
+  //   setCurrentTab(index);
+  // };
   return (
     <S.Container>
-      <TabMenu>
+      {/* <TabMenu>
       {menuArr.map((ele, index) => {
             return (
               <li
@@ -31,8 +31,8 @@ export default function Myreview() {
           <div>
           {menuArr[currentTab].content}
           </div>
-      
-      
+       */}
+      <ReviewList/>
    </S.Container>
   )
 }

@@ -1,13 +1,19 @@
-import React from 'react'
+import axios from 'axios'
+import React,{ useEffect, useState } from 'react'
 import styled from 'styled-components'
+import API from '../../modules/API'
 import ReviewItem from './ReviewItem'
 
 
+
 export default function ReviewList() {
-  
+
   return (
     <Container>
-    <ReviewItem/>
+    
+      <button>등록</button>
+      <button>수정</button>
+      <button>삭제</button>
     </Container>
   )
 }

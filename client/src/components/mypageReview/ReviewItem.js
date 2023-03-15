@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-export default function ReviewItem() {
-  return (
+
+export default function ReviewItem({review}) {
+    const [modal,setModal]=useState(false);
+    function updateModal() {
+        return(
+            <div>
+                <p>리뷰 수정</p>
+            </div>
+        )
+    }
+    return (
    <>
     <RIWrap>
         <div className='review'>
-        <Photo></Photo>
-        <Text>리뷰 내용</Text>
+        <Photo>{review.reviewImage}</Photo>
+        <Text>{review.reviewTest}</Text>
         </div>
         <div className='buttons'>
-            <Button>수정</Button>
-            <Button>삭제</Button>
+            <Button onClick={()=>setModal(true)}>수정</Button>
+            <Button >삭제</Button>
         </div>
     </RIWrap>
    </>

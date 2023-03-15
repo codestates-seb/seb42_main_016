@@ -6,6 +6,7 @@ import editSlice from './editSlice';
 import deleteSlice from './deleteSlice';
 import dogSlice from './dogSlice';
 import reserveSlice from './reserveSlice';
+import reviewSlice from './reviewSlice';
 
 const store = configureStore({
 	reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
 		delete: deleteSlice,
 		dog: dogSlice,
 		reserve: reserveSlice,
+		reviews: reviewSlice
 	},
 });
 
