@@ -94,7 +94,6 @@ public class DogDto {
         private Dog.DogSpecies dogSpecies;
         private int dogWeight;
         private String dogDescription;
-        private Member member;
 
 //        @Builder
 //        public Response(long dogId, String dogName, String dogBirthDate, String dogSpecies, int dogWeight, String dogDescription) {

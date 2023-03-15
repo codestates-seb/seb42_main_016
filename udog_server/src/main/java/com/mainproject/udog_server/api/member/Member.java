@@ -52,7 +52,7 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
 
-//    @JsonIgnore
+
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Dog> dogs = new ArrayList<>();
 

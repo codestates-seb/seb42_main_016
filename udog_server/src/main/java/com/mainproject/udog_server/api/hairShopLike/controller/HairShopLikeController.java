@@ -45,7 +45,7 @@ public class HairShopLikeController {
         return new ResponseEntity<>(mapper.HairShopLikeToHairShopLikeResponse(response), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{hair-shops-id}/{hair-shop-likes-id}/dislikes")
+    @DeleteMapping("/{hair-shops-id}/{hair-shop-likes-id}")
     public ResponseEntity<?> deleteLike(@Positive @PathVariable("hair-shops-id") long hairShopId,
                                         @Positive @PathVariable("hair-shop-likes-id") long hairShopLikeId,
                                         Principal principal){

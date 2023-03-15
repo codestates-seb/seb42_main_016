@@ -43,7 +43,6 @@ public class Dog {
     @Column
     private String dogDescription;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
