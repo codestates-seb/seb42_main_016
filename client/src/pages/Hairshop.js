@@ -13,7 +13,7 @@ const Nav = styled.nav`
 
 function Hairshop() {
 	const PER_PAGE = 15;
-	const url = '/hairshop';
+	const url = '/hair-shops';
 	const {data, loading, handleScroll} = useInfiniteScroll(url, PER_PAGE);
 	const scrollAreaRef = useRef(null);
 	const [showButton, setShowButton] = useState(false);
@@ -32,7 +32,7 @@ function Hairshop() {
 			<Nav />
 			<Location />
 			{data.map((shop) => {
-				return <HairshopList shop={shop} key={shop.id} />;
+				return <HairshopList shop={shop} key={shop.hairShopId} />;
 			})}
 			{loading && <div>Loading...</div>}
 			{showButton && <ScrollTopButton area={scrollAreaRef} />}

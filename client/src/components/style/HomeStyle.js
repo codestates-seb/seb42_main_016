@@ -55,8 +55,12 @@ export const ShopName = styled.h2`
 	color: rgba(0, 0, 0, 0.87);
 	font-weight: bold;
 	justify-content: space-between;
-	.likeButton {
+	.outline {
 		cursor: pointer;
+	}
+	.fill {
+		cursor: pointer;
+		color: #ff7675;
 	}
 `;
 

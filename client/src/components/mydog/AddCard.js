@@ -11,7 +11,7 @@ function AddCard() {
 
 	const onClick = () => {
 		dispatch(cancleEdit());
-		dispatch(selectOption({weight: '', type: ''}));
+		dispatch(selectOption({dogWeight: '', dogSpecies: ''}));
 		navigate('edit');
 	};
 
