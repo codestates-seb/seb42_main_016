@@ -23,8 +23,8 @@ function App() {
 				<Route path="/" element={<DeleteHome />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
-				<Route path="/hair-shops" element={<Hairshop />} />
-				<Route path="/hair-shops/:id" element={<HairshopDetail />} />
+				<Route path="/hairshop" element={<Hairshop />} />
+				<Route path="/hairshop/:id" element={<HairshopDetail />} />
 				<Route path="/stylebook" element={<Stylebook />} />
 				<Route path="/mypage/*" element={<Mypage />}>
 					<Route index element={<MypageMyInfo />} />
