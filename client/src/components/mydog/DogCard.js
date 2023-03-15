@@ -6,7 +6,7 @@ import {openModal} from '../../modules/redux/modalSlice';
 import {deleteUrl, deleteId} from '../../modules/redux/deleteSlice';
 
 function DogCard({dog}) {
-	const age = `${new Date().getFullYear() - dog.birth.slice(0, 4)}살`;
+	const age = `${new Date().getFullYear() - dog.dogBirthDate.slice(0, 4)}살`;
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -22,18 +22,18 @@ function DogCard({dog}) {
 				isOpen: true,
 			})
 		);
-		dispatch(deleteUrl(`/mydog/${dog.id}`));
+		dispatch(deleteUrl(`/my-dogs/${dog.id}`));
 		dispatch(deleteId(dog.id));
 	};
 
 	return (
 		<S.Container>
 			<S.TextWrapper>
-				<S.Name>{dog.name}</S.Name>
+				<S.Name>{dog.dogName}</S.Name>
 				<S.Detail>{age}</S.Detail>
-				<S.Detail>{dog.weight}</S.Detail>
-				<S.Detail>{dog.type}</S.Detail>
-				<S.Detail>{dog.memo.length ? dog.memo : '특이사항 없음'}</S.Detail>
+				<S.Detail>{dog.dogWeight}</S.Detail>
+				<S.Detail>{dog.dogSpecies}</S.Detail>
+				<S.Detail>{dog.dogDescription ? dog.memo : '특이사항 없음'}</S.Detail>
 			</S.TextWrapper>
 			<S.ButtonWrapper>
 				<S.Button onClick={handleOpenConfirmModal}>삭제</S.Button>

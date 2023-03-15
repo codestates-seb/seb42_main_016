@@ -9,19 +9,19 @@ function HairshopList({shop}) {
 	return (
 		<S.ListContainer>
 			<S.ListWrapper>
-				<S.List onClick={() => navigate(`/hairshop/${shop.id}`)}>
+				<S.List onClick={() => navigate(`/hair-shops/${shop.hairShopId}`)}>
 					<S.ListFlex>
 						<S.ImgBox>
 							<S.Img src={img} alt="img" />
 						</S.ImgBox>
 						<S.TextBox>
-							<S.ShopName>{shop.name}</S.ShopName>
+							<S.ShopName>{shop.hairShopName}</S.ShopName>
 							<S.Like>
 								<IoHeart color="#ff7675" className="like" />
-								{shop.like.toLocaleString()}
+								{shop.likeCount.toLocaleString()}
 							</S.Like>
-							<S.Review>리뷰 {shop.review.toLocaleString()}</S.Review>
-							<S.Address>{shop.address}</S.Address>
+							<S.Review>리뷰 {shop.reviewCount.toLocaleString()}</S.Review>
+							<S.Address>{shop.hairShopAddress}</S.Address>
 						</S.TextBox>
 					</S.ListFlex>
 				</S.List>

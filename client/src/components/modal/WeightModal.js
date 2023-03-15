@@ -27,7 +27,7 @@ function WeightModal() {
 	};
 
 	const clickOption = (e) => {
-		dispatch(selectOption({...option, weight: e.target.innerText}));
+		dispatch(selectOption({...option, dogWeight: e.target.innerText}));
 	};
 
 	return (
