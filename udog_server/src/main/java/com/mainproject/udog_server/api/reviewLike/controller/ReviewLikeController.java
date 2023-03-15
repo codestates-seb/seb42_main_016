@@ -26,22 +26,34 @@ public class ReviewLikeController {
     @PostMapping
     public ResponseEntity createReviewLike(@RequestBody ReviewLikeDto reviewLikeDto, Principal principal) {
         Member member = memberService.findLoginMemberByEmail(principal.getName());
-
         reviewLikeDto.setMember(member);
 
-        ReviewLike reviewLike = mapper.reviewLikeDtoToReviewLike(reviewLikeDto);
+        Long reviewId = reviewLikeDto.getReviewId();
+        ReviewLike existingReviewLike = reviewLikeService.findByMemberIdAndReviewId(member.getMemberId(), reviewId);
 
-        ReviewLike response = reviewLikeService.addReviewLike(reviewLike);
-        return new ResponseEntity<>(mapper.ReviewLikeToReviewLikeResponseDto(response), HttpStatus.CREATED);
+        if(existingReviewLike != null) {
+//            reviewLikeService.deleteReviewLike(existingReviewLike.getId(), member.getMemberId());
+            reviewLikeService.deleteReviewLike(existingReviewLike.getId(), member.getMemberId());
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            ReviewLike reviewLike = mapper.reviewLikeDtoToReviewLike(reviewLikeDto);
+            ReviewLike response = reviewLikeService.addReviewLike(reviewLike);
+            return new ResponseEntity<>(mapper.ReviewLikeToReviewLikeResponseDto(response), HttpStatus.CREATED);
+        }
+
+//        ReviewLike reviewLike = mapper.reviewLikeDtoToReviewLike(reviewLikeDto);
+//
+//        ReviewLike response = reviewLikeService.addReviewLike(reviewLike);
+//        return new ResponseEntity<>(mapper.ReviewLikeToReviewLikeResponseDto(response), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{reviewLike-id}")
-    public ResponseEntity<Void> deleteReviewLike(@PathVariable("reviewLike-id") @Positive Long reviewLikeId,
-                                                 Principal principal) {
-        Member member = memberService.findLoginMemberByEmail(principal.getName());
-
-        reviewLikeService.deleteReviewLike(reviewLikeId, member.getMemberId());
-
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
-    }
+//    @DeleteMapping("/{reviewLike-id}")
+//    public ResponseEntity<Void> deleteReviewLike(@PathVariable("reviewLike-id") @Positive Long reviewLikeId,
+//                                                 Principal principal) {
+//        Member member = memberService.findLoginMemberByEmail(principal.getName());
+//
+//        reviewLikeService.deleteReviewLike(reviewLikeId, member.getMemberId());
+//
+//        return new ResponseEntity(HttpStatus.NO_CONTENT);
+//    }
 }
