@@ -1,5 +1,6 @@
 package com.mainproject.udog_server.api.member;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mainproject.udog_server.api.dog.entity.Dog;
 import com.mainproject.udog_server.api.hairShopLike.entity.HairShopLike;
 import com.mainproject.udog_server.api.review.entity.Review;
@@ -51,11 +52,19 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
 
+//    @JsonIgnore
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Dog> dogs = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<HairShopLike> hairShopLikes = new ArrayList<>();
+
+    public void addHairShopLike(HairShopLike hairShopLike) {
+        hairShopLikes.add(hairShopLike);
+        if(hairShopLike.getMember() != this) {
+            hairShopLike.setMember(this);
+        }
+    }
 
 
 

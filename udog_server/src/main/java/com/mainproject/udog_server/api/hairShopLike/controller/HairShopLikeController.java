@@ -40,9 +40,9 @@ public class HairShopLikeController {
 
         HairShopLike hairShopLike = mapper.hairShopLikePostDtoToHairShopLike(post);
 
-        hairShopLikeService.addLike(hairShopId, hairShopLike);
+        HairShopLike response = hairShopLikeService.addLike(hairShopId, hairShopLike);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(mapper.HairShopLikeToHairShopLikeResponse(response), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{hair-shops-id}/{hair-shop-likes-id}/dislikes")
@@ -52,10 +52,12 @@ public class HairShopLikeController {
 
         Member member = memberService.findLoginMemberByEmail(principal.getName());
 
-        hairShopLikeService.deleteLike(hairShopId, hairShopLikeId, member);
+        hairShopLikeService.deleteLike(hairShopLikeId, hairShopLikeId, member);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
 
 //Todo 코드 점검 해보기
+//todo 좋아요 갯수 카운트
+//todo 일주일간 좋아요 많이 받은 미용실 메인페이지로 응답

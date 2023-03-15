@@ -1,5 +1,6 @@
 package com.mainproject.udog_server.api.reviewLike.dto;
 
+import com.mainproject.udog_server.api.member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,8 +13,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReviewLikeDto {
-    @NotBlank
-    private Long memberId;
+    private Member member;
     @NotBlank
     private Long reviewId;
 }
