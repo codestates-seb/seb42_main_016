@@ -28,6 +28,7 @@ function useAuth(url) {
 			.finally(() => {
 				dispatch(setLoading(false));
 			});
+		// eslint-disable-next-line
 	}, [url, dispatch]);
 
 	return data;
