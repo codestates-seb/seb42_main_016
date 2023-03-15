@@ -3,6 +3,7 @@ package com.mainproject.udog_server.restdocs.review;
 import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
 import com.mainproject.udog_server.api.member.Member;
+import com.mainproject.udog_server.api.member.MemberService;
 import com.mainproject.udog_server.api.review.dto.ReviewDto;
 import com.mainproject.udog_server.api.review.entity.Review;
 import com.mainproject.udog_server.api.review.mapper.ReviewMapper;
@@ -30,7 +31,9 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,6 +49,7 @@ import static org.springframework.restdocs.headers.HeaderDocumentation.responseH
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -62,20 +66,29 @@ public class ReviewControllerRestDocsTest {
     @MockBean
     private ReviewLikeService reviewLikeService;
     @MockBean
+    private MemberService memberService;
+    @MockBean
     private ReviewMapper mapper;
 
 //    @WithMockUser(authorities = "ROLE_USER")
     @Test
     void postReviewTest() throws Exception {
         // given
-        ReviewDto.Post post = new ReviewDto.Post("이미지", "텍스트", new Member());
+        ReviewDto.Post post = new ReviewDto.Post("이미지", "텍스트", null);
         String content = gson.toJson(post);
+
+        Member mockMember = new Member();
+        mockMember.setMemberId(1L);
+        Principal principal = () -> "test@test.com";
+        given(memberService.findLoginMemberByEmail(Mockito.anyString())).willReturn(mockMember);
 
         given(mapper.reviewPostDtoToReview(Mockito.any(ReviewDto.Post.class))).willReturn(new Review());
 
-        Review mockResultReview = new Review();
-        mockResultReview.setId(1L);
         given(reviewService.createReview(Mockito.any(Review.class))).willReturn(new Review());
+
+        ReviewDto.Response responseDto = new ReviewDto.Response(1L, "이미지", "텍스트",
+                0, LocalDateTime.now(), LocalDateTime.now());
+        given(mapper.reviewToReviewResponseDto(Mockito.any(Review.class))).willReturn(responseDto);
 
         // when
         ResultActions actions =
@@ -84,12 +97,14 @@ public class ReviewControllerRestDocsTest {
                                 .accept(MediaType.APPLICATION_JSON)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(content)
+                                .with(user("test@test.com"))
+                                .principal(principal)
                 );
 
         // then
         actions
                 .andExpect(status().isCreated())
-                .andExpect(header().string("Location", is(startsWith("/reviews/"))))
+                .andExpect(header().string("Location", is(startsWith("/reviews"))))
                 .andDo(document(
                         "post-review",
                         getRequestPreProcessor(),
@@ -120,14 +135,22 @@ public class ReviewControllerRestDocsTest {
     void patchReviewTest() throws Exception {
         // given
         Long reviewId = 1L;
-        ReviewDto.Patch patch = new ReviewDto.Patch(1L, "이미지", "텍스트", new Member());
+        Member mockMember = new Member();
+        mockMember.setMemberId(1L);
+        Principal principal = () -> "test@test.com";
+
+        ReviewDto.Patch patch = new ReviewDto.Patch(1L, "이미지", "텍스트", mockMember);
         String content = gson.toJson(patch);
 
         ReviewDto.Response responseDto = new ReviewDto.Response(1L, "이미지", "텍스트",
                 0, LocalDateTime.now(), LocalDateTime.now());
 
+        given(memberService.findLoginMemberByEmail(Mockito.anyString())).willReturn(mockMember);
+
         given(mapper.reviewPatchDtoToReview(Mockito.any(ReviewDto.Patch.class))).willReturn(new Review());
+
         given(reviewService.updateReview(Mockito.any(Review.class), Mockito.anyLong())).willReturn(new Review());
+
         given(mapper.reviewToReviewResponseDto(Mockito.any(Review.class))).willReturn(responseDto);
 
         // when
@@ -138,6 +161,8 @@ public class ReviewControllerRestDocsTest {
                                 .accept(MediaType.APPLICATION_JSON)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(content)
+                                .with(user("test@test.com"))
+                                .principal(principal)
                 );
 
         // then

@@ -8,6 +8,7 @@ import com.mainproject.udog_server.api.review.mapper.ReviewMapper;
 import com.mainproject.udog_server.api.review.service.ReviewService;
 import com.mainproject.udog_server.api.reviewLike.service.ReviewLikeService;
 import com.mainproject.udog_server.dto.MultiResponseDto;
+import com.mainproject.udog_server.util.UriCreator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Positive;
+import java.net.URI;
 import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,7 +40,8 @@ public class ReviewController {
         Review response = reviewService.createReview(review);
 //        Review response = reviewService.createReview(review, postDto.getMemberId());
 
-        return new ResponseEntity<>(mapper.reviewToReviewResponseDto(response), HttpStatus.CREATED);
+//        return new ResponseEntity<>(mapper.reviewToReviewResponseDto(response), HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).location(URI.create("/reviews")).body(mapper.reviewToReviewResponseDto(response));
     }
 
     @PatchMapping("/{review-id}")
