@@ -55,7 +55,7 @@ function HomeTab({data}) {
 							<>
 								<S.CommentTitleBox>
 									<S.CommentTitle>매장 소개</S.CommentTitle>
-									{comment.length > 62 && <S.CommentButton onClick={handleToggle}>{show ? '접기' : '더보기'}</S.CommentButton>}
+									{comment.length > 63 && <S.CommentButton onClick={handleToggle}>{show ? '접기' : '더보기'}</S.CommentButton>}
 								</S.CommentTitleBox>
 								<S.CommentText className={show ? '' : 'hide'}>{getDisplayComment(comment)}</S.CommentText>
 							</>
