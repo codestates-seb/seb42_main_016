@@ -12,7 +12,7 @@ const Nav = styled.nav`
 `;
 
 function Hairshop() {
-	const PER_PAGE = 15;
+	const PER_PAGE = 3;
 	const url = '/hair-shops';
 	const {data, loading, handleScroll} = useInfiniteScroll(url, PER_PAGE);
 	const scrollAreaRef = useRef(null);

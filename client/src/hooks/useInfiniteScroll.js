@@ -12,11 +12,11 @@ function useInfiniteScroll(url, perPage) {
 		setLoading(true);
 		// const queryParams = cursor ? `?_limit=${perPage}&_start=${cursor}` : `?_limit=${perPage}`;
 		// API.get(`${url}${queryParams}`)
-		// API.get(`${url}?page=${page}&size=${perPage}`)
-		API.get(`${url}?_page=${page}&_limit=${perPage}`)
+		API.get(`${url}?page=${page}&size=${perPage}`)
+			// API.get(`${url}?_page=${page}&_limit=${perPage}`)
 			.then((res) => {
-				setData((prevData) => [...prevData, ...res.data]);
-				setHasMore(res.data.length > 0);
+				setData((prevData) => [...prevData, ...res.data.data]);
+				setHasMore(res.data.data.length > 0);
 				// setCursor(res.headers['x-next-page-cursor'] || null);
 				// setHasMore(Boolean(res.headers['x-next-page-cursor']));
 			})
