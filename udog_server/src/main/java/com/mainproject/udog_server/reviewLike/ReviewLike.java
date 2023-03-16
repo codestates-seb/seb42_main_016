@@ -24,4 +24,9 @@ public class ReviewLike {
     @ManyToOne
     @JoinColumn(name = "review_id")
     private Review review;
+
+    public ReviewLike(Member member, Review review) {
+        this.member = member;
+        this.review = review;
+    }
 }

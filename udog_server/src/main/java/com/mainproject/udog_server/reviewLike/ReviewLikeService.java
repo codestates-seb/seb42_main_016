@@ -1,5 +1,7 @@
 package com.mainproject.udog_server.reviewLike;
 
+import com.mainproject.udog_server.member.Member;
+import com.mainproject.udog_server.review.Review;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +51,21 @@ public class ReviewLikeService {
             throw null;
     }
 
-    public ReviewLike findByMemberIdAndReviewId(Long memberId, Long reviewId) {
-        return reviewLikeRepository.findByMember_memberIdAndReviewId(memberId, reviewId);
+//    public ReviewLike findByMemberIdAndReviewId(Long memberId, Long reviewId) {
+//        return reviewLikeRepository.findByMember_memberIdAndReviewId(memberId, reviewId);
+//    }
+public ReviewLike findByMemberIdAndReviewId(Long memberId, Long reviewId) {
+    ReviewLike findReviewLike = reviewLikeRepository.findByMember_memberIdAndReviewId(memberId, reviewId);
+    if(findReviewLike == null) {
+        Review review = new Review();
+        review.setId(reviewId);
+        Member member = new Member();
+        member.setMemberId(memberId);
+        ReviewLike reviewLike = new ReviewLike(member, review);
+        return reviewLikeRepository.save(reviewLike);
+    } else {
+        reviewLikeRepository.delete(findReviewLike);
+        return null;
     }
+}
 }
