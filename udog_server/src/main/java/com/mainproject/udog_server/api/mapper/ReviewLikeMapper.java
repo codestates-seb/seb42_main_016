@@ -1,16 +1,16 @@
 package com.mainproject.udog_server.api.mapper;
 
+import com.mainproject.udog_server.api.dto.ReviewLikeDto;
+
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.review.Review;
-import com.mainproject.udog_server.api.dto.ReviewLikeDto;
-import com.mainproject.udog_server.api.dto.ReviewLikeResponseDto;
 import com.mainproject.udog_server.reviewLike.ReviewLike;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface ReviewLikeMapper {
-    default ReviewLike reviewLikeDtoToReviewLike(ReviewLikeDto reviewLikeDto) {
+    default ReviewLike reviewLikeDtoToReviewLike(ReviewLikeDto.Post reviewLikeDto) {
         Review review = new Review();
         Member member = new Member();
         ReviewLike reviewLike = new ReviewLike();
@@ -25,5 +25,5 @@ public interface ReviewLikeMapper {
     }
     @Mapping(source = "reviewLike.member.memberId", target = "memberId")
     @Mapping(source = "reviewLike.review.id", target = "reviewId")
-    ReviewLikeResponseDto ReviewLikeToReviewLikeResponseDto(ReviewLike reviewLike);
+    ReviewLikeDto.Response ReviewLikeToReviewLikeResponseDto(ReviewLike reviewLike);
 }
