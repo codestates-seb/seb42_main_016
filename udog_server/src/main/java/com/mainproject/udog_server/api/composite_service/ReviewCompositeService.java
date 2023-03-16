@@ -6,7 +6,7 @@ import com.mainproject.udog_server.review.Review;
 import com.mainproject.udog_server.review.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.*;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
@@ -15,7 +15,7 @@ public class ReviewCompositeService {
     private final ReviewService reviewService;
     private final MemberService memberService;
 
-    public Review createReview(Review creatingReview, String email){
+    public Review createReview(Review creatingReview, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
 
         creatingReview.setMember(member);
@@ -35,7 +35,7 @@ public class ReviewCompositeService {
         return updatedReview;
     }
 
-    public Review getReview(Long reviewId){
+    public Review getReview(Long reviewId) {
         Review foundReview = reviewService.findReview(reviewId);
 
         return foundReview;
