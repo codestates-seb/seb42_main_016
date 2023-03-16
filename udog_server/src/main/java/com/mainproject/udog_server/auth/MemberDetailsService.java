@@ -1,7 +1,7 @@
 package com.mainproject.udog_server.auth;
 
-import com.mainproject.udog_server.api.member.Member;
-import com.mainproject.udog_server.api.member.MemberRepository;
+import com.mainproject.udog_server.member.Member;
+import com.mainproject.udog_server.member.MemberRepository;
 import com.mainproject.udog_server.auth.utils.CustomAuthorityUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

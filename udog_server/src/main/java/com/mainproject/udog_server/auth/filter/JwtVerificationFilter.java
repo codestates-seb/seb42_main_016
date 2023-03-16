@@ -1,12 +1,9 @@
 package com.mainproject.udog_server.auth.filter;
 
-import com.mainproject.udog_server.api.member.Member;
 import com.mainproject.udog_server.auth.utils.CustomAuthorityUtils;
 import com.mainproject.udog_server.auth.utils.JwtTokenizer;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

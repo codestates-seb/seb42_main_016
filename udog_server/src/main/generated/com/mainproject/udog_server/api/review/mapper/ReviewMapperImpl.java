@@ -1,10 +1,11 @@
 package com.mainproject.udog_server.api.review.mapper;
 
-import com.mainproject.udog_server.api.review.dto.ReviewDto.Patch;
-import com.mainproject.udog_server.api.review.dto.ReviewDto.Post;
-import com.mainproject.udog_server.api.review.dto.ReviewDto.Response;
-import com.mainproject.udog_server.api.review.dto.ReviewDto.listResponse;
-import com.mainproject.udog_server.api.review.entity.Review;
+import com.mainproject.udog_server.api.dto.ReviewDto.Patch;
+import com.mainproject.udog_server.api.dto.ReviewDto.Post;
+import com.mainproject.udog_server.api.dto.ReviewDto.Response;
+import com.mainproject.udog_server.api.dto.ReviewDto.listResponse;
+import com.mainproject.udog_server.api.mapper.*;
+import com.mainproject.udog_server.review.Review;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-15T13:38:35+0900",
+    date = "2023-03-16T11:11:28+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component

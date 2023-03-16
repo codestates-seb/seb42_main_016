@@ -2,13 +2,13 @@ package com.mainproject.udog_server.restdocs.review;
 
 import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
-import com.mainproject.udog_server.api.member.Member;
-import com.mainproject.udog_server.api.member.MemberService;
-import com.mainproject.udog_server.api.review.dto.ReviewDto;
-import com.mainproject.udog_server.api.review.entity.Review;
-import com.mainproject.udog_server.api.review.mapper.ReviewMapper;
-import com.mainproject.udog_server.api.review.service.ReviewService;
-import com.mainproject.udog_server.api.reviewLike.service.ReviewLikeService;
+import com.mainproject.udog_server.member.Member;
+import com.mainproject.udog_server.member.MemberService;
+import com.mainproject.udog_server.api.dto.ReviewDto;
+import com.mainproject.udog_server.review.Review;
+import com.mainproject.udog_server.api.mapper.ReviewMapper;
+import com.mainproject.udog_server.review.ReviewService;
+import com.mainproject.udog_server.reviewLike.ReviewLikeService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -33,7 +32,6 @@ import org.springframework.util.MultiValueMap;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -139,13 +137,13 @@ public class ReviewControllerRestDocsTest {
         mockMember.setMemberId(1L);
         Principal principal = () -> "test@test.com";
 
-        ReviewDto.Patch patch = new ReviewDto.Patch(1L, "이미지", "텍스트", mockMember);
+        ReviewDto.Patch patch = new ReviewDto.Patch(1L, "이미지", "텍스트", null);
         String content = gson.toJson(patch);
 
         ReviewDto.Response responseDto = new ReviewDto.Response(1L, "이미지", "텍스트",
                 0, LocalDateTime.now(), LocalDateTime.now());
 
-        given(memberService.findLoginMemberByEmail(Mockito.anyString())).willReturn(mockMember);
+        given(memberService.findLoginMemberByEmail(Mockito.anyString())).willReturn(new Member());
 
         given(mapper.reviewPatchDtoToReview(Mockito.any(ReviewDto.Patch.class))).willReturn(new Review());
 
@@ -177,6 +175,7 @@ public class ReviewControllerRestDocsTest {
                         ),
                         requestFields(
                                 List.of(
+                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("아이디").ignored(),
                                         fieldWithPath("reviewImage").type(JsonFieldType.STRING).description("리뷰 이미지").optional(),
                                         fieldWithPath("reviewText").type(JsonFieldType.STRING).description("리뷰 텍스트").optional()
                                 )
@@ -226,7 +225,7 @@ public class ReviewControllerRestDocsTest {
                         responseFields(
                                 List.of(
                                         fieldWithPath("id").type(JsonFieldType.NUMBER).description("리뷰 식별자"),
-                                        fieldWithPath("reviewImage").type(JsonFieldType.STRING).description("리뷰 이미지"),
+//                                        fieldWithPath("reviewImage").type(JsonFieldType.STRING).description("리뷰 이미지"),
                                         fieldWithPath("reviewText").type(JsonFieldType.STRING).description("리뷰 텍스트"),
                                         fieldWithPath("reviewLikeCount").type(JsonFieldType.NUMBER).description("리뷰 좋아요 개수"),
                                         fieldWithPath("createdAt").type(JsonFieldType.STRING).description("리뷰 생성 시간"),

@@ -1,7 +1,7 @@
 package com.mainproject.udog_server.auth.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mainproject.udog_server.api.member.Member;
+import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.auth.utils.JwtTokenizer;
 import com.mainproject.udog_server.auth.LoginDto;
 import lombok.SneakyThrows;
@@ -59,7 +59,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     private String delegateAccessToken(Member member) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("memberId", member.getMemberId());
+//        claims.put("memberId", member.getMemberId());
         claims.put("email", member.getEmail());
         claims.put("roles", member.getRoles());
 

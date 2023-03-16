@@ -1,31 +1,32 @@
 package com.mainproject.udog_server.api.reviewLike.mapper;
 
-import com.mainproject.udog_server.api.member.Member;
-import com.mainproject.udog_server.api.review.entity.Review;
-import com.mainproject.udog_server.api.reviewLike.dto.ReviewLikeResponseDto;
-import com.mainproject.udog_server.api.reviewLike.entity.ReviewLike;
+import com.mainproject.udog_server.api.dto.*;
+import com.mainproject.udog_server.api.mapper.*;
+import com.mainproject.udog_server.member.Member;
+import com.mainproject.udog_server.review.Review;
+import com.mainproject.udog_server.reviewLike.ReviewLike;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-15T13:38:35+0900",
+    date = "2023-03-16T11:11:28+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component
 public class ReviewLikeMapperImpl implements ReviewLikeMapper {
 
     @Override
-    public ReviewLikeResponseDto ReviewLikeToReviewLikeResponseDto(ReviewLike reviewLike) {
+    public ReviewLikeDto.Response ReviewLikeToReviewLikeResponseDto(ReviewLike reviewLike) {
         if ( reviewLike == null ) {
             return null;
         }
 
-        ReviewLikeResponseDto reviewLikeResponseDto = new ReviewLikeResponseDto();
+        ReviewLikeDto.Response reviewLikeResponseDto = new ReviewLikeDto.Response();
 
-        reviewLikeResponseDto.setMemberId( reviewLikeMemberMemberId( reviewLike ) );
-        reviewLikeResponseDto.setReviewId( reviewLikeReviewId( reviewLike ) );
-        reviewLikeResponseDto.setId( reviewLike.getId() );
+        ReviewLikeDto.Response.setMemberId( reviewLikeMemberMemberId( reviewLike ) );
+        ReviewLikeDto.Response.setReviewId( reviewLikeReviewId( reviewLike ) );
+        ReviewLikeDto.Response.setId( reviewLike.getId() );
 
         return reviewLikeResponseDto;
     }

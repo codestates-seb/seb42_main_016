@@ -1,11 +1,12 @@
 package com.mainproject.udog_server.api.dog.mapper;
 
-import com.mainproject.udog_server.api.dog.dto.DogDto.Patch;
-import com.mainproject.udog_server.api.dog.dto.DogDto.Post;
-import com.mainproject.udog_server.api.dog.dto.DogDto.Response;
-import com.mainproject.udog_server.api.dog.entity.Dog;
-import com.mainproject.udog_server.api.dog.entity.Dog.DogSpecies;
-import com.mainproject.udog_server.api.member.Member;
+import com.mainproject.udog_server.api.dto.DogDto.Patch;
+import com.mainproject.udog_server.api.dto.DogDto.Post;
+import com.mainproject.udog_server.api.dto.DogDto.Response;
+import com.mainproject.udog_server.api.mapper.*;
+import com.mainproject.udog_server.dog.Dog;
+import com.mainproject.udog_server.dog.Dog.DogSpecies;
+import com.mainproject.udog_server.member.Member;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-15T13:38:35+0900",
+    date = "2023-03-16T11:11:28+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component

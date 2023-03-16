@@ -1,10 +1,14 @@
 package com.mainproject.udog_server.api.member;
 
-import com.mainproject.udog_server.api.member.MemberDto.NicknamePatch;
-import com.mainproject.udog_server.api.member.MemberDto.PasswordPatch;
-import com.mainproject.udog_server.api.member.MemberDto.Post;
-import com.mainproject.udog_server.api.member.MemberDto.Response;
+import com.mainproject.udog_server.api.dto.MemberDto.NicknamePatch;
+import com.mainproject.udog_server.api.dto.MemberDto.PasswordPatch;
+import com.mainproject.udog_server.api.dto.MemberDto.Post;
+import com.mainproject.udog_server.api.dto.MemberDto.Response;
 import javax.annotation.processing.Generated;
+
+import com.mainproject.udog_server.api.mapper.*;
+import com.mainproject.udog_server.domain.member.*;
+import com.mainproject.udog_server.member.*;
 import org.springframework.stereotype.Component;
 
 @Generated(

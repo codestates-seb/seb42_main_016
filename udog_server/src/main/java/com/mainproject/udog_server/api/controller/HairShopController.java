@@ -1,0 +1,71 @@
+package com.mainproject.udog_server.api.controller;
+
+import com.mainproject.udog_server.api.dto.HairShopDto;
+import com.mainproject.udog_server.hairshop.HairShop;
+import com.mainproject.udog_server.api.mapper.HairShopMapper;
+import com.mainproject.udog_server.hairshop.HairShopService;
+import com.mainproject.udog_server.hairshopLike.HairShopLikeService;
+import com.mainproject.udog_server.dto.MultiResponseDto;
+import com.mainproject.udog_server.util.UriCreator;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.Positive;
+import java.net.URI;
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/hair-shops")
+@Validated
+@Slf4j
+public class HairShopController {
+    private final static String HAIR_SHOP_DEFAULT_URL = "/hair-shop";
+
+    private final HairShopMapper hairShopMapper;
+
+    private final HairShopService hairShopService;
+    private final HairShopLikeService hairShopLikeService;
+
+    @PostMapping
+    public ResponseEntity addHariShop(@RequestBody HairShopDto.Post post) {
+        HairShop postHairShop = hairShopMapper.hairShopPostDtoToHairShop(post);
+        HairShop createdHairShop = hairShopService.createHairShop(postHairShop);
+
+        URI location = UriCreator.createUri(HAIR_SHOP_DEFAULT_URL, createdHairShop.getHairShopId());
+
+        return ResponseEntity.created(location).build();
+    }
+
+    //미용실 상세페이지
+    @GetMapping("/{hair-shops-id}")
+    public ResponseEntity getHairShop(@PathVariable("hair-shops-id") @Positive long hairShopId) {
+        HairShop response = hairShopService.findHairShop(hairShopId);
+
+
+        return new ResponseEntity<>(hairShopMapper.hairShopToHairShopResponse(response), HttpStatus.OK);
+    }
+
+    //todo PathVariable 값 오타 알려드리기
+    //todo 엔티티에서 builder중에 this.hairshopname
+    //내 주변 미용실
+    @GetMapping
+    public ResponseEntity getHairShops(@Positive @RequestParam int page,
+                                       @Positive @RequestParam int size) {
+        Page<HairShop> pageHairShops = hairShopService.findHairShops(page - 1, size);
+        List<HairShop> hairShops = pageHairShops.getContent();
+
+        return new ResponseEntity<>(new MultiResponseDto<>(hairShopMapper.hairShopsToHairShopResponses(hairShops),
+                pageHairShops), HttpStatus.OK);
+    }
+}
+
+//TODO 거리순으로 출력
+//TODO 운영시간 테이블 따로 빼기
+//TODO 좋아요 갯수 응답 보내기
+//TODO 일주일간 좋아요 많이 받은 미용실 메인 페이지로 응답

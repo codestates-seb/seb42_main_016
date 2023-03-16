@@ -1,10 +1,11 @@
 package com.mainproject.udog_server.api.hairShop.mapper;
 
-import com.mainproject.udog_server.api.hairShop.dto.HairShopDto.Post;
-import com.mainproject.udog_server.api.hairShop.dto.HairShopDto.Response;
-import com.mainproject.udog_server.api.hairShop.dto.HairShopDto.Response.ResponseBuilder;
-import com.mainproject.udog_server.api.hairShop.entity.HairShop;
-import com.mainproject.udog_server.api.hairShop.entity.HairShop.HairShopBuilder;
+import com.mainproject.udog_server.api.dto.HairShopDto.Post;
+import com.mainproject.udog_server.api.dto.HairShopDto.Response;
+import com.mainproject.udog_server.api.dto.HairShopDto.Response.ResponseBuilder;
+import com.mainproject.udog_server.api.mapper.*;
+import com.mainproject.udog_server.hairshop.HairShop;
+import com.mainproject.udog_server.hairshop.HairShop.HairShopBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-15T13:38:35+0900",
+    date = "2023-03-16T11:11:28+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component
