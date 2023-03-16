@@ -57,8 +57,9 @@ public class DogController {
     @GetMapping("/{dog-id}")
     public ResponseEntity getDog (@Positive @PathVariable("dog-id") long dogId) {
         Dog response = compositeService.findDog(dogId);
+        DogDto.Response findDog = dogMapper.dogToDogResponse(response);
 
-        return new ResponseEntity<>(dogMapper.dogToDogResponse(response), HttpStatus.OK);
+        return new ResponseEntity<>(findDog, HttpStatus.OK);
     }
 
     @GetMapping

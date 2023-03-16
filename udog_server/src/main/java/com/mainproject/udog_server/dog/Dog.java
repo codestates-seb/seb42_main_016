@@ -1,6 +1,6 @@
 package com.mainproject.udog_server.dog;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import com.mainproject.udog_server.member.Member;
 import lombok.*;
 
@@ -21,7 +21,7 @@ public class Dog {
     private String dogName;
 
     @Column(nullable = false, length = 20)
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 //    @JsonDeserialize(using = LocalDateDeserializer.class)
 //    @JsonSerialize(using = LocalDateSerializer.class)
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
