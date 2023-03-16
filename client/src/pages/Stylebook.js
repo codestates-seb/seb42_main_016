@@ -1,15 +1,13 @@
-import React from 'react'
-import StylebookList from '../components/stylebook/StylebookList' 
-import * as S from '../components/style/SBStyle'
-import TopButton from '../components/stylebook/TopButton'
-
+import React from 'react';
+import StylebookList from '../components/stylebook/StylebookList';
+import * as S from '../components/style/SBStyle';
+import TopButton from '../components/stylebook/TopButton';
 
 export default function Stylebook() {
   return (
     <S.StylebookWrap>
-    <StylebookList/>
-    <TopButton/>
+      <StylebookList />
+      <TopButton />
     </S.StylebookWrap>
-  )
+  );
 }
-
