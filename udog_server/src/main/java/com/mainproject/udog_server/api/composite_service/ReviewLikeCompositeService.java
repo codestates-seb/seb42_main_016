@@ -5,8 +5,10 @@ import com.mainproject.udog_server.member.MemberService;
 import com.mainproject.udog_server.reviewLike.ReviewLike;
 import com.mainproject.udog_server.reviewLike.ReviewLikeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.*;
 
 @RequiredArgsConstructor
+@Service
 public class ReviewLikeCompositeService {
     private final ReviewLikeService reviewLikeService;
     private final MemberService memberService;

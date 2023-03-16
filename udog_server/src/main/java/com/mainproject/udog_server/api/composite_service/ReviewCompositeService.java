@@ -7,8 +7,10 @@ import com.mainproject.udog_server.review.ReviewService;
 import com.mainproject.udog_server.reviewLike.ReviewLikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.*;
 
 @RequiredArgsConstructor
+@Service
 public class ReviewCompositeService {
 
     private final ReviewService reviewService;

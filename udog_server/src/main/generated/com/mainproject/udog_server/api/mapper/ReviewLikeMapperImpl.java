@@ -1,7 +1,6 @@
-package com.mainproject.udog_server.api.reviewLike.mapper;
+package com.mainproject.udog_server.api.mapper;
 
-import com.mainproject.udog_server.api.dto.*;
-import com.mainproject.udog_server.api.mapper.*;
+import com.mainproject.udog_server.api.dto.ReviewLikeDto.Response;
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.review.Review;
 import com.mainproject.udog_server.reviewLike.ReviewLike;
@@ -10,25 +9,25 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-16T11:11:28+0900",
+    date = "2023-03-16T22:04:22+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component
 public class ReviewLikeMapperImpl implements ReviewLikeMapper {
 
     @Override
-    public ReviewLikeDto.Response ReviewLikeToReviewLikeResponseDto(ReviewLike reviewLike) {
+    public Response ReviewLikeToReviewLikeResponseDto(ReviewLike reviewLike) {
         if ( reviewLike == null ) {
             return null;
         }
 
-        ReviewLikeDto.Response reviewLikeResponseDto = new ReviewLikeDto.Response();
+        Response response = new Response();
 
-        ReviewLikeDto.Response.setMemberId( reviewLikeMemberMemberId( reviewLike ) );
-        ReviewLikeDto.Response.setReviewId( reviewLikeReviewId( reviewLike ) );
-        ReviewLikeDto.Response.setId( reviewLike.getId() );
+        response.setMemberId( reviewLikeMemberMemberId( reviewLike ) );
+        response.setReviewId( reviewLikeReviewId( reviewLike ) );
+        response.setId( reviewLike.getId() );
 
-        return reviewLikeResponseDto;
+        return response;
     }
 
     private Long reviewLikeMemberMemberId(ReviewLike reviewLike) {

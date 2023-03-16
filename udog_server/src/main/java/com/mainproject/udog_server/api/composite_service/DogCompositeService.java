@@ -3,10 +3,12 @@ package com.mainproject.udog_server.api.composite_service;
 import com.mainproject.udog_server.dog.*;
 import com.mainproject.udog_server.member.*;
 import lombok.*;
+import org.springframework.stereotype.*;
 
 import java.util.*;
 
 @RequiredArgsConstructor
+@Service
 public class DogCompositeService {
     private final MemberService memberService;
 

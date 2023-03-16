@@ -1,9 +1,8 @@
-package com.mainproject.udog_server.api.dog.mapper;
+package com.mainproject.udog_server.api.mapper;
 
 import com.mainproject.udog_server.api.dto.DogDto.Patch;
 import com.mainproject.udog_server.api.dto.DogDto.Post;
 import com.mainproject.udog_server.api.dto.DogDto.Response;
-import com.mainproject.udog_server.api.mapper.*;
 import com.mainproject.udog_server.dog.Dog;
 import com.mainproject.udog_server.dog.Dog.DogSpecies;
 import com.mainproject.udog_server.member.Member;
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-16T11:11:28+0900",
+    date = "2023-03-16T22:04:22+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component
@@ -34,7 +33,6 @@ public class DogMapperImpl implements DogMapper {
         dog.setDogSpecies( postDto.getDogSpecies() );
         dog.setDogWeight( postDto.getDogWeight() );
         dog.setDogDescription( postDto.getDogDescription() );
-        dog.setMember( postDto.getMember() );
 
         return dog;
     }
