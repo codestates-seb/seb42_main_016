@@ -2,13 +2,13 @@ import DogList from '../components/mydog/DogList';
 import useScrollTop from '../hooks/useScrollTop';
 
 function Mydog() {
-	useScrollTop();
+  useScrollTop();
 
-	return (
-		<>
-			<DogList />
-		</>
-	);
+  return (
+    <>
+      <DogList />
+    </>
+  );
 }
 
 export default Mydog;

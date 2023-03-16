@@ -1,12 +1,12 @@
-import React,{ useEffect } from 'react'
-import styled from 'styled-components'
-import ReviewItem from './ReviewItem'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchReviews } from '../../modules/redux/reviewsSlice'
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import ReviewItem from './ReviewItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchReviews } from '../../modules/redux/reviewsSlice';
 
 export default function ReviewList() {
   const dispatch = useDispatch();
-  const reviews = useSelector(state => state.reviews.reviews);
+  const reviews = useSelector((state) => state.reviews.reviews);
 
   useEffect(() => {
     dispatch(fetchReviews());
@@ -25,15 +25,11 @@ export default function ReviewList() {
   // }
   // console.log(reviews)
   return (
-    <Container>
-      {reviews && reviews.map(review=>(
-        <ReviewItem key={review.id}/>
-      ))}
-    </Container>
-  )
+    <Container>{reviews && reviews.map((review) => <ReviewItem key={review.id} />)}</Container>
+  );
 }
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
-`
+`;

@@ -1,14 +1,11 @@
-import React, { useState,useEffect } from 'react'
-import * as S from '../components/style/ReviewStyle'
+import React, { useState, useEffect } from 'react';
+import * as S from '../components/style/ReviewStyle';
 // import ReserveList from '../components/mypageReview/ReserveList'
-import ReviewList from '../components/mypageReview/ReviewList'
-import styled from 'styled-components'
-import AddReviewForm from '../components/mypageReview/AddReviewForm'
-
-
+import ReviewList from '../components/mypageReview/ReviewList';
+import styled from 'styled-components';
+import AddReviewForm from '../components/mypageReview/AddReviewForm';
 
 export default function Myreview() {
-
   // const [currentTab, setCurrentTab] = useState(0);
   // const menuArr = [
   //   {name: '작성 가능한 리뷰', content: <ReserveList/>},
@@ -36,13 +33,11 @@ export default function Myreview() {
           {menuArr[currentTab].content}
           </div>
        */}
-      <AddReviewForm/>
+      <AddReviewForm />
       <ReviewList />
-     
-   </S.Container>
-  )
+    </S.Container>
+  );
 }
-
 
 const TabMenu = styled.ul`
   color: black;
