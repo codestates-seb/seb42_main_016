@@ -3,8 +3,10 @@ package com.mainproject.udog_server.api.composite_service;
 import com.mainproject.udog_server.hairshopLike.*;
 import com.mainproject.udog_server.member.*;
 import lombok.*;
+import org.springframework.stereotype.*;
 
 @RequiredArgsConstructor
+@Service
 public class HairShopLikeCompositeService {
     private final MemberService memberService;
     private final HairShopLikeService hairShopLikeService;

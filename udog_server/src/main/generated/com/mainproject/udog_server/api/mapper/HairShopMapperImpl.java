@@ -1,9 +1,8 @@
-package com.mainproject.udog_server.api.hairShop.mapper;
+package com.mainproject.udog_server.api.mapper;
 
 import com.mainproject.udog_server.api.dto.HairShopDto.Post;
 import com.mainproject.udog_server.api.dto.HairShopDto.Response;
 import com.mainproject.udog_server.api.dto.HairShopDto.Response.ResponseBuilder;
-import com.mainproject.udog_server.api.mapper.*;
 import com.mainproject.udog_server.hairshop.HairShop;
 import com.mainproject.udog_server.hairshop.HairShop.HairShopBuilder;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-16T11:11:28+0900",
+    date = "2023-03-16T22:04:22+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component

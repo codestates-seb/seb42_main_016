@@ -1,19 +1,16 @@
-package com.mainproject.udog_server.api.member;
+package com.mainproject.udog_server.api.mapper;
 
 import com.mainproject.udog_server.api.dto.MemberDto.NicknamePatch;
 import com.mainproject.udog_server.api.dto.MemberDto.PasswordPatch;
 import com.mainproject.udog_server.api.dto.MemberDto.Post;
 import com.mainproject.udog_server.api.dto.MemberDto.Response;
+import com.mainproject.udog_server.member.Member;
 import javax.annotation.processing.Generated;
-
-import com.mainproject.udog_server.api.mapper.*;
-import com.mainproject.udog_server.domain.member.*;
-import com.mainproject.udog_server.member.*;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-15T13:38:38+0900",
+    date = "2023-03-16T22:04:22+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component
