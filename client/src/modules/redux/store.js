@@ -8,8 +8,8 @@ import dogSlice from './dogSlice';
 import tabSlice from './tabSlice';
 import loadingSlice from './loadingSlice';
 import reserveSlice from './reserveSlice';
-import reviewSlice from './reviewSlice';
 import likeSlice from './likeSlice';
+import reviewsReducer from './reviewsSlice'
 const store = configureStore({
 	reducer: {
 		user: userSlice,
@@ -21,8 +21,9 @@ const store = configureStore({
 		tab: tabSlice,
 		loading: loadingSlice,
 		reserve: reserveSlice,
-		reviews: reviewSlice,
+
 		like: likeSlice,
+		reviews: reviewsReducer
 	},
 });
 

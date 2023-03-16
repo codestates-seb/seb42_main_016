@@ -3,7 +3,7 @@ import * as S from '../components/style/ReviewStyle'
 // import ReserveList from '../components/mypageReview/ReserveList'
 import ReviewList from '../components/mypageReview/ReviewList'
 import styled from 'styled-components'
-import ReviewForm from '../components/mypageReview/ReviewForm'
+import AddReviewForm from '../components/mypageReview/AddReviewForm'
 
 
 
@@ -36,7 +36,7 @@ export default function Myreview() {
           {menuArr[currentTab].content}
           </div>
        */}
-      <ReviewForm/>
+      <AddReviewForm/>
       <ReviewList />
      
    </S.Container>

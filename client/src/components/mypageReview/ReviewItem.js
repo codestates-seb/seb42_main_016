@@ -1,7 +1,13 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { deleteReview, updateReview } from '../../modules/redux/reviewsSlice'
 
 export default function ReviewItem({review}) {
+    const dispatch = useDispatch();
+    const handleDelete = () => {
+        dispatch(deleteReview(review.id))
+    }
     return (
     <RIWrap>
         <div className='review'>
@@ -10,7 +16,7 @@ export default function ReviewItem({review}) {
         </div>
         <div className='buttons'>
             <Button >수정</Button>
-            <Button >삭제</Button>
+            <Button onClick={handleDelete} >삭제</Button>
         </div>
     </RIWrap>
 

@@ -1,18 +1,16 @@
-import React,{ useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addReview } from '../../modules/redux/reviewSlice'
+import { addReview } from '../../modules/redux/reviewsSlice'
 
-export default function ReviewForm() { 
+export default function AddReviewForm() { 
     const dispatch = useDispatch();
     const [photo, setPhoto] = useState(null)
     const [text, setText] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const formData = new FormData();
-        formData.append('text',text)
-        formData.append('photo',photo)
-        dispatch(addReview(formData));
+        dispatch(addReview({photo,text}));
+
         setPhoto(null);
         setText('');
    

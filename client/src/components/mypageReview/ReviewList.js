@@ -2,15 +2,15 @@ import React,{ useEffect } from 'react'
 import styled from 'styled-components'
 import ReviewItem from './ReviewItem'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { fetchReviews } from '../../modules/redux/reviewsSlice'
 
 export default function ReviewList() {
   const dispatch = useDispatch();
-  // const reviews = useSelector(state => state.reviews);
+  const reviews = useSelector(state => state.reviews);
 
-  // useEffect(() => {
-  //   dispatch(createReviews());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchReviews());
+  }, [dispatch]);
   // function AddModal(){
   //   return(
   //     <S.ModalWrap>
