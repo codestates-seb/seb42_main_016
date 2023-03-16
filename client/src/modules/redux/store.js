@@ -9,6 +9,7 @@ import tabSlice from './tabSlice';
 import loadingSlice from './loadingSlice';
 import reserveSlice from './reserveSlice';
 import likeSlice from './likeSlice';
+import reviewsReducer from './reviewsSlice'
 import shopSlice from './shopSlice';
 
 const store = configureStore({
@@ -22,7 +23,9 @@ const store = configureStore({
 		tab: tabSlice,
 		loading: loadingSlice,
 		reserve: reserveSlice,
+
 		like: likeSlice,
+		reviews: reviewsReducer,
 		shop: shopSlice,
 	},
 });

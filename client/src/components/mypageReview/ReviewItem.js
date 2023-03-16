@@ -1,19 +1,25 @@
-import React from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
-export default function ReviewItem() {
-  return (
-   <>
+import { useDispatch } from 'react-redux'
+import { deleteReview, updateReview } from '../../modules/redux/reviewsSlice'
+
+export default function ReviewItem({reviews}) {
+    const dispatch = useDispatch();
+    const handleDelete = () => {
+        dispatch(deleteReview(reviews.id))
+    }
+    return (
     <RIWrap>
         <div className='review'>
-        <Photo></Photo>
-        <Text>리뷰 내용</Text>
+        <Photo>{reviews.reviewImage}</Photo>
+        <Text>{reviews.reviewText}</Text>
         </div>
         <div className='buttons'>
-            <Button>수정</Button>
-            <Button>삭제</Button>
+            <Button >수정</Button>
+            <Button onClick={handleDelete} >삭제</Button>
         </div>
     </RIWrap>
-   </>
+
   )
 }
 export const RIWrap = styled.div`
