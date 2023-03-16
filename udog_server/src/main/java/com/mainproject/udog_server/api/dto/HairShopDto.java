@@ -41,11 +41,6 @@ public class HairShopDto {
         private int likeCount;
         private int reviewCount;
 
-        public int getLikeCount(HairShopLikeService hairShopLikeService) {
-            int likeCount = hairShopLikeService.likeCount(hairShopId);
-            return likeCount;
-        }
-
         @Builder
         public Response(long hairShopId, String hairShopName, String hairShopAddress, String hairShopPhone, String hairShopDescription, String hairShopImage, int likeCount, int reviewCount) {
             this.hairShopId = hairShopId;
