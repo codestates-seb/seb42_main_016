@@ -56,14 +56,14 @@ public class DogController {
 
     @GetMapping("/{dog-id}")
     public ResponseEntity getDog (@Positive @PathVariable("dog-id") long dogId) {
-        Dog response = dogService.findDog(dogId);
+        Dog response = compositeService.findDog(dogId);
 
         return new ResponseEntity<>(dogMapper.dogToDogResponse(response), HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity getDogs () {
-        List<Dog> dogs = dogService.findDogs();
+        List<Dog> dogs = compositeService.findDogs();
         List<DogDto.Response> response = dogMapper.dogsToDogResponsesDtos(dogs);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -71,10 +71,9 @@ public class DogController {
 
     @DeleteMapping("/{dog-id}")
     public ResponseEntity deleteDog (@Positive @PathVariable("dog-id") long dogId, Principal principal) {
-        Member member = memberService.findLoginMemberByEmail(principal.getName());
+        compositeService.deleteDog(dogId, principal.getName());
 
-        dogService.deleteDog(dogId, member);
-//        hairShopLikeService.deleteLike(hairShopId, hairShopLikeId, member);
+
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
