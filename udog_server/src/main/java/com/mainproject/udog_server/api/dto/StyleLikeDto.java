@@ -9,16 +9,7 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 
 
-public class ReviewLikeDto {
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Post {
-        private Member member;
-        @NotBlank
-        private Long reviewId;
-    }
+public class StyleLikeDto {
     @Setter
     @Getter
     @NoArgsConstructor

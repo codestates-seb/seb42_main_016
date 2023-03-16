@@ -1,7 +1,7 @@
 package com.mainproject.udog_server.review;
 
 import com.mainproject.udog_server.member.Member;
-import com.mainproject.udog_server.reviewLike.ReviewLike;
+import com.mainproject.udog_server.styleLike.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,9 +37,7 @@ public class Review {
     private Member member;
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
-    private List<ReviewLike> reviewLikes;
-
-    private int reviewCount;
+    private List<StyleLike> styleLikes;
 
 //    @ManyToOne
 //    @JoinColumn(name = "HAIR_SHOP_ID")

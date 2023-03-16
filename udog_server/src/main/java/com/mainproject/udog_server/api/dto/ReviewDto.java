@@ -43,7 +43,6 @@ public class ReviewDto {
         private Long id;
         private String reviewImage;
         private String reviewText;
-        private int reviewLikeCount;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
     }
