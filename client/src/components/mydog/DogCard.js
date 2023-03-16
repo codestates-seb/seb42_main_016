@@ -33,7 +33,7 @@ function DogCard({dog}) {
 				<S.Detail>{age}</S.Detail>
 				<S.Detail>{dog.dogWeight}</S.Detail>
 				<S.Detail>{dog.dogSpecies}</S.Detail>
-				<S.Detail>{dog.dogDescription ? dog.memo : '특이사항 없음'}</S.Detail>
+				<S.Detail>{dog.dogDescription ? dog.dogDescription : '특이사항 없음'}</S.Detail>
 			</S.TextWrapper>
 			<S.ButtonWrapper>
 				<S.Button onClick={handleOpenConfirmModal}>삭제</S.Button>
