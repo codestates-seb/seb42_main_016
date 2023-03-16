@@ -23,7 +23,7 @@ public class ReviewLikeController {
     private final ReviewLikeMapper mapper;
 
     @PostMapping
-    public ResponseEntity doReviewLike(@RequestBody ReviewLikeDto reviewLikeDto, Principal principal) {
+    public ResponseEntity doReviewLike(@RequestBody ReviewLikeDto.Post reviewLikeDto, Principal principal) {
         ReviewLike reviewLike = mapper.reviewLikeDtoToReviewLike(reviewLikeDto);
         ReviewLike response = compositeService.doReviewLike(reviewLike, principal.getName());
         if(response.equals(null)) {
