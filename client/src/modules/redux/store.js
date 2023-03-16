@@ -5,9 +5,11 @@ import modalSlice from './modalSlice';
 import editSlice from './editSlice';
 import deleteSlice from './deleteSlice';
 import dogSlice from './dogSlice';
+import tabSlice from './tabSlice';
+import loadingSlice from './loadingSlice';
 import reserveSlice from './reserveSlice';
 import reviewSlice from './reviewSlice';
-
+import likeSlice from './likeSlice';
 const store = configureStore({
 	reducer: {
 		user: userSlice,
@@ -16,8 +18,11 @@ const store = configureStore({
 		edit: editSlice,
 		delete: deleteSlice,
 		dog: dogSlice,
+		tab: tabSlice,
+		loading: loadingSlice,
 		reserve: reserveSlice,
-		reviews: reviewSlice
+		reviews: reviewSlice,
+		like: likeSlice,
 	},
 });
 

@@ -22,6 +22,7 @@ export const ModalWrap = styled.div`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	line-height: normal;
 `;
 
 export const TopWrapper = styled.div`
@@ -68,6 +69,7 @@ export const ModalForm = styled.div`
 `;
 
 export const ModalList = styled.div`
+	font-size: 16px;
 	color: #343a40;
 	padding-top: 13px;
 	padding-bottom: 13px;
@@ -85,6 +87,7 @@ export const ConfirmContainer = styled.div`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	line-height: normal;
 `;
 
 export const ConfirmContent = styled.div`
@@ -97,12 +100,23 @@ export const ConfirmContent = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	i {
+		position: absolute;
+		top: 15px;
+		right: 20px;
+		height: 24px;
+		width: 24px;
+		font-weight: 700;
+		color: #a7aeb5;
+		cursor: pointer;
+	}
 `;
 
 export const ConfirmText = styled.div`
 	color: #212529;
 	line-height: 22px;
-	font-weight: 700;
+	font-size: 20px;
+	font-weight: 600;
 	height: 100%;
 	display: flex;
 	align-items: center;
@@ -112,7 +126,6 @@ export const ConfirmText = styled.div`
 `;
 
 export const ButtonBox = styled.div`
-	padding-top: 16px;
 	gap: 4px;
 	display: flex;
 `;
@@ -121,7 +134,7 @@ export const ConfirmButton = styled.button`
 	color: ${(props) => props.color || '#1b1e21'};
 	background-color: ${(props) => props.bgcolor || '#6495ed'};
 	line-height: 22px;
-	font-weight: 700;
+	font-weight: 500;
 	font-size: 16px;
 	padding-top: 12px;
 	padding-bottom: 12px;

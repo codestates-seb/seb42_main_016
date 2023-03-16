@@ -4,8 +4,8 @@ const initialState = {
 	modalType: '',
 	isOpen: false,
 	option: {
-		weight: '',
-		type: '',
+		dogWeight: '',
+		dogSpecies: '',
 	},
 };
 

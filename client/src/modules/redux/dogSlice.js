@@ -3,7 +3,7 @@ import produce from 'immer';
 import API from '../API';
 
 const asyncUpFetch = createAsyncThunk('dogSlice/asyncUpFetch', async () => {
-	const response = await API.get('/mydog');
+	const response = await API.get('/my-dogs');
 	return response.data;
 });
 

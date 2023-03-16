@@ -1,19 +1,34 @@
-import axios from 'axios'
-import React,{ useEffect, useState } from 'react'
+import React,{ useEffect } from 'react'
 import styled from 'styled-components'
-import API from '../../modules/API'
 import ReviewItem from './ReviewItem'
-
+import { useDispatch, useSelector } from 'react-redux'
 
 
 export default function ReviewList() {
+  const dispatch = useDispatch();
+  // const reviews = useSelector(state => state.reviews);
 
+  // useEffect(() => {
+  //   dispatch(createReviews());
+  // }, [dispatch]);
+  // function AddModal(){
+  //   return(
+  //     <S.ModalWrap>
+  //     <p>리뷰 등록</p>
+  //     <input type='file' accept='image/*'/>
+  //     <input></input>
+  //     <div className='button'>
+  //     <button >완료</button>
+  //     <button onClick={()=>setModal(false)}>아니오</button>
+  //     </div>
+  //     </S.ModalWrap>)
+  // }
+  // console.log(reviews)
   return (
     <Container>
-    
-      <button>등록</button>
-      <button>수정</button>
-      <button>삭제</button>
+      {/* {reviews && reviews.map(review=>(
+        <ReviewItem key={review.id}/>
+      ))} */}
     </Container>
   )
 }

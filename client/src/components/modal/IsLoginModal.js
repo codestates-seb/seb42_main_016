@@ -1,15 +1,16 @@
 import * as S from '../style/ModalStyle';
 import {useRef, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {selectModal, closeModal, selectOption} from '../../modules/redux/modalSlice';
+import {selectModal, closeModal} from '../../modules/redux/modalSlice';
 import useScroll from '../../hooks/useScroll';
 import CloseIcon from '../../utils/CloseIcon';
-import {WeightOption} from '../../utils/ModalOption';
+import {useNavigate} from 'react-router-dom';
 
-function WeightModal() {
+function IsLoginModal() {
 	const modalRef = useRef();
-	const {isOpen, option} = useSelector(selectModal);
+	const {isOpen} = useSelector(selectModal);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	useScroll();
 
@@ -26,29 +27,26 @@ function WeightModal() {
 		}
 	};
 
-	const clickOption = (e) => {
-		dispatch(selectOption({...option, dogWeight: e.target.innerText}));
+	const clickLogin = () => {
+		navigate('/login');
+		dispatch(closeModal());
 	};
 
 	return (
-		<S.ModalWrap ref={modalRef}>
-			<S.TopWrapper>
-				<S.Title>강아지 몸무게 선택</S.Title>
+		<S.ConfirmContainer ref={modalRef}>
+			<S.ConfirmContent>
 				<div onClick={() => dispatch(closeModal())}>
 					<CloseIcon />
 				</div>
-			</S.TopWrapper>
-			<S.ModalForm>
-				{WeightOption.map((item, idx) => {
-					return (
-						<S.ModalList className="option" key={idx} onClick={clickOption}>
-							{item}
-						</S.ModalList>
-					);
-				})}
-			</S.ModalForm>
-		</S.ModalWrap>
+				<S.ConfirmText>로그인이 필요한 서비스 입니다.</S.ConfirmText>
+				<S.ButtonBox>
+					<S.ConfirmButton color="white" border="none" hover="#6893dd" onClick={clickLogin}>
+						로그인 하기
+					</S.ConfirmButton>
+				</S.ButtonBox>
+			</S.ConfirmContent>
+		</S.ConfirmContainer>
 	);
 }
 
-export default WeightModal;
+export default IsLoginModal;

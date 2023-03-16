@@ -3,11 +3,15 @@ import styled from 'styled-components';
 export const ListContainer = styled.div`
 	display: flex;
 	justify-content: center;
+	line-height: normal;
 `;
 
 export const ListWrapper = styled.div`
 	margin-top: 40px;
 	width: 60%;
+	@media (max-width: 1000px) {
+		width: 90%;
+	}
 `;
 
 export const List = styled.li`
@@ -27,7 +31,10 @@ export const ListFlex = styled.div`
 export const ImgBox = styled.div`
 	min-width: 200px;
 	height: 200px;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
+	@media (max-width: 700px) {
+		display: none;
+	}
 `;
 
 export const Img = styled.img`
@@ -43,6 +50,10 @@ export const TextBox = styled.div`
 	margin-left: 15px;
 	height: 100%;
 	color: #2d3436;
+	@media (max-width: 700px) {
+		margin-bottom: 30px;
+		width: 100%;
+	}
 `;
 
 export const ShopName = styled.h2`
@@ -84,13 +95,12 @@ export const LocationStyle = styled.h1`
 	font-size: 40px;
 	margin-top: 50px;
 	margin-bottom: 10px;
+	@media (max-width: 1000px) {
+		width: 50%;
+	}
 `;
 
 export const ScrollArea = styled.div`
-	/* border: 1px solid;
-	display: flex;
-	flex-direction: column;
-	flex: 1; */
 	height: 100vh;
 	overflow-y: auto;
 `;

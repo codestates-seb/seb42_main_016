@@ -27,7 +27,7 @@ function TypeModal() {
 	};
 
 	const clickOption = (e) => {
-		dispatch(selectOption({...option, type: e.target.innerText}));
+		dispatch(selectOption({...option, dogSpecies: e.target.innerText}));
 	};
 
 	return (

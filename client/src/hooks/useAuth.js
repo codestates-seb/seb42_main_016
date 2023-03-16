@@ -3,15 +3,22 @@ import API from '../modules/API';
 import {useDispatch} from 'react-redux';
 import {setLoading} from '../modules/redux/loadingSlice';
 
-function useFetch(url) {
+function useAuth(url) {
 	const dispatch = useDispatch();
 	const [data, setData] = useState([]);
+	const token = localStorage.getItem('accessToken');
+	const refresh = localStorage.getItem('refresh');
 
 	useEffect(() => {
 		if (window) window.scrollTo(0, 0);
 		dispatch(setLoading(true));
 
-		API.get(url)
+		API.get(url, {
+			headers: {
+				Authorization: token,
+				Refresh: refresh,
+			},
+		})
 			.then((res) => {
 				setData(res.data);
 			})
@@ -21,9 +28,10 @@ function useFetch(url) {
 			.finally(() => {
 				dispatch(setLoading(false));
 			});
+		// eslint-disable-next-line
 	}, [url, dispatch]);
 
 	return data;
 }
 
-export default useFetch;
+export default useAuth;
