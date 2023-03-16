@@ -34,6 +34,7 @@ export const InfoButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
   svg {
     font-size: 18px;
     vertical-align: middle;

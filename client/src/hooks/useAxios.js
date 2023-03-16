@@ -1,10 +1,14 @@
 import API from '../modules/API';
 import { useNavigate } from 'react-router-dom';
+import { HOMEMODAL } from '../modules/ModalContainer';
+import { useDispatch } from 'react-redux';
+import { openModal } from '../modules/redux/modalSlice';
 
 function useAxios(url, body, path) {
   const token = localStorage.getItem('accessToken');
   const refresh = localStorage.getItem('refresh');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const POST = (url, body, path) => {
     API.post(url, body, {
@@ -38,7 +42,29 @@ function useAxios(url, body, path) {
       });
   };
 
-  return { POST, PATCH };
+  const DELETE = (url) => {
+    API.delete(url, {
+      headers: {
+        Authorization: token,
+        Refresh: refresh,
+      },
+    })
+      .then((res) => {
+        dispatch(
+          openModal({
+            modalType: HOMEMODAL,
+            isOpen: true,
+          }),
+        );
+        localStorage.clear();
+        console.log('탈퇴성공', res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  return { POST, PATCH, DELETE };
 }
 
 export default useAxios;
