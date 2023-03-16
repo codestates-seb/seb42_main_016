@@ -22,7 +22,7 @@ public class ReviewService {
 
     public Review updateReview(Review review, Long memberId) {
         // 존재하는 리뷰인지 확인
-        Review findReview = findVerifiedReview(review.getId());
+        Review findReview = findVerifiedReview(review.getReviewId());
         // 멤버id와 로그인 멤버id를 비교하는 로직
         compareIdAndLoginId(findReview.getMember().getMemberId(), memberId);
 
@@ -43,7 +43,7 @@ public class ReviewService {
     }
 
     public Page<Review> findReviews(int page, int size) {
-        return reviewRepository.findAll(PageRequest.of(page, size, Sort.by("id").descending()));
+        return reviewRepository.findAll(PageRequest.of(page, size, Sort.by("reviewId").descending()));
     }
 
     public void deleteReview(Long reviewId, Long memberId) {

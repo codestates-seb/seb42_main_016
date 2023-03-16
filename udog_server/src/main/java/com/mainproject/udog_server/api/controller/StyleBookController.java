@@ -29,6 +29,7 @@ public class StyleBookController {
         return new ResponseEntity<>(
                 new MultiResponseDto<>(
                         styleBookMapper.reviewsToStyleBookResponses(pageStyleBooks.getContent()),
-                        pageStyleBooks), HttpStatus.OK);
+                        pageStyleBooks),
+                HttpStatus.OK);
     }
 }

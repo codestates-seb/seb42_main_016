@@ -6,7 +6,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 public class StyleBookResponseDto {
-    String imageSrc;
+    String reviewImage;
     long reviewId;
     int likeCount;
     long hairShopId;

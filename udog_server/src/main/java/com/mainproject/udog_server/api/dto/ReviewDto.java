@@ -17,6 +17,8 @@ public class ReviewDto {
     @AllArgsConstructor
     public static class Post {
         @NotBlank
+        private long hairShopId;
+        @NotBlank
         private String reviewImage;
         @NotBlank
         private String reviewText;

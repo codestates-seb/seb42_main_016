@@ -36,7 +36,7 @@ public class StyleLikeService {
     }
 
     public int likeCount(long reviewId) {
-        return styleLikeRepository.countByReviewId(reviewId);
+        return styleLikeRepository.countByReviewReviewId(reviewId);
     }
 
     public StyleLike findVerifiedStyleLike(long styleId) {

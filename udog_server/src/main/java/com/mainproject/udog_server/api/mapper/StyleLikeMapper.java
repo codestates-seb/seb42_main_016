@@ -11,6 +11,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface StyleLikeMapper {
     @Mapping(source = "styleLike.member.memberId", target = "memberId")
-    @Mapping(source = "styleLike.review.id", target = "reviewId")
+    @Mapping(source = "styleLike.review.reviewId", target = "reviewId")
     StyleLikeDto.Response StyleLikeToStyleLikeResponseDto(StyleLike styleLike);
 }

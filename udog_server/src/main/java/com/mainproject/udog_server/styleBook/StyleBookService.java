@@ -17,8 +17,8 @@ public class StyleBookService {
     private final StyleLikeRepository styleLikeRepository;
 
     public Page<Review> findStyles(int page, int size) {
-        Page<Review> pageReviews = styleBookRepository.findAll(PageRequest.of(page, size, Sort.by("id").descending()));
-        pageReviews.getContent().stream().forEach(review -> review.setLikeCount(styleLikeRepository.countByReviewId(review.getId())));
+        Page<Review> pageReviews = styleBookRepository.findAll(PageRequest.of(page, size, Sort.by("createdAt").descending()));
+        pageReviews.getContent().stream().forEach(review -> review.setLikeCount(styleLikeRepository.countByReviewReviewId(review.getReviewId())));
         return pageReviews;
     }
 }

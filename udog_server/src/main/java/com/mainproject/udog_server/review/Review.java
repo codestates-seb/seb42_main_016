@@ -7,17 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.CascadeType;
+import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.*;
 
 @NoArgsConstructor
 @Getter
@@ -26,8 +18,7 @@ import java.util.List;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "REVIEW_ID")
-    private Long id;
+    private Long reviewId;
 
     @Column(nullable = false)
     private String reviewText;
@@ -46,11 +37,12 @@ public class Review {
     private Member member;
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
-    private List<StyleLike> styleLikes;
+    private List<StyleLike> styleLikes = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "HAIR_SHOP_ID")
     private HairShop hairShop;
 
+    @Transient
     private int likeCount;
 }
