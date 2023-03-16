@@ -13,6 +13,7 @@ import MyInfo from './pages/MyInfo';
 import Myreserve from './pages/Myreserve';
 import Myreview from './pages/Myreview';
 import ModalContainer from './modules/ModalContainer';
+import {HOME, LOGIN, SIGNUP, HAIRSHOP, HAIRSHOPDETAIL, STYLEBOOK} from './modules/routes';
 
 function App() {
 	return (
@@ -20,12 +21,12 @@ function App() {
 			<ModalContainer />
 			<GlobalStyle />
 			<Routes>
-				<Route path="/" element={<DeleteHome />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/signup" element={<Signup />} />
-				<Route path="/hairshop" element={<Hairshop />} />
-				<Route path="/hairshop/:id" element={<HairshopDetail />} />
-				<Route path="/stylebook" element={<Stylebook />} />
+				<Route path={HOME} element={<DeleteHome />} />
+				<Route path={LOGIN} element={<Login />} />
+				<Route path={SIGNUP} element={<Signup />} />
+				<Route path={HAIRSHOP} element={<Hairshop />} />
+				<Route path={HAIRSHOPDETAIL} element={<HairshopDetail />} />
+				<Route path={STYLEBOOK} element={<Stylebook />} />
 				<Route path="/mypage/*" element={<Mypage />}>
 					<Route index element={<MyInfo />} />
 					<Route path="myinfo" element={<MyInfo />} />

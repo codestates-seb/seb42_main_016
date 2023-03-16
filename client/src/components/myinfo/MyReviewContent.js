@@ -3,7 +3,8 @@ import {MdNavigateNext} from 'react-icons/md';
 import Empty from '../Empty';
 
 function MyReviewContent({title, text, onClick, data}) {
-	const filteredData = data ? data.filter((reserve) => reserve.id === 1) : null;
+	const maxLen = 1;
+	const filteredData = data?.filter(({id}) => id === maxLen);
 
 	return (
 		<>

@@ -6,6 +6,8 @@ import {useNavigate} from 'react-router-dom';
 import API from '../modules/API';
 import {useDispatch} from 'react-redux';
 import {login} from '../modules/redux/userSlice';
+import {HOME, SIGNUP} from '../modules/routes';
+import {LOGIN_ENDPOINT} from '../modules/endpoints';
 
 function LoginForm() {
 	const [value, setValue] = useState({
@@ -39,7 +41,7 @@ function LoginForm() {
 			return;
 		}
 
-		API.post('udog/login', {
+		API.post(LOGIN_ENDPOINT, {
 			email,
 			password,
 		})
@@ -48,7 +50,7 @@ function LoginForm() {
 				localStorage.setItem('accessToken', res.headers.authorization);
 				localStorage.setItem('refresh', res.headers.refresh);
 				dispatch(login(email));
-				navigate('/');
+				navigate(HOME);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -91,7 +93,7 @@ function LoginForm() {
 							<S.Button type="submit" onClick={onSubmit}>
 								<S.ButtonText>로그인</S.ButtonText>
 							</S.Button>
-							<S.IsMember onClick={() => navigate('/signup')}>회원이 아니신가요?</S.IsMember>
+							<S.IsMember onClick={() => navigate(SIGNUP)}>회원이 아니신가요?</S.IsMember>
 						</S.Form>
 					</S.FormWrapper>
 				</S.Border>

@@ -3,7 +3,8 @@ import {MdNavigateNext} from 'react-icons/md';
 import Empty from '../Empty';
 
 function MyReserveContent({title, text, onClick, data}) {
-	const filteredData = data ? data.filter((reserve) => reserve.id === 2) : null;
+	const maxLen = 3;
+	const filteredData = data?.filter(({id}) => id < maxLen);
 
 	return (
 		<>

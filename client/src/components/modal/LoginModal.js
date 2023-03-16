@@ -5,8 +5,9 @@ import {selectModal, closeModal} from '../../modules/redux/modalSlice';
 import useScroll from '../../hooks/useScroll';
 import CloseIcon from '../../utils/CloseIcon';
 import {useNavigate} from 'react-router-dom';
+import {LOGIN} from '../../modules/routes';
 
-function IsLoginModal() {
+function LoginModal() {
 	const modalRef = useRef();
 	const {isOpen} = useSelector(selectModal);
 	const dispatch = useDispatch();
@@ -28,7 +29,7 @@ function IsLoginModal() {
 	};
 
 	const clickLogin = () => {
-		navigate('/login');
+		navigate(LOGIN);
 		dispatch(closeModal());
 	};
 
@@ -49,4 +50,4 @@ function IsLoginModal() {
 	);
 }
 
-export default IsLoginModal;
+export default LoginModal;

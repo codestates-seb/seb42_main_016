@@ -6,6 +6,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {openModal, selectModal, selectOption} from '../../modules/redux/modalSlice';
 import {selectEdit} from '../../modules/redux/editSlice';
 import useAxios from '../../hooks/useAxios';
+import {MYDOG} from '../../modules/routes';
+import {MYDOG_ENDPOINT} from '../../modules/endpoints';
+import {TYPEMODAL, WEIGHTMODAL} from '../../modules/ModalContainer';
 
 function DogForm() {
 	const [value, setValue] = useState({
@@ -47,7 +50,7 @@ function DogForm() {
 	const handleOpenWeightModal = () => {
 		dispatch(
 			openModal({
-				modalType: 'WeightModal',
+				modalType: WEIGHTMODAL,
 				isOpen: true,
 			})
 		);
@@ -56,7 +59,7 @@ function DogForm() {
 	const handleOpenTypeModal = () => {
 		dispatch(
 			openModal({
-				modalType: 'TypeModal',
+				modalType: TYPEMODAL,
 				isOpen: true,
 			})
 		);
@@ -66,9 +69,9 @@ function DogForm() {
 		e.preventDefault();
 		if (edit) {
 			const {id} = data;
-			PATCH(`/my-dogs/${id}`, {dogName, dogBirthDate, dogWeight, dogSpecies, dogDescription}, '/mypage/mydog');
+			PATCH(`${MYDOG_ENDPOINT}/${id}`, {dogName, dogBirthDate, dogWeight, dogSpecies, dogDescription}, MYDOG);
 		} else {
-			POST('/my-dogs', {dogName, dogBirthDate, dogWeight, dogSpecies, dogDescription}, '/mypage/mydog');
+			POST(MYDOG_ENDPOINT, {dogName, dogBirthDate, dogWeight, dogSpecies, dogDescription}, MYDOG);
 		}
 	};
 

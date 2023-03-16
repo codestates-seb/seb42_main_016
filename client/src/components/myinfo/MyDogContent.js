@@ -9,12 +9,13 @@ import {asyncUpFetch, selectDog} from '../../modules/redux/dogSlice';
 function MyDogContent({title, text, onClick}) {
 	const dispatch = useDispatch();
 	const data = useSelector(selectDog);
+	const maxLen = 1;
 
 	useEffect(() => {
 		dispatch(asyncUpFetch());
 	}, [dispatch]);
 
-	const filteredData = data ? data.filter((dog) => dog.id === 1) : null;
+	const filteredData = data?.filter(({id}) => id === maxLen);
 
 	return (
 		<>

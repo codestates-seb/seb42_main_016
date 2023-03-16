@@ -4,13 +4,18 @@ import WeightModal from '../components/modal/WeightModal';
 import TypeModal from '../components/modal/TypeModal';
 import DogConfirmModal from '../components/modal/DogConfirmModal';
 import * as S from '../components/style/ModalStyle';
-import IsLoginModal from '../components/modal/IsLoginModal';
+import LoginModal from '../components/modal/LoginModal';
+
+export const WEIGHTMODAL = 'WeightModal';
+export const TYPEMODAL = 'TypeModal';
+export const DOGCONFIRMMODAL = 'DogConfirmModal';
+export const LOGINMODAL = 'LoginModal';
 
 const MODAL_TYPES = {
-	WeightModal: 'WeightModal',
-	TypeModal: 'TypeModal',
-	DogConfirmModal: 'DogConfirmModal',
-	IsLoginModal: 'IsLoginModal',
+	WeightModal: WEIGHTMODAL,
+	TypeModal: TYPEMODAL,
+	DogConfirmModal: DOGCONFIRMMODAL,
+	LoginModal: LOGINMODAL,
 };
 
 const MODAL_COMPONENTS = [
@@ -27,8 +32,8 @@ const MODAL_COMPONENTS = [
 		component: <DogConfirmModal />,
 	},
 	{
-		type: MODAL_TYPES.IsLoginModal,
-		component: <IsLoginModal />,
+		type: MODAL_TYPES.LoginModal,
+		component: <LoginModal />,
 	},
 ];
 
