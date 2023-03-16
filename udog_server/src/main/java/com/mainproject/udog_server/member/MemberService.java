@@ -62,8 +62,7 @@ public class MemberService {
         return findVerifiedMember(memberId);
     }
 
-    public void deleteMember(long memberId){
-        Member foundMember = findVerifiedMember(memberId);
+    public void deleteMember(Member foundMember){
         foundMember.setMemberStatus(Member.MemberStatus.MEMBER_QUIT);
         memberRepository.save(foundMember);
 //        memberRepository.deleteById(memberId);
@@ -89,12 +88,9 @@ public class MemberService {
         });
     }
 
-    public void verifyPasswordMatch(long memberId, String prevPassword){
-        Optional<Member> optionalMember = memberRepository.findById(memberId);
+    public void verifyPasswordMatch(Member member, String prevPassword){
         //Todo : exeption
-        Member foundMember = optionalMember.orElseThrow(() -> null);
-        //Todo : exeption
-        if(!passwordEncoder.matches(prevPassword, foundMember.getPassword()))
+        if(!passwordEncoder.matches(prevPassword, member.getPassword()))
             throw null;
     }
 
