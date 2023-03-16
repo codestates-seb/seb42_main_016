@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import produce from 'immer';
 import API from '../API';
+import { MYDOG_ENDPOINT } from '../endpoints';
 
 const asyncUpFetch = createAsyncThunk('dogSlice/asyncUpFetch', async () => {
-  const response = await API.get('/my-dogs');
+  const response = await API.get(MYDOG_ENDPOINT);
   return response.data;
 });
 

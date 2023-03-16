@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userSlice from './userSlice';
-import emptySlice from './emptySlice';
 import modalSlice from './modalSlice';
 import editSlice from './editSlice';
 import setSlice from './setSlice';
@@ -15,7 +14,6 @@ import shopSlice from './shopSlice';
 const store = configureStore({
   reducer: {
     user: userSlice,
-    empty: emptySlice,
     modal: modalSlice,
     edit: editSlice,
     set: setSlice,
@@ -23,7 +21,6 @@ const store = configureStore({
     tab: tabSlice,
     loading: loadingSlice,
     reserve: reserveSlice,
-
     like: likeSlice,
     reviews: reviewsReducer,
     shop: shopSlice,

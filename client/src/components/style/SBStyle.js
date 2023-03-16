@@ -7,53 +7,81 @@ export const StylebookWrap = styled.div`
   height: 100%;
   top: 120px;
 `;
+
 //List
 export const Container = styled.div`
   padding: 2rem 10rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: 5px;
   border-top: 1px solid #ddd;
 `;
 
 //Item
 export const ItemWrap = styled.div`
   width: 100%;
-  height: 24rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  border-radius: 1rem;
   border: 1px solid #ddd;
-
-  :hover {
-    /* background-color: rgba(247, 247, 247, 0.836);
-    box-shadow: 3px 3px 3px #3f00c71a; */
-  }
+  position: relative;
 `;
+
 export const ItemImage = styled.div`
+  width: 100%;
+  height: 363px;
+  position: relative;
+  cursor: pointer;
+  line-height: 0;
+
   .image {
-    width: 28rem;
-    height: 22rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
   }
 `;
+
 export const Itembar = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  border-top: 1px solid #ddd;
+  background: rgba(0, 0, 0, 0.5);
+
+  /* typographic styles */
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-decoration: none;
+
+  /* position the text centrally*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  transition: opacity 0.5s;
+
+  &:hover {
+    opacity: 1;
+    transition: opacity 0.5s;
+  }
+
   .icon {
-    margin: 3px 7px;
-    font-size: 1.3rem;
-    color: gray;
+    margin: 0px 20px;
+    font-size: 50px;
+    color: white;
   }
 
   .icon:hover {
-    cursor: pointer;
-    color: black;
+    color: #ff7675;
   }
 `;
 
@@ -62,10 +90,16 @@ export const Topcontainer = styled.div`
   right: 5%;
   bottom: 5%;
   z-index: 1;
+  cursor: pointer;
   .icon {
     font-size: 2rem;
   }
   .icon:hover {
     color: #ddd;
   }
+`;
+
+export const ScrollArea = styled.div`
+  height: 100vh;
+  overflow-y: auto;
 `;

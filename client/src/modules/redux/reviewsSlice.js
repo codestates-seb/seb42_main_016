@@ -1,17 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import API from '../API';
+import { REVIEW_ENDPOINT } from '../endpoints';
 
 export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async () => {
-  const response = await API.get('/reviews');
+  const response = await API.get(REVIEW_ENDPOINT);
   return response.data;
 });
 export const addReview = createAsyncThunk('reviews/addReview', async (initialReview) => {
-  const response = await API.post('/reviews', initialReview);
+  const response = await API.post(REVIEW_ENDPOINT, initialReview);
   return response.data;
 });
 
 export const deleteReview = createAsyncThunk('reviews/deleteReview', async (id) => {
-  await API.delete(`/reviews/${id}`);
+  await API.delete(`${REVIEW_ENDPOINT}/${id}`);
   return id;
 });
 
