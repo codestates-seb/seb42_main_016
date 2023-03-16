@@ -31,10 +31,7 @@ const reviewsSlice = createSlice({
                 review.text = text;
             }
         },
-        deleteReview(state,action) {
-            const {id} = action.payload;
-            state.reviews = state.reviews.filter((review) => review.id !== id);
-            },
+
             extraReducers: (builder) => {
                 builder
                   .addCase(fetchReviews.pending, (state) => {
