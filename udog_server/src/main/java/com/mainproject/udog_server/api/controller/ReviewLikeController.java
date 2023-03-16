@@ -1,5 +1,6 @@
 package com.mainproject.udog_server.api.controller;
 
+import com.mainproject.udog_server.api.composite_service.ReviewLikeCompositeService;
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.member.MemberService;
 import com.mainproject.udog_server.api.dto.ReviewLikeDto;
@@ -18,25 +19,26 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class ReviewLikeController {
 
-    private final ReviewLikeService reviewLikeService;
-    private final MemberService memberService;
+    private final ReviewLikeCompositeService compositeService;
     private final ReviewLikeMapper mapper;
 
     @PostMapping
-    public ResponseEntity createReviewLike(@RequestBody ReviewLikeDto reviewLikeDto, Principal principal) {
-        Member member = memberService.findLoginMemberByEmail(principal.getName());
-        reviewLikeDto.setMember(member);
-
-        Long reviewId = reviewLikeDto.getReviewId();
-        ReviewLike existingReviewLike = reviewLikeService.findByMemberIdAndReviewId(member.getMemberId(), reviewId);
-
-        if(existingReviewLike != null) {
-//            reviewLikeService.deleteReviewLike(existingReviewLike.getId(), member.getMemberId());
-            reviewLikeService.deleteReviewLike(existingReviewLike.getId(), member.getMemberId());
+    public ResponseEntity doReviewLike(@RequestBody ReviewLikeDto reviewLikeDto, Principal principal) {
+        ReviewLike reviewLike = mapper.reviewLikeDtoToReviewLike(reviewLikeDto);
+        ReviewLike response = compositeService.doReviewLike(reviewLike, principal.getName());
+        if(response.equals(null)) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            ReviewLike reviewLike = mapper.reviewLikeDtoToReviewLike(reviewLikeDto);
-            ReviewLike response = reviewLikeService.addReviewLike(reviewLike);
+        } else
+//        Long reviewId = reviewLikeDto.getReviewId();
+//        ReviewLike existingReviewLike = reviewLikeService.findByMemberIdAndReviewId(member.getMemberId(), reviewId);
+//
+//        if(existingReviewLike != null) {
+////            reviewLikeService.deleteReviewLike(existingReviewLike.getId(), member.getMemberId());
+//            reviewLikeService.deleteReviewLike(existingReviewLike.getId(), member.getMemberId());
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        } else {
+//            ReviewLike reviewLike = mapper.reviewLikeDtoToReviewLike(reviewLikeDto);
+//            ReviewLike response = reviewLikeService.addReviewLike(reviewLike);
             return new ResponseEntity<>(mapper.ReviewLikeToReviewLikeResponseDto(response), HttpStatus.CREATED);
         }
 
@@ -55,4 +57,4 @@ public class ReviewLikeController {
 //
 //        return new ResponseEntity(HttpStatus.NO_CONTENT);
 //    }
-}
+//}
