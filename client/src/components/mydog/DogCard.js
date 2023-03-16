@@ -4,6 +4,9 @@ import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {openModal} from '../../modules/redux/modalSlice';
 import {setUrl, setId} from '../../modules/redux/setSlice';
+import {MYDOGEDIT} from '../../modules/routes';
+import {MYDOG_ENDPOINT} from '../../modules/endpoints';
+import {DOGCONFIRMMODAL} from '../../modules/ModalContainer';
 
 function DogCard({dog}) {
 	const age = `${new Date().getFullYear() - dog.dogBirthDate.slice(0, 4)}살`;
@@ -12,17 +15,17 @@ function DogCard({dog}) {
 
 	const onNavigateEdit = () => {
 		dispatch(edit(dog));
-		navigate('/mypage/mydog/edit');
+		navigate(MYDOGEDIT);
 	};
 
 	const handleOpenConfirmModal = () => {
 		dispatch(
 			openModal({
-				modalType: 'DogConfirmModal',
+				modalType: DOGCONFIRMMODAL,
 				isOpen: true,
 			})
 		);
-		dispatch(setUrl(`/my-dogs/${dog.id}`));
+		dispatch(setUrl(`${MYDOG_ENDPOINT}/${dog.id}`));
 		dispatch(setId(dog.id));
 	};
 

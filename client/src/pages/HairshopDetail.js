@@ -24,8 +24,7 @@ function HairshopDetail() {
 	useEffect(() => {
 		dispatch(setId(id));
 		dispatch(asyncUpFetch());
-		// eslint-disable-next-line
-	}, [dispatch]);
+	}, [dispatch, id]);
 
 	const tabTitle = ['홈', '예약', '리뷰'];
 

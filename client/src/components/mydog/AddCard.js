@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {cancleEdit} from '../../modules/redux/editSlice';
 import {selectOption} from '../../modules/redux/modalSlice';
+import {MYDOGEDIT} from '../../modules/routes';
 
 function AddCard() {
 	const navigate = useNavigate();
@@ -12,7 +13,7 @@ function AddCard() {
 	const onClick = () => {
 		dispatch(cancleEdit());
 		dispatch(selectOption({dogWeight: '', dogSpecies: ''}));
-		navigate('edit');
+		navigate(MYDOGEDIT);
 	};
 
 	return (

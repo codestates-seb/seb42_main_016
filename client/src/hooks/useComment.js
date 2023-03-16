@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-function useComment(description) {
+function useComment(description, maxLen) {
 	const comment = description || '';
 	const [show, setShow] = useState(false);
 
@@ -10,7 +10,7 @@ function useComment(description) {
 
 	const getDisplayComment = () => {
 		if (!show) {
-			return comment.length > 63 ? `${comment.slice(0, 63)} ...` : comment;
+			return comment.length > maxLen ? `${comment.slice(0, maxLen)} ...` : comment;
 		}
 		return comment;
 	};

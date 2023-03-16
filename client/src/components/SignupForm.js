@@ -6,6 +6,8 @@ import usePassword from '../hooks/usePassword';
 import useConfirmPassword from '../hooks/useConfirmPassword';
 import API from '../modules/API';
 import {useNavigate} from 'react-router-dom';
+import {LOGIN, HOME} from '../modules/routes';
+import {MEMBERS_ENDPOINT} from '../modules/endpoints';
 
 function SignupForm() {
 	const [value, setValue] = useState({
@@ -42,14 +44,14 @@ function SignupForm() {
 			}
 		}
 
-		API.post('/members', {
+		API.post(MEMBERS_ENDPOINT, {
 			nickname,
 			email,
 			password,
 		})
 			.then((res) => {
 				console.log('회원가입 성공', res.data);
-				navigate('/login');
+				navigate(LOGIN);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -61,7 +63,7 @@ function SignupForm() {
 			<S.Container>
 				<S.Border>
 					<S.FormWrapper>
-						<S.Logo onClick={() => navigate('/')}>UDog</S.Logo>
+						<S.Logo onClick={() => navigate(HOME)}>UDog</S.Logo>
 						<S.Form>
 							<S.LabelContainer>
 								<S.Label>닉네임</S.Label>

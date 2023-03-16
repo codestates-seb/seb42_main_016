@@ -5,6 +5,8 @@ import {selectLike, setLike, setIsSubmit} from '../modules/redux/likeSlice';
 import {addLike, cancleLike} from '../modules/redux/shopSlice';
 import API from '../modules/API';
 import {useState} from 'react';
+import {HAIRSHOPLIKE_ENDPOINT} from '../modules/endpoints';
+import {LOGINMODAL} from '../modules/ModalContainer';
 
 function useShopLike(id) {
 	const {user} = useSelector(selectUser);
@@ -18,7 +20,7 @@ function useShopLike(id) {
 		if (!user) {
 			dispatch(
 				openModal({
-					modalType: 'IsLoginModal',
+					modalType: LOGINMODAL,
 					isOpen: true,
 				})
 			);
@@ -33,7 +35,7 @@ function useShopLike(id) {
 
 		if (!like) {
 			API.post(
-				`/hair-shop-likes/${id}/likes`,
+				`${HAIRSHOPLIKE_ENDPOINT}/${id}/likes`,
 				{hairShopId: id},
 				{
 					headers: {
@@ -52,7 +54,7 @@ function useShopLike(id) {
 					dispatch(setIsSubmit(false));
 				});
 		} else {
-			API.delete(`/hair-shop-likes/${id}/${likeId}/dislikes`, {
+			API.delete(`${HAIRSHOPLIKE_ENDPOINT}/${id}/${likeId}/dislikes`, {
 				// API.post(
 				// `/hair-shop-likes/${id}/likes`,
 				// {hairShopId: id},

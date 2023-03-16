@@ -2,6 +2,7 @@ import * as S from '../style/ListStyle';
 import img from '../../utils/img.jpeg';
 import {useNavigate} from 'react-router-dom';
 import {IoHeart} from 'react-icons/io5';
+import {HAIRSHOP} from '../../modules/routes';
 
 function HairshopList({shop}) {
 	const navigate = useNavigate();
@@ -9,7 +10,7 @@ function HairshopList({shop}) {
 	return (
 		<S.ListContainer>
 			<S.ListWrapper>
-				<S.List onClick={() => navigate(`/hairshop/${shop.hairShopId}`)}>
+				<S.List onClick={() => navigate(`${HAIRSHOP}/${shop.hairShopId}`)}>
 					<S.ListFlex>
 						<S.ImgBox>
 							<S.Img src={img} alt="img" />

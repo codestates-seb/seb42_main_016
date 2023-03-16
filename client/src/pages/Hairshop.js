@@ -5,6 +5,7 @@ import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import * as S from '../components/style/ListStyle';
 import {useRef, useState} from 'react';
 import ScrollTopButton from '../components/ScrollTopButton';
+import {HAIRSHOP_ENDPOINT} from '../modules/endpoints';
 
 const Nav = styled.nav`
 	background-color: cornflowerblue;
@@ -13,8 +14,7 @@ const Nav = styled.nav`
 
 function Hairshop() {
 	const PER_PAGE = 3;
-	const url = '/hair-shops';
-	const {data, loading, handleScroll} = useInfiniteScroll(url, PER_PAGE);
+	const {data, loading, handleScroll} = useInfiniteScroll(HAIRSHOP_ENDPOINT, PER_PAGE);
 	const scrollAreaRef = useRef(null);
 	const [showButton, setShowButton] = useState(false);
 

@@ -12,9 +12,10 @@ import useComment from '../../hooks/useComment';
 import useShopLike from '../../hooks/useShopLike';
 
 function HomeTab({data}) {
+	const maxLen = 63;
 	const {loading} = useSelector(selectLoading);
 	const {like} = useSelector(selectLike);
-	const {show, handleToggle, comment, getDisplayComment} = useComment(data.hairShopDescription);
+	const {show, handleToggle, comment, getDisplayComment} = useComment(data.hairShopDescription, maxLen);
 	const {onLikeButtonClick} = useShopLike(data.hairShopId);
 
 	if (loading) {
@@ -36,10 +37,10 @@ function HomeTab({data}) {
 						<S.ShopAddress>{data.hairShopAddress}</S.ShopAddress>
 						<S.InfoText>
 							<IoHeartOutline />
-							{data && data.likeCount ? data.likeCount.toLocaleString() : data.likeCount}
+							{data?.likeCount?.toLocaleString() ?? data?.likeCount}
 						</S.InfoText>
 						<S.InfoText>
-							<ReviewIcon /> {data && data.reviewCount ? data.reviewCount.toLocaleString() : data.reviewCount}
+							<ReviewIcon /> {data?.reviewCount?.toLocaleString() ?? data?.reviewCount}
 						</S.InfoText>
 						<S.InfoText>
 							<ClockIcon />
@@ -55,7 +56,7 @@ function HomeTab({data}) {
 							<>
 								<S.CommentTitleBox>
 									<S.CommentTitle>매장 소개</S.CommentTitle>
-									{comment.length > 63 && <S.CommentButton onClick={handleToggle}>{show ? '접기' : '더보기'}</S.CommentButton>}
+									{comment.length > maxLen && <S.CommentButton onClick={handleToggle}>{show ? '접기' : '더보기'}</S.CommentButton>}
 								</S.CommentTitleBox>
 								<S.CommentText className={show ? '' : 'hide'}>{getDisplayComment(comment)}</S.CommentText>
 							</>

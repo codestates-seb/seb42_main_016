@@ -21,10 +21,9 @@ function DogList() {
 						<S.Title>강아지 정보</S.Title>
 					</S.TitleBox>
 					<S.CardFlex>
-						{dogs &&
-							dogs.map((dog) => {
-								return <DogCard dog={dog} key={dog.id} />;
-							})}
+						{dogs?.map((dog) => {
+							return <DogCard dog={dog} key={dog.id} />;
+						})}
 						<AddCard />
 					</S.CardFlex>
 				</S.Content>
