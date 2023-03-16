@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import API from '../API';
+import { HAIRSHOP_ENDPOINT } from '../endpoints';
 
 const asyncUpFetch = createAsyncThunk('shopSlice/asyncUpFetch', async (_, thunkAPI) => {
   const { id } = thunkAPI.getState().set;
-  const response = await API.get(`/hair-shops/${id}`);
+  const response = await API.get(`${HAIRSHOP_ENDPOINT}/${id}`);
   return response.data;
 });
 
@@ -13,11 +14,8 @@ const shopSlice = createSlice({
   name: 'shop',
   initialState,
   reducers: {
-    addLike: (state) => {
-      state.value.likeCount++;
-    },
-    cancleLike: (state) => {
-      state.value.likeCount--;
+    setLikeCount: (state, action) => {
+      state.value.likeCount = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -35,7 +33,7 @@ const shopSlice = createSlice({
   },
 });
 
-export const { addLike, cancleLike } = shopSlice.actions;
+export const { setLikeCount } = shopSlice.actions;
 
 export { asyncUpFetch };
 

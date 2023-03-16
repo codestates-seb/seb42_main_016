@@ -10,11 +10,13 @@ import { IoHeartOutline, IoHeart } from 'react-icons/io5';
 import { selectLike } from '../../modules/redux/likeSlice';
 import useComment from '../../hooks/useComment';
 import useShopLike from '../../hooks/useShopLike';
+import { selectShop } from '../../modules/redux/shopSlice';
 
 function HomeTab({ data }) {
   const maxLen = 63;
   const { loading } = useSelector(selectLoading);
   const { like } = useSelector(selectLike);
+  const shop = useSelector(selectShop);
   const { show, handleToggle, comment, getDisplayComment } = useComment(
     data.hairShopDescription,
     maxLen,
@@ -44,7 +46,7 @@ function HomeTab({ data }) {
             <S.ShopAddress>{data.hairShopAddress}</S.ShopAddress>
             <S.InfoText>
               <IoHeartOutline />
-              {data?.likeCount?.toLocaleString() ?? data?.likeCount}
+              {shop?.likeCount?.toLocaleString() ?? shop?.likeCount}
             </S.InfoText>
             <S.InfoText>
               <ReviewIcon /> {data?.reviewCount?.toLocaleString() ?? data?.reviewCount}
