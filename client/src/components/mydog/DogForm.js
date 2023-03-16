@@ -67,15 +67,20 @@ function DogForm() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    const changeDate = dogBirthDate.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
     if (edit) {
       const { id } = data;
       PATCH(
         `${MYDOG_ENDPOINT}/${id}`,
-        { dogName, dogBirthDate, dogWeight, dogSpecies, dogDescription },
+        { dogName, dogBirthDate: changeDate, dogWeight, dogSpecies, dogDescription },
         MYDOG,
       );
     } else {
-      POST(MYDOG_ENDPOINT, { dogName, dogBirthDate, dogWeight, dogSpecies, dogDescription }, MYDOG);
+      POST(
+        MYDOG_ENDPOINT,
+        { dogName, dogBirthDate: changeDate, dogWeight, dogSpecies, dogDescription },
+        MYDOG,
+      );
     }
   };
 
