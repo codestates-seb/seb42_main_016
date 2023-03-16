@@ -3,16 +3,16 @@ import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { deleteReview, updateReview } from '../../modules/redux/reviewsSlice'
 
-export default function ReviewItem({review}) {
+export default function ReviewItem({reviews}) {
     const dispatch = useDispatch();
     const handleDelete = () => {
-        dispatch(deleteReview(review.id))
+        dispatch(deleteReview(reviews.id))
     }
     return (
     <RIWrap>
         <div className='review'>
-        <Photo>{review.reviewImage}</Photo>
-        <Text>{review.reviewText}</Text>
+        <Photo>{reviews.reviewImage}</Photo>
+        <Text>{reviews.reviewText}</Text>
         </div>
         <div className='buttons'>
             <Button >수정</Button>

@@ -6,7 +6,7 @@ import { fetchReviews } from '../../modules/redux/reviewsSlice'
 
 export default function ReviewList() {
   const dispatch = useDispatch();
-  const reviews = useSelector(state => state.reviews);
+  const reviews = useSelector(state => state.reviews.reviews);
 
   useEffect(() => {
     dispatch(fetchReviews());
@@ -26,9 +26,9 @@ export default function ReviewList() {
   // console.log(reviews)
   return (
     <Container>
-      {/* {reviews && reviews.map(review=>(
+      {reviews && reviews.map(review=>(
         <ReviewItem key={review.id}/>
-      ))} */}
+      ))}
     </Container>
   )
 }
