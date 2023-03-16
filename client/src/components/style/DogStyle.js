@@ -8,7 +8,6 @@ export const Container = styled.div`
 `;
 
 export const ContentBox = styled.div`
-	width: 1020px;
 	height: 100%;
 	margin: 0 auto;
 	display: flex;
@@ -16,7 +15,7 @@ export const ContentBox = styled.div`
 
 export const Content = styled.div`
 	float: left;
-	width: 850px;
+	width: 100%;
 	min-height: 640px;
 	padding: 0 29px 40px;
 `;

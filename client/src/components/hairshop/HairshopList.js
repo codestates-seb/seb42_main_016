@@ -9,7 +9,7 @@ function HairshopList({shop}) {
 	return (
 		<S.ListContainer>
 			<S.ListWrapper>
-				<S.List onClick={() => navigate(`/hair-shops/${shop.hairShopId}`)}>
+				<S.List onClick={() => navigate(`/hairshop/${shop.hairShopId}`)}>
 					<S.ListFlex>
 						<S.ImgBox>
 							<S.Img src={img} alt="img" />

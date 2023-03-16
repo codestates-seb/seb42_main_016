@@ -3,7 +3,7 @@ import {useRef, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {selectModal, closeModal} from '../../modules/redux/modalSlice';
 import useScroll from '../../hooks/useScroll';
-import {selectDelete} from '../../modules/redux/deleteSlice';
+import {selectSet} from '../../modules/redux/setSlice';
 import useDelete from '../../hooks/useDelete';
 import {deleteDog} from '../../modules/redux/dogSlice';
 
@@ -11,7 +11,7 @@ function DogConfirmModal() {
 	const modalRef = useRef();
 	const {isOpen} = useSelector(selectModal);
 	const dispatch = useDispatch();
-	const {url, id} = useSelector(selectDelete);
+	const {url, id} = useSelector(selectSet);
 	const {DELETE} = useDelete(url);
 
 	useScroll();

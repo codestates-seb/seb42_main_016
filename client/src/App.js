@@ -9,7 +9,7 @@ import DeleteHome from './pages/DeleteHome';
 import HairshopDetail from './pages/HairshopDetail';
 import Stylebook from './pages/Stylebook';
 import Mypage from './pages/Mypage';
-import MypageMyInfo from './pages/MypageMyInfo';
+import MyInfo from './pages/MyInfo';
 import Myreserve from './pages/Myreserve';
 import Myreview from './pages/Myreview';
 import ModalContainer from './modules/ModalContainer';
@@ -27,8 +27,8 @@ function App() {
 				<Route path="/hairshop/:id" element={<HairshopDetail />} />
 				<Route path="/stylebook" element={<Stylebook />} />
 				<Route path="/mypage/*" element={<Mypage />}>
-					<Route index element={<MypageMyInfo />} />
-					<Route path="myinfo" element={<MypageMyInfo />} />
+					<Route index element={<MyInfo />} />
+					<Route path="myinfo" element={<MyInfo />} />
 					<Route path="reserve" element={<Myreserve />} />
 					<Route path="review" element={<Myreview />} />
 					<Route path="mydog" element={<Mydog />} />

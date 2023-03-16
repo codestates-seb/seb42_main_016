@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
 	like: false,
+	isSubmit: false,
 };
 
 const likeSlice = createSlice({
@@ -11,10 +12,13 @@ const likeSlice = createSlice({
 		setLike(state, action) {
 			state.like = action.payload;
 		},
+		setIsSubmit(state, action) {
+			state.isSubmit = action.payload;
+		},
 	},
 });
 
-export const {setLike} = likeSlice.actions;
+export const {setLike, setIsSubmit} = likeSlice.actions;
 
 export const selectLike = (state) => state.like;
 
