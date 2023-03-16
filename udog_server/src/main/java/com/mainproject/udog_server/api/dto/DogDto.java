@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
+import java.util.*;
 
 
 public class DogDto {
@@ -27,7 +28,7 @@ public class DogDto {
 //        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 //        @JsonDeserialize(using = LocalDateDeserializer.class)
 //        @JsonSerialize(using = LocalDateSerializer.class)
-        private LocalDate dogBirthDate;
+        private Date dogBirthDate;
 
         @NotNull
         private Dog.DogSpecies dogSpecies;
@@ -58,7 +59,7 @@ public class DogDto {
         private String dogName;
         @DateTimeFormat(pattern = "yyyy-MM-dd")
 //        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-        private LocalDate dogBirthDate;
+        private Date dogBirthDate;
 //        @Pattern(regexp = "^\\d*$", message = "숫자만 입력해 주세요.")
         private int dogWeight;
         private String dogDescription;
@@ -87,7 +88,6 @@ public class DogDto {
         private Dog.DogSpecies dogSpecies;
         private int dogWeight;
         private String dogDescription;
-        private Member member;
 
 //        @Builder
 //        public Response(long dogId, String dogName, String dogBirthDate, String dogSpecies, int dogWeight, String dogDescription) {

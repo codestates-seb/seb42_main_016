@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.*;
 
 @Entity
 @Getter
@@ -25,7 +26,7 @@ public class Dog {
 //    @JsonDeserialize(using = LocalDateDeserializer.class)
 //    @JsonSerialize(using = LocalDateSerializer.class)
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dogBirthDate;
+    private Date dogBirthDate;
 
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false, length = 25)
