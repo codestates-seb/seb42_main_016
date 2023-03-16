@@ -1,6 +1,6 @@
 import * as S from '../style/MyInfoStyle';
 import {MdNavigateNext} from 'react-icons/md';
-import {handleOpenNickModal} from '../modal/Nick';
+// import {handleOpenNickModal} from '../modal/Nick';
 
 function MyUser() {
 	
@@ -8,7 +8,7 @@ function MyUser() {
 		<S.UserContainer>
 			<S.InfoTitle>김코딩님의 마이페이지</S.InfoTitle>
 			<S.InfoButtonBox>
-				<S.InfoButton onClick={handleOpenNickModal}>
+				<S.InfoButton>
 					닉네임 변경 <MdNavigateNext />
 				</S.InfoButton>
 				<S.InfoButton>
@@ -18,5 +18,7 @@ function MyUser() {
 		</S.UserContainer>
 	);
 }
+
+// onClick={handleOpenNickModal}
 
 export default MyUser;
