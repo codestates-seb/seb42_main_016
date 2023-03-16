@@ -7,13 +7,13 @@ export default function ReserveItem() {
 
   function CancelModal(){
     return(
-      <S.CancelMWrap>
+      <S.ModalWrap>
       <p>예약을 취소하시겠습니까?</p>
       <div className='button'>
       <button>예</button>
       <button onClick={()=>setModal(false)}>아니오</button>
       </div>
-      </S.CancelMWrap>
+      </S.ModalWrap>
     )
   }
   const Cancelreserve =() =>{
