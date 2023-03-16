@@ -7,6 +7,7 @@ import API from '../modules/API';
 import { useState } from 'react';
 import { HAIRSHOPLIKE_ENDPOINT } from '../modules/endpoints';
 import { LOGINMODAL } from '../modules/ModalContainer';
+import { asyncUpFetch } from '../modules/redux/shopSlice';
 
 function useShopLike(id) {
   const { user } = useSelector(selectUser);
@@ -49,6 +50,7 @@ function useShopLike(id) {
           dispatch(setLike(true));
           dispatch(addLike());
           setLikeId(res.data.hairShopLikeId);
+          dispatch(asyncUpFetch());
         })
         .finally(() => {
           dispatch(setIsSubmit(false));
@@ -68,6 +70,7 @@ function useShopLike(id) {
           console.log('좋아요 취소', res);
           dispatch(setLike(false));
           dispatch(cancleLike());
+          dispatch(asyncUpFetch());
         })
         .finally(() => {
           dispatch(setIsSubmit(false));
