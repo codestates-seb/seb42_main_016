@@ -68,11 +68,4 @@ public class ReviewController {
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
-
-    @GetMapping("/{review-id}/likeCount")
-    public ResponseEntity<Integer> getReviewLikeCount(@PathVariable("review-id") Long reviewId) {
-        int likeCount = compositeService.getReviewLikeCount(reviewId);
-
-        return new ResponseEntity<>(likeCount, HttpStatus.OK);
-    }
 }
