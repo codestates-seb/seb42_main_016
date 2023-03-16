@@ -1,6 +1,6 @@
 package com.mainproject.udog_server.api.controller;
 
-import com.mainproject.udog_server.api.composite_service.*;
+import com.mainproject.udog_server.api.composite_service.ReviewCompositeService;
 import com.mainproject.udog_server.api.dto.ReviewDto;
 import com.mainproject.udog_server.review.Review;
 import com.mainproject.udog_server.api.mapper.ReviewMapper;
@@ -19,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/reviews")
 @RequiredArgsConstructor
+@CrossOrigin
 public class ReviewController {
 
     private final ReviewCompositeService compositeService;
