@@ -26,5 +26,7 @@ public class ReviewLike {
     private Review review;
 
     public ReviewLike(Member member, Review review) {
+        this.member = member;
+        this.review = review;
     }
 }
