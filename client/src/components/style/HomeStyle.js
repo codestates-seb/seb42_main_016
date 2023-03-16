@@ -130,5 +130,3 @@ export const InfoText = styled.div`
     height: 18px;
   }
 `;
-
-export const LikeButton = styled.div``;
