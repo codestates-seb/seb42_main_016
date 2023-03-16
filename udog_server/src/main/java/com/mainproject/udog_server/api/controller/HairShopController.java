@@ -1,5 +1,6 @@
 package com.mainproject.udog_server.api.controller;
 
+import com.mainproject.udog_server.api.composite_service.*;
 import com.mainproject.udog_server.api.dto.HairShopDto;
 import com.mainproject.udog_server.hairshop.HairShop;
 import com.mainproject.udog_server.api.mapper.HairShopMapper;
@@ -29,13 +30,12 @@ public class HairShopController {
 
     private final HairShopMapper hairShopMapper;
 
-    private final HairShopService hairShopService;
-    private final HairShopLikeService hairShopLikeService;
+    private final HairShopCompositeService compositeService;
 
     @PostMapping
     public ResponseEntity addHariShop(@RequestBody HairShopDto.Post post) {
         HairShop postHairShop = hairShopMapper.hairShopPostDtoToHairShop(post);
-        HairShop createdHairShop = hairShopService.createHairShop(postHairShop);
+        HairShop createdHairShop = compositeService.createHairShop(postHairShop);
 
         URI location = UriCreator.createUri(HAIR_SHOP_DEFAULT_URL, createdHairShop.getHairShopId());
 
@@ -45,8 +45,7 @@ public class HairShopController {
     //미용실 상세페이지
     @GetMapping("/{hair-shops-id}")
     public ResponseEntity getHairShop(@PathVariable("hair-shops-id") @Positive long hairShopId) {
-        HairShop response = hairShopService.findHairShop(hairShopId);
-
+        HairShop response = compositeService.getHairShop(hairShopId);
 
         return new ResponseEntity<>(hairShopMapper.hairShopToHairShopResponse(response), HttpStatus.OK);
     }
@@ -57,11 +56,12 @@ public class HairShopController {
     @GetMapping
     public ResponseEntity getHairShops(@Positive @RequestParam int page,
                                        @Positive @RequestParam int size) {
-        Page<HairShop> pageHairShops = hairShopService.findHairShops(page - 1, size);
-        List<HairShop> hairShops = pageHairShops.getContent();
+        Page<HairShop> pageHairShops = compositeService.getHairShops(page - 1, size);
 
-        return new ResponseEntity<>(new MultiResponseDto<>(hairShopMapper.hairShopsToHairShopResponses(hairShops),
-                pageHairShops), HttpStatus.OK);
+        return new ResponseEntity<>(
+                new MultiResponseDto<>(
+                        hairShopMapper.hairShopsToHairShopResponses(pageHairShops.getContent()),
+                        pageHairShops), HttpStatus.OK);
     }
 }
 
