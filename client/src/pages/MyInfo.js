@@ -5,9 +5,14 @@ import {useNavigate} from 'react-router-dom';
 import MyReserveContent from '../components/myinfo/MyReserveContent';
 import MyReviewContent from '../components/myinfo/MyReviewContent';
 import Withdraw from '../components/myinfo/Withdraw';
+import {useEffect} from 'react';
 
 function MyInfo() {
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (window) window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<S.Container>
