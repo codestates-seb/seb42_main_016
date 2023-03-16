@@ -3,7 +3,6 @@ import {openModal} from '../modules/redux/modalSlice';
 import {selectUser} from '../modules/redux/userSlice';
 import {selectLike, setLike, setIsSubmit} from '../modules/redux/likeSlice';
 import {addLike, cancleLike} from '../modules/redux/shopSlice';
-import {useState} from 'react';
 import API from '../modules/API';
 
 function useShopLike(id) {
@@ -12,7 +11,6 @@ function useShopLike(id) {
 	const dispatch = useDispatch();
 	const token = localStorage.getItem('accessToken');
 	const refresh = localStorage.getItem('refresh');
-	const [likeId, setLikeId] = useState(0);
 
 	const onLikeButtonClick = () => {
 		if (!user) {
@@ -44,7 +42,6 @@ function useShopLike(id) {
 			)
 				.then((res) => {
 					console.log('좋아요 등록', res);
-					setLikeId(res.data.hairShopLikeId);
 					dispatch(setLike(true));
 					dispatch(addLike());
 				})
@@ -52,12 +49,16 @@ function useShopLike(id) {
 					dispatch(setIsSubmit(false));
 				});
 		} else {
-			API.post(`/hair-shop-likes/${id}/${likeId}/dislikes`, {
-				headers: {
-					Authorization: token,
-					Refresh: refresh,
-				},
-			})
+			API.post(
+				`/hair-shop-likes/${id}/likes`,
+				{hairShopId: id},
+				{
+					headers: {
+						Authorization: token,
+						Refresh: refresh,
+					},
+				}
+			)
 				.then((res) => {
 					console.log('좋아요 취소', res);
 					dispatch(setLike(false));

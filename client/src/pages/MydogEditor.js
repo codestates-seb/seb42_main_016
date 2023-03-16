@@ -2,9 +2,14 @@ import * as S from '../components/style/DogStyle';
 import DogForm from '../components/mydog/DogForm';
 import {useSelector} from 'react-redux';
 import {selectEdit} from '../modules/redux/editSlice';
+import {useEffect} from 'react';
 
 function MydogEditor() {
 	const {edit} = useSelector(selectEdit);
+
+	useEffect(() => {
+		if (window) window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<>
