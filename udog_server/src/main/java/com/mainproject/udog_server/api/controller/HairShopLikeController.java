@@ -1,8 +1,6 @@
 package com.mainproject.udog_server.api.controller;
 
-import com.mainproject.udog_server.api.composite_service.*;
 import com.mainproject.udog_server.api.dto.HairShopLikeDto;
-import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.hairshopLike.HairShopLike;
 import com.mainproject.udog_server.api.mapper.HairShopLikeMapper;
 import com.mainproject.udog_server.hairshopLike.HairShopLikeService;
@@ -25,20 +23,34 @@ import java.security.Principal;
 @Slf4j
 public class HairShopLikeController {
 
-    private final HairShopLikeCompositeService compositeService;
+    private final MemberService memberService;
+    private final HairShopLikeService hairShopLikeService;
     private final HairShopLikeMapper mapper;
 
 
-    @PostMapping("/{hair-shops-id}")
-    public ResponseEntity<?> postHairShopLike(@Positive @PathVariable("hair-shops-id") long hairShopId, Principal principal) {
-        HairShopLike response = compositeService.doHairShopLike(hairShopId, principal.getName());
+    @PostMapping("/{hair-shops-id}/likes")
+    public ResponseEntity<?> addLike(@Positive @PathVariable("hair-shops-id") long hairShopId, Principal principal,
+                                        @RequestBody HairShopLikeDto.Post post) {
+
+        Member member = memberService.findLoginMemberByEmail(principal.getName());
+
+        post.setMember(member);
+
+        HairShopLike hairShopLike = mapper.hairShopLikePostDtoToHairShopLike(post);
+
+        HairShopLike response = hairShopLikeService.addLike(hairShopId, hairShopLike);
 
         return new ResponseEntity<>(mapper.HairShopLikeToHairShopLikeResponse(response), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{hair-shop-like-id}")
-    public ResponseEntity<?> deleteHairShopLike(@Positive @PathVariable("hair-shop-like-id") long hairShopLikeId, Principal principal) {
-        compositeService.deleteHairShopLike(hairShopLikeId, principal.getName());
+    @DeleteMapping("/{hair-shops-id}/{hair-shop-likes-id}/dislikes")
+    public ResponseEntity<?> deleteLike(@Positive @PathVariable("hair-shops-id") long hairShopId,
+                                        @Positive @PathVariable("hair-shop-likes-id") long hairShopLikeId,
+                                        Principal principal){
+
+        Member member = memberService.findLoginMemberByEmail(principal.getName());
+
+        hairShopLikeService.deleteLike(hairShopLikeId, hairShopLikeId, member);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
