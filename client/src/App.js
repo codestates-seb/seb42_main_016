@@ -5,12 +5,12 @@ import Login from './pages/Login';
 import Hairshop from './pages/Hairshop';
 import Mydog from './pages/Mydog';
 import MydogEditor from './pages/MydogEditor';
-import DeleteHome from './pages/DeleteHome';
 import HairshopDetail from './pages/HairshopDetail';
 import Stylebook from './pages/Stylebook';
 import Mypage from './pages/Mypage';
 import MyInfo from './pages/MyInfo';
 import Myreserve from './pages/Myreserve';
+import MainPage from './pages/MainPage';
 import Myreview from './pages/Myreview';
 import ModalContainer from './modules/ModalContainer';
 
@@ -19,8 +19,9 @@ function App() {
 		<BrowserRouter>
 			<ModalContainer />
 			<GlobalStyle />
+			<Header/>
 			<Routes>
-				<Route path="/" element={<DeleteHome />} />
+				<Route path="/" element={<MainPage />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/hairshop" element={<Hairshop />} />

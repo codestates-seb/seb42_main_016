@@ -7,7 +7,7 @@ export const StylebookWrap = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  top:120px;
+  top:0px;
 `
 //List
 export const Container = styled.div`
@@ -15,8 +15,9 @@ export const Container = styled.div`
     display: grid;
     grid-template-columns:repeat(3,1fr);
     gap:2rem;
-    border-top: 1px solid #ddd;
+    // border-top: 1px solid #ddd;
 `;
+
 
 //Item
 export const ItemWrap = styled.div`
@@ -72,4 +73,15 @@ export const Topcontainer = styled.div`
   .icon:hover{
     color: #ddd
   }
+`
+
+//Main
+
+export const BS = styled.div`
+    // margin-left: 10%;
+    // margin-top: 30px;
+    font-size: 25px;
+    border-bottom: 4px solid black;
+    // margin-right: 10%;
+    margin: 30px 10% 0px 10%
 `
