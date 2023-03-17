@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import StylebookList from '../components/stylebook/StylebookList';
 import * as S from '../components/style/SBStyle';
-import { REVIEW_ENDPOINT } from '../modules/endpoints';
+import { STYLEBOOK_ENDPOINT } from '../modules/endpoints';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import ScrollTopButton from '../components/ScrollTopButton';
 import Header from '../components/Header';
@@ -9,7 +9,7 @@ import Header from '../components/Header';
 function Stylebook() {
   const PER_PAGE = 6;
   const { data, loading, handleScroll } = useInfiniteScroll(
-    REVIEW_ENDPOINT,
+    STYLEBOOK_ENDPOINT,
     PER_PAGE
   );
   const scrollAreaRef = useRef(null);

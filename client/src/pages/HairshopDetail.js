@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { selectShop, asyncUpFetch } from '../modules/redux/shopSlice';
 import { setId } from '../modules/redux/setSlice';
 import Header from '../components/Header';
+import { Footer } from '../components/style/FooterStyle';
 
 function HairshopDetail() {
   const dispatch = useDispatch();
@@ -50,6 +51,7 @@ function HairshopDetail() {
         </S.TabBarBox>
       </S.TabContainer>
       {tabContent[tab]}
+      <Footer />
     </>
   );
 }

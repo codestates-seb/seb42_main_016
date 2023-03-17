@@ -8,7 +8,7 @@ export const ListContainer = styled.div`
 
 export const ListWrapper = styled.div`
   margin-top: 40px;
-  width: 80%;
+  width: 70%;
   @media (max-width: 1000px) {
     width: 90%;
   }

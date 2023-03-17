@@ -1,8 +1,12 @@
+import * as S from '../style/HomeStyle';
+
 function BookTab() {
   return (
-    <>
-      <h1>예약</h1>
-    </>
+    <S.HomeContainer>
+      <S.HomeContent>
+        <h1>예약</h1>
+      </S.HomeContent>
+    </S.HomeContainer>
   );
 }
 
