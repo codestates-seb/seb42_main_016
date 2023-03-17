@@ -9,3 +9,4 @@ export const MYRESERVE = '/mypage/reserve';
 export const MYREVIEW = '/mypage/review';
 export const MYDOG = '/mypage/mydog';
 export const MYDOGEDIT = '/mypage/mydog/edit';
+export const MYPAGE = '/mypage';

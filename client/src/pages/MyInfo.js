@@ -14,8 +14,8 @@ function MyInfo() {
   useScrollTop();
 
   return (
-    <S.Container>
-      <S.ContentBox>
+    <>
+      <S.Container>
         <S.Content>
           <MyUser />
           <MyReserveContent
@@ -33,10 +33,10 @@ function MyInfo() {
             text="등록된 강아지가 없습니다."
             onClick={() => navigate(MYDOG)}
           />
-          <Withdraw />
         </S.Content>
-      </S.ContentBox>
-    </S.Container>
+        <Withdraw />
+      </S.Container>
+    </>
   );
 }
 

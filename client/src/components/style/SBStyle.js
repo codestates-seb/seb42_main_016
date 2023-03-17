@@ -98,6 +98,11 @@ export const Topcontainer = styled.div`
   }
 `;
 
+export const StyleScrollArea = styled.div`
+  height: 100vh;
+  overflow-y: auto;
+`;
+
 //Main
 
 export const BS = styled.div`

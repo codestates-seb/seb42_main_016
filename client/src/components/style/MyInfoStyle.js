@@ -95,11 +95,11 @@ export const WithdrawText = styled.div`
   margin-top: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   color: #666;
   font-size: 14px;
-  cursor: pointer;
   span {
+    cursor: pointer;
     border-bottom: 1px solid #666;
   }
 `;
