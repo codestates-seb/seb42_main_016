@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class StyleLike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long styleLikeId;
 
     @ManyToOne
     @JoinColumn(name = "member_id")

@@ -36,7 +36,7 @@ public class Dog {
     private DogSpecies dogSpecies = DogSpecies.기타;
 
     @Column(nullable = false, length = 20)
-    private int dogWeight;
+    private String dogWeight;
 
     @Column
     private String dogDescription;

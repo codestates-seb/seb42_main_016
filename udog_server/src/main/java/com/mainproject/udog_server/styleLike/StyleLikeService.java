@@ -35,12 +35,12 @@ public class StyleLikeService {
         styleLikeRepository.delete(styleLike);
     }
 
-    public int likeCount(long reviewId) {
+    public int getReviewLikeCount(long reviewId) {
         return styleLikeRepository.countByReviewReviewId(reviewId);
     }
 
-    public StyleLike findVerifiedStyleLike(long styleId) {
-        Optional<StyleLike> optionalStyleLike = styleLikeRepository.findById(styleId);
+    public StyleLike findVerifiedStyleLike(long styleLikeId) {
+        Optional<StyleLike> optionalStyleLike = styleLikeRepository.findById(styleLikeId);
 
         StyleLike findStyleLike= optionalStyleLike.orElseThrow(() -> null);
 

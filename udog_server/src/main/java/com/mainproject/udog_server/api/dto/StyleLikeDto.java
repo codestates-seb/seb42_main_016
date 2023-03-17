@@ -15,7 +15,7 @@ public class StyleLikeDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Response {
-        private Long id;
+        private Long styleLikeId;
         private Long memberId;
         private Long reviewId;
     }
