@@ -5,7 +5,7 @@ export const MypageContainer = styled.div`
   position: relative;
   top: 120px;
   width: 100%;
-  /* height: 100vh; */
+  height: 100vh;
   display: flex;
   flex-direction: row;
   justify-content: center;

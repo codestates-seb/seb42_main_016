@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import * as S from '../style/MyPageStyle';
 import ReserveItem from './ReserveItem';

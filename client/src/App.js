@@ -26,7 +26,11 @@ import {
   MYREVIEW,
   MYDOG,
   MYDOGEDIT,
+  WREVIEW,
+  CREVIEW,
 } from './modules/routes';
+import ReserveList from './components/mypageReview/ReserveList';
+import ReviewList from './components/mypageReview/ReviewList';
 
 function App() {
   return (
@@ -44,7 +48,11 @@ function App() {
           <Route index element={<MyInfo />} />
           <Route path={MYINFO} element={<MyInfo />} />
           <Route path={MYRESERVE} element={<Myreserve />} />
-          <Route path={MYREVIEW} element={<Myreview />} />
+          <Route path={MYREVIEW} element={<Myreview />}>
+            <Route index element={<ReserveList />} />
+            <Route path={WREVIEW} element={<ReserveList />} />
+            <Route path={CREVIEW} element={<ReviewList />} />
+          </Route>
           <Route path={MYDOG} element={<Mydog />} />
           <Route path={MYDOGEDIT} element={<MydogEditor />} />
         </Route>

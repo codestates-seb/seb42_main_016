@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
 import API from '../API';
 import { REVIEW_ENDPOINT } from '../endpoints';
 

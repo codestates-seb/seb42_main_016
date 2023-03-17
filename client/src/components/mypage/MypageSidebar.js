@@ -24,7 +24,6 @@ export default function MypageSidebar() {
           <NavLink
             to={MYREVIEW}
             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-            {' '}
             리뷰 관리
           </NavLink>
         </li>

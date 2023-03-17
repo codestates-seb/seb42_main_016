@@ -331,14 +331,6 @@
       "modifiedAt": null
     },
     {
-      "id": 2,
-      "reviewImage": "1",
-      "reviewText": "첫 번째 리뷰입니다.",
-      "reviewLikeCount": 0,
-      "createdAt": "2023-03-13T03:25:29.625171",
-      "modifiedAt": null
-    },
-    {
       "id": 3,
       "reviewImage": "1",
       "reviewText": "첫 번째 리뷰입니다.",
@@ -468,14 +460,6 @@
     },
     {
       "id": 19,
-      "reviewImage": "1",
-      "reviewText": "첫 번째 리뷰입니다.",
-      "reviewLikeCount": 0,
-      "createdAt": "2023-03-13T03:25:29.625171",
-      "modifiedAt": null
-    },
-    {
-      "id": 20,
       "reviewImage": "1",
       "reviewText": "첫 번째 리뷰입니다.",
       "reviewLikeCount": 0,
