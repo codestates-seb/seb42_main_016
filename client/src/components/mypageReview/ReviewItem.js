@@ -1,8 +1,8 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { deleteReview, updateReview } from '../../modules/redux/reviewsSlice';
-
+import { deleteReview } from '../../modules/redux/reviewsSlice';
+//updateReview
 export default function ReviewItem({ reviews }) {
   const dispatch = useDispatch();
   const handleDelete = () => {
@@ -11,7 +11,9 @@ export default function ReviewItem({ reviews }) {
   return (
     <RIWrap>
       <div className="review">
-        <Photo>{reviews.reviewImage}</Photo>
+        <Photo>
+          <img src={reviews.reviewImage} alt="img" />
+        </Photo>
         <Text>{reviews.reviewText}</Text>
       </div>
       <div className="buttons">

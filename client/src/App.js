@@ -12,6 +12,10 @@ import MyInfo from './pages/MyInfo';
 import Myreserve from './pages/Myreserve';
 import MainPage from './pages/MainPage';
 import Myreview from './pages/Myreview';
+import ReserveList from './components/mypageReview/ReserveList';
+import ReviewList from './components/mypageReview/ReviewList';
+// import Header from './components/Header';
+
 import ModalContainer from './modules/ModalContainer';
 import {
   HOME,
@@ -20,6 +24,14 @@ import {
   HAIRSHOP,
   HAIRSHOPDETAIL,
   STYLEBOOK,
+  MYPAGE,
+  MYINFO,
+  MYRESERVE,
+  MYREVIEW,
+  MYDOG,
+  MYDOGEDIT,
+  WREVIEW,
+  CREVIEW,
 } from './modules/routes';
 
 function App() {
@@ -34,13 +46,17 @@ function App() {
         <Route path={HAIRSHOP} element={<Hairshop />} />
         <Route path={HAIRSHOPDETAIL} element={<HairshopDetail />} />
         <Route path={STYLEBOOK} element={<Stylebook />} />
-        <Route path="/mypage/*" element={<Mypage />}>
+        <Route path={MYPAGE} element={<Mypage />}>
           <Route index element={<MyInfo />} />
-          <Route path="myinfo" element={<MyInfo />} />
-          <Route path="reserve" element={<Myreserve />} />
-          <Route path="review" element={<Myreview />} />
-          <Route path="mydog" element={<Mydog />} />
-          <Route path="mydog/edit" element={<MydogEditor />} />
+          <Route path={MYINFO} element={<MyInfo />} />
+          <Route path={MYRESERVE} element={<Myreserve />} />
+          <Route path={MYREVIEW} element={<Myreview />}>
+            <Route index element={<ReserveList />} />
+            <Route path={WREVIEW} element={<ReserveList />} />
+            <Route path={CREVIEW} element={<ReviewList />} />
+          </Route>
+          <Route path={MYDOG} element={<Mydog />} />
+          <Route path={MYDOGEDIT} element={<MydogEditor />} />
         </Route>
       </Routes>
     </BrowserRouter>

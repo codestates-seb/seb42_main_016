@@ -1,7 +1,12 @@
 import * as S from '../style/MyPageStyle';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { MYPAGE } from '../../modules/routes';
-
+import { useNavigate, NavLink } from 'react-router-dom';
+import {
+  MYPAGE,
+  MYDOG,
+  MYINFO,
+  MYRESERVE,
+  MYREVIEW,
+} from '../../modules/routes';
 export default function MypageSidebar() {
   const navigate = useNavigate();
 
@@ -13,7 +18,7 @@ export default function MypageSidebar() {
       <ul>
         <li>
           <NavLink
-            to="myinfo"
+            to={MYINFO}
             className={({ isActive }) =>
               isActive ? 'nav-link active' : 'nav-link'
             }
@@ -23,7 +28,7 @@ export default function MypageSidebar() {
         </li>
         <li>
           <NavLink
-            to="reserve"
+            to={MYRESERVE}
             className={({ isActive }) =>
               isActive ? 'nav-link active' : 'nav-link'
             }
@@ -33,7 +38,7 @@ export default function MypageSidebar() {
         </li>
         <li>
           <NavLink
-            to="review"
+            to={MYREVIEW}
             className={({ isActive }) =>
               isActive ? 'nav-link active' : 'nav-link'
             }
@@ -43,7 +48,7 @@ export default function MypageSidebar() {
         </li>
         <li>
           <NavLink
-            to="mydog"
+            to={MYDOG}
             className={({ isActive }) =>
               isActive ? 'nav-link active' : 'nav-link'
             }

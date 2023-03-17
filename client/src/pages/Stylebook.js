@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import react, { useRef, useState } from 'react';
 import StylebookList from '../components/stylebook/StylebookList';
 import * as S from '../components/style/SBStyle';
 import { REVIEW_ENDPOINT } from '../modules/endpoints';
@@ -8,10 +8,7 @@ import Header from '../components/Header';
 
 function Stylebook() {
   const PER_PAGE = 6;
-  const { data, loading, handleScroll } = useInfiniteScroll(
-    REVIEW_ENDPOINT,
-    PER_PAGE
-  );
+  const { data, loading, handleScroll } = useInfiniteScroll(REVIEW_ENDPOINT, PER_PAGE);
   const scrollAreaRef = useRef(null);
   const [showButton, setShowButton] = useState(false);
 
