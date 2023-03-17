@@ -53,9 +53,10 @@ public class ReviewController {
     }
 
     @GetMapping
-    public ResponseEntity getReviews(@Positive @RequestParam int page,
-                                     @Positive @RequestParam int size) {
-        Page<Review> pageReviews = compositeService.getReviews(page, size);
+    public ResponseEntity getHairShopReviews(@Positive @RequestParam Long hairShopId,
+                                             @Positive @RequestParam int page,
+                                             @Positive @RequestParam int size) {
+        Page<Review> pageReviews = compositeService.getHairShopReviews(hairShopId, page, size);
         List<Review> reviews = pageReviews.getContent();
 
         MultiResponseDto response = new MultiResponseDto(mapper.reviewsToReviewResponseDto(reviews), pageReviews);
