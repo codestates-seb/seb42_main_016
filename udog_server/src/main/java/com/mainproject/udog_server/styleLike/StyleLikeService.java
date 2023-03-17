@@ -35,7 +35,7 @@ public class StyleLikeService {
         styleLikeRepository.delete(styleLike);
     }
 
-    public int likeCount(long reviewId) {
+    public int getReviewLikeCount(long reviewId) {
         return styleLikeRepository.countByReviewReviewId(reviewId);
     }
 

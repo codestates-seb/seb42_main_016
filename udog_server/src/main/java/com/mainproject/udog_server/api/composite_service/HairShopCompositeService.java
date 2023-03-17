@@ -17,6 +17,8 @@ public class HairShopCompositeService {
     }
 
     public HairShop getHairShop(long hairShopId){
+        HairShop foundHairShop = hairShopService.findHairShop(hairShopId);
+        foundHairShop.
         return hairShopService.findHairShop(hairShopId);
     }
 

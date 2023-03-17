@@ -41,6 +41,9 @@ public class HairShop {
     @OneToMany(mappedBy = "hairShop", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
+    @Transient
+    private int likeCount;
+
     public void addHairShopLike(HairShopLike hairShopLike) {
         hairShopLikes.add(hairShopLike);
         if(hairShopLike.getHairShop() != this) {
