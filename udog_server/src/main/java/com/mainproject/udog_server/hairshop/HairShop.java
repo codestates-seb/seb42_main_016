@@ -1,6 +1,8 @@
 package com.mainproject.udog_server.hairshop;
 
 import com.mainproject.udog_server.hairshopLike.HairShopLike;
+import com.mainproject.udog_server.review.*;
+import com.mainproject.udog_server.styleLike.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,7 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class HairShop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +37,9 @@ public class HairShop {
 
     @OneToMany(mappedBy = "hairShop")
     private List<HairShopLike> hairShopLikes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "hairShop", cascade = CascadeType.ALL)
+    private List<Review> reviews;
 
     public void addHairShopLike(HairShopLike hairShopLike) {
         hairShopLikes.add(hairShopLike);

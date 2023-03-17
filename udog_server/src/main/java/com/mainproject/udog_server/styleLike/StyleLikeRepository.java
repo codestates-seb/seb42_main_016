@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.*;
 
 public interface StyleLikeRepository extends JpaRepository<StyleLike, Long> {
-    int countByReviewId(Long reviewId);
+    int countByReviewReviewId(Long reviewId);
     Optional<StyleLike> findByMemberAndReview(Member member, Review review);
 }
