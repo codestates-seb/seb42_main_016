@@ -71,9 +71,10 @@ public class ReviewControllerRestDocsTest {
     @Test
     void postReviewTest() throws Exception {
         // given
+        Long hairShopId = 1L;
         Principal principal = () -> "test@test.com";
 
-        ReviewDto.Post post = new ReviewDto.Post("이미지", "텍스트", null);
+        ReviewDto.Post post = new ReviewDto.Post(hairShopId, "이미지", "텍스트", null);
         String content = gson.toJson(post);
 
         ReviewDto.Response responseDto = new ReviewDto.Response(1L, "이미지", "텍스트",
@@ -105,6 +106,7 @@ public class ReviewControllerRestDocsTest {
                         getResponsePreProcessor(),
                         requestFields(
                                 List.of(
+                                        fieldWithPath("hairShopId").type(JsonFieldType.NUMBER).description("헤어샵 식별자").ignored(),
                                         fieldWithPath("reviewImage").type(JsonFieldType.STRING).description("리뷰 이미지"),
                                         fieldWithPath("reviewText").type(JsonFieldType.STRING).description("리뷰 텍스트")
                                 )
@@ -114,7 +116,7 @@ public class ReviewControllerRestDocsTest {
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("리뷰 식별자"),
+                                        fieldWithPath("reviewId").type(JsonFieldType.NUMBER).description("리뷰 식별자"),
                                         fieldWithPath("reviewImage").type(JsonFieldType.STRING).description("리뷰 이미지"),
                                         fieldWithPath("reviewText").type(JsonFieldType.STRING).description("리뷰 텍스트"),
                                         fieldWithPath("createdAt").type(JsonFieldType.STRING).description("리뷰 생성 시간"),
@@ -166,14 +168,14 @@ public class ReviewControllerRestDocsTest {
                         ),
                         requestFields(
                                 List.of(
-                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("아이디").ignored(),
+                                        fieldWithPath("reviewId").type(JsonFieldType.NUMBER).description("아이디").ignored(),
                                         fieldWithPath("reviewImage").type(JsonFieldType.STRING).description("리뷰 이미지").optional(),
                                         fieldWithPath("reviewText").type(JsonFieldType.STRING).description("리뷰 텍스트").optional()
                                 )
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("리뷰 식별자"),
+                                        fieldWithPath("reviewId").type(JsonFieldType.NUMBER).description("리뷰 식별자"),
                                         fieldWithPath("reviewImage").type(JsonFieldType.STRING).description("리뷰 이미지"),
                                         fieldWithPath("reviewText").type(JsonFieldType.STRING).description("리뷰 텍스트"),
                                         fieldWithPath("createdAt").type(JsonFieldType.STRING).description("리뷰 생성 시간"),
@@ -188,7 +190,7 @@ public class ReviewControllerRestDocsTest {
         // given
         Long reviewId = 1L;
 
-        ReviewDto.Response response = new ReviewDto.Response(1L, "이미지", "텍스트",
+        ReviewDto.Response response = new ReviewDto.Response(reviewId, "이미지", "텍스트",
                 LocalDateTime.now(), LocalDateTime.now());
 
         given(compositeService.getReview(Mockito.anyLong())).willReturn(new Review());
@@ -214,7 +216,7 @@ public class ReviewControllerRestDocsTest {
                         ),
                         responseFields(
                                 List.of(
-                                        fieldWithPath("id").type(JsonFieldType.NUMBER).description("리뷰 식별자"),
+                                        fieldWithPath("reviewId").type(JsonFieldType.NUMBER).description("리뷰 식별자"),
                                         fieldWithPath("reviewImage").type(JsonFieldType.STRING).description("리뷰 이미지"),
                                         fieldWithPath("reviewText").type(JsonFieldType.STRING).description("리뷰 텍스트"),
                                         fieldWithPath("createdAt").type(JsonFieldType.STRING).description("리뷰 생성 시간"),
@@ -227,9 +229,11 @@ public class ReviewControllerRestDocsTest {
     @Test
     void getReviewsTest() throws Exception {
         // given
+        Long hairShopId = 1L;
         String page = "1";
         String size = "10";
         MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
+        queryParams.add("hairShopId", hairShopId.toString());
         queryParams.add("page", page);
         queryParams.add("size", size);
 
@@ -245,7 +249,7 @@ public class ReviewControllerRestDocsTest {
                 new ReviewDto.listResponse(2L, "이미지 2", "텍스트 2", LocalDateTime.now())
         );
 
-        given(compositeService.getReviews(Mockito.anyInt(), Mockito.anyInt())).willReturn(pageReviews);
+        given(compositeService.getHairShopReviews(Mockito.anyLong(), Mockito.anyInt(), Mockito.anyInt())).willReturn(pageReviews);
         given(mapper.reviewsToReviewResponseDto(Mockito.anyList())).willReturn(responses);
 
         // when
@@ -267,6 +271,7 @@ public class ReviewControllerRestDocsTest {
                                 getResponsePreProcessor(),
                                 requestParameters(
                                         List.of(
+                                                parameterWithName("hairShopId").description("헤어샵 식별자"),
                                                 parameterWithName("page").description("Page 번호"),
                                                 parameterWithName("size").description("Page 사이즈")
                                         )
@@ -274,7 +279,7 @@ public class ReviewControllerRestDocsTest {
                                 responseFields(
                                         List.of(
                                                 fieldWithPath("data").type(JsonFieldType.ARRAY).description("결과 데이터").optional(),
-                                                fieldWithPath("data[].id").type(JsonFieldType.NUMBER).description("리뷰 식별자"),
+                                                fieldWithPath("data[].reviewId").type(JsonFieldType.NUMBER).description("리뷰 식별자"),
                                                 fieldWithPath("data[].reviewImage").type(JsonFieldType.STRING).description("리뷰 이미지"),
                                                 fieldWithPath("data[].reviewText").type(JsonFieldType.STRING).description("리뷰 텍스트"),
                                                 fieldWithPath("data[].createdAt").type(JsonFieldType.STRING).description("리뷰 생성 시간"),
