@@ -3,7 +3,11 @@ import { useState, useEffect } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import useDogAge from '../../hooks/useDogAge';
 import { useDispatch, useSelector } from 'react-redux';
-import { openModal, selectModal, selectOption } from '../../modules/redux/modalSlice';
+import {
+  openModal,
+  selectModal,
+  selectOption,
+} from '../../modules/redux/modalSlice';
 import { selectEdit } from '../../modules/redux/editSlice';
 import useAxios from '../../hooks/useAxios';
 import { MYDOG } from '../../modules/routes';
@@ -29,7 +33,8 @@ function DogForm() {
 
   useEffect(() => {
     if (edit) {
-      const { dogName, dogBirthDate, dogWeight, dogSpecies, dogDescription } = data;
+      const { dogName, dogBirthDate, dogWeight, dogSpecies, dogDescription } =
+        data;
       setValue({ dogName, dogBirthDate, dogDescription });
       dispatch(selectOption({ dogWeight, dogSpecies }));
     }
@@ -52,7 +57,7 @@ function DogForm() {
       openModal({
         modalType: WEIGHTMODAL,
         isOpen: true,
-      }),
+      })
     );
   };
 
@@ -61,25 +66,40 @@ function DogForm() {
       openModal({
         modalType: TYPEMODAL,
         isOpen: true,
-      }),
+      })
     );
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const changeDate = dogBirthDate.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
+    const changeDate = dogBirthDate.replace(
+      /(\d{4})(\d{2})(\d{2})/,
+      '$1-$2-$3'
+    );
     if (edit) {
       const { id } = data;
       PATCH(
         `${MYDOG_ENDPOINT}/${id}`,
-        { dogName, dogBirthDate: changeDate, dogWeight, dogSpecies, dogDescription },
-        MYDOG,
+        {
+          dogName,
+          dogBirthDate: changeDate,
+          dogWeight,
+          dogSpecies,
+          dogDescription,
+        },
+        MYDOG
       );
     } else {
       POST(
         MYDOG_ENDPOINT,
-        { dogName, dogBirthDate: changeDate, dogWeight, dogSpecies, dogDescription },
-        MYDOG,
+        {
+          dogName,
+          dogBirthDate: changeDate,
+          dogWeight,
+          dogSpecies,
+          dogDescription,
+        },
+        MYDOG
       );
     }
   };
@@ -149,8 +169,11 @@ function DogForm() {
           onChange={onChange}
         />
         <S.Button
-          disabled={!(dogName && !isValid && option.dogWeight && option.dogSpecies)}
-          onClick={onSubmit}>
+          disabled={
+            !(dogName && !isValid && option.dogWeight && option.dogSpecies)
+          }
+          onClick={onSubmit}
+        >
           <S.ButtonText>{edit ? '수정하기' : '등록하기'}</S.ButtonText>
         </S.Button>
       </S.Form>

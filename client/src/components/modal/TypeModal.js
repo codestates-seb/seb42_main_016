@@ -1,7 +1,11 @@
 import * as S from '../style/ModalStyle';
 import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectModal, closeModal, selectOption } from '../../modules/redux/modalSlice';
+import {
+  selectModal,
+  closeModal,
+  selectOption,
+} from '../../modules/redux/modalSlice';
 import useScroll from '../../hooks/useScroll';
 import CloseIcon from '../../utils/CloseIcon';
 import { TypeOption } from '../../utils/ModalOption';
