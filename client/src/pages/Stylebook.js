@@ -8,10 +8,12 @@ import Header from '../components/Header';
 
 function Stylebook() {
   const PER_PAGE = 6;
+
   const { data, loading, handleScroll } = useInfiniteScroll(
     STYLEBOOK_ENDPOINT,
     PER_PAGE
   );
+
   const scrollAreaRef = useRef(null);
   const [showButton, setShowButton] = useState(false);
 

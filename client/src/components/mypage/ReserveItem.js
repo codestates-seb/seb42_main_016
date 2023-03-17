@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import * as S from '../style/MyPageStyle';
 import { IoIosCut } from 'react-icons/io';
 
@@ -16,7 +16,7 @@ export default function ReserveItem() {
       </S.ModalWrap>
     );
   }
-  const Cancelreserve = () => {};
+
   return (
     <S.RIWrap>
       <div className="upper">
