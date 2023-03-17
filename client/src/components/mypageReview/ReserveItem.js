@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { addReview } from '../../modules/redux/reviewsSlice';
 import useScroll from '../../hooks/useScroll';
+
 export default function ReserveItem() {
   const [modal, setModal] = useState(false);
 
@@ -16,9 +17,9 @@ export default function ReserveItem() {
     const handleSubmit = (event) => {
       event.preventDefault();
       dispatch(addReview({ reviewImage, reviewText }));
-
       setPhoto(null);
       setText('');
+      window.location.reload();
     };
     const handlePhotoChange = (event) => setPhoto(event.target.files[0]);
     const handleTextChange = (event) => setText(event.target.value);
@@ -56,7 +57,9 @@ export default function ReserveItem() {
           <IoIosCut className="icon" />
           미용실
         </S.HairshopName>
-        <S.CancelButton onClick={() => setModal(true)}>리뷰 작성</S.CancelButton>
+        <S.CancelButton onClick={() => setModal(true)}>
+          리뷰 작성
+        </S.CancelButton>
       </div>
       <S.ReserveInfo>
         <div className="info">

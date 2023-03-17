@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import HomeTab from '../components/tab/HomeTab';
 import BookTab from '../components/tab/BookTab';
 import ReviewTab from '../components/tab/ReviewTab';
@@ -9,11 +8,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { selectShop, asyncUpFetch } from '../modules/redux/shopSlice';
 import { setId } from '../modules/redux/setSlice';
-
-const Nav = styled.nav`
-  background-color: cornflowerblue;
-  height: 50px;
-`;
+import Header from '../components/Header';
 
 function HairshopDetail() {
   const dispatch = useDispatch();
@@ -36,7 +31,7 @@ function HairshopDetail() {
 
   return (
     <>
-      <Nav />
+      <Header />
       <S.TabContainer>
         <S.TabBarBox>
           <S.TabBar>
@@ -45,7 +40,8 @@ function HairshopDetail() {
                 <S.Li
                   key={idx}
                   onClick={() => dispatch(activeTab(idx))}
-                  className={isOn[idx] ? 'selected' : ''}>
+                  className={isOn[idx] ? 'selected' : ''}
+                >
                   <span>{menu}</span>
                 </S.Li>
               ))}

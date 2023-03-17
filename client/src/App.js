@@ -5,13 +5,17 @@ import Login from './pages/Login';
 import Hairshop from './pages/Hairshop';
 import Mydog from './pages/Mydog';
 import MydogEditor from './pages/MydogEditor';
-import DeleteHome from './pages/DeleteHome';
 import HairshopDetail from './pages/HairshopDetail';
 import Stylebook from './pages/Stylebook';
 import Mypage from './pages/Mypage';
 import MyInfo from './pages/MyInfo';
 import Myreserve from './pages/Myreserve';
+import MainPage from './pages/MainPage';
 import Myreview from './pages/Myreview';
+import ReserveList from './components/mypageReview/ReserveList';
+import ReviewList from './components/mypageReview/ReviewList';
+
+// import Header from './components/Header';
 import ModalContainer from './modules/ModalContainer';
 import {
   HOME,
@@ -29,16 +33,15 @@ import {
   WREVIEW,
   CREVIEW,
 } from './modules/routes';
-import ReserveList from './components/mypageReview/ReserveList';
-import ReviewList from './components/mypageReview/ReviewList';
 
 function App() {
   return (
     <BrowserRouter>
       <ModalContainer />
       <GlobalStyle />
+      {/* <Header /> */}
       <Routes>
-        <Route path={HOME} element={<DeleteHome />} />
+        <Route path={HOME} element={<MainPage />} />
         <Route path={LOGIN} element={<Login />} />
         <Route path={SIGNUP} element={<Signup />} />
         <Route path={HAIRSHOP} element={<Hairshop />} />

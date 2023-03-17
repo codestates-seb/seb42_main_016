@@ -1,5 +1,6 @@
 import * as S from '../style/MyInfoStyle';
 import { MdNavigateNext } from 'react-icons/md';
+// import {handleOpenNickModal} from '../modal/Nick';
 
 function MyUser() {
   return (
@@ -16,5 +17,7 @@ function MyUser() {
     </S.UserContainer>
   );
 }
+
+// onClick={handleOpenNickModal}
 
 export default MyUser;

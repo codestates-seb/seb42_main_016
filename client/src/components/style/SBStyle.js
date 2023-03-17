@@ -5,16 +5,15 @@ export const StylebookWrap = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  top: 120px;
+  top: 0px;
 `;
-
 //List
 export const Container = styled.div`
   padding: 2rem 10rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-  border-top: 1px solid #ddd;
+  gap: 2rem;
+  // border-top: 1px solid #ddd;
 `;
 
 //Item
@@ -99,7 +98,18 @@ export const Topcontainer = styled.div`
   }
 `;
 
-export const ScrollArea = styled.div`
+export const StyleScrollArea = styled.div`
   height: 100vh;
   overflow-y: auto;
+`;
+
+//Main
+
+export const BS = styled.div`
+  // margin-left: 10%;
+  // margin-top: 30px;
+  font-size: 25px;
+  border-bottom: 4px solid black;
+  // margin-right: 10%;
+  margin: 30px 10% 0px 10%;
 `;

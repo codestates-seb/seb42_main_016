@@ -1,9 +1,10 @@
+import react, { useRef, useState } from 'react';
 import StylebookList from '../components/stylebook/StylebookList';
 import * as S from '../components/style/SBStyle';
 import { REVIEW_ENDPOINT } from '../modules/endpoints';
-import { useRef, useState } from 'react';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import ScrollTopButton from '../components/ScrollTopButton';
+import Header from '../components/Header';
 
 function Stylebook() {
   const PER_PAGE = 6;
@@ -21,13 +22,14 @@ function Stylebook() {
   };
 
   return (
-    <S.ScrollArea onScroll={handleScrollEvent} ref={scrollAreaRef}>
+    <S.StyleScrollArea onScroll={handleScrollEvent} ref={scrollAreaRef}>
+      <Header />
       <S.StylebookWrap>
         <StylebookList data={data} />
+        {loading && <div>Loading...</div>}
+        {showButton && <ScrollTopButton area={scrollAreaRef} />}
       </S.StylebookWrap>
-      {loading && <div>Loading...</div>}
-      {showButton && <ScrollTopButton area={scrollAreaRef} />}
-    </S.ScrollArea>
+    </S.StyleScrollArea>
   );
 }
 

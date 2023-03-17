@@ -1,6 +1,13 @@
 {
   "login": [],
-  "members": [],
+  "members": [
+    {
+      "nickname": "test",
+      "email": "test@gmail.com",
+      "password": "abc1234!",
+      "id": 1
+    }
+  ],
   "hair-shops": [
     {
       "id": 1,
@@ -465,6 +472,26 @@
       "reviewLikeCount": 0,
       "createdAt": "2023-03-13T03:25:29.625171",
       "modifiedAt": null
+    },
+    {
+      "reviewImage": null,
+      "reviewText": "ㅁㅁㅁㅁ",
+      "id": 20
+    },
+    {
+      "reviewImage": null,
+      "reviewText": "ㅁㅁㅁ",
+      "id": 21
+    },
+    {
+      "reviewImage": null,
+      "reviewText": "aaa",
+      "id": 22
+    },
+    {
+      "reviewImage": null,
+      "reviewText": "asdfsdaf",
+      "id": 23
     }
   ]
 }
