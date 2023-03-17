@@ -1,39 +1,33 @@
-import React,{ useEffect } from 'react'
+import React,{ useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ReviewItem from './ReviewItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchReviews } from '../../modules/redux/reviewsSlice'
-
+import API from '../../modules/API'
 export default function ReviewList() {
-  const dispatch = useDispatch();
-  const reviews = useSelector(state => state.reviews.reviews);
 
+ 
+  const [reviews,setReviews]= useState([])
   useEffect(() => {
-    dispatch(fetchReviews());
-  }, [dispatch]);
-  // function AddModal(){
-  //   return(
-  //     <S.ModalWrap>
-  //     <p>리뷰 등록</p>
-  //     <input type='file' accept='image/*'/>
-  //     <input></input>
-  //     <div className='button'>
-  //     <button >완료</button>
-  //     <button onClick={()=>setModal(false)}>아니오</button>
-  //     </div>
-  //     </S.ModalWrap>)
-  // }
-  // console.log(reviews)
+    API.get('/reviews')
+      .then((res) => setReviews(res.data))
+      .catch((error) => console.log(error))
+  }, []);
+
+  console.log(reviews)
   return (
     <Container>
-      {reviews && reviews.map(review=>(
-        <ReviewItem key={review.id}/>
-      ))}
+      {reviews && reviews.map(reviews=>{
+        return (<ReviewItem reviews={reviews} key={reviews.id}/>)
+      })}
     </Container>
   )
 }
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  height: 100%;
 `

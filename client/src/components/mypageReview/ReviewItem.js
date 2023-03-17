@@ -11,7 +11,7 @@ export default function ReviewItem({reviews}) {
     return (
     <RIWrap>
         <div className='review'>
-        <Photo>{reviews.reviewImage}</Photo>
+        <Photo><img src={reviews.reviewImage}/></Photo>
         <Text>{reviews.reviewText}</Text>
         </div>
         <div className='buttons'>
