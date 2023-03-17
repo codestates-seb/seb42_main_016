@@ -14,8 +14,8 @@ import MainPage from './pages/MainPage';
 import Myreview from './pages/Myreview';
 import ReserveList from './components/mypageReview/ReserveList';
 import ReviewList from './components/mypageReview/ReviewList';
-
 // import Header from './components/Header';
+
 import ModalContainer from './modules/ModalContainer';
 import {
   HOME,
@@ -39,7 +39,6 @@ function App() {
     <BrowserRouter>
       <ModalContainer />
       <GlobalStyle />
-      {/* <Header /> */}
       <Routes>
         <Route path={HOME} element={<MainPage />} />
         <Route path={LOGIN} element={<Login />} />

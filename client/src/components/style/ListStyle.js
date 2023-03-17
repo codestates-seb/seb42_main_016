@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const ListContainer = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const ListContainer = styled.div`
 
 export const ListWrapper = styled.div`
   margin-top: 40px;
-  width: 60%;
+  width: 80%;
   @media (max-width: 1000px) {
     width: 90%;
   }
@@ -19,6 +19,11 @@ export const List = styled.li`
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   cursor: pointer;
+  ${({ last }) =>
+    last &&
+    css`
+      border-bottom: none;
+    `}
 `;
 
 export const ListFlex = styled.div`
