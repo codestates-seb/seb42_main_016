@@ -1,5 +1,9 @@
 package com.mainproject.udog_server.api.dto;
 
+import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.*;
+import com.fasterxml.jackson.datatype.jsr310.deser.*;
+import com.fasterxml.jackson.datatype.jsr310.ser.*;
 import com.mainproject.udog_server.dog.Dog;
 import com.mainproject.udog_server.member.Member;
 import lombok.*;
@@ -9,6 +13,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
+import java.time.format.*;
 import java.util.*;
 
 
@@ -16,7 +21,7 @@ public class DogDto {
     @Getter
     @Setter
     @AllArgsConstructor
-//    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor
     public static class Post {
         @NotBlank
         @Pattern(regexp = "^[a-zA-Z1-9가-힣]{2,}$"
@@ -24,11 +29,12 @@ public class DogDto {
         private String dogName;
 
         @NotNull
-        @DateTimeFormat(pattern = "yyyy-MM-dd")
+//        @DateTimeFormat(pattern = "yyyy-MM-dd")
 //        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-//        @JsonDeserialize(using = LocalDateDeserializer.class)
+        @JsonFormat(pattern = "yyyy-MM-dd")
+        @JsonDeserialize(using = LocalDateDeserializer.class)
 //        @JsonSerialize(using = LocalDateSerializer.class)
-        private Date dogBirthDate;
+        private LocalDate dogBirthDate;
 
         @NotNull
         private Dog.DogSpecies dogSpecies;
@@ -51,15 +57,18 @@ public class DogDto {
     @Getter
     @Setter
     @AllArgsConstructor
-//    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor
     public static class Patch {
         private long dogId;
         @Pattern(regexp = "^[a-zA-Z1-9가-힣]{2,}$"
                 , message = "강아지 이름은 영어(대, 소문자), 한글, 숫자로 이루어져야 합니다.")
         private String dogName;
-        @DateTimeFormat(pattern = "yyyy-MM-dd")
+
+//        @DateTimeFormat(pattern = "yyyy-MM-dd")
 //        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-        private Date dogBirthDate;
+//        @JsonFormat(pattern = "yyyy-MM-dd")
+        private LocalDate dogBirthDate;
+
 //        @Pattern(regexp = "^\\d*$", message = "숫자만 입력해 주세요.")
         private int dogWeight;
         private String dogDescription;
@@ -80,7 +89,7 @@ public class DogDto {
     @AllArgsConstructor
     @Getter
     @Setter
-//    @NoArgsConstructor
+    @NoArgsConstructor
     public static class Response {
         private long dogId;
         private String dogName;
