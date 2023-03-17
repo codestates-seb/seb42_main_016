@@ -102,14 +102,3 @@ export const StyleScrollArea = styled.div`
   height: 100vh;
   overflow-y: auto;
 `;
-
-//Main
-
-export const BS = styled.div`
-  // margin-left: 10%;
-  // margin-top: 30px;
-  font-size: 25px;
-  border-bottom: 4px solid black;
-  // margin-right: 10%;
-  margin: 30px 10% 0px 10%;
-`;

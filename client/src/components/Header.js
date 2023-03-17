@@ -12,12 +12,12 @@ function Header() {
         </S.Logo>
         <S.Menu>
           <S.List>
-            <S.NavLinkStyle to={STYLEBOOK} activeClassName="active">
+            <S.NavLinkStyle to={STYLEBOOK} activeclassname="active">
               스타일북
             </S.NavLinkStyle>
           </S.List>
           <S.List>
-            <S.NavLinkStyle to={HAIRSHOP} activeClassName="active">
+            <S.NavLinkStyle to={HAIRSHOP} activeclassname="active">
               내 주변 미용실
             </S.NavLinkStyle>
           </S.List>
