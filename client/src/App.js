@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import GlobalStyle from './components/style/GlobalStyle';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -14,53 +14,52 @@ import MainPage from './pages/MainPage';
 import Myreview from './pages/Myreview';
 import ReserveList from './components/mypageReview/ReserveList';
 import ReviewList from './components/mypageReview/ReviewList';
-// import Header from './components/Header';
 
 import ModalContainer from './modules/ModalContainer';
 import {
-  HOME,
-  LOGIN,
-  SIGNUP,
-  HAIRSHOP,
-  HAIRSHOPDETAIL,
-  STYLEBOOK,
-  MYPAGE,
-  MYINFO,
-  MYRESERVE,
-  MYREVIEW,
-  MYDOG,
-  MYDOGEDIT,
-  WREVIEW,
-  CREVIEW,
+	HOME,
+	LOGIN,
+	SIGNUP,
+	HAIRSHOP,
+	HAIRSHOPDETAIL,
+	STYLEBOOK,
+	MYPAGE,
+	MYINFO,
+	MYRESERVE,
+	MYREVIEW,
+	MYDOG,
+	MYDOGEDIT,
+	WREVIEW,
+	CREVIEW,
 } from './modules/routes';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <ModalContainer />
-      <GlobalStyle />
-      <Routes>
-        <Route path={HOME} element={<MainPage />} />
-        <Route path={LOGIN} element={<Login />} />
-        <Route path={SIGNUP} element={<Signup />} />
-        <Route path={HAIRSHOP} element={<Hairshop />} />
-        <Route path={HAIRSHOPDETAIL} element={<HairshopDetail />} />
-        <Route path={STYLEBOOK} element={<Stylebook />} />
-        <Route path={MYPAGE} element={<Mypage />}>
-          <Route index element={<MyInfo />} />
-          <Route path={MYINFO} element={<MyInfo />} />
-          <Route path={MYRESERVE} element={<Myreserve />} />
-          <Route path={MYREVIEW} element={<Myreview />}>
-            <Route index element={<ReserveList />} />
-            <Route path={WREVIEW} element={<ReserveList />} />
-            <Route path={CREVIEW} element={<ReviewList />} />
-          </Route>
-          <Route path={MYDOG} element={<Mydog />} />
-          <Route path={MYDOGEDIT} element={<MydogEditor />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<ModalContainer />
+			<GlobalStyle />
+			<Routes>
+				<Route path={HOME} element={<MainPage />} />
+				<Route path={LOGIN} element={<Login />} />
+				<Route path={SIGNUP} element={<Signup />} />
+				<Route path={HAIRSHOP} element={<Hairshop />} />
+				<Route path={HAIRSHOPDETAIL} element={<HairshopDetail />} />
+				<Route path={STYLEBOOK} element={<Stylebook />} />
+				<Route path={MYPAGE} element={<Mypage />}>
+					<Route index element={<MyInfo />} />
+					<Route path={MYINFO} element={<MyInfo />} />
+					<Route path={MYRESERVE} element={<Myreserve />} />
+					<Route path={MYREVIEW} element={<Myreview />}>
+						<Route index element={<ReserveList />} />
+						<Route path={WREVIEW} element={<ReserveList />} />
+						<Route path={CREVIEW} element={<ReviewList />} />
+					</Route>
+					<Route path={MYDOG} element={<Mydog />} />
+					<Route path={MYDOGEDIT} element={<MydogEditor />} />
+				</Route>
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;
