@@ -30,7 +30,7 @@ public class ReviewDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Patch {
-        private Long id;
+        private Long reviewId;
         @Nullable
         private String reviewImage;
         @Nullable
@@ -42,7 +42,7 @@ public class ReviewDto {
     @Setter
     @AllArgsConstructor
     public static class Response {
-        private Long id;
+        private Long reviewId;
         private String reviewImage;
         private String reviewText;
         private LocalDateTime createdAt;
