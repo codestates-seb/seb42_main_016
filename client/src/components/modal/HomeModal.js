@@ -3,16 +3,15 @@ import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectModal, closeModal } from '../../modules/redux/modalSlice';
 import useScroll from '../../hooks/useScroll';
-import { selectSet } from '../../modules/redux/setSlice';
-import useDelete from '../../hooks/useDelete';
-import { deleteDog } from '../../modules/redux/dogSlice';
+import CloseIcon from '../../utils/CloseIcon';
+import { useNavigate } from 'react-router-dom';
+import { HOME } from '../../modules/routes';
 
-function DogConfirmModal() {
+function HomeModal() {
   const modalRef = useRef();
   const { isOpen } = useSelector(selectModal);
   const dispatch = useDispatch();
-  const { url, id } = useSelector(selectSet);
-  const { DELETE } = useDelete(url);
+  const navigate = useNavigate();
 
   useScroll();
 
@@ -29,25 +28,21 @@ function DogConfirmModal() {
     }
   };
 
-  const clickCancle = () => {
+  const clickHome = () => {
+    navigate(HOME);
     dispatch(closeModal());
-  };
-
-  const onClickDelete = () => {
-    DELETE();
-    dispatch(deleteDog(id));
   };
 
   return (
     <S.ConfirmContainer ref={modalRef}>
       <S.ConfirmContent>
-        <S.ConfirmText>정말 삭제하시겠습니까?</S.ConfirmText>
+        <div onClick={() => dispatch(closeModal())}>
+          <CloseIcon />
+        </div>
+        <S.ConfirmText>그동안 이용해주셔서 감사합니다.</S.ConfirmText>
         <S.ButtonBox>
-          <S.ConfirmButton bgcolor="white" onClick={clickCancle}>
-            취소
-          </S.ConfirmButton>
-          <S.ConfirmButton color="white" border="none" hover="#6893dd" onClick={onClickDelete}>
-            삭제하기
+          <S.ConfirmButton color="white" border="none" hover="#6893dd" onClick={clickHome}>
+            홈으로 가기
           </S.ConfirmButton>
         </S.ButtonBox>
       </S.ConfirmContent>
@@ -55,4 +50,4 @@ function DogConfirmModal() {
   );
 }
 
-export default DogConfirmModal;
+export default HomeModal;

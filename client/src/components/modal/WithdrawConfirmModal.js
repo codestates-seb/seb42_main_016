@@ -3,16 +3,14 @@ import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectModal, closeModal } from '../../modules/redux/modalSlice';
 import useScroll from '../../hooks/useScroll';
-import { selectSet } from '../../modules/redux/setSlice';
-import useDelete from '../../hooks/useDelete';
-import { deleteDog } from '../../modules/redux/dogSlice';
+import useAxios from '../../hooks/useAxios';
+import { MEMBERS_ENDPOINT } from '../../modules/endpoints';
 
-function DogConfirmModal() {
+function WithdrawConfirmModal() {
   const modalRef = useRef();
   const { isOpen } = useSelector(selectModal);
   const dispatch = useDispatch();
-  const { url, id } = useSelector(selectSet);
-  const { DELETE } = useDelete(url);
+  const { DELETE } = useAxios();
 
   useScroll();
 
@@ -34,20 +32,19 @@ function DogConfirmModal() {
   };
 
   const onClickDelete = () => {
-    DELETE();
-    dispatch(deleteDog(id));
+    DELETE(MEMBERS_ENDPOINT);
   };
 
   return (
     <S.ConfirmContainer ref={modalRef}>
       <S.ConfirmContent>
-        <S.ConfirmText>정말 삭제하시겠습니까?</S.ConfirmText>
+        <S.ConfirmText>정말 탈퇴하시겠습니까?</S.ConfirmText>
         <S.ButtonBox>
           <S.ConfirmButton bgcolor="white" onClick={clickCancle}>
             취소
           </S.ConfirmButton>
           <S.ConfirmButton color="white" border="none" hover="#6893dd" onClick={onClickDelete}>
-            삭제하기
+            탈퇴하기
           </S.ConfirmButton>
         </S.ButtonBox>
       </S.ConfirmContent>
@@ -55,4 +52,4 @@ function DogConfirmModal() {
   );
 }
 
-export default DogConfirmModal;
+export default WithdrawConfirmModal;

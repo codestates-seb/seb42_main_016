@@ -46,7 +46,6 @@ export default function ReserveItem() {
 // disabled={!(photo && text)}
 
 
-
   return (
    <S.RIWrap>
     <div className='upper'>
