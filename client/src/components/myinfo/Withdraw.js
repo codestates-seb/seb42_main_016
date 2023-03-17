@@ -11,14 +11,16 @@ function Withdraw() {
       openModal({
         modalType: WITHDRAWCONFIRMMODAL,
         isOpen: true,
-      }),
+      })
     );
   };
 
   return (
     <>
-      <S.WithdrawText onClick={onClickWithdraw}>
-        <span>회원탈퇴</span>
+      <S.WithdrawText>
+        <span onClick={onClickWithdraw} role="presentation">
+          회원탈퇴
+        </span>
       </S.WithdrawText>
     </>
   );

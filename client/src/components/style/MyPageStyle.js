@@ -1,37 +1,50 @@
 import styled from 'styled-components';
 
+export const MyPageWrapper = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
+
 //MyPage
 export const MypageContainer = styled.div`
   position: relative;
-  top: 120px;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   border-top: 1px solid #ddd;
-  /* padding: 0 12rem; */
 `;
 
 //Sidebar
 export const SidebarContainer = styled.div`
-  border-right: 1px solid #ddd;
   width: 12rem;
   position: relative;
-
+  height: 400px;
   h3 {
+    padding-top: 10px;
+    margin-bottom: 0;
     text-align: left;
-    padding-left: 12px;
+    padding-left: 10px;
+    cursor: pointer;
+    color: #333;
   }
   ul {
     padding-left: 12px;
+    padding-top: 0;
   }
   li {
-    font-size: 1.3rem;
+    font-weight: 350;
+    font-size: 18px;
+    color: #666;
+    letter-spacing: 0px;
+    padding-bottom: 3px;
   }
   .nav-link {
     text-decoration: none;
-    color: black;
+    color: #333;
   }
   .nav-link.active {
     font-weight: bold;
@@ -43,6 +56,8 @@ export const Section = styled.div`
   position: relative;
   width: 850px;
   padding: 10px;
+  height: 100%;
+  min-height: 850px;
 `;
 
 //ReserveList

@@ -1,34 +1,36 @@
 import * as S from './style/HeaderStyle';
-import { Link } from 'react-router-dom';
+import { HOME, LOGIN, STYLEBOOK, SIGNUP, HAIRSHOP } from '../modules/routes';
 
 function Header() {
   return (
     <S.Container>
-      <S.Logo>
-        <Link style={{ textDecoration: 'none' }} to="/">
-          로고
-        </Link>
-      </S.Logo>
-      <S.Menu>
-        <S.List>스타일북</S.List>
-        <S.List>
-          <Link style={{ textDecoration: 'none' }} to="/hairshop">
-            내 주변 미용실
-          </Link>
-        </S.List>
-      </S.Menu>
-      <S.Login>
-        <S.List>
-          <Link style={{ textDecoration: 'none' }} to="/login">
-            로그인
-          </Link>
-        </S.List>
-        <S.List>
-          <Link style={{ textDecoration: 'none' }} to="/signup">
-            회원가입
-          </Link>
-        </S.List>
-      </S.Login>
+      <S.NavStyle>
+        <S.Logo>
+          <S.LinkStyle className="logo" to={HOME}>
+            UDog
+          </S.LinkStyle>
+        </S.Logo>
+        <S.Menu>
+          <S.List>
+            <S.NavLinkStyle to={STYLEBOOK} activeClassName="active">
+              스타일북
+            </S.NavLinkStyle>
+          </S.List>
+          <S.List>
+            <S.NavLinkStyle to={HAIRSHOP} activeClassName="active">
+              내 주변 미용실
+            </S.NavLinkStyle>
+          </S.List>
+        </S.Menu>
+        <S.Login>
+          <S.List>
+            <S.LinkStyle to={LOGIN}>로그인</S.LinkStyle>
+          </S.List>
+          <S.List>
+            <S.LinkStyle to={SIGNUP}>회원가입</S.LinkStyle>
+          </S.List>
+        </S.Login>
+      </S.NavStyle>
     </S.Container>
   );
 }

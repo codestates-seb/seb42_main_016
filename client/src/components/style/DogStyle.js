@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin-top: 30px;
   line-height: normal;
 `;
@@ -16,7 +16,6 @@ export const ContentBox = styled.div`
 export const Content = styled.div`
   float: left;
   width: 100%;
-  min-height: 640px;
   padding: 0 29px 40px;
 `;
 
