@@ -53,7 +53,7 @@ public class ReviewDto {
     @Setter
     @AllArgsConstructor
     public static class listResponse {
-        private Long id;
+        private Long reviewId;
         private String reviewImage;
         private String reviewText;
         private LocalDateTime createdAt;

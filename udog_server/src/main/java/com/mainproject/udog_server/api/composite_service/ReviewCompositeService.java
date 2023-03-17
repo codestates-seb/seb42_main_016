@@ -41,8 +41,8 @@ public class ReviewCompositeService {
         return foundReview;
     }
 
-    public Page<Review> getReviews(int page, int size) {
-        return reviewService.findReviews(page-1, size);
+    public Page<Review> getHairShopReviews(long hairShopId, int page, int size) {
+        return reviewService.findHairShopReviews(hairShopId,page-1, size);
     }
 
     public void deleteReview(Long reviewId, String email) {

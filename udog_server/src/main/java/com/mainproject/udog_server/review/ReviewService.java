@@ -42,8 +42,8 @@ public class ReviewService {
         return review;
     }
 
-    public Page<Review> findReviews(int page, int size) {
-        return reviewRepository.findAll(PageRequest.of(page, size, Sort.by("reviewId").descending()));
+    public Page<Review> findHairShopReviews(long hairShopId, int page, int size) {
+        return reviewRepository.findAllByHairShopHairShopId(hairShopId, PageRequest.of(page, size, Sort.by("reviewId").descending()));
     }
 
     public void deleteReview(Long reviewId, Long memberId) {
