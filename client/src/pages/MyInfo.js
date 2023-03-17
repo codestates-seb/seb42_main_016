@@ -6,7 +6,7 @@ import MyReserveContent from '../components/myinfo/MyReserveContent';
 import MyReviewContent from '../components/myinfo/MyReviewContent';
 import Withdraw from '../components/myinfo/Withdraw';
 import useScrollTop from '../hooks/useScrollTop';
-import { MYRESERVE, MYREVIEW, MYDOG } from '../modules/routes';
+import { MYPAGE, MYRESERVE, MYREVIEW, MYDOG } from '../modules/routes';
 
 function MyInfo() {
   const navigate = useNavigate();
@@ -21,17 +21,17 @@ function MyInfo() {
           <MyReserveContent
             title="예약"
             text="예약 내역이 없습니다."
-            onClick={() => navigate(MYRESERVE)}
+            onClick={() => navigate(`${MYPAGE}/${MYRESERVE}`)}
           />
           <MyReviewContent
             title="리뷰"
             text="작성한 리뷰가 없습니다."
-            onClick={() => navigate(MYREVIEW)}
+            onClick={() => navigate(`${MYPAGE}/${MYREVIEW}`)}
           />
           <MyDogContent
-            title="강아지"
+            title="강ㄴ아지"
             text="등록된 강아지가 없습니다."
-            onClick={() => navigate(MYDOG)}
+            onClick={() => navigate(`${MYPAGE}/${MYDOG}`)}
           />
         </S.Content>
         <Withdraw />

@@ -11,7 +11,7 @@ function Withdraw() {
       openModal({
         modalType: WITHDRAWCONFIRMMODAL,
         isOpen: true,
-      })
+      }),
     );
   };
 

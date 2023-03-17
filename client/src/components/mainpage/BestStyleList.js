@@ -6,10 +6,7 @@ export default function BestStyleList() {
   return (
     <S.Container>
       {styles.map((style) => (
-        <StylebookItem
-          key={style}
-          src={`https://source.unsplash.com/random/${style}`}
-        />
+        <StylebookItem key={style} src={`https://source.unsplash.com/random/${style}`} />
       ))}
     </S.Container>
   );

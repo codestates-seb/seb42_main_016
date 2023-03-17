@@ -9,11 +9,7 @@ function BestShopList() {
   return (
     <>
       {data.map((shop, index) => (
-        <HairshopList
-          shop={shop}
-          key={shop.hairShopId}
-          last={index === data.length - 1}
-        />
+        <HairshopList shop={shop} key={shop.hairShopId} last={index === data.length - 1} />
       ))}
     </>
   );

@@ -41,8 +41,7 @@ function HairshopDetail() {
                 <S.Li
                   key={idx}
                   onClick={() => dispatch(activeTab(idx))}
-                  className={isOn[idx] ? 'selected' : ''}
-                >
+                  className={isOn[idx] ? 'selected' : ''}>
                   <span>{menu}</span>
                 </S.Li>
               ))}

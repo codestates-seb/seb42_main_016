@@ -10,10 +10,7 @@ function HairshopList({ shop, last }) {
   return (
     <S.ListContainer>
       <S.ListWrapper>
-        <S.List
-          onClick={() => navigate(`${HAIRSHOP}/${shop.hairShopId}`)}
-          last={last}
-        >
+        <S.List onClick={() => navigate(`${HAIRSHOP}/${shop.hairShopId}`)} last={last}>
           <S.ListFlex>
             <S.ImgBox>
               <S.Img src={img} alt="img" />

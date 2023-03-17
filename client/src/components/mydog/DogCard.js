@@ -12,6 +12,7 @@ function DogCard({ dog }) {
   const age = `${new Date().getFullYear() - dog.dogBirthDate.slice(0, 4)}살`;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const originType = dog.dogSpecies.replace(/_/g, ' ');
 
   const onNavigateEdit = () => {
     dispatch(edit(dog));
@@ -35,7 +36,7 @@ function DogCard({ dog }) {
         <S.Name>{dog.dogName}</S.Name>
         <S.Detail>{age}</S.Detail>
         <S.Detail>{dog.dogWeight}</S.Detail>
-        <S.Detail>{dog.dogSpecies}</S.Detail>
+        <S.Detail>{originType}</S.Detail>
         <S.Detail>{dog.dogDescription ? dog.dogDescription : '특이사항 없음'}</S.Detail>
       </S.TextWrapper>
       <S.ButtonWrapper>

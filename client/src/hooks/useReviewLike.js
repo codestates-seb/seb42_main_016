@@ -27,7 +27,7 @@ function useReviewLike(id, like) {
             Authorization: token,
             Refresh: refresh,
           },
-        }
+        },
       )
         .then((res) => {
           console.log('좋아요 등록', res);

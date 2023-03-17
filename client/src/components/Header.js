@@ -1,12 +1,5 @@
 import * as S from './style/HeaderStyle';
-import {
-  HOME,
-  LOGIN,
-  STYLEBOOK,
-  SIGNUP,
-  HAIRSHOP,
-  MYPAGE,
-} from '../modules/routes';
+import { HOME, LOGIN, STYLEBOOK, SIGNUP, HAIRSHOP, MYPAGE } from '../modules/routes';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from '../modules/redux/userSlice';
 import { openModal } from '../modules/redux/modalSlice';
@@ -21,7 +14,7 @@ function Header() {
       openModal({
         modalType: LOGOUTCONFIRMMODAL,
         isOpen: true,
-      })
+      }),
     );
   };
 

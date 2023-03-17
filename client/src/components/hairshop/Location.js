@@ -1,6 +1,6 @@
 import * as S from '../style/ListStyle';
 import useGeolocation from '../../hooks/useGeolocation';
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 function Location() {
   const location = useGeolocation();
