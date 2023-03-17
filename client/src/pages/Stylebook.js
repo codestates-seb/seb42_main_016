@@ -7,7 +7,7 @@ import ScrollTopButton from '../components/ScrollTopButton';
 import Header from '../components/Header';
 
 function Stylebook() {
-  const PER_PAGE = 6;
+  const PER_PAGE = 9;
 
   const { data, loading, handleScroll } = useInfiniteScroll(STYLEBOOK_ENDPOINT, PER_PAGE);
 
