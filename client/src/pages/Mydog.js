@@ -1,16 +1,14 @@
 import DogList from '../components/mydog/DogList';
-import {useEffect} from 'react';
+import useScrollTop from '../hooks/useScrollTop';
 
 function Mydog() {
-	useEffect(() => {
-		if (window) window.scrollTo(0, 0);
-	}, []);
+  useScrollTop();
 
-	return (
-		<>
-			<DogList />
-		</>
-	);
+  return (
+    <>
+      <DogList />
+    </>
+  );
 }
 
 export default Mydog;

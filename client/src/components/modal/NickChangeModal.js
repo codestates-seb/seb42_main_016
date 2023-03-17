@@ -1,39 +1,49 @@
-import * as S from '../style/ModalStyle';
-import {useDispatch} from 'react-redux';
-import {closeModal} from '../../modules/redux/modalSlice';
-import useScroll from '../../hooks/useScroll';
-import CloseIcon from '../../utils/CloseIcon';
-import {useRef} from 'react';
-import {openModal} from '../../modules/redux/modalSlice';
+// import * as S from '../style/ModalStyle';
+// import { useState, useRef } from 'react';
+// import { useDispatch } from 'react-redux';
+// import { closeModal, openModal } from '../../modules/redux/modalSlice';
+// import useScroll from '../../hooks/useScroll';
+// import CloseIcon from '../../utils/CloseIcon';
+// import API from '../../modules/API';
 
-function NickModal(){
+// function NickModal() {
+//   const [value, setValue] = useState({
+//     nickname: '',
+//   });
 
-	const modalRef = useRef();
-	const dispatch = useDispatch();
+//   const modalRef = useRef();
+//   const dispatch = useDispatch();
 
-	useScroll();
+//   useScroll();
 
-	// const handleOpenNickModal = () => {
-	// 	dispatch(
-	// 		openModal({
-	// 			modalType: 'NickModal',
-	// 			isOpen: true,
-	// 		})
-	// 	);
-	// };
+//   const handleOpenNickModal = () => {
+//     dispatch(
+//       openModal({
+//         modalType: 'NickModal',
+//         isOpen: true,
+//       })
+//     );
+//   };
 
-	return (
-		<S.ModalWrap ref={modalRef}>
-			<S.TopWrapper>
-				<S.Title>닉네임 변경</S.Title>
-				<div onClick={() => dispatch(closeModal())}>
-					<CloseIcon />
-				</div>
-			</S.TopWrapper>
-			<S.ModalForm>
-			</S.ModalForm>
-		</S.ModalWrap>
-	);
-}
+//   API.post('/merbers', {
+//     nickname,
+//   });
 
-export default NickModal;
+//   return (
+//     <S.ModalWrap ref={modalRef}>
+//       <S.TopWrapper>
+//         <S.Title>닉네임 변경</S.Title>
+//         <div onClick={() => dispatch(closeModal())}>
+//           <CloseIcon />
+//         </div>
+//         <S.Input
+//           type="text"
+//           placeholder="변경할 닉네임을 적어주세요."
+//           value={nickname}
+//         />
+//       </S.TopWrapper>
+//     </S.ModalWrap>
+//   );
+// }
+
+// export default NickModal;

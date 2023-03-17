@@ -1,16 +1,18 @@
-import React from 'react'
-import * as S from '../style/SBStyle'
+import * as S from '../style/SBStyle';
 import StylebookItem from './StylebookItem';
 
-export default function StylebookList() {
-  const styles = [...Array(9).keys()]
+function StylebookList({ data }) {
   return (
-   <S.Container>
-    {styles.map((style) => (
-      <StylebookItem key={style} src={`https://source.unsplash.com/random/${style}`} />
-    ))}
-        
-   </S.Container>
-  )
+    <S.Container>
+      {data.map((style) => (
+        <StylebookItem
+          key={style.id}
+          id={style.id}
+          src={`https://source.unsplash.com/random/${style.id}`}
+        />
+      ))}
+    </S.Container>
+  );
 }
 
+export default StylebookList;

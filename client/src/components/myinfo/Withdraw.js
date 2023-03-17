@@ -1,13 +1,27 @@
 import * as S from '../style/MyInfoStyle';
+import { useDispatch } from 'react-redux';
+import { WITHDRAWCONFIRMMODAL } from '../../modules/ModalContainer';
+import { openModal } from '../../modules/redux/modalSlice';
 
 function Withdraw() {
-	return (
-		<>
-			<S.WithdrawText>
-				<span>회원탈퇴</span>
-			</S.WithdrawText>
-		</>
-	);
+  const dispatch = useDispatch();
+
+  const onClickWithdraw = () => {
+    dispatch(
+      openModal({
+        modalType: WITHDRAWCONFIRMMODAL,
+        isOpen: true,
+      }),
+    );
+  };
+
+  return (
+    <>
+      <S.WithdrawText onClick={onClickWithdraw}>
+        <span>회원탈퇴</span>
+      </S.WithdrawText>
+    </>
+  );
 }
 
 export default Withdraw;

@@ -1,19 +1,23 @@
 import * as S from '../style/ListStyle';
 import useGeolocation from '../../hooks/useGeolocation';
-import React, {memo} from 'react';
+import React, { memo } from 'react';
 
 function Location() {
-	const location = useGeolocation();
-	const lat = location.loaded ? JSON.stringify(location.coordinates.lat) : 'Location data not available yet.';
-	const lng = location.loaded ? JSON.stringify(location.coordinates.lng) : 'Location data not available yet.';
+  const location = useGeolocation();
+  const lat = location.loaded
+    ? JSON.stringify(location.coordinates.lat)
+    : 'Location data not available yet.';
+  const lng = location.loaded
+    ? JSON.stringify(location.coordinates.lng)
+    : 'Location data not available yet.';
 
-	console.log('lat:', lat, 'lng:', lng);
+  console.log('lat:', lat, 'lng:', lng);
 
-	return (
-		<>
-			<S.LocationStyle>강남구 역삼동</S.LocationStyle>
-		</>
-	);
+  return (
+    <>
+      <S.LocationStyle>강남구 역삼동</S.LocationStyle>
+    </>
+  );
 }
 
 export default memo(Location);
