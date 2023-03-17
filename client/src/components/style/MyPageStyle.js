@@ -47,7 +47,7 @@ export const SidebarContainer = styled.div`
     color: #333;
   }
   .nav-link.active {
-    font-weight: bold;
+    color: cornflowerblue;
   }
 `;
 

@@ -57,9 +57,7 @@ export default function ReserveItem() {
           <IoIosCut className="icon" />
           미용실
         </S.HairshopName>
-        <S.CancelButton onClick={() => setModal(true)}>
-          리뷰 작성
-        </S.CancelButton>
+        <S.CancelButton onClick={() => setModal(true)}>리뷰 작성</S.CancelButton>
       </div>
       <S.ReserveInfo>
         <div className="info">

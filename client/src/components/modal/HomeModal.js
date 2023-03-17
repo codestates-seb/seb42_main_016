@@ -36,7 +36,16 @@ function HomeModal() {
   return (
     <S.ConfirmContainer ref={modalRef}>
       <S.ConfirmContent>
-        <div onClick={() => dispatch(closeModal())}>
+        <div
+          role="button"
+          tabIndex="0"
+          aria-label="Close"
+          onClick={() => dispatch(closeModal())}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              dispatch(closeModal());
+            }
+          }}>
           <CloseIcon />
         </div>
         <S.ConfirmText>그동안 이용해주셔서 감사합니다.</S.ConfirmText>

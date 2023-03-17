@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { HOMEMODAL } from '../modules/ModalContainer';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../modules/redux/modalSlice';
+import { logout } from '../modules/redux/userSlice';
 
 function useAxios(url, body, path) {
   const token = localStorage.getItem('accessToken');
@@ -57,6 +58,8 @@ function useAxios(url, body, path) {
           }),
         );
         localStorage.clear();
+        dispatch(logout());
+        navigate(path);
         console.log('탈퇴성공', res);
       })
       .catch((err) => {

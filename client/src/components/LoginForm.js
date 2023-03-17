@@ -52,6 +52,10 @@ function LoginForm() {
         dispatch(login(email));
         navigate(HOME);
       })
+      .then(() => {
+        // eslint-disable-next-line
+        location.reload();
+      })
       .catch((err) => {
         console.log(err);
       });

@@ -1,11 +1,7 @@
 import * as S from '../style/ModalStyle';
 import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  selectModal,
-  closeModal,
-  selectOption,
-} from '../../modules/redux/modalSlice';
+import { selectModal, closeModal, selectOption } from '../../modules/redux/modalSlice';
 import useScroll from '../../hooks/useScroll';
 import CloseIcon from '../../utils/CloseIcon';
 import { WeightOption } from '../../utils/ModalOption';
@@ -38,7 +34,16 @@ function WeightModal() {
     <S.ModalWrap ref={modalRef}>
       <S.TopWrapper>
         <S.Title>강아지 몸무게 선택</S.Title>
-        <div onClick={() => dispatch(closeModal())}>
+        <div
+          role="button"
+          tabIndex="0"
+          aria-label="Close"
+          onClick={() => dispatch(closeModal())}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              dispatch(closeModal());
+            }
+          }}>
           <CloseIcon />
         </div>
       </S.TopWrapper>

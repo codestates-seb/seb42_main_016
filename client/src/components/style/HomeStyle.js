@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const HomeContainer = styled.div`
   margin-top: 50px;
+  margin-bottom: 100px;
   overflow: hidden;
   width: 100%;
   display: flex;

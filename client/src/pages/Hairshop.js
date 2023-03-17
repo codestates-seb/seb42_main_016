@@ -9,10 +9,7 @@ import Header from '../components/Header';
 
 function Hairshop() {
   const PER_PAGE = 3;
-  const { data, loading, handleScroll } = useInfiniteScroll(
-    HAIRSHOP_ENDPOINT,
-    PER_PAGE
-  );
+  const { data, loading, handleScroll } = useInfiniteScroll(HAIRSHOP_ENDPOINT, PER_PAGE);
   const scrollAreaRef = useRef(null);
   const [showButton, setShowButton] = useState(false);
 
@@ -30,13 +27,7 @@ function Hairshop() {
       <Header />
       <Location />
       {data.map((shop, index) => {
-        return (
-          <HairshopList
-            shop={shop}
-            key={shop.hairShopId}
-            last={index === shop.length - 1}
-          />
-        );
+        return <HairshopList shop={shop} key={shop.hairShopId} last={index === shop.length - 1} />;
       })}
       {loading && <div>Loading...</div>}
       {showButton && <ScrollTopButton area={scrollAreaRef} />}

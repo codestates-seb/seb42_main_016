@@ -3,11 +3,15 @@ import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectModal, closeModal } from '../../modules/redux/modalSlice';
 import useScroll from '../../hooks/useScroll';
+import { logout } from '../../modules/redux/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { HOME } from '../../modules/routes';
 
 function LogoutConfirmModal() {
   const modalRef = useRef();
   const { isOpen } = useSelector(selectModal);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useScroll();
 
@@ -28,9 +32,11 @@ function LogoutConfirmModal() {
     dispatch(closeModal());
   };
 
-  const onClickDelete = () => {
+  const onClickDelete = async () => {
     localStorage.clear();
-    location.reload();
+    await dispatch(logout());
+    dispatch(closeModal());
+    navigate(HOME);
   };
 
   return (
@@ -41,12 +47,7 @@ function LogoutConfirmModal() {
           <S.ConfirmButton bgcolor="white" onClick={clickCancle}>
             취소
           </S.ConfirmButton>
-          <S.ConfirmButton
-            color="white"
-            border="none"
-            hover="#6893dd"
-            onClick={onClickDelete}
-          >
+          <S.ConfirmButton color="white" border="none" hover="#6893dd" onClick={onClickDelete}>
             로그아웃
           </S.ConfirmButton>
         </S.ButtonBox>

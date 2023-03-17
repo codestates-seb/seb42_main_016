@@ -1,8 +1,13 @@
+import * as S from '../style/HomeStyle';
+import HairshopReview from '../hairshopreview/HairshopReview';
+
 function ReviewTab() {
   return (
-    <>
-      <h1>리뷰</h1>
-    </>
+    <S.HomeContainer>
+      <S.HomeContent>
+        <HairshopReview />
+      </S.HomeContent>
+    </S.HomeContainer>
   );
 }
 

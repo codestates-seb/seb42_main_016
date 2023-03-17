@@ -14,9 +14,7 @@ function MyReserveContent({ title, text, onClick, data }) {
           더보기 <MdNavigateNext />
         </S.MoreButton>
       </S.ContentTitleContainer>
-      <S.MyInfoContent>
-        {filteredData ? filteredData : <Empty text={text} />}
-      </S.MyInfoContent>
+      <S.MyInfoContent>{filteredData ? filteredData : <Empty text={text} />}</S.MyInfoContent>
     </>
   );
 }

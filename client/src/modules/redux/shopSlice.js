@@ -20,14 +20,14 @@ const shopSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(asyncUpFetch.pending, (state, action) => {
+      .addCase(asyncUpFetch.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(asyncUpFetch.fulfilled, (state, action) => {
         state.value = action.payload;
         state.status = 'succeeded';
       })
-      .addCase(asyncUpFetch.rejected, (state, action) => {
+      .addCase(asyncUpFetch.rejected, (state) => {
         state.status = 'failed';
       });
   },

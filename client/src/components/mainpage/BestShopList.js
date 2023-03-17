@@ -1,21 +1,15 @@
-import useFetch from '../../hooks/useFetch';
 import { HAIRSHOP_ENDPOINT } from '../../modules/endpoints';
 import HairshopList from '../hairshop/HairshopList';
+import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 
 function BestShopList() {
-  const maxLen = 10;
-  const data = useFetch(HAIRSHOP_ENDPOINT);
-  const filteredData = data?.filter(({ hairShopId }) => hairShopId <= maxLen);
-  console.log(filteredData);
+  const PER_PAGE = 10;
+  const { data } = useInfiniteScroll(HAIRSHOP_ENDPOINT, PER_PAGE);
 
   return (
     <>
-      {filteredData.map((shop, index) => (
-        <HairshopList
-          shop={shop}
-          key={shop.hairShopId}
-          last={index === filteredData.length - 1}
-        />
+      {data.map((shop, index) => (
+        <HairshopList shop={shop} key={shop.hairShopId} last={index === data.length - 1} />
       ))}
     </>
   );
