@@ -29,8 +29,14 @@ function Hairshop() {
     <S.ScrollArea onScroll={handleScrollEvent} ref={scrollAreaRef}>
       <Header />
       <Location />
-      {data.map((shop) => {
-        return <HairshopList shop={shop} key={shop.hairShopId} />;
+      {data.map((shop, index) => {
+        return (
+          <HairshopList
+            shop={shop}
+            key={shop.hairShopId}
+            last={index === shop.length - 1}
+          />
+        );
       })}
       {loading && <div>Loading...</div>}
       {showButton && <ScrollTopButton area={scrollAreaRef} />}
