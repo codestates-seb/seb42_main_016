@@ -1,17 +1,20 @@
 package com.mainproject.udog_server.dog;
 
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.*;
+import com.fasterxml.jackson.datatype.jsr310.deser.*;
 import com.mainproject.udog_server.member.Member;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.*;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-//@AllArgsConstructor
+@AllArgsConstructor
 public class Dog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +23,10 @@ public class Dog {
     @Column(nullable = false, length = 100)
     private String dogName;
 
-    @Column(nullable = false, length = 20)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(nullable = false)
 //    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonDeserialize(using = LocalDateDeserializer.class)
 //    @JsonSerialize(using = LocalDateSerializer.class)
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dogBirthDate;

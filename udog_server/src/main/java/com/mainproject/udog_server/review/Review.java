@@ -1,14 +1,15 @@
 package com.mainproject.udog_server.review;
 
+import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.member.Member;
-import com.mainproject.udog_server.reviewLike.ReviewLike;
+import com.mainproject.udog_server.styleLike.StyleLike;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.*;
 
 @NoArgsConstructor
 @Getter
@@ -17,8 +18,7 @@ import java.util.List;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "REVIEW_ID")
-    private Long id;
+    private Long reviewId;
 
     @Column(nullable = false)
     private String reviewText;
@@ -37,11 +37,12 @@ public class Review {
     private Member member;
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
-    private List<ReviewLike> reviewLikes;
+    private List<StyleLike> styleLikes = new ArrayList<>();
 
-    private int reviewCount;
+    @ManyToOne
+    @JoinColumn(name = "HAIR_SHOP_ID")
+    private HairShop hairShop;
 
-//    @ManyToOne
-//    @JoinColumn(name = "HAIR_SHOP_ID")
-//    private HairShop hairShop;
+    @Transient
+    private int likeCount;
 }

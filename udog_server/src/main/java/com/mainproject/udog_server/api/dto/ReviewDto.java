@@ -17,6 +17,8 @@ public class ReviewDto {
     @AllArgsConstructor
     public static class Post {
         @NotBlank
+        private long hairShopId;
+        @NotBlank
         private String reviewImage;
         @NotBlank
         private String reviewText;
@@ -43,7 +45,6 @@ public class ReviewDto {
         private Long id;
         private String reviewImage;
         private String reviewText;
-        private int reviewLikeCount;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
     }

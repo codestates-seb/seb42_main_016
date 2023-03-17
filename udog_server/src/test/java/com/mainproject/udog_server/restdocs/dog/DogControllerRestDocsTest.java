@@ -1,14 +1,20 @@
 package com.mainproject.udog_server.restdocs.dog;
 
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.module.*;
+import com.fasterxml.jackson.datatype.jsr310.*;
+import com.fasterxml.jackson.datatype.jsr310.deser.*;
 import com.google.gson.Gson;
 
 import com.mainproject.udog_server.api.dto.DogDto;
 
 import com.mainproject.udog_server.api.mapper.DogMapper;
 
+import com.mainproject.udog_server.config.*;
 import com.mainproject.udog_server.dog.*;
 import com.mainproject.udog_server.member.*;
 import com.mainproject.udog_server.util.ApiDocumentUtils;
+import org.aspectj.lang.annotation.*;
 import org.hibernate.annotations.ResultCheckStyle;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -16,9 +22,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.*;
 import org.springframework.boot.test.context.*;
+import org.springframework.boot.test.json.*;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.servlet.server.Jsp;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
+import org.springframework.format.annotation.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
@@ -28,8 +36,9 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.security.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.*;
+import java.time.format.*;
+import java.util.*;
 
 
 import static com.mainproject.udog_server.util.ApiDocumentUtils.getRequestPreProcessor;
@@ -73,11 +82,14 @@ public class DogControllerRestDocsTest {
     @Autowired
     private Gson gson;
 
+
     @Test
     void postDogTest() throws Exception {
         //given
-        LocalDate dogBirthDate = LocalDate.parse("2000-01-01");
-        DogDto.Post post = new DogDto.Post("럭키",dogBirthDate, Dog.DogSpecies.기타, 10, "없음");
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        LocalDate dogBirthDate = LocalDate.of(2022, 1, 1);
+
+        DogDto.Post post = new DogDto.Post("럭키", LocalDate.parse("2022-01-01") , Dog.DogSpecies.기타, 10, "없음");
         String content = gson.toJson(post);
 
         Member mockMember = new Member();
@@ -90,7 +102,7 @@ public class DogControllerRestDocsTest {
 
         given(dogService.createDog(Mockito.any(Dog.class))).willReturn(new Dog());
 
-        DogDto.Response responseDto = new DogDto.Response(1L,"럭키", dogBirthDate, Dog.DogSpecies.기타, 10, "없음");
+        DogDto.Response responseDto = new DogDto.Response(1L,"럭키", LocalDate.of(2022,01,01).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), Dog.DogSpecies.기타, 10, "없음");
 
         given(mapper.dogToDogResponse(Mockito.any(Dog.class))).willReturn(responseDto);
 
@@ -137,12 +149,12 @@ public class DogControllerRestDocsTest {
         mockMember.setMemberId(1L);
         Principal principal = () -> "test@test.com";
 
-        LocalDate dogBirthdate = LocalDate.parse("2000-01-01");
-        DogDto.Patch patch = new DogDto.Patch(dogId, "럭키", dogBirthdate, 10, "없음", null);
+
+        DogDto.Patch patch = new DogDto.Patch(dogId, "럭키", LocalDate.parse("2022-01-01"), 10, "없음", null);
         String content = gson.toJson(patch);
 
         DogDto.Response responseDto =
-                new DogDto.Response(1L, "럭키", dogBirthdate, Dog.DogSpecies.기타, 10, "없음");
+                new DogDto.Response(1L, "럭키", LocalDate.of(2022,01,01).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), Dog.DogSpecies.기타, 10, "없음");
 
         given(memberService.findLoginMemberByEmail(Mockito.anyString())).willReturn(new Member());
         given(mapper.dogPatchDtoToDog(Mockito.any(DogDto.Patch.class))).willReturn(new Dog());
@@ -205,10 +217,9 @@ public class DogControllerRestDocsTest {
     public void getDogTest() throws Exception {
         //given
         long dogId = 1L;
-        LocalDate dogBirthdate = LocalDate.parse("2000-01-01");
 
         DogDto.Response response = new DogDto.Response
-                (1L, "럭키", dogBirthdate, Dog.DogSpecies.기타, 10, "없음");
+                (1L, "럭키", LocalDate.of(2022,01,01).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), Dog.DogSpecies.기타, 10, "없음");
 
         given(mapper.dogToDogResponse(Mockito.any(Dog.class))).willReturn(response);
         given(dogService.findDog(Mockito.anyLong())).willReturn(new Dog());
@@ -251,12 +262,12 @@ public class DogControllerRestDocsTest {
     @Test
     public void getDogsTest() throws Exception {
         //given
-        LocalDate dogBirthdate = LocalDate.parse("2000-01-01");
+
 
         List<DogDto.Response> dogs = List.of(new DogDto.Response(
-                        1L,"럭키", dogBirthdate, Dog.DogSpecies.기타, 10, "없음"));
+                        1L,"럭키", LocalDate.of(2022,01,01).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), Dog.DogSpecies.기타, 10, "없음"));
                 new DogDto.Response(
-                        2L, "해피", dogBirthdate, Dog.DogSpecies.기타, 11, "없음"
+                        2L, "해피", LocalDate.of(2022,01,01).format(DateTimeFormatter.ofPattern("yyyy-MM-dd")), Dog.DogSpecies.기타, 11, "없음"
                 );
 
                 given(dogService.findDogs()).willReturn(new ArrayList<>());

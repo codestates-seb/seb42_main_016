@@ -1,4 +1,4 @@
-package com.mainproject.udog_server.reviewLike;
+package com.mainproject.udog_server.styleLike;
 
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.review.Review;
@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class ReviewLike {
+public class StyleLike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,7 +25,7 @@ public class ReviewLike {
     @JoinColumn(name = "review_id")
     private Review review;
 
-    public ReviewLike(Member member, Review review) {
+    public StyleLike(Member member, Review review) {
         this.member = member;
         this.review = review;
     }

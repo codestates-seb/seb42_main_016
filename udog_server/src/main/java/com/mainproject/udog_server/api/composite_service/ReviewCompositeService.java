@@ -4,20 +4,18 @@ import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.member.MemberService;
 import com.mainproject.udog_server.review.Review;
 import com.mainproject.udog_server.review.ReviewService;
-import com.mainproject.udog_server.reviewLike.ReviewLikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.stereotype.*;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class ReviewCompositeService {
 
     private final ReviewService reviewService;
-    private final ReviewLikeService reviewLikeService;
     private final MemberService memberService;
 
-    public Review createReview(Review creatingReview, String email){
+    public Review createReview(Review creatingReview, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
 
         creatingReview.setMember(member);
@@ -34,15 +32,11 @@ public class ReviewCompositeService {
 
         Review updatedReview = reviewService.updateReview(updatingReview, member.getMemberId());
 
-        updatedReview.setReviewCount(reviewLikeService.getReviewLikeCount(updatedReview.getId()));
-
         return updatedReview;
     }
 
-    public Review getReview(Long reviewId){
+    public Review getReview(Long reviewId) {
         Review foundReview = reviewService.findReview(reviewId);
-
-        foundReview.setReviewCount(reviewLikeService.getReviewLikeCount(reviewId));
 
         return foundReview;
     }
@@ -55,9 +49,5 @@ public class ReviewCompositeService {
         Member member = memberService.findLoginMemberByEmail(email);
 
         reviewService.deleteReview(reviewId, member.getMemberId());
-    }
-
-    public int getReviewLikeCount(Long reviewId) {
-        return reviewLikeService.getReviewLikeCount(reviewId);
     }
 }
