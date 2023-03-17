@@ -4,13 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import { IoHeart } from 'react-icons/io5';
 import { HAIRSHOP } from '../../modules/routes';
 
-function HairshopList({ shop }) {
+function HairshopList({ shop, last }) {
   const navigate = useNavigate();
 
   return (
     <S.ListContainer>
       <S.ListWrapper>
-        <S.List onClick={() => navigate(`${HAIRSHOP}/${shop.hairShopId}`)}>
+        <S.List
+          onClick={() => navigate(`${HAIRSHOP}/${shop.hairShopId}`)}
+          last={last}
+        >
           <S.ListFlex>
             <S.ImgBox>
               <S.Img src={img} alt="img" />
