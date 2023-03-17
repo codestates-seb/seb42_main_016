@@ -6,9 +6,9 @@ function StylebookList({ data }) {
     <S.Container>
       {data.map((style) => (
         <StylebookItem
-          key={style.id}
-          id={style.id}
-          src={`https://source.unsplash.com/random/${style.id}`}
+          key={style.reviewId}
+          style={style}
+          src={`https://source.unsplash.com/random/${style.reviewId}`}
         />
       ))}
     </S.Container>
