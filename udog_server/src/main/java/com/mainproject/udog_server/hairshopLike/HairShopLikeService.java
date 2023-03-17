@@ -33,7 +33,7 @@ public class HairShopLikeService {
         hairShopLikeRepository.delete(hairShopLike);
     }
 
-    public int likeCount(long hairShopId) {
+    public int getHairShopLikeCount(long hairShopId) {
         return hairShopLikeRepository.countByHairShopHairShopId(hairShopId);
     }
 

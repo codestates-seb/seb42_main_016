@@ -44,6 +44,9 @@ public class HairShop {
     @Transient
     private int likeCount;
 
+    @Transient
+    private int reviewCount;
+
     public void addHairShopLike(HairShopLike hairShopLike) {
         hairShopLikes.add(hairShopLike);
         if(hairShopLike.getHairShop() != this) {
