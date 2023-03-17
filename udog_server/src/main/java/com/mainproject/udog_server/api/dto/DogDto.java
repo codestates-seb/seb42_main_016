@@ -35,7 +35,7 @@ public class DogDto {
 
         @NotNull
 //        @Pattern(regexp = "^\\d*$", message = "숫자만 입력해 주세요.")
-        private int dogWeight;
+        private String dogWeight;
 
         private String dogDescription;
 
