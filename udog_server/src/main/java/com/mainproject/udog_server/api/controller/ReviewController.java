@@ -35,7 +35,7 @@ public class ReviewController {
     @PatchMapping("/{review-id}")
     public ResponseEntity patchReview(@PathVariable("review-id") @Positive Long reviewId,
                                       @RequestBody ReviewDto.Patch patchDto, Principal principal) {
-        patchDto.setId(reviewId);
+        patchDto.setReviewId(reviewId);
 
         Review updatingReview = mapper.reviewPatchDtoToReview(patchDto);
         Review updatedReview = compositeService.updateReview(updatingReview, principal.getName());

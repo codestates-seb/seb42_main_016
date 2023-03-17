@@ -22,11 +22,20 @@ public class HairShopService {
     }
     @Transactional(readOnly = true)
     public HairShop findHairShop(long hairShopId) {
-        return findVerifiedHairShop(hairShopId);
+        HairShop foundHairShop = findVerifiedHairShop(hairShopId);
+        foundHairShop.setLikeCount(foundHairShop.getHairShopLikes().size());
+        foundHairShop.setReviewCount(foundHairShop.getReviews().size());
+        return foundHairShop;
     }
 
     public Page<HairShop> findHairShops(int page, int size) {
-        return hairShopRepository.findAll(PageRequest.of(page, size, Sort.by("hairShopId").descending()));
+        Page<HairShop> foundHairShops = hairShopRepository.findAll(PageRequest.of(page, size, Sort.by("hairShopId").descending()));
+        foundHairShops.getContent().stream().forEach(hairShop -> {
+                    hairShop.setLikeCount(hairShop.getHairShopLikes().size());
+                    hairShop.setReviewCount(hairShop.getReviews().size());
+                }
+        );
+        return foundHairShops;
     }
 
     @Transactional(readOnly = true)

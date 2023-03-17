@@ -61,7 +61,8 @@ public class HairShopController {
         return new ResponseEntity<>(
                 new MultiResponseDto<>(
                         hairShopMapper.hairShopsToHairShopResponses(pageHairShops.getContent()),
-                        pageHairShops), HttpStatus.OK);
+                        pageHairShops),
+                HttpStatus.OK);
     }
 }
 
