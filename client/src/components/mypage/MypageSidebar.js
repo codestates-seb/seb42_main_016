@@ -1,6 +1,6 @@
-import React from 'react';
 import * as S from '../style/MyPageStyle';
 import { NavLink } from 'react-router-dom';
+import { MYDOG, MYINFO, MYRESERVE, MYREVIEW } from '../../modules/routes';
 export default function MypageSidebar() {
   return (
     <S.SidebarContainer>
@@ -8,21 +8,21 @@ export default function MypageSidebar() {
       <ul>
         <li>
           <NavLink
-            to="myinfo"
+            to={MYINFO}
             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
             나의 정보
           </NavLink>
         </li>
         <li>
           <NavLink
-            to="reserve"
+            to={MYRESERVE}
             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
             예약 관리
           </NavLink>
         </li>
         <li>
           <NavLink
-            to="review"
+            to={MYREVIEW}
             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
             {' '}
             리뷰 관리
@@ -30,7 +30,7 @@ export default function MypageSidebar() {
         </li>
         <li>
           <NavLink
-            to="mydog"
+            to={MYDOG}
             className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
             강아지 정보
           </NavLink>

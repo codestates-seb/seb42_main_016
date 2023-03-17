@@ -1,4 +1,3 @@
-import React from 'react';
 import StylebookList from '../components/stylebook/StylebookList';
 import * as S from '../components/style/SBStyle';
 import { REVIEW_ENDPOINT } from '../modules/endpoints';

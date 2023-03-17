@@ -13,7 +13,20 @@ import MyInfo from './pages/MyInfo';
 import Myreserve from './pages/Myreserve';
 import Myreview from './pages/Myreview';
 import ModalContainer from './modules/ModalContainer';
-import { HOME, LOGIN, SIGNUP, HAIRSHOP, HAIRSHOPDETAIL, STYLEBOOK } from './modules/routes';
+import {
+  HOME,
+  LOGIN,
+  SIGNUP,
+  HAIRSHOP,
+  HAIRSHOPDETAIL,
+  STYLEBOOK,
+  MYPAGE,
+  MYINFO,
+  MYRESERVE,
+  MYREVIEW,
+  MYDOG,
+  MYDOGEDIT,
+} from './modules/routes';
 
 function App() {
   return (
@@ -27,13 +40,13 @@ function App() {
         <Route path={HAIRSHOP} element={<Hairshop />} />
         <Route path={HAIRSHOPDETAIL} element={<HairshopDetail />} />
         <Route path={STYLEBOOK} element={<Stylebook />} />
-        <Route path="/mypage/*" element={<Mypage />}>
+        <Route path={MYPAGE} element={<Mypage />}>
           <Route index element={<MyInfo />} />
-          <Route path="myinfo" element={<MyInfo />} />
-          <Route path="reserve" element={<Myreserve />} />
-          <Route path="review" element={<Myreview />} />
-          <Route path="mydog" element={<Mydog />} />
-          <Route path="mydog/edit" element={<MydogEditor />} />
+          <Route path={MYINFO} element={<MyInfo />} />
+          <Route path={MYRESERVE} element={<Myreserve />} />
+          <Route path={MYREVIEW} element={<Myreview />} />
+          <Route path={MYDOG} element={<Mydog />} />
+          <Route path={MYDOGEDIT} element={<MydogEditor />} />
         </Route>
       </Routes>
     </BrowserRouter>
