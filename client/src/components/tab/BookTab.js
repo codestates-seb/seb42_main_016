@@ -1,11 +1,18 @@
 import * as S from '../style/HomeStyle';
+import Calender from '../hairshopreserve/Calender';
+import DesignOption from '../hairshopreserve/DesignOption';
+import MyDogList from '../hairshopreserve/MyDogList';
+import TopButton from '../stylebook/TopButton';
 
 function BookTab() {
   return (
     <S.HomeContainer>
       <S.HomeContent>
-        <h1>예약</h1>
+        <Calender />
+        <DesignOption />
+        <MyDogList />
       </S.HomeContent>
+      <TopButton />
     </S.HomeContainer>
   );
 }
