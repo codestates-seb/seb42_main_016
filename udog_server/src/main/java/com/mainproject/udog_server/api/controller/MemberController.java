@@ -48,7 +48,6 @@ public class MemberController {
                                       @Valid @RequestBody MemberDto.PasswordPatch memberPatch){
         Member updatingMember = mapper.MemberPasswordPatchDtoToMember(memberPatch);
         Member updateMember = compositeService.updateMemberPassword(updatingMember, memberPatch.getPrevPassword(), principal.getName());
-
         return new ResponseEntity<>(mapper.MemberToMemberResponseDto(updateMember), HttpStatus.OK);
     }
 
