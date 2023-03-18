@@ -6,18 +6,21 @@ import { selectTab, activeTab } from '../modules/redux/tabSlice';
 import * as S from '../components/style/TabBarStyle';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { selectShop, asyncUpFetch } from '../modules/redux/shopSlice';
+import { asyncUpFetch } from '../modules/redux/shopSlice';
 import { setId } from '../modules/redux/setSlice';
 import Header from '../components/Header';
 import { Footer } from '../components/style/FooterStyle';
+import useScrollTop from '../hooks/useScrollTop';
 
 function HairshopDetail() {
   const dispatch = useDispatch();
   const { tab, isOn } = useSelector(selectTab);
   const { id } = useParams();
-  const data = useSelector(selectShop);
+
+  useScrollTop();
 
   useEffect(() => {
+    dispatch(activeTab(0));
     dispatch(setId(id));
     dispatch(asyncUpFetch());
   }, [dispatch, id]);
@@ -25,7 +28,7 @@ function HairshopDetail() {
   const tabTitle = ['홈', '예약', '리뷰'];
 
   const tabContent = {
-    0: <HomeTab data={data} />,
+    0: <HomeTab />,
     1: <BookTab />,
     2: <ReviewTab />,
   };
