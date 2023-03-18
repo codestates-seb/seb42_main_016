@@ -5,7 +5,7 @@ const initialState = {
   id: null,
 };
 
-export const setSlice = createSlice({
+const setSlice = createSlice({
   name: 'set',
   initialState,
   reducers: {

@@ -8,16 +8,18 @@ import { openModal } from '../../modules/redux/modalSlice';
 import { selectUser } from '../../modules/redux/userSlice';
 import { LOGINMODAL } from '../../modules/ModalContainer';
 import { useDispatch, useSelector } from 'react-redux';
+import { HAIRSHOP } from '../../modules/routes';
 
-export default function StylebookItem({ src, id }) {
-  const [like, setLike] = useState(false);
+export default function StylebookItem({ style, src }) {
+  const likeId = style?.likeId || false;
+  const [like, setLike] = useState(likeId);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector(selectUser);
-  const { onLikeButtonClick } = useReviewLike(id, like);
+  const { onLikeButtonClick } = useReviewLike(style.reviewId, like, likeId);
 
   const handleShopClick = () => {
-    navigate();
+    navigate(`${HAIRSHOP}/${style.hairShopId}`);
   };
 
   const handleLikeClick = () => {

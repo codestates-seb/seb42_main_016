@@ -1,15 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { selectLike, setIsSubmit } from '../modules/redux/likeSlice';
 import API from '../modules/API';
-import { STYLEBOOK_ENDPOINT } from '../modules/endpoints';
-import { useState } from 'react';
+import { STYLELIKE_ENDPOINT } from '../modules/endpoints';
 
-function useReviewLike(id, like) {
+function useReviewLike(id, like, likeId) {
   const { isSubmit } = useSelector(selectLike);
   const dispatch = useDispatch();
   const token = localStorage.getItem('accessToken');
   const refresh = localStorage.getItem('refresh');
-  const [param, setParam] = useState(null);
 
   const onLikeButtonClick = () => {
     if (isSubmit) {
@@ -20,7 +18,7 @@ function useReviewLike(id, like) {
 
     if (!like) {
       API.post(
-        `${STYLEBOOK_ENDPOINT}/${id}`,
+        `${STYLELIKE_ENDPOINT}/${id}`,
         { reviewId: id },
         {
           headers: {
@@ -31,13 +29,12 @@ function useReviewLike(id, like) {
       )
         .then((res) => {
           console.log('좋아요 등록', res);
-          setParam(res.data.styleLikeId);
         })
         .finally(() => {
           dispatch(setIsSubmit(false));
         });
     } else {
-      API.delete(`${STYLEBOOK_ENDPOINT}/${param}`, {
+      API.delete(`${STYLELIKE_ENDPOINT}/${likeId}`, {
         headers: {
           Authorization: token,
           Refresh: refresh,

@@ -47,6 +47,9 @@ export const List = styled.li`
 
 export const Login = styled.ul`
   margin-left: 50%;
+  @media (max-width: 1200px) {
+    margin-left: 0;
+  }
 `;
 
 export const LinkStyle = styled(Link)`
@@ -70,6 +73,6 @@ export const NavStyle = styled.nav`
   flex-direction: row;
   white-space: nowrap;
   @media (min-width: 1200px) {
-    width: 87.72%;
+    width: 70%;
   }
 `;

@@ -29,7 +29,7 @@ function MyInfo() {
             onClick={() => navigate(`${MYPAGE}/${MYREVIEW}`)}
           />
           <MyDogContent
-            title="강ㄴ아지"
+            title="강아지"
             text="등록된 강아지가 없습니다."
             onClick={() => navigate(`${MYPAGE}/${MYDOG}`)}
           />
