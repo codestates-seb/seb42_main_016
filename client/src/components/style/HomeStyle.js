@@ -131,3 +131,12 @@ export const InfoText = styled.div`
     height: 18px;
   }
 `;
+
+export const CountText = styled.strong`
+  overflow: hidden;
+  padding: 0 16px 16px;
+  font-size: 20px;
+  line-height: 19px;
+  width: 100%;
+  text-align: left;
+`;
