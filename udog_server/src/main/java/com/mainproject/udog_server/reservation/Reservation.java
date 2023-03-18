@@ -44,7 +44,7 @@ public class Reservation {
 
 
     @Column(nullable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "HH:MM")
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate reserveTime;
 }
