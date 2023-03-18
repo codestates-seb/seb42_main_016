@@ -37,7 +37,9 @@ public class DogController {
 
         Dog createdDog = compositeService.createDog(creatingDog, principal.getName());
         DogDto.Response response = dogMapper.dogToDogResponse(createdDog);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+
+        URI location =UriCreator.createUri(DOG_DEFAULT_URL, createdDog.getDogId());
+        return ResponseEntity.created(location).build();
     }
 
 

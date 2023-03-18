@@ -3,8 +3,10 @@ package com.mainproject.udog_server.dog;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.*;
 import com.fasterxml.jackson.datatype.jsr310.deser.*;
+import com.google.gson.*;
 import com.mainproject.udog_server.member.Member;
 import lombok.*;
+import org.springframework.beans.factory.annotation.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -25,10 +27,11 @@ public class Dog {
 
     @Column(nullable = false)
 //    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+//    @JsonDeserialize(using = LocalDateDeserializer.class)
 //    @JsonSerialize(using = LocalDateSerializer.class)
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dogBirthDate;
 
     @Enumerated(value = EnumType.STRING)
@@ -45,6 +48,14 @@ public class Dog {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
+
+    @Transient
+    private Gson gson;
+
+    @Autowired
+    public Dog(Gson gson) {
+        this.gson = gson;
+    }
 
     public enum DogSpecies {
         기타,
