@@ -21,7 +21,7 @@ public class MemberCompositeService {
 
     public Member updateMemberPassword(Member member, String prevPassword, String email){
         Member foundMember = memberService.findLoginMemberByEmail(email);
-        memberService.verifyPasswordMatch(member, prevPassword);
+        memberService.verifyPasswordMatch(foundMember, prevPassword);
         member.setMemberId(foundMember.getMemberId());
         return memberService.updateMemberPassword(member);
     }
