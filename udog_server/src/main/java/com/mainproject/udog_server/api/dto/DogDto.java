@@ -32,7 +32,7 @@ public class DogDto {
 //        @DateTimeFormat(pattern = "yyyy-MM-dd")
 //        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         @JsonFormat(pattern = "yyyy-MM-dd")
-        @JsonDeserialize(using = LocalDateDeserializer.class)
+//        @JsonDeserialize(using = LocalDateDeserializer.class)
 //        @JsonSerialize(using = LocalDateSerializer.class)
         private LocalDate dogBirthDate;
 
@@ -66,7 +66,7 @@ public class DogDto {
 
 //        @DateTimeFormat(pattern = "yyyy-MM-dd")
 //        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-//        @JsonFormat(pattern = "yyyy-MM-dd")
+        @JsonFormat(pattern = "yyyy-MM-dd")
         private LocalDate dogBirthDate;
 
 //        @Pattern(regexp = "^\\d*$", message = "숫자만 입력해 주세요.")
