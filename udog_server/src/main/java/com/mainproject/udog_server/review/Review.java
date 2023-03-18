@@ -45,4 +45,7 @@ public class Review {
 
     @Transient
     private int likeCount;
+
+    @Transient
+    private long myStyleLikeId;
 }
