@@ -12,3 +12,8 @@ spring:
     init:
       schema-locations: classpath*:h2/schema.sql
       data-locations: classpath*:h2/data.sql
+jwt:
+  key: GlFU9fJQv7qL6pIcxQQwHZe1WQIeja6Cpt6WKjFEPcYMhKm2LEkj4xbKdA3d
+  #  key: ${JWT_SECRET_KEY}
+  access-token-expiration-minutes: 40
+  refresh-token-expiration-minutes: 420
