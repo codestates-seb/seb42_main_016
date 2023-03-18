@@ -37,7 +37,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-//	implementation 'mysql:mysql-connector-java:8.0.30'
+	implementation 'mysql:mysql-connector-java:8.0.30'
 	runtimeOnly 'com.h2database:h2'
 
 	implementation 'org.mapstruct:mapstruct:1.4.2.Final'

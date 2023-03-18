@@ -1,26 +1,10 @@
 spring:
   datasource:
-    url: jdbc:mysql://my-database.c97sruw5pom4.ap-northeast-2.rds.amazonaws.com:13306/myoverflow?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
-    username: admi
+    url: jdbc:mysql://my-database.c97sruw5pom4.ap-northeast-2.rds.amazonaws.com:13306/udog?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: admin
     password: asdfasdf
     driver-class: com.mysql.cj.jdbc.Driver
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    hibernate.ddl-auto: update
-  show-sql: true
-
-#server:
-#  servlet:
-#    encoding:
-#      force-response: true
-#
-#mail:
-#  address:
-#    admin: admin@gmail.com
-#jwt:
-#  key: GlFU9fJQv7qL6pIcxQQwHZe1WQIeja6Cpt6WKjFEPcYMhKm2LEkj4xbKdA3d
-#  #  key: ${JWT_SECRET_KEY}
-#  access-token-expiration-minutes: 40
-#  refresh-token-expiration-minutes: 420
 
