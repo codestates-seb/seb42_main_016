@@ -5,7 +5,7 @@ const initialState = {
   isOn: [true, null, null],
 };
 
-export const tabSlice = createSlice({
+const tabSlice = createSlice({
   name: 'tab',
   initialState,
   reducers: {

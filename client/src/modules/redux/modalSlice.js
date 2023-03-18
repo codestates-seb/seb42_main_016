@@ -9,7 +9,7 @@ const initialState = {
   },
 };
 
-export const modalSlice = createSlice({
+const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {

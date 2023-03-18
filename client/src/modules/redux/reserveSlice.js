@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const reserveSlice = createSlice({
+const reserveSlice = createSlice({
   name: 'reserve',
   initialState: {
     reservation: [],
@@ -17,6 +17,6 @@ export const reserveSlice = createSlice({
   },
 });
 
-export let { setReserve, deleteReserve } = reserveSlice.actions;
+export const { setReserve, deleteReserve } = reserveSlice.actions;
 
 export default reserveSlice.reducer;

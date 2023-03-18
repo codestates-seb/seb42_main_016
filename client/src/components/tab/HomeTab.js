@@ -12,16 +12,16 @@ import useComment from '../../hooks/useComment';
 import useShopLike from '../../hooks/useShopLike';
 import { selectShop } from '../../modules/redux/shopSlice';
 
-function HomeTab({ data }) {
+function HomeTab() {
   const maxLen = 63;
   const { loading } = useSelector(selectLoading);
   const { like } = useSelector(selectLike);
   const shop = useSelector(selectShop);
   const { show, handleToggle, comment, getDisplayComment } = useComment(
-    data.hairShopDescription,
+    shop.hairShopDescription,
     maxLen,
   );
-  const { onLikeButtonClick } = useShopLike(data.hairShopId);
+  const { onLikeButtonClick } = useShopLike(shop.hairShopId);
 
   if (loading) {
     return <Loading />;
@@ -36,20 +36,20 @@ function HomeTab({ data }) {
         <S.TextContainer>
           <S.Info>
             <S.ShopName>
-              {data.hairShopName}
+              {shop.hairShopName}
               {like ? (
                 <IoHeart className="fill" onClick={onLikeButtonClick} />
               ) : (
                 <IoHeartOutline className="outline" onClick={onLikeButtonClick} />
               )}
             </S.ShopName>
-            <S.ShopAddress>{data.hairShopAddress}</S.ShopAddress>
+            <S.ShopAddress>{shop.hairShopAddress}</S.ShopAddress>
             <S.InfoText>
               <IoHeartOutline />
               {shop?.likeCount?.toLocaleString() ?? shop?.likeCount}
             </S.InfoText>
             <S.InfoText>
-              <ReviewIcon /> {data?.reviewCount?.toLocaleString() ?? data?.reviewCount}
+              <ReviewIcon /> {shop?.reviewCount?.toLocaleString() ?? shop?.reviewCount}
             </S.InfoText>
             <S.InfoText>
               <ClockIcon />
@@ -57,11 +57,11 @@ function HomeTab({ data }) {
             </S.InfoText>
             <S.InfoText>
               <PhoneIcon />
-              {data.hairShopPhone}
+              {shop.hairShopPhone}
             </S.InfoText>
           </S.Info>
           <S.CommentBox>
-            {data && comment ? (
+            {shop && comment ? (
               <>
                 <S.CommentTitleBox>
                   <S.CommentTitle>매장 소개</S.CommentTitle>

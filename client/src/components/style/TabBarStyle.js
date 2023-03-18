@@ -44,7 +44,7 @@ export const Li = styled.li`
     span {
       width: 100%;
       display: inline;
-      box-shadow: inset 0 -10px 0 #fee5ac;
+      box-shadow: inset 0 -10px 0 #badcff;
       transition: 0.5s;
     }
   }
