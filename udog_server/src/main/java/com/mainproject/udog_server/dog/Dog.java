@@ -6,7 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.*;
 import com.google.gson.*;
 import com.mainproject.udog_server.member.Member;
 import lombok.*;
-import org.springframework.beans.factory.annotation.*;
+import org.springframework.beans.factory.annotation.*
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -56,7 +56,6 @@ public class Dog {
     public Dog(Gson gson) {
         this.gson = gson;
     }
-
     public enum DogSpecies {
         기타,
         골든_리트리버,
