@@ -27,15 +27,10 @@ public class HairShopService {
         foundHairShop.setReviewCount(foundHairShop.getReviews().size());
         return foundHairShop;
     }
+
     @Transactional(readOnly = true)
     public Page<HairShop> findHairShops(int page, int size) {
-        Page<HairShop> foundHairShops = hairShopRepository.findAll(PageRequest.of(page, size, Sort.by("hairShopId").descending()));
-        foundHairShops.getContent().stream().forEach(hairShop -> {
-                    hairShop.setLikeCount(hairShop.getHairShopLikes().size());
-                    hairShop.setReviewCount(hairShop.getReviews().size());
-                }
-        );
-        return foundHairShops;
+        return hairShopRepository.findAll(PageRequest.of(page, size, Sort.by("hairShopId").descending()));
     }
 
     @Transactional(readOnly = true)

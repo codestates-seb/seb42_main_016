@@ -7,6 +7,7 @@ import com.mainproject.udog_server.api.mapper.HairShopMapper;
 import com.mainproject.udog_server.hairshop.HairShopService;
 import com.mainproject.udog_server.hairshopLike.HairShopLikeService;
 import com.mainproject.udog_server.dto.MultiResponseDto;
+import com.mainproject.udog_server.review.*;
 import com.mainproject.udog_server.util.UriCreator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -64,6 +65,14 @@ public class HairShopController {
                 new MultiResponseDto<>(
                         hairShopMapper.hairShopsToHairShopResponses(pageHairShops.getContent()),
                         pageHairShops),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/top")
+    public ResponseEntity getTopHairShops(Principal principal){
+        Page<HairShop> top10HairShops = compositeService.getTopHairSHops(principal);
+        return new ResponseEntity<>(
+                hairShopMapper.hairShopsToHairShopResponses(top10HairShops.getContent()),
                 HttpStatus.OK);
     }
 }
