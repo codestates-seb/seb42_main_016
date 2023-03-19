@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Positive;
 import java.net.URI;
+import java.security.*;
 import java.util.List;
 
 @RestController
@@ -33,7 +34,7 @@ public class HairShopController {
     private final HairShopCompositeService compositeService;
 
     @PostMapping
-    public ResponseEntity addHariShop(@RequestBody HairShopDto.Post post) {
+    public ResponseEntity addHairShop(@RequestBody HairShopDto.Post post) {
         HairShop postHairShop = hairShopMapper.hairShopPostDtoToHairShop(post);
         HairShop createdHairShop = compositeService.createHairShop(postHairShop);
 
@@ -54,9 +55,10 @@ public class HairShopController {
     //todo 엔티티에서 builder중에 this.hairshopname
     //내 주변 미용실
     @GetMapping
-    public ResponseEntity getHairShops(@Positive @RequestParam int page,
+    public ResponseEntity getHairShops(Principal principal,
+                                       @Positive@RequestParam int page,
                                        @Positive @RequestParam int size) {
-        Page<HairShop> pageHairShops = compositeService.getHairShops(page - 1, size);
+        Page<HairShop> pageHairShops = compositeService.getHairShops(principal,page - 1, size);
 
         return new ResponseEntity<>(
                 new MultiResponseDto<>(
