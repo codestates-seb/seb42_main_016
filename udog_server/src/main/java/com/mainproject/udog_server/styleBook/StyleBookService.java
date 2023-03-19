@@ -21,8 +21,9 @@ public class StyleBookService {
     }
 
     public void test(){
-        List<Review> topThree = styleBookRepository.findTop(PageRequest.of(0,AMOUNT_OF_TOP));
-        topThree.forEach(e -> System.out.println(e.getReviewId()));
+        List<Review> topThree = styleBookRepository.findTopOfTheWeek(PageRequest.of(0,AMOUNT_OF_TOP));
+        System.out.println("@".repeat(90));
+        topThree.forEach(e -> System.out.println(e.getReviewId()+ "  " + e.getCreatedAt()));
 
     }
 }
