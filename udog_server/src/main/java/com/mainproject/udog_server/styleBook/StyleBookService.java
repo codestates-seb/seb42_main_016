@@ -20,10 +20,11 @@ public class StyleBookService {
         return styleBookRepository.findAll(PageRequest.of(page, size, Sort.by("createdAt").descending()));
     }
 
-    public void test(){
-        List<Review> topThree = styleBookRepository.findTopOfTheWeek(PageRequest.of(0,AMOUNT_OF_TOP));
-        System.out.println("@".repeat(90));
-        topThree.forEach(e -> System.out.println(e.getReviewId()+ "  " + e.getCreatedAt()));
+    public Page<Review> findTopStylesByDay(){
+        return styleBookRepository.findTopOfToday(PageRequest.of(0,AMOUNT_OF_TOP));
+    }
 
+    public Page<Review> findTopStylesByWeek(){
+        return styleBookRepository.findTopOfTheWeek(PageRequest.of(0,AMOUNT_OF_TOP));
     }
 }

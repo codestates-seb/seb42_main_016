@@ -34,4 +34,12 @@ public class StyleBookController {
                         pageStyleBooks),
                 HttpStatus.OK);
     }
+
+    @GetMapping("/top")
+    public ResponseEntity getTopStyles(Principal principal){
+        Page<Review> top3StyleBooks = compositeService.findTopStyles(principal);
+        return new ResponseEntity<>(
+                styleBookMapper.reviewsToStyleBookResponses(top3StyleBooks.getContent()),
+                HttpStatus.OK);
+    }
 }

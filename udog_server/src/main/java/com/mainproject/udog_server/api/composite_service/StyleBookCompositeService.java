@@ -18,24 +18,33 @@ import java.util.stream.*;
 public class StyleBookCompositeService {
     private final StyleBookService styleBookService;
 
-    private final StyleLikeService styleLikeService;
-
     private final MemberService memberService;
 
     public Page<Review> getStyleBookList(Principal principal, int page, int size) {
         Page<Review> pageReviews = styleBookService.findStyles(page, size);
-        //로그인 상태의 request가 아니라 토큰에서 가져온 값이 없다면
+        return setLikeCountAndStyleLikeId(principal, pageReviews);
+    }
+
+    public Page<Review> findTopStyles(Principal principal){
+        Page<Review> pageTopStyles = styleBookService.findTopStylesByDay();
+        return setLikeCountAndStyleLikeId(principal, pageTopStyles);
+    }
+
+    public Page<Review> setLikeCountAndStyleLikeId(Principal principal, Page<Review> reviews){
+        //로그인 상태가 아니라 토큰값이 없다면
         if (principal == null) {
-            pageReviews.getContent().stream().forEach(review -> review.setLikeCount(styleLikeService.getReviewLikeCount(review.getReviewId())));
+            reviews.getContent().stream().forEach(review ->
+                    review.setLikeCount(review.getStyleLikes().size())
+            );
         } else {
             String loginEmail = principal.getName();
             long loginMemberId = memberService.findLoginMemberByEmail(loginEmail).getMemberId();
-            pageReviews.getContent().stream().forEach(review -> {
+            reviews.getContent().stream().forEach(review -> {
                 review.setLikeCount(review.getStyleLikes().size());
                 review.setMyStyleLikeId(findStyleLikeId(review.getStyleLikes(), loginMemberId));
             });
         }
-        return pageReviews;
+        return reviews;
     }
 
     public long findStyleLikeId(List<StyleLike> styleLikes, long loginMemberId) {
