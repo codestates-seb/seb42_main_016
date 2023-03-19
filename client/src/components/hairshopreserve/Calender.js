@@ -1,16 +1,17 @@
 import * as S from '../style/CalenderStyle';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import moment from 'moment/moment';
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
+import { useDispatch, useSelector } from 'react-redux';
+import { clickDate, clickTime, selectBook } from '../../modules/redux/bookSlice';
 
 function Calender() {
+  const dispatch = useDispatch();
+  const { time } = useSelector(selectBook);
   const [value, onChange] = useState(new Date());
-  const [selectTime, setSelectTime] = useState('');
   const [isOpen, setIsopen] = useState(true);
   const formatDate = moment(value).format('YYYY-MM-DD');
   const DisplayDate = moment(value).format('YYYY년 MM월 DD일 dddd');
-  console.log(formatDate);
-
   const sampleDate = [
     '11:00',
     '12:00',
@@ -23,6 +24,12 @@ function Calender() {
     '19:00',
     '20:00',
   ];
+
+  dispatch(clickDate(formatDate));
+
+  useEffect(() => {
+    dispatch(clickTime(null));
+  }, []);
 
   return (
     <>
@@ -39,8 +46,8 @@ function Calender() {
           </S.DateContainer>
           <S.DateContainer className="time" onClick={() => setIsopen(!isOpen)}>
             <S.DateTitle>시간</S.DateTitle>
-            <S.SelectTime className={selectTime ? 'selected' : ''}>
-              {selectTime ? selectTime : '시간을 선택해주세요.'}
+            <S.SelectTime className={time ? 'selected' : ''}>
+              {time ? time : '시간을 선택해주세요.'}
             </S.SelectTime>
             {isOpen ? <SlArrowUp /> : <SlArrowDown />}
           </S.DateContainer>
@@ -52,7 +59,7 @@ function Calender() {
                     <S.TimeItem key={idx}>
                       <S.TimeButton
                         onClick={() => {
-                          setSelectTime(time);
+                          dispatch(clickTime(time));
                           setIsopen(false);
                         }}>
                         {time}
