@@ -32,8 +32,6 @@ public class MemberDto {
         //Todo : 공백 체크, 한영숫자만 가능한지
         @Pattern(regexp = "^[A-Za-z0-9]{2,10}$", message = "두글자 이상 10글자 이하로 작성해주세요")
         private String nickname;
-
-        private long memberId;
     }
 
     @Setter
@@ -45,8 +43,6 @@ public class MemberDto {
         @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@!%*#?&])[A-Za-z\\d$@!%*#?&]{8,}$"
                 ,message = "8문자 이상이어야 하며 영어, 숫자, 특수문자(₩~!@#$%^&*()_+,.<>/?:')를 포함해야합니다")
         private String password;
-
-        private long memberId;
     }
 
     @Setter
