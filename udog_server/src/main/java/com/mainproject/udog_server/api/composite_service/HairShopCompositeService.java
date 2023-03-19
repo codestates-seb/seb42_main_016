@@ -55,7 +55,7 @@ public class HairShopCompositeService {
             long loginMemberId = memberService.findLoginMemberByEmail(loginEmail).getMemberId();
             hairShops.getContent().stream().forEach(hairShop -> {
                 hairShop.setLikeCount(hairShop.getHairShopLikes().size());
-                hairShop.setMyLikeId(findHairShopLikeId(hairShop.getHairShopLikes(), loginMemberId));
+                hairShop.setMyHairShopLikeId(findHairShopLikeId(hairShop.getHairShopLikes(), loginMemberId));
             });
         }
         return hairShops;
