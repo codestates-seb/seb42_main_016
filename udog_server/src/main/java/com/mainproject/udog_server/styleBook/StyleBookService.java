@@ -27,6 +27,7 @@ public class StyleBookService {
         return styleBookRepository.findTopOfToday(PageRequest.of(0,AMOUNT_OF_TOP));
     }
 
+    @Transactional(readOnly = true)
     public Page<Review> findTopStylesByWeek(){
         return styleBookRepository.findTopOfTheWeek(PageRequest.of(0,AMOUNT_OF_TOP));
     }
