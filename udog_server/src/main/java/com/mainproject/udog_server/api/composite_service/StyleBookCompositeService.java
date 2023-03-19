@@ -8,6 +8,7 @@ import com.mainproject.udog_server.styleLike.*;
 import lombok.*;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.*;
 
 import java.security.*;
 import java.util.*;
@@ -15,16 +16,18 @@ import java.util.stream.*;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class StyleBookCompositeService {
     private final StyleBookService styleBookService;
 
     private final MemberService memberService;
-
+    @Transactional(readOnly = true)
     public Page<Review> getStyleBookList(Principal principal, int page, int size) {
         Page<Review> pageReviews = styleBookService.findStyles(page, size);
         return setLikeCountAndStyleLikeId(principal, pageReviews);
     }
 
+    @Transactional(readOnly = true)
     public Page<Review> findTopStyles(Principal principal){
         Page<Review> pageTopStyles = styleBookService.findTopStylesByDay();
         return setLikeCountAndStyleLikeId(principal, pageTopStyles);
