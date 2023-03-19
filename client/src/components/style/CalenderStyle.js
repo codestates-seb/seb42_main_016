@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// eslint-disable-next-line
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
@@ -112,7 +113,6 @@ export const DateTitle = styled.span`
   white-space: nowrap;
   padding: 20px 20px 17px 0px;
   text-align: left;
-  //#989898
 `;
 
 export const SelectDate = styled.span`
@@ -122,4 +122,61 @@ export const SelectDate = styled.span`
   font-weight: 600;
   padding: 20px 0 17px;
   text-align: left;
+`;
+
+export const SelectTime = styled.span`
+  padding-right: 20px;
+  color: #989898;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 20px 0 17px;
+  text-align: left;
+  &.selected {
+    color: #333;
+  }
+`;
+
+export const TableContainer = styled.div`
+  padding-top: 15px;
+  width: 90%;
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+`;
+
+export const TableList = styled.ul`
+  width: 100%;
+  padding-left: 0px;
+  margin: 0 auto;
+`;
+
+export const TimeItem = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  width: 25%;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 0;
+`;
+
+export const TimeButton = styled.button`
+  display: block;
+  font-size: 16px;
+  padding: 10px 5px;
+  text-align: center;
+  border: 1px solid cornflowerblue;
+  background-color: transparent;
+  color: cornflowerblue;
+  border-radius: 3px;
+  width: 90%;
+  :disabled {
+    border: 1px solid #e2e5e8;
+    background-color: #f4f7f8;
+    color: #ccc;
+    cursor: default;
+  }
 `;
