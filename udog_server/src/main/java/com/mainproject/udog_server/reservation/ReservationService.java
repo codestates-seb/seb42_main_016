@@ -1,5 +1,7 @@
 package com.mainproject.udog_server.reservation;
 
+import com.mainproject.udog_server.hairshop.*;
+import com.mainproject.udog_server.member.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,15 +14,18 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ReservationService {
     private final ReservationRepository reservationRepository;
-
+    private final HairShopService hairShopService;
     public Reservation createReservation(Reservation reservation) {
+
         return reservationRepository.save(reservation);
     }
 
-    public Page<Reservation> findReservations(int page, int size) {
-        return reservationRepository.findAll(
+    //해당하는 멤버의 예약을 조회하는걸로 (쿼리)
+    public Page<Reservation> findReservations(long memberId, int page, int size) {
+        return reservationRepository.findAllByMemberMemberId(memberId,
                 PageRequest.of(page, size, Sort.by("reservationId").descending()));
     }
+
 
     public void deleteReservation(Long reservationId, Long memberId) {
         Reservation findReservation = findVerifiedReservation(reservationId);
@@ -38,6 +43,13 @@ public class ReservationService {
 
         return findReservation;
     }
+
+//    private Reservation findExistHairShop(Member member, HairShop hairShop) {
+//        Optional<Reservation> reservation = reservationRepository.findByMemberAndHairShop(member, hairShop);
+//
+//        Reservation findHairShop = reservation.orElseThrow(() -> null);
+//        return findHairShop;
+//    }
 
     // principal memberId와 DB에 저장된 ReservationMemberId가 같은지 검증
     private void compareIdAndLoginId(Long id, Long memberId) {

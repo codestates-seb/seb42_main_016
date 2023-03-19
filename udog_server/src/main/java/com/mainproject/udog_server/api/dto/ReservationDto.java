@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.*;
 
 public class ReservationDto {
     @Getter
@@ -19,15 +19,14 @@ public class ReservationDto {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Post {
-        private Member member;
-        private HairShop hairShop;
-        private Dog dog;
+        private long hairShopId;
+        private long dogId;
         @JsonFormat(pattern = "yyyy-MM-dd")
-        @JsonDeserialize(using = LocalDateDeserializer.class)
         private LocalDate reserveDate;
         @JsonFormat(pattern = "HH:MM")
-        @JsonDeserialize(using = LocalDateDeserializer.class)
-        private LocalDate reserveTime;
+        private LocalTime reserveTime;
+        //미용 옵션 프론트 분들이 string으로 아마 넘겨주실것. (enum이나 string으로 db에서)
+        private String hairOption;
     }
 
     @Getter

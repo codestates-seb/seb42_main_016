@@ -7,12 +7,11 @@ import com.mainproject.udog_server.dog.Dog;
 import com.mainproject.udog_server.hairshop.HairShop;
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.review.Review;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import net.bytebuddy.asm.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.*;
 
 @NoArgsConstructor
 @Getter
@@ -27,7 +26,7 @@ public class Reservation {
     @JoinColumn(name = "MEMBER_ID", nullable = false)
     private Member member;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "HAIR_SHOP_ID", nullable = false)
     private HairShop hairShop;
 
@@ -38,13 +37,26 @@ public class Reservation {
     private Review review;
 
     @Column(nullable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate reserveDate;
 
 
     @Column(nullable = false)
-    @JsonFormat(pattern = "HH:MM")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    private LocalDate reserveTime;
+    private LocalTime reserveTime;
+
+//    @Enumerated(value = EnumType.STRING)
+//    @Column
+//    private HairOption hairOption = HairOption.4kg이상 6kg미만;
+//
+//    public enum HairOption{
+//        프론트 분들한테 옵션 받기
+//    }
+
+    public Reservation(Member member, HairShop hairShop, Dog dog, Review review, LocalDate reserveDate, LocalTime reserveTime) {
+        this.member = member;
+        this.hairShop = hairShop;
+        this.dog = dog;
+        this.review = review;
+        this.reserveDate = reserveDate;
+        this.reserveTime = reserveTime;
+    }
 }
