@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.*;
 import java.time.*;
 
 public interface HairShopRepository extends JpaRepository<HairShop, Long> {
-    @Query("SELECT hs FROM HairShop hs WHERE hs.createdAt > :beginOfParam ORDER BY hs.hairShopLikes.size DESC")
+    @Query("SELECT hs FROM HairShop hs WHERE hs.hairShopLikes.createdAt > :beginOfParam ORDER BY hs.hairShopLikes.size DESC")
     Page<HairShop> findTop(@Param("beginOfParam") LocalDateTime beginOfDay, Pageable pageable);
 
     default Page<HairShop> findTopOfToday(Pageable pageable) {
