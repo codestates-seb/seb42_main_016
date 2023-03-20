@@ -23,7 +23,7 @@ function HairshopDetail() {
     dispatch(activeTab(0));
     dispatch(setId(id));
     dispatch(asyncUpFetch());
-  }, [dispatch, id]);
+  }, []);
 
   const tabTitle = ['홈', '예약', '리뷰'];
 

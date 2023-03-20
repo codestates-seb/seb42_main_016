@@ -1,27 +1,48 @@
 import * as S from '../style/HomeStyle';
+import { useState } from 'react';
 import img from '../../utils/img.jpeg';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectLoading } from '../../modules/redux/loadingSlice';
 import Loading from '../Loading';
 import ClockIcon from '../../utils/ClockIcon';
 import PhoneIcon from '../../utils/PhoneIcon';
 import ReviewIcon from '../../utils/ReviewIcon';
 import { IoHeartOutline, IoHeart } from 'react-icons/io5';
-import { selectLike } from '../../modules/redux/likeSlice';
 import useComment from '../../hooks/useComment';
 import useShopLike from '../../hooks/useShopLike';
 import { selectShop } from '../../modules/redux/shopSlice';
+import { selectUser } from '../../modules/redux/userSlice';
+import { openModal } from '../../modules/redux/modalSlice';
+import { LOGINMODAL } from '../../modules/ModalContainer';
 
 function HomeTab() {
   const maxLen = 63;
-  const { loading } = useSelector(selectLoading);
-  const { like } = useSelector(selectLike);
+  const dispatch = useDispatch();
   const shop = useSelector(selectShop);
+  const likeId = shop?.hairShopLikeId;
+  const [like, setLike] = useState(likeId);
+  const { user } = useSelector(selectUser);
+  const { loading } = useSelector(selectLoading);
   const { show, handleToggle, comment, getDisplayComment } = useComment(
     shop.hairShopDescription,
     maxLen,
   );
-  const { onLikeButtonClick } = useShopLike(shop.hairShopId);
+  const { onLikeButtonClick } = useShopLike(shop.hairShopId, like, likeId);
+
+  const handleLikeClick = () => {
+    if (!user) {
+      dispatch(
+        openModal({
+          modalType: LOGINMODAL,
+          isOpen: true,
+        }),
+      );
+      return;
+    }
+
+    setLike(!like);
+    onLikeButtonClick();
+  };
 
   if (loading) {
     return <Loading />;
@@ -38,9 +59,9 @@ function HomeTab() {
             <S.ShopName>
               {shop.hairShopName}
               {like ? (
-                <IoHeart className="fill" onClick={onLikeButtonClick} />
+                <IoHeart className="fill" onClick={handleLikeClick} />
               ) : (
-                <IoHeartOutline className="outline" onClick={onLikeButtonClick} />
+                <IoHeartOutline className="outline" onClick={handleLikeClick} />
               )}
             </S.ShopName>
             <S.ShopAddress>{shop.hairShopAddress}</S.ShopAddress>

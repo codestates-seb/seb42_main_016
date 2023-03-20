@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HAIRSHOP } from '../../modules/routes';
 
 export default function StylebookItem({ style, src }) {
-  const likeId = style?.likeId || false;
+  const likeId = style?.styleLikeId;
   const [like, setLike] = useState(likeId);
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -1,17 +1,28 @@
 import { useState, useEffect } from 'react';
 import API from '../modules/API';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from '../modules/redux/loadingSlice';
+import { selectUser } from '../modules/redux/userSlice';
 
 function useFetch(url) {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
+  const { user } = useSelector(selectUser);
+  const token = localStorage.getItem('accessToken');
+  const refresh = localStorage.getItem('refresh');
 
   useEffect(() => {
     if (window) window.scrollTo(0, 0);
     dispatch(setLoading(true));
 
-    API.get(url)
+    const headers = {};
+
+    if (user) {
+      headers.Authorization = token;
+      headers.Refresh = refresh;
+    }
+
+    API.get(url, { headers: headers })
       .then((res) => {
         setData(res.data);
       })

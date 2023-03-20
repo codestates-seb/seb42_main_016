@@ -2,9 +2,21 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import API from '../API';
 import { HAIRSHOP_ENDPOINT } from '../endpoints';
 
+const token = localStorage.getItem('accessToken');
+const refresh = localStorage.getItem('refresh');
+
+const headers = {};
+
 const asyncUpFetch = createAsyncThunk('shopSlice/asyncUpFetch', async (_, thunkAPI) => {
   const { id } = thunkAPI.getState().set;
-  const response = await API.get(`${HAIRSHOP_ENDPOINT}/${id}`);
+  const { user } = thunkAPI.getState().user;
+
+  if (user) {
+    headers.Authorization = token;
+    headers.Refresh = refresh;
+  }
+
+  const response = await API.get(`${HAIRSHOP_ENDPOINT}/${id}`, { headers: headers });
   return response.data;
 });
 
