@@ -1,5 +1,6 @@
 package com.mainproject.udog_server.reservation;
 
+import com.mainproject.udog_server.dog.*;
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.member.*;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class ReservationService {
 
     //해당하는 멤버의 예약을 조회하는걸로 (쿼리)
     public Page<Reservation> findReservations(Member member, int page, int size) {
-        return reservationRepository.findAllByMemberMember(member,
+        return reservationRepository.findAllByMember(member,
                 PageRequest.of(page, size, Sort.by("reservationId").descending()));
     }
 
@@ -44,8 +45,8 @@ public class ReservationService {
         return findReservation;
     }
 
-    private Reservation findExistHairShop(Member member, HairShop hairShop) {
-        Optional<Reservation> reservation = reservationRepository.findByMemberAndHairShop(member, hairShop);
+    private Reservation findExistHairShop(Member member, HairShop hairShop, Dog dog) {
+        Optional<Reservation> reservation = reservationRepository.findByMemberAndHairShopAndDog(member, hairShop, dog);
 
         Reservation findHairShop = reservation.orElseThrow(() -> null);
         return findHairShop;

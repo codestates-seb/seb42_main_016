@@ -36,8 +36,7 @@ public class ReservationCompositeService {
 
 
         return reservationService.findReservations(member,page-1, size);
-    }
-
+    } //수정필요
     public void deleteReservation(Long reservationId, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
 
