@@ -15,9 +15,8 @@ import java.util.Optional;
 public class ReviewService {
     private final ReviewRepository reviewRepository;
 
-    public Review createReview(Review review, MultipartFile reviewImage) {
+    public Review createReview(Review review) {
         review.setCreatedAt(LocalDateTime.now());
-        review.setReviewImage(reviewImage);
 
         return reviewRepository.save(review);
     }

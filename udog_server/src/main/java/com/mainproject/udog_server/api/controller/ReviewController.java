@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Positive;
+import java.io.IOException;
 import java.net.URI;
 import java.security.Principal;
 import java.util.List;
@@ -27,8 +28,8 @@ public class ReviewController {
     private final ReviewCompositeService compositeService;
     private final ReviewMapper mapper;
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity postReview(@RequestPart ReviewDto.Post postDto,
-                                     @RequestPart MultipartFile reviewImage,
+    public ResponseEntity postReview(@RequestPart("body") ReviewDto.Post postDto,
+                                     @RequestPart("image") MultipartFile reviewImage,
                                      Principal principal) {
         Review creatingReview = mapper.reviewPostDtoToReview(postDto);
         Review createdReview = compositeService.createReview(creatingReview, reviewImage, principal.getName());

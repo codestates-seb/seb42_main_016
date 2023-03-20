@@ -14,7 +14,7 @@ public interface ReviewMapper {
         Review review = new Review();
         hairShop.setHairShopId(postDto.getHairShopId());
         review.setHairShop(hairShop);
-        review.setReviewImage(postDto.getReviewImage());
+//        review.setReviewImage(postDto.getReviewImage());
         review.setReviewText(postDto.getReviewText());
 
         return review;
