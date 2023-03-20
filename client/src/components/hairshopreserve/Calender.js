@@ -4,6 +4,7 @@ import moment from 'moment/moment';
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { useDispatch, useSelector } from 'react-redux';
 import { clickDate, clickTime, selectBook } from '../../modules/redux/bookSlice';
+import { TimeOption } from '../../utils/BookOption';
 
 function Calender() {
   const dispatch = useDispatch();
@@ -12,20 +13,10 @@ function Calender() {
   const [isOpen, setIsopen] = useState(true);
   const formatDate = moment(value).format('YYYY-MM-DD');
   const DisplayDate = moment(value).format('YYYY년 MM월 DD일 dddd');
-  const sampleDate = [
-    '11:00',
-    '12:00',
-    '13:00',
-    '14:00',
-    '15:00',
-    '16:00',
-    '17:00',
-    '18:00',
-    '19:00',
-    '20:00',
-  ];
 
-  dispatch(clickDate(formatDate));
+  useEffect(() => {
+    dispatch(clickDate(formatDate));
+  }, [dispatch, formatDate]);
 
   useEffect(() => {
     dispatch(clickTime(null));
@@ -55,7 +46,7 @@ function Calender() {
             <S.DateContainer>
               <S.TableContainer>
                 <S.TableList>
-                  {sampleDate.map((time, idx) => (
+                  {TimeOption.map((time, idx) => (
                     <S.TimeItem key={idx}>
                       <S.TimeButton
                         onClick={() => {
