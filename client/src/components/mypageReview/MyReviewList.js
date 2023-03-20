@@ -1,21 +1,16 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ReviewItem from './ReviewItem';
-// import { useDispatch, useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 // import { fetchReviews } from '../../modules/redux/reviewsSlice';
 import API from '../../modules/API';
+import { REVIEW_ENDPOINT } from '../../modules/endpoints';
+
 export default function MyReviewList() {
   const [reviews, setReviews] = useState([]);
-  const token = localStorage.getItem('accessToken');
-  const refresh = localStorage.getItem('refresh');
-  const headers = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'X-refresh-Token': refresh,
-    },
-  };
+  const reviewId = 1;
   useEffect(() => {
-    API.get('/reviews', { headers })
+    API.get(`${REVIEW_ENDPOINT}/${reviewId}`)
       .then((res) => setReviews(res.data))
       .catch((error) => console.log(error));
   }, []);
@@ -28,10 +23,11 @@ export default function MyReviewList() {
   return (
     <>
       <Container>
-        {reviews &&
+        <ReviewItem reviews={reviews} />
+        {/* {reviews &&
           reviews.map((reviews) => {
             return <ReviewItem reviews={reviews} key={reviews.id} />;
-          })}
+          })} */}
       </Container>
     </>
   );

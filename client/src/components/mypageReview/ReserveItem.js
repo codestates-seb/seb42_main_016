@@ -8,24 +8,24 @@ import useScroll from '../../hooks/useScroll';
 import useAxios from '../../hooks/useAxios';
 import { REVIEW_ENDPOINT } from '../../modules/endpoints';
 import { MYPAGE, MYREVIEW } from '../../modules/routes';
+
 export default function ReserveItem() {
   const [modal, setModal] = useState(false);
-  const { POST } = useAxios();
+  const { POST, PATCH } = useAxios();
 
   function AddReviewForm() {
     // const dispatch = useDispatch();
     const [inputCount, setInputCount] = useState(0);
     const [reviewImage, setImage] = useState(null);
     const [reviewText, setText] = useState('');
-    const hairshopId = '1';
+    const hairShopId = 1;
     useScroll();
-
     const handleSubmit = (event) => {
       event.preventDefault();
       POST(
         REVIEW_ENDPOINT,
-        { reviewImage, reviewText, hairshopId },
-        `${MYPAGE}/${MYREVIEW}/readreview`
+        { reviewImage, reviewText, hairShopId },
+        `${MYPAGE}/${MYREVIEW}/readreview`,
       );
       setImage(null);
       setText('');
@@ -69,8 +69,6 @@ export default function ReserveItem() {
   }
   // disabled={!(photo && text)}
 
-  // function EditReviewForm() {}
-
   return (
     <S.RIWrap>
       <div className="upper">
@@ -78,9 +76,7 @@ export default function ReserveItem() {
           <IoIosCut className="icon" />
           미용실
         </S.HairshopName>
-        <S.CancelButton onClick={() => setModal(true)}>
-          {'리뷰 작성'}
-        </S.CancelButton>
+        <S.CancelButton onClick={() => setModal(true)}>{'리뷰 작성'}</S.CancelButton>
       </div>
       <S.ReserveInfo>
         <div className="info">

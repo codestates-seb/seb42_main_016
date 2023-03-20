@@ -3,19 +3,16 @@ import { REVIEW_ENDPOINT } from '../endpoints';
 import API from '../API';
 const token = localStorage.getItem('accessToken');
 const refresh = localStorage.getItem('refresh');
-const headers = {
+const config = {
   headers: {
-    Authorization: `Bearer ${token}`,
-    'X-refresh-Token': refresh,
+    Authorization: token,
+    refresh: refresh,
   },
 };
-export const fetchReviews = createAsyncThunk(
-  'reviews/fetchReviews',
-  async () => {
-    const response = await API.get(REVIEW_ENDPOINT, { headers });
-    return response.data;
-  }
-);
+export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async () => {
+  const response = await API.get({ REVIEW_ENDPOINT }, config);
+  return response.data;
+});
 // export const addReview = createAsyncThunk(
 //   'reviews/addReview',
 //   async (initialReview) => {
@@ -24,13 +21,10 @@ export const fetchReviews = createAsyncThunk(
 //   }
 // );
 
-export const deleteReview = createAsyncThunk(
-  'reviews/deleteReview',
-  async (id) => {
-    await API.delete(`${REVIEW_ENDPOINT}/${id}`, { headers });
-    return id;
-  }
-);
+export const deleteReview = createAsyncThunk('reviews/deleteReview', async (id) => {
+  await API.delete(`${REVIEW_ENDPOINT}/${id}`, config);
+  return id;
+});
 
 const initialState = { reviews: [], status: 'idle', error: null };
 
@@ -42,13 +36,13 @@ const reviewsSlice = createSlice({
     //   const { id } = action.payload;
     //   state.reviews = state.reviews.filter((review) => review.id !== id);
     // },
-    updateReview(state, action) {
-      const { id, text } = action.payload;
-      const review = state.find((review) => review.id === id);
-      if (review) {
-        review.text = text;
-      }
-    },
+    // updateReview(state, action) {
+    //   const { id, text } = action.payload;
+    //   const review = state.find((review) => review.id === id);
+    //   if (review) {
+    //     review.text = text;
+    //   }
+    // },
     extraReducers: (builder) => {
       builder
         .addCase(fetchReviews.pending, (state) => {
