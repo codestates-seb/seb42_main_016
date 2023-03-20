@@ -32,8 +32,9 @@ public class DogCompositeService {
         return updatedDog;
     }
 
-    public Dog findDog(Long dogId) {
-        Dog response = dogService.findDog(dogId);
+    public Dog findDog(Long dogId, String email) {
+        Member member = memberService.findLoginMemberByEmail(email);
+        Dog response = dogService.findDog(dogId, member);
         return response;
     }
 

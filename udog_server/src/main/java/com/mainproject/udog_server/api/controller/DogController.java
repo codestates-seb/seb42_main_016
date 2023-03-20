@@ -47,7 +47,9 @@ public class DogController {
                                     {
         patch.setDogId(dogId);
         Dog updatingDog = dogMapper.dogPatchDtoToDog(patch);
+
         Dog updatedDog = compositeService.updateDog(updatingDog, principal.getName());
+
         DogDto.Response response = dogMapper.dogToDogResponse(updatedDog);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -55,8 +57,9 @@ public class DogController {
 
 
     @GetMapping("/{dog-id}")
-    public ResponseEntity getDog (@Positive @PathVariable("dog-id") long dogId) {
-        Dog response = compositeService.findDog(dogId);
+    public ResponseEntity getDog (@Positive @PathVariable("dog-id") long dogId, Principal principal) {
+
+        Dog response = compositeService.findDog(dogId, principal.getName());
 
         return new ResponseEntity<>(dogMapper.dogToDogResponse(response), HttpStatus.OK);
     }
