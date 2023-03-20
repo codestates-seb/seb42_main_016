@@ -26,8 +26,8 @@ function DogCard({ dog }) {
         isOpen: true,
       }),
     );
-    dispatch(setUrl(`${MYDOG_ENDPOINT}/${dog.id}`));
-    dispatch(setId(dog.id));
+    dispatch(setUrl(`${MYDOG_ENDPOINT}/${dog.dogId}`));
+    dispatch(setId(dog.dogId));
   };
 
   return (

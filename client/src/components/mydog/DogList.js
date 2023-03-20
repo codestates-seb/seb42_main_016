@@ -22,7 +22,7 @@ function DogList() {
           </S.TitleBox>
           <S.CardFlex>
             {dogs?.map((dog) => {
-              return <DogCard dog={dog} key={dog.id} />;
+              return <DogCard dog={dog} key={dog.dogId} />;
             })}
             <AddCard />
           </S.CardFlex>

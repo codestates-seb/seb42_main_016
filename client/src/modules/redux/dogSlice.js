@@ -17,7 +17,7 @@ const dogSlice = createSlice({
   reducers: {
     deleteDog: (state, action) => {
       return produce(state, (draftState) => {
-        draftState.value = draftState.value.filter((item) => item.id !== action.payload);
+        draftState.value = draftState.value.filter((item) => item.dogId !== action.payload);
       });
     },
   },
