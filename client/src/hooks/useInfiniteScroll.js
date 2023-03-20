@@ -22,15 +22,15 @@ function useInfiniteScroll(url, perPage) {
       headers.Refresh = refresh;
     }
 
-    API.get(`${url}?page=${page}&size=${perPage}`, {
-      // API.get(`${url}?_page=${page}&_limit=${perPage}`, {
+    // API.get(`${url}?page=${page}&size=${perPage}`, {
+    API.get(`${url}?_page=${page}&_limit=${perPage}`, {
       headers: headers,
     })
       .then((res) => {
-        setData((prevData) => [...prevData, ...res.data.data]);
-        setHasMore(res.data.data.length > 0);
-        // setData((prevData) => [...prevData, ...res.data]);
-        // setHasMore(res.data.length > 0);
+        // setData((prevData) => [...prevData, ...res.data.data]);
+        // setHasMore(res.data.data.length > 0);
+        setData((prevData) => [...prevData, ...res.data]);
+        setHasMore(res.data.length > 0);
       })
       .finally(() => setLoading(false));
   }, [page]);

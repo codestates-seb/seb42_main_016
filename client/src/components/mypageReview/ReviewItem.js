@@ -23,7 +23,7 @@ export default function ReviewItem({ reviews }) {
     useScroll();
     const handleSubmit = (event) => {
       event.preventDefault();
-      PATCH(`${REVIEW_ENDPOINT}/${2}`, { reviewText }, `${MYPAGE}/${MYREVIEW}/readreview`);
+      PATCH(`${REVIEW_ENDPOINT}/${15}`, { reviewText }, `${MYPAGE}/${MYREVIEW}/readreview`);
       // setImage(null);
       setText('');
       // window.location.reload();

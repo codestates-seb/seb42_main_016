@@ -8,7 +8,7 @@ import { REVIEW_ENDPOINT } from '../../modules/endpoints';
 
 export default function MyReviewList() {
   const [reviews, setReviews] = useState([]);
-  const reviewId = 1;
+  const reviewId = 15;
   useEffect(() => {
     API.get(`${REVIEW_ENDPOINT}/${reviewId}`)
       .then((res) => setReviews(res.data))

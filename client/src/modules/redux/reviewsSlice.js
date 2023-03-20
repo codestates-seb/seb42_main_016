@@ -10,7 +10,7 @@ const config = {
   },
 };
 export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async () => {
-  const response = await API.get({ REVIEW_ENDPOINT }, config);
+  const response = await API.get(REVIEW_ENDPOINT, config);
   return response.data;
 });
 // export const addReview = createAsyncThunk(
