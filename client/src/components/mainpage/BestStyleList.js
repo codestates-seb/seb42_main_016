@@ -8,14 +8,13 @@ export default function BestStyleList() {
 
   return (
     <S.Container>
-      {data &&
-        data.map((style) => (
-          <StylebookItem
-            key={style.reviewId}
-            style={style}
-            src={`https://source.unsplash.com/random/${style.reviewId}`}
-          />
-        ))}
+      {data.map((style) => (
+        <StylebookItem
+          key={style.reviewId}
+          style={style}
+          src={`https://source.unsplash.com/random/${style.reviewId}`}
+        />
+      ))}
     </S.Container>
   );
 }
