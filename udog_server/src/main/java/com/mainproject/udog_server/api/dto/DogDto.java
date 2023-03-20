@@ -19,7 +19,7 @@ public class DogDto {
 //    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Post {
         @NotBlank
-        @Pattern(regexp = "^[a-zA-Z1-9가-힣]{2,}$"
+        @Pattern(regexp = "^[a-zA-Z가-힣]{2,}$"
                 , message = "강아지 이름은 영어(대, 소문자), 한글, 숫자로 이루어져야 합니다.")
         private String dogName;
 
@@ -54,7 +54,7 @@ public class DogDto {
 //    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Patch {
         private long dogId;
-        @Pattern(regexp = "^[a-zA-Z1-9가-힣]{2,}$"
+        @Pattern(regexp = "^[a-zA-Z가-힣]{2,}$"
                 , message = "강아지 이름은 영어(대, 소문자), 한글, 숫자로 이루어져야 합니다.")
         private String dogName;
         @DateTimeFormat(pattern = "yyyy-MM-dd")
