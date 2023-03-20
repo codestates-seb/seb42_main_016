@@ -1,13 +1,12 @@
-import { useDispatch } from 'react-redux';
-import { setIsSubmit, selectLike } from '../modules/redux/likeSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsSubmit, selectLike, setLikeId } from '../modules/redux/likeSlice';
 import { setLikeCount } from '../modules/redux/shopSlice';
 import API from '../modules/API';
 import { HAIRSHOPLIKE_ENDPOINT, HAIRSHOP_ENDPOINT } from '../modules/endpoints';
-import { useSelector } from 'react-redux';
 import { selectUser } from '../modules/redux/userSlice';
 
-function useShopLike(id, like, likeId) {
-  const { isSubmit } = useSelector(selectLike);
+function useShopLike(id, like) {
+  const { isSubmit, likeId } = useSelector(selectLike);
   const dispatch = useDispatch();
   const token = localStorage.getItem('accessToken');
   const refresh = localStorage.getItem('refresh');
@@ -45,6 +44,7 @@ function useShopLike(id, like, likeId) {
       )
         .then((res) => {
           console.log('좋아요 등록', res);
+          dispatch(setLikeId(res.data.hairShopLikeId));
           getLikeCount();
         })
         .finally(() => {

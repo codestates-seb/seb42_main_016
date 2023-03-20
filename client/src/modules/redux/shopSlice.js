@@ -49,6 +49,6 @@ export const { setLikeCount } = shopSlice.actions;
 
 export { asyncUpFetch };
 
-export const selectShop = (state) => state.shop.value;
+export const selectShop = (state) => state.shop.value.likeCount;
 
 export default shopSlice.reducer;

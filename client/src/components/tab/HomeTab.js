@@ -1,5 +1,5 @@
 import * as S from '../style/HomeStyle';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import img from '../../utils/img.jpeg';
 import { useSelector, useDispatch } from 'react-redux';
 import ClockIcon from '../../utils/ClockIcon';
@@ -12,20 +12,33 @@ import { selectShop } from '../../modules/redux/shopSlice';
 import { selectUser } from '../../modules/redux/userSlice';
 import { openModal } from '../../modules/redux/modalSlice';
 import { LOGINMODAL } from '../../modules/ModalContainer';
+import useFetch from '../../hooks/useFetch';
+import { HAIRSHOP_ENDPOINT } from '../../modules/endpoints';
+import { useParams } from 'react-router-dom';
+import { selectLike, setLikeId } from '../../modules/redux/likeSlice';
 
 function HomeTab() {
   const maxLen = 63;
   const hours = '10:00 ~ 20:00';
   const dispatch = useDispatch();
-  const shop = useSelector(selectShop);
-  const likeId = shop?.hairShopLikeId;
+  const { id } = useParams();
+  const count = useSelector(selectShop);
+  const { likeId } = useSelector(selectLike);
+  const shop = useFetch(`${HAIRSHOP_ENDPOINT}/${id}`);
   const [like, setLike] = useState(likeId);
   const { user } = useSelector(selectUser);
   const { show, handleToggle, comment, getDisplayComment } = useComment(
     shop.hairShopDescription,
     maxLen,
   );
-  const { onLikeButtonClick } = useShopLike(shop.hairShopId, like, likeId);
+  const { onLikeButtonClick } = useShopLike(shop.hairShopId, like);
+
+  useEffect(() => {
+    if (shop) {
+      dispatch(setLikeId(shop.hairShopLikeId));
+      setLike(shop.hairShopLikeId);
+    }
+  }, [shop]);
 
   const handleLikeClick = () => {
     if (!user) {
@@ -61,7 +74,7 @@ function HomeTab() {
             <S.ShopAddress>{shop.hairShopAddress}</S.ShopAddress>
             <S.InfoText>
               <IoHeartOutline />
-              {shop?.likeCount?.toLocaleString() ?? shop?.likeCount}
+              {count ? count.toLocaleString() : count}
             </S.InfoText>
             <S.InfoText>
               <ReviewIcon /> {shop?.reviewCount?.toLocaleString() ?? shop?.reviewCount}
