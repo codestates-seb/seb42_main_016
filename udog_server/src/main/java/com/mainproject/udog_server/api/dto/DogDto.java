@@ -1,5 +1,6 @@
 package com.mainproject.udog_server.api.dto;
 
+import com.fasterxml.jackson.annotation.*;
 import com.mainproject.udog_server.dog.Dog;
 import com.mainproject.udog_server.member.Member;
 import lombok.*;
@@ -25,10 +26,10 @@ public class DogDto {
 
         @NotNull
         @DateTimeFormat(pattern = "yyyy-MM-dd")
-//        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 //        @JsonDeserialize(using = LocalDateDeserializer.class)
 //        @JsonSerialize(using = LocalDateSerializer.class)
-        private Date dogBirthDate;
+        private String dogBirthDate;
 
         @NotNull
         private Dog.DogSpecies dogSpecies;

@@ -29,8 +29,13 @@ public class ReservationCompositeService {
         return createdReservation;
     }
 
-    public Page<Reservation> getReservations(long memberId, int page, int size) {
-        return reservationService.findReservations(memberId,page-1, size);
+    public Page<Reservation> getReservations(String email, int page, int size) {
+        Member member = memberService.findLoginMemberByEmail(email);
+
+        Page<Reservation> reservations = reservationService.findReservations(member, page, size);
+
+
+        return reservationService.findReservations(member,page-1, size);
     }
 
     public void deleteReservation(Long reservationId, String email) {

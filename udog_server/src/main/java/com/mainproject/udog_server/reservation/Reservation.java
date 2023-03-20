@@ -22,7 +22,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reservationId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID", nullable = false)
     private Member member;
 
@@ -30,6 +30,12 @@ public class Reservation {
     @JoinColumn(name = "HAIR_SHOP_ID", nullable = false)
     private HairShop hairShop;
 
+    public void setHairShop(HairShop hairShop){
+        this.hairShop = hairShop;
+        if(hairShop.getReservations().contains(this)) {
+            hairShop.getReservations().add(this);
+        }
+    }
     @OneToOne
     private Dog dog;
 
@@ -43,6 +49,9 @@ public class Reservation {
     @Column(nullable = false)
     private LocalTime reserveTime;
 
+    @Column
+    private String hairOption;
+
 //    @Enumerated(value = EnumType.STRING)
 //    @Column
 //    private HairOption hairOption = HairOption.4kg이상 6kg미만;
@@ -50,13 +59,15 @@ public class Reservation {
 //    public enum HairOption{
 //        프론트 분들한테 옵션 받기
 //    }
-
-    public Reservation(Member member, HairShop hairShop, Dog dog, Review review, LocalDate reserveDate, LocalTime reserveTime) {
+    @Builder
+    public Reservation(long reservationId, Member member, HairShop hairShop, Dog dog, Review review, LocalDate reserveDate, LocalTime reserveTime, String hairOption) {
+        this.reservationId = reservationId;
         this.member = member;
         this.hairShop = hairShop;
         this.dog = dog;
         this.review = review;
         this.reserveDate = reserveDate;
         this.reserveTime = reserveTime;
+        this.hairOption = hairOption;
     }
 }

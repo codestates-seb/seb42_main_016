@@ -4,6 +4,7 @@ import com.mainproject.udog_server.api.composite_service.ReservationCompositeSer
 import com.mainproject.udog_server.api.dto.ReservationDto;
 import com.mainproject.udog_server.api.mapper.ReservationMapper;
 import com.mainproject.udog_server.dto.MultiResponseDto;
+import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.reservation.Reservation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -36,10 +37,10 @@ public class ReservationController {
     // TODO: 특정 예약 정보 가져오기 필요한지?
 
     @GetMapping
-    public ResponseEntity getReservations(@Positive @RequestParam Long memberId,
+    public ResponseEntity getReservations(Principal principal,
                                           @Positive @RequestParam int page,
                                           @Positive @RequestParam int size) {
-        Page<Reservation> pageReservations = compositeService.getReservations(memberId, page, size);
+        Page<Reservation> pageReservations = compositeService.getReservations(principal.getName(), page, size);
         List<Reservation> reservations = pageReservations.getContent();
 
         MultiResponseDto response = new MultiResponseDto<>(mapper.reservationsToReservationResponseDto(reservations), pageReservations);

@@ -1,117 +1,122 @@
-//package com.mainproject.udog_server.restdocs.dog;
-//
-//import com.google.gson.Gson;
-//import com.mainproject.udog_server.api.dog.controller.DogController;
-//import com.mainproject.udog_server.api.dto.DogDto;
-//import com.mainproject.udog_server.api.dog.entity.Dog;
-//import com.mainproject.udog_server.api.mapper.DogMapper;
-//import com.mainproject.udog_server.api.dog.service.DogService;
-//import com.mainproject.udog_server.util.ApiDocumentUtils;
-//import org.hibernate.annotations.ResultCheckStyle;
-//import org.junit.jupiter.api.Test;
-//import org.mockito.Mockito;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
-//import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-//import org.springframework.boot.test.mock.mockito.MockBean;
-//import org.springframework.boot.web.servlet.server.Jsp;
-//import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
-//import org.springframework.http.HttpHeaders;
-//import org.springframework.http.MediaType;
-//import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
-//import org.springframework.restdocs.payload.JsonFieldType;
-//import org.springframework.test.web.servlet.MockMvc;
-//import org.springframework.test.web.servlet.MvcResult;
-//import org.springframework.test.web.servlet.ResultActions;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//
-//import static com.mainproject.udog_server.util.ApiDocumentUtils.getRequestPreProcessor;
-//import static com.mainproject.udog_server.util.ApiDocumentUtils.getResponsePreProcessor;
-//import static org.hamcrest.Matchers.is;
-//import static org.hamcrest.Matchers.startsWith;
-//import static org.mockito.BDDMockito.given;
-//import static org.mockito.Mockito.doNothing;
-//import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
-//import static org.springframework.restdocs.headers.HeaderDocumentation.responseHeaders;
-//import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-//import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
-//import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
-//import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-//import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-//import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
-//
-//import javax.print.attribute.standard.Media;
-//import javax.xml.transform.Result;
-//import java.time.LocalDate;
-//
-//import static org.mockito.BDDMockito.given;
-//import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-//
-//@WebMvcTest(DogController.class)
-//@MockBean(JpaMetamodelMappingContext.class)
-//@AutoConfigureRestDocs
-//public class DogControllerRestDocsTest {
-//    @Autowired
-//    private MockMvc mockMvc;
-//
-//    @MockBean
-//    private DogService dogService;
-//
-//    @MockBean
-//    private DogMapper mapper;
-//
-//    @Autowired
-//    private Gson gson;
-//
-//    @Test
-//    public void postDogTest() throws Exception {
-//        //given
-//        LocalDate dogBirthdate = LocalDate.parse("2000-01-01");
-//        DogDto.Post post = new DogDto.Post("럭키", dogBirthdate, "진돗개", 10, "없음");
-//        String content = gson.toJson(post);
-//
-//        given(mapper.dogPostDtoToDog(Mockito.any(DogDto.Post.class))).willReturn(new Dog());
-//
-//        Dog mockResultDog = new Dog();
-//        mockResultDog.setDogId(1L);
-//        given(dogService.createDog(Mockito.any(Dog.class))).willReturn(mockResultDog);
-//
-//        //when
-//        ResultActions actions =
-//                mockMvc.perform(
-//                        post("/my-dogs")
-//                                .accept(MediaType.APPLICATION_JSON)
-//                                .contentType(MediaType.APPLICATION_JSON)
-//                                .content(content)
-//                );
-//
-//        //then
-//        actions
-//                .andExpect(status().isCreated())
-//                .andExpect(header().string("Location", is(startsWith("/my-dogs"))))
-//                .andDo(document(
-//                        "post-dog",
-//                        getRequestPreProcessor(),
-//                        getResponsePreProcessor(),
-//                        requestFields(
-//                                List.of(
-//                                        fieldWithPath("dogName").type(JsonFieldType.STRING).description("강아지 이름"),
-//                                        fieldWithPath("dogBirthDate").type(JsonFieldType.STRING).description("강아지 생일"),
-//                                        fieldWithPath("dogSpecies").type(JsonFieldType.STRING).description("강아지 품종"),
-//                                        fieldWithPath("dogWeight").type(JsonFieldType.NUMBER).description("강아지 몸무게"),
-//                                        fieldWithPath("dogDescription").type(JsonFieldType.STRING).description("특이사항")
-//                                )
-//                        ),
-//                        responseHeaders(
-//                                headerWithName(HttpHeaders.LOCATION).description("Location header. 등록된 리소스의  URI")
-//                        )
-//
-//                ));
-//    }
-//
+package com.mainproject.udog_server.restdocs.dog;
+
+import com.google.gson.Gson;
+
+import com.mainproject.udog_server.api.dto.DogDto;
+
+import com.mainproject.udog_server.api.mapper.DogMapper;
+
+import com.mainproject.udog_server.dog.*;
+import com.mainproject.udog_server.util.ApiDocumentUtils;
+import org.hibernate.annotations.ResultCheckStyle;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
+import org.springframework.boot.test.autoconfigure.web.servlet.*;
+import org.springframework.boot.test.context.*;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.web.servlet.server.Jsp;
+import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
+import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+import static com.mainproject.udog_server.util.ApiDocumentUtils.getRequestPreProcessor;
+import static com.mainproject.udog_server.util.ApiDocumentUtils.getResponsePreProcessor;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.startsWith;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.responseHeaders;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
+
+import javax.print.attribute.standard.Media;
+import javax.xml.transform.Result;
+import java.time.LocalDate;
+
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+@AutoConfigureRestDocs
+public class DogControllerRestDocsTest {
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private DogService dogService;
+
+    @MockBean
+    private DogMapper mapper;
+
+    @Autowired
+    private Gson gson;
+
+    @Test
+    public void postDogTest() throws Exception {
+        //given
+        //(실제로 함수 호출)
+
+        DogDto.Post post = new DogDto.Post("럭키", "2022-01-01", Dog.DogSpecies.기타, "6Kg이상,10Kg미만", "없음");
+        String content = gson.toJson(post);
+
+        given(mapper.dogPostDtoToDog(Mockito.any(DogDto.Post.class))).willReturn(new Dog());
+        //(이부분) -> 실제로 함수 호출
+
+        Dog mockResultDog = new Dog();
+        mockResultDog.setDogId(1L);
+        given(dogService.createDog(Mockito.any(Dog.class))).willReturn(mockResultDog);
+        //(이부분)
+
+        //when
+        ResultActions actions =
+                mockMvc.perform(
+                        post("/my-dogs")
+                                .accept(MediaType.APPLICATION_JSON)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(content)
+                );
+
+        //then
+        actions
+                .andExpect(status().isCreated())
+                .andExpect(header().string("Location", is(startsWith("/my-dogs"))))
+                .andDo(document(
+                        "post-dog",
+                        getRequestPreProcessor(),
+                        getResponsePreProcessor(),
+                        requestFields(
+                                List.of(
+                                        fieldWithPath("dogName").type(JsonFieldType.STRING).description("강아지 이름"),
+                                        fieldWithPath("dogBirthDate").type(JsonFieldType.STRING).description("강아지 생일"),
+                                        fieldWithPath("dogSpecies").type(JsonFieldType.STRING).description("강아지 품종"),
+                                        fieldWithPath("dogWeight").type(JsonFieldType.NUMBER).description("강아지 몸무게"),
+                                        fieldWithPath("dogDescription").type(JsonFieldType.STRING).description("특이사항")
+                                )
+                        ),
+                        responseHeaders(
+                                headerWithName(HttpHeaders.LOCATION).description("Location header. 등록된 리소스의  URI")
+                        )
+
+                ));
+    }
+
 //    @Test
 //    public void patchDogTest() throws Exception {
 //        //given
@@ -285,4 +290,4 @@
 //                        )
 //                ));
 //    }
-//}
+}

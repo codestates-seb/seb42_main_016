@@ -42,7 +42,7 @@ public class HairShop {
     @OneToMany(mappedBy = "hairShop", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "hairShop")
+    @OneToMany(mappedBy = "hairShop", cascade = CascadeType.ALL)
     private List<Reservation> reservations = new ArrayList<>();
 
     @Transient

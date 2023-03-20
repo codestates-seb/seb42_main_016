@@ -52,8 +52,6 @@ public class HairShopController {
         return new ResponseEntity<>(hairShopMapper.hairShopToHairShopResponse(response), HttpStatus.OK);
     }
 
-    //todo PathVariable 값 오타 알려드리기
-    //todo 엔티티에서 builder중에 this.hairshopname
     //내 주변 미용실
     @GetMapping
     public ResponseEntity getHairShops(Principal principal,

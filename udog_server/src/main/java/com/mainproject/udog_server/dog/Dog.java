@@ -26,7 +26,7 @@ public class Dog {
 //    @JsonDeserialize(using = LocalDateDeserializer.class)
 //    @JsonSerialize(using = LocalDateSerializer.class)
 //    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dogBirthDate;
+    private LocalDate dogBirthDate;
 
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false, length = 25)
