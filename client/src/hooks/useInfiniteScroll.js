@@ -1,19 +1,21 @@
 import { useState, useEffect } from 'react';
 import API from '../modules/API';
 import { selectUser } from '../modules/redux/userSlice';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectLoading, setLoading } from '../modules/redux/loadingSlice';
 
 function useInfiniteScroll(url, perPage) {
+  const dispatch = useDispatch();
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
   const { user } = useSelector(selectUser);
+  const { loading } = useSelector(selectLoading);
   const token = localStorage.getItem('accessToken');
   const refresh = localStorage.getItem('refresh');
 
   useEffect(() => {
-    setLoading(true);
+    dispatch(setLoading(true));
 
     const headers = {};
 
@@ -32,7 +34,7 @@ function useInfiniteScroll(url, perPage) {
         // setData((prevData) => [...prevData, ...res.data]);
         // setHasMore(res.data.length > 0);
       })
-      .finally(() => setLoading(false));
+      .finally(() => dispatch(setLoading(false)));
   }, [page]);
 
   const handleScroll = (e) => {

@@ -6,6 +6,7 @@ import { useRef, useState } from 'react';
 import ScrollTopButton from '../components/ScrollTopButton';
 import { HAIRSHOP_ENDPOINT } from '../modules/endpoints';
 import Header from '../components/Header';
+import Loading from '../components/Loading';
 
 function Hairshop() {
   const PER_PAGE = 3;
@@ -29,7 +30,7 @@ function Hairshop() {
       {data.map((shop, index) => {
         return <HairshopList shop={shop} key={shop.hairShopId} last={index === shop.length - 1} />;
       })}
-      {loading && <div>Loading...</div>}
+      {loading && <Loading />}
       {showButton && <ScrollTopButton area={scrollAreaRef} />}
     </S.ScrollArea>
   );

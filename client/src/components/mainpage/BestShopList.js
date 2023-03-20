@@ -1,10 +1,9 @@
 import { HAIRSHOP_ENDPOINT } from '../../modules/endpoints';
 import HairshopList from '../hairshop/HairshopList';
-import useInfiniteScroll from '../../hooks/useInfiniteScroll';
+import useFetch from '../../hooks/useFetch';
 
 function BestShopList() {
-  const PER_PAGE = 10;
-  const { data } = useInfiniteScroll(HAIRSHOP_ENDPOINT, PER_PAGE);
+  const data = useFetch(`${HAIRSHOP_ENDPOINT}/top`);
 
   return (
     <>

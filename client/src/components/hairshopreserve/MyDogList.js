@@ -40,15 +40,15 @@ function MyDogList() {
       </S.TitleContainer>
       {data.length ? (
         data.map((mydog) => (
-          <S.SelectContainer key={mydog.id}>
+          <S.SelectContainer key={mydog.dogId}>
             <S.CheckBox selected={dog === mydog} onClick={() => onClikeOption(mydog)}>
               {dog === mydog && <MdDone />}
             </S.CheckBox>
             <S.DetailBox>
               <S.OptionTitle>{mydog.dogName}</S.OptionTitle>
-              <S.DetailText>{`${getDogAge(mydog.dogBirthDate)}, ${mydog.dogWeight}, ${
-                mydog.dogSpecies
-              }`}</S.DetailText>
+              <S.DetailText>{`${getDogAge(mydog.dogBirthDate)}, ${
+                mydog.dogWeight
+              }, ${mydog.dogSpecies.replace(/_/g, ' ')}`}</S.DetailText>
               <S.DetailText>
                 {mydog.dogDescription ? mydog.dogDescription : '특이사항 없음'}
               </S.DetailText>

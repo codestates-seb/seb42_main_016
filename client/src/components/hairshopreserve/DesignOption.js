@@ -1,6 +1,6 @@
 import * as S from '../style/ReserveStyle';
 import { MdDone } from 'react-icons/md';
-import { StyleOption } from '../../utils/StyleOption';
+import { StyleOption } from '../../utils/BookOption';
 import { useDispatch, useSelector } from 'react-redux';
 import { clickDesign, selectBook } from '../../modules/redux/bookSlice';
 import { useEffect } from 'react';
