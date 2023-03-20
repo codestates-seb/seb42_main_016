@@ -57,9 +57,9 @@ function useAxios(url, body, path) {
             isOpen: true,
           }),
         );
-        localStorage.clear();
         dispatch(logout());
         navigate(path);
+        window.location.reload();
         console.log('탈퇴성공', res);
       })
       .catch((err) => {
