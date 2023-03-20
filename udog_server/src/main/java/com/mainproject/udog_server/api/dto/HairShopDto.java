@@ -40,9 +40,10 @@ public class HairShopDto {
         private String hairShopImage;
         private int likeCount;
         private int reviewCount;
+        private long hairShopLikeId;
 
         @Builder
-        public Response(long hairShopId, String hairShopName, String hairShopAddress, String hairShopPhone, String hairShopDescription, String hairShopImage, int likeCount, int reviewCount) {
+        public Response(long hairShopId, String hairShopName, String hairShopAddress, String hairShopPhone, String hairShopDescription, String hairShopImage, int likeCount, int reviewCount, long hairShopLikeId) {
             this.hairShopId = hairShopId;
             this.hairShopName = hairShopName;
             this.hairShopAddress = hairShopAddress;
@@ -51,6 +52,7 @@ public class HairShopDto {
             this.hairShopImage = hairShopImage;
             this.likeCount = likeCount;
             this.reviewCount = reviewCount;
+            this.hairShopLikeId = hairShopLikeId;
         }
     }
 }

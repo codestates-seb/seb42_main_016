@@ -46,8 +46,9 @@ public class HairShopController {
 
     //미용실 상세페이지
     @GetMapping("/{hair-shops-id}")
-    public ResponseEntity getHairShop(@PathVariable("hair-shops-id") @Positive long hairShopId) {
-        HairShop response = compositeService.getHairShop(hairShopId);
+    public ResponseEntity getHairShop(Principal principal,
+                                      @PathVariable("hair-shops-id") @Positive long hairShopId) {
+        HairShop response = compositeService.getHairShop(principal, hairShopId);
 
         return new ResponseEntity<>(hairShopMapper.hairShopToHairShopResponse(response), HttpStatus.OK);
     }

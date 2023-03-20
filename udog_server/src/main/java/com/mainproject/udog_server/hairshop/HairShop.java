@@ -52,7 +52,7 @@ public class HairShop {
     private int reviewCount;
 
     @Transient
-    private long myLikeId;
+    private long myHairShopLikeId;
 
     public void addHairShopLike(HairShopLike hairShopLike) {
         hairShopLikes.add(hairShopLike);

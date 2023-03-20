@@ -22,7 +22,7 @@ public class MemberDto {
                 ,message = "8문자 이상이어야 하며 영어, 숫자, 특수문자(₩~!@#$%^&*()_+,.<>/?:')를 포함해야합니다")
         private String password;
 
-        @Pattern(regexp = "^.{2,10}$", message = "2글자 이상 10글자 이하로 작성해주세요")
+        @Pattern(regexp = "^[A-Za-z0-9가-힣]{2,10}$", message = "한, 영, 숫자를 조합한 2글자 이상 10글자 이하로 작성해주세요")
         private String nickname;
     }
 
@@ -30,7 +30,7 @@ public class MemberDto {
     @Getter
     public static class NicknamePatch{
         //Todo : 공백 체크, 한영숫자만 가능한지
-        @Pattern(regexp = "^[A-Za-z0-9]{2,10}$", message = "두글자 이상 10글자 이하로 작성해주세요")
+        @Pattern(regexp = "^[A-Za-z0-9가-힣]{2,10}$", message = "한, 영, 숫자를 조합한 두글자 이상 10글자 이하로 작성해주세요")
         private String nickname;
     }
 

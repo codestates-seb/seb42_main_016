@@ -28,8 +28,9 @@ public class HairShopCompositeService {
     }
 
     @Transactional(readOnly = true)
-    public HairShop getHairShop(long hairShopId){
-        return hairShopService.findHairShop(hairShopId);
+    public HairShop getHairShop(Principal principal, long hairShopId){
+        HairShop foundHairShop = hairShopService.findHairShop(hairShopId);
+        return setLikeCountAndHairShopLikeId(principal, new PageImpl<>(List.of(foundHairShop))).getContent().get(0);
     }
 
     @Transactional(readOnly = true)
@@ -55,7 +56,7 @@ public class HairShopCompositeService {
             long loginMemberId = memberService.findLoginMemberByEmail(loginEmail).getMemberId();
             hairShops.getContent().stream().forEach(hairShop -> {
                 hairShop.setLikeCount(hairShop.getHairShopLikes().size());
-                hairShop.setMyLikeId(findHairShopLikeId(hairShop.getHairShopLikes(), loginMemberId));
+                hairShop.setMyHairShopLikeId(findHairShopLikeId(hairShop.getHairShopLikes(), loginMemberId));
             });
         }
         return hairShops;
