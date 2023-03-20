@@ -8,8 +8,10 @@ import com.mainproject.udog_server.dto.MultiResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Positive;
 import java.net.URI;
@@ -24,10 +26,12 @@ public class ReviewController {
 
     private final ReviewCompositeService compositeService;
     private final ReviewMapper mapper;
-    @PostMapping
-    public ResponseEntity postReview(@RequestBody ReviewDto.Post postDto, Principal principal) {
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity postReview(@RequestPart ReviewDto.Post postDto,
+                                     @RequestPart MultipartFile reviewImage,
+                                     Principal principal) {
         Review creatingReview = mapper.reviewPostDtoToReview(postDto);
-        Review createdReview = compositeService.createReview(creatingReview,principal.getName());
+        Review createdReview = compositeService.createReview(creatingReview, reviewImage, principal.getName());
 
         return ResponseEntity.status(HttpStatus.CREATED).location(URI.create("/reviews")).body(mapper.reviewToReviewResponseDto(createdReview));
     }

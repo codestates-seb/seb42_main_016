@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -14,8 +15,9 @@ import java.util.Optional;
 public class ReviewService {
     private final ReviewRepository reviewRepository;
 
-    public Review createReview(Review review) {
+    public Review createReview(Review review, MultipartFile reviewImage) {
         review.setCreatedAt(LocalDateTime.now());
+        review.setReviewImage(reviewImage);
 
         return reviewRepository.save(review);
     }
@@ -26,8 +28,8 @@ public class ReviewService {
         // 멤버id와 로그인 멤버id를 비교하는 로직
         compareIdAndLoginId(findReview.getMember().getMemberId(), memberId);
 
-        Optional.ofNullable(review.getReviewImage())
-                .ifPresent(review_pic -> findReview.setReviewImage(review_pic));
+//        Optional.ofNullable(review.getReviewImage())
+//                .ifPresent(review_pic -> findReview.setReviewImage(review_pic));
         Optional.ofNullable(review.getReviewText())
                 .ifPresent(review_text -> findReview.setReviewText(review_text));
 

@@ -7,6 +7,7 @@ import com.mainproject.udog_server.review.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequiredArgsConstructor
 @Service
@@ -15,12 +16,12 @@ public class ReviewCompositeService {
     private final ReviewService reviewService;
     private final MemberService memberService;
 
-    public Review createReview(Review creatingReview, String email) {
+    public Review createReview(Review creatingReview, MultipartFile reviewImage, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
 
         creatingReview.setMember(member);
 
-        Review createdReview = reviewService.createReview(creatingReview);
+        Review createdReview = reviewService.createReview(creatingReview, reviewImage);
 
         return createdReview;
     }

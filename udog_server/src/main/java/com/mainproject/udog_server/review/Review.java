@@ -6,6 +6,7 @@ import com.mainproject.udog_server.styleLike.StyleLike;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -23,8 +24,8 @@ public class Review {
     @Column(nullable = false)
     private String reviewText;
 
-    @Column
-    private String reviewImage;
+//    @Transient
+//    private MultipartFile reviewImage;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;

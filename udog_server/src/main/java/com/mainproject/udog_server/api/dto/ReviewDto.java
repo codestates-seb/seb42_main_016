@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.Nullable;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
@@ -18,8 +19,8 @@ public class ReviewDto {
     public static class Post {
         @NotBlank
         private long hairShopId;
-        @NotBlank
-        private String reviewImage;
+//        @NotBlank
+//        private MultipartFile reviewImage;
         @NotBlank
         private String reviewText;
         private Member member;
@@ -31,8 +32,8 @@ public class ReviewDto {
     @AllArgsConstructor
     public static class Patch {
         private Long reviewId;
-        @Nullable
-        private String reviewImage;
+//        @Nullable
+//        private String reviewImage;
         @Nullable
         private String reviewText;
         private Member member;
@@ -43,7 +44,7 @@ public class ReviewDto {
     @AllArgsConstructor
     public static class Response {
         private Long reviewId;
-        private String reviewImage;
+//        private String reviewImage;
         private String reviewText;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
@@ -54,7 +55,7 @@ public class ReviewDto {
     @AllArgsConstructor
     public static class listResponse {
         private Long reviewId;
-        private String reviewImage;
+//        private String reviewImage;
         private String reviewText;
         private LocalDateTime createdAt;
     }
