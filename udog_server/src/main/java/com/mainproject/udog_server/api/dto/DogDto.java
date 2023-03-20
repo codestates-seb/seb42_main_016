@@ -61,7 +61,7 @@ public class DogDto {
 //        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         private Date dogBirthDate;
 //        @Pattern(regexp = "^\\d*$", message = "숫자만 입력해 주세요.")
-        private int dogWeight;
+        private String dogWeight;
         private String dogDescription;
         private Member member;
 
@@ -86,7 +86,7 @@ public class DogDto {
         private String dogName;
         private String dogBirthDate;
         private Dog.DogSpecies dogSpecies;
-        private int dogWeight;
+        private String dogWeight;
         private String dogDescription;
 
 //        @Builder
