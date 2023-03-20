@@ -5,10 +5,12 @@ import com.mainproject.udog_server.dog.Dog;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface DogMapper {
+    @Mapping(source = "dogBirthDate", target = "dogBirthDate", dateFormat = "yyyy-MM-dd")
     Dog dogPostDtoToDog(DogDto.Post postDto);
 
     Dog dogPatchDtoToDog(DogDto.Patch patchDto);

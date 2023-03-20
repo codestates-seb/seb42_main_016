@@ -1,5 +1,6 @@
 package com.mainproject.udog_server.reservation;
 
+import com.mainproject.udog_server.dog.*;
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.member.*;
 import lombok.RequiredArgsConstructor;
@@ -15,14 +16,16 @@ import java.util.Optional;
 public class ReservationService {
     private final ReservationRepository reservationRepository;
     private final HairShopService hairShopService;
+    private final DogService dogService;
     public Reservation createReservation(Reservation reservation) {
+
 
         return reservationRepository.save(reservation);
     }
 
     //해당하는 멤버의 예약을 조회하는걸로 (쿼리)
     public Page<Reservation> findReservations(Member member, int page, int size) {
-        return reservationRepository.findAllByMemberMember(member,
+        return reservationRepository.findAllByMember(member,
                 PageRequest.of(page, size, Sort.by("reservationId").descending()));
     }
 
@@ -44,12 +47,12 @@ public class ReservationService {
         return findReservation;
     }
 
-    private Reservation findExistHairShop(Member member, HairShop hairShop) {
-        Optional<Reservation> reservation = reservationRepository.findByMemberAndHairShop(member, hairShop);
-
-        Reservation findHairShop = reservation.orElseThrow(() -> null);
-        return findHairShop;
-    }
+//    private Reservation findExistHairShop(Member member, HairShop hairShop, Dog dog) {
+//        Optional<Reservation> reservation = reservationRepository.findByMemberAndHairShopAndDog(member, hairShop, dog);
+//
+//        Reservation findHairShop = reservation.orElseThrow(() -> null);
+//        return findHairShop;
+//    }
 
     // principal memberId와 DB에 저장된 ReservationMemberId가 같은지 검증
     private void compareIdAndLoginId(Long id, Long memberId) {

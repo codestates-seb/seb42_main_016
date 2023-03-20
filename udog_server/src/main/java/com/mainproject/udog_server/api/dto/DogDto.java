@@ -15,9 +15,8 @@ import java.util.*;
 
 public class DogDto {
     @Getter
-    @Setter
     @AllArgsConstructor
-//    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor
     public static class Post {
         @NotBlank
         @Pattern(regexp = "^[a-zA-Z가-힣]{2,}$"
@@ -27,32 +26,22 @@ public class DogDto {
         @NotNull
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-//        @JsonDeserialize(using = LocalDateDeserializer.class)
-//        @JsonSerialize(using = LocalDateSerializer.class)
         private String dogBirthDate;
 
         @NotNull
         private Dog.DogSpecies dogSpecies;
 
         @NotNull
-//        @Pattern(regexp = "^\\d*$", message = "숫자만 입력해 주세요.")
         private String dogWeight;
 
         private String dogDescription;
 
-//        @Builder
-//        public Post(String dogName, LocalDate dogBirthDate, String dogSpecies, int dogWeight, String dogDescription) {
-//            this.dogName = dogName;
-//            this.dogBirthDate = dogBirthDate;
-//            this.dogSpecies = dogSpecies;
-//            this.dogWeight = dogWeight;
-//            this.dogDescription = dogDescription;
-//        }
+
     }
     @Getter
     @Setter
     @AllArgsConstructor
-//    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor
     public static class Patch {
         private long dogId;
         @Pattern(regexp = "^[a-zA-Z가-힣]{2,}$"
@@ -60,28 +49,17 @@ public class DogDto {
         private String dogName;
         @DateTimeFormat(pattern = "yyyy-MM-dd")
 //        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-        private Date dogBirthDate;
-//        @Pattern(regexp = "^\\d*$", message = "숫자만 입력해 주세요.")
+        private LocalDate dogBirthDate;
         private String dogWeight;
         private String dogDescription;
         private Member member;
 
-
-//        @Builder
-//        public Patch(String dogName, LocalDate dogBirthDate, String dogSpecies, int dogWeight, String dogDescription) {
-//            this.dogName = dogName;
-//            this.dogBirthDate = dogBirthDate;
-//            this.dogSpecies = dogSpecies;
-//            this.dogWeight = dogWeight;
-//            this.dogDescription = dogDescription;
-//        }
     }
-    //    @Setter
-//    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+
     @AllArgsConstructor
     @Getter
     @Setter
-//    @NoArgsConstructor
+    @NoArgsConstructor
     public static class Response {
         private long dogId;
         private String dogName;
@@ -90,14 +68,5 @@ public class DogDto {
         private String dogWeight;
         private String dogDescription;
 
-//        @Builder
-//        public Response(long dogId, String dogName, String dogBirthDate, String dogSpecies, int dogWeight, String dogDescription) {
-//            this.dogId = dogId;
-//            this.dogName = dogName;
-//            this.dogBirthDate = dogBirthDate;
-//            this.dogSpecies = dogSpecies;
-//            this.dogWeight = dogWeight;
-//            this.dogDescription = dogDescription;
-//        }
     }
 }

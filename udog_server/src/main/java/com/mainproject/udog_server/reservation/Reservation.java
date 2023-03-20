@@ -26,7 +26,7 @@ public class Reservation {
     @JoinColumn(name = "MEMBER_ID", nullable = false)
     private Member member;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "HAIR_SHOP_ID", nullable = false)
     private HairShop hairShop;
 
@@ -36,10 +36,22 @@ public class Reservation {
             hairShop.getReservations().add(this);
         }
     }
-    @OneToOne
+
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "dog_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "dog_id")
     private Dog dog;
 
-    @OneToOne
+    public void setDog(Dog dog) {
+        this.dog = dog;
+        if(dog.getReservations().contains(this)) {
+            dog.getReservations().add(this);
+        }
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "review_id")
     private Review review;
 
     @Column(nullable = false)
@@ -49,18 +61,18 @@ public class Reservation {
     @Column(nullable = false)
     private LocalTime reserveTime;
 
+    @Enumerated(value = EnumType.STRING)
     @Column
-    private String hairOption;
+    private HairOption hairOption = HairOption.위생_미용;
 
-//    @Enumerated(value = EnumType.STRING)
-//    @Column
-//    private HairOption hairOption = HairOption.4kg이상 6kg미만;
-//
-//    public enum HairOption{
-//        프론트 분들한테 옵션 받기
-//    }
+    public enum HairOption {
+        위생_미용,
+        클리핑,
+        스포팅,
+        가위컷;
+}
     @Builder
-    public Reservation(long reservationId, Member member, HairShop hairShop, Dog dog, Review review, LocalDate reserveDate, LocalTime reserveTime, String hairOption) {
+    public Reservation(long reservationId, Member member, HairShop hairShop, Dog dog, Review review, LocalDate reserveDate, LocalTime reserveTime, Reservation.HairOption hairOption) {
         this.reservationId = reservationId;
         this.member = member;
         this.hairShop = hairShop;

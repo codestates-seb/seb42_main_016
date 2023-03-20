@@ -20,13 +20,11 @@ public class ReservationCompositeService {
 
     public Reservation createReservation(Reservation creatingReservation, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
-
         creatingReservation.setMember(member);
 
-        Reservation createdReservation = reservationService.createReservation(creatingReservation);
+        Reservation response = reservationService.createReservation(creatingReservation);
 
-
-        return createdReservation;
+        return response;
     }
 
     public Page<Reservation> getReservations(String email, int page, int size) {
@@ -36,8 +34,7 @@ public class ReservationCompositeService {
 
 
         return reservationService.findReservations(member,page-1, size);
-    }
-
+    } //수정필요
     public void deleteReservation(Long reservationId, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
 

@@ -2,6 +2,7 @@ package com.mainproject.udog_server.dog;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mainproject.udog_server.member.Member;
+import com.mainproject.udog_server.reservation.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -42,6 +43,9 @@ public class Dog {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
+
+    @OneToMany(mappedBy = "dog", cascade = CascadeType.ALL)
+    private List<Reservation> reservations = new ArrayList<>();
 
     public enum DogSpecies {
         기타,
