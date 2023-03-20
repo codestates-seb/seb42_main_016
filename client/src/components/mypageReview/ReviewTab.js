@@ -1,23 +1,14 @@
-import { NavLink } from 'react-router-dom';
-import { CREVIEW, WREVIEW } from '../../modules/routes';
 import * as S from '../style/ReviewStyle';
+import { NavLink } from 'react-router-dom';
 export default function ReviewTab() {
   return (
     <S.TabWrap>
-      <div>
-        <NavLink
-          to={WREVIEW}
-          className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-          작성 가능한 리뷰
-        </NavLink>
-      </div>
-      <div>
-        <NavLink
-          to={CREVIEW}
-          className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-          작성한 리뷰
-        </NavLink>
-      </div>
+      <NavLink to={'writereview'}>
+        <div>작성 가능한 리뷰</div>
+      </NavLink>
+      <NavLink to={'readreview'}>
+        <div>작성한 리뷰</div>
+      </NavLink>
     </S.TabWrap>
   );
 }
