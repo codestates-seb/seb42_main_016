@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import ReserveItem from './ReserveItem';
 
-export default function ReserveList() {
+export default function WriteReview() {
   return (
     <Container>
       <ReserveItem />

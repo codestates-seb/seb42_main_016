@@ -8,7 +8,5 @@ export const MYPAGE = '/mypage';
 export const MYINFO = 'myinfo';
 export const MYRESERVE = 'reserve';
 export const MYREVIEW = 'review';
-export const WREVIEW = 'wreview';
-export const CREVIEW = 'creview';
 export const MYDOG = 'mydog';
 export const MYDOGEDIT = '/mypage/mydog/edit';

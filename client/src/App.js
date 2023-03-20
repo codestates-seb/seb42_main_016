@@ -12,8 +12,6 @@ import MyInfo from './pages/MyInfo';
 import Myreserve from './pages/Myreserve';
 import MainPage from './pages/MainPage';
 import Myreview from './pages/Myreview';
-import ReserveList from './components/mypageReview/ReserveList';
-import ReviewList from './components/mypageReview/ReviewList';
 
 import ModalContainer from './modules/ModalContainer';
 import {
@@ -29,9 +27,9 @@ import {
   MYREVIEW,
   MYDOG,
   MYDOGEDIT,
-  WREVIEW,
-  CREVIEW,
 } from './modules/routes';
+import WriteReview from './components/mypageReview/WriteReview';
+import MyReviewList from './components/mypageReview/MyReviewList';
 
 function App() {
   return (
@@ -50,9 +48,9 @@ function App() {
           <Route path={MYINFO} element={<MyInfo />} />
           <Route path={MYRESERVE} element={<Myreserve />} />
           <Route path={MYREVIEW} element={<Myreview />}>
-            <Route index element={<ReserveList />} />
-            <Route path={WREVIEW} element={<ReserveList />} />
-            <Route path={CREVIEW} element={<ReviewList />} />
+            <Route index element={<WriteReview />} />
+            <Route path="writereview" element={<WriteReview />} />
+            <Route path="readreview" element={<MyReviewList />} />
           </Route>
           <Route path={MYDOG} element={<Mydog />} />
           <Route path={MYDOGEDIT} element={<MydogEditor />} />

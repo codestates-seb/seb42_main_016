@@ -10,16 +10,12 @@ export const Container = styled.div`
 //Tab
 export const TabWrap = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  border-bottom: 1px solid #ddd;
-  .nav-link {
-    text-decoration: none;
-    color: black;
-  }
-  .nav-link.active {
-    font-weight: bold;
-  }
+  justify-content: center;
+  align-items: center;
+  color: blue;
   div {
-    padding: 10px;
+    width: 300px;
+    text-align: center;
+    text-decoration: none;
   }
 `;
