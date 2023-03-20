@@ -11,11 +11,14 @@ import { setId } from '../modules/redux/setSlice';
 import Header from '../components/Header';
 import { Footer } from '../components/style/FooterStyle';
 import useScrollTop from '../hooks/useScrollTop';
+import { selectLoading } from '../modules/redux/loadingSlice';
+import Loading from '../components/Loading';
 
 function HairshopDetail() {
   const dispatch = useDispatch();
   const { tab, isOn } = useSelector(selectTab);
   const { id } = useParams();
+  const { loading } = useSelector(selectLoading);
 
   useScrollTop();
 
@@ -23,7 +26,7 @@ function HairshopDetail() {
     dispatch(activeTab(0));
     dispatch(setId(id));
     dispatch(asyncUpFetch());
-  }, []);
+  }, [dispatch]);
 
   const tabTitle = ['홈', '예약', '리뷰'];
 
@@ -48,6 +51,7 @@ function HairshopDetail() {
                   <span>{menu}</span>
                 </S.Li>
               ))}
+              {loading && <Loading />}
             </S.Ul>
           </S.TabBar>
         </S.TabBarBox>

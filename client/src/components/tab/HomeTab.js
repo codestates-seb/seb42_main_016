@@ -2,8 +2,6 @@ import * as S from '../style/HomeStyle';
 import { useState } from 'react';
 import img from '../../utils/img.jpeg';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectLoading } from '../../modules/redux/loadingSlice';
-import Loading from '../Loading';
 import ClockIcon from '../../utils/ClockIcon';
 import PhoneIcon from '../../utils/PhoneIcon';
 import ReviewIcon from '../../utils/ReviewIcon';
@@ -17,12 +15,12 @@ import { LOGINMODAL } from '../../modules/ModalContainer';
 
 function HomeTab() {
   const maxLen = 63;
+  const hours = '10:00 ~ 20:00';
   const dispatch = useDispatch();
   const shop = useSelector(selectShop);
   const likeId = shop?.hairShopLikeId;
   const [like, setLike] = useState(likeId);
   const { user } = useSelector(selectUser);
-  const { loading } = useSelector(selectLoading);
   const { show, handleToggle, comment, getDisplayComment } = useComment(
     shop.hairShopDescription,
     maxLen,
@@ -43,10 +41,6 @@ function HomeTab() {
     setLike(!like);
     onLikeButtonClick();
   };
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <S.HomeContainer>
@@ -73,8 +67,7 @@ function HomeTab() {
               <ReviewIcon /> {shop?.reviewCount?.toLocaleString() ?? shop?.reviewCount}
             </S.InfoText>
             <S.InfoText>
-              <ClockIcon />
-              10:00 ~ 19:00
+              <ClockIcon /> {hours}
             </S.InfoText>
             <S.InfoText>
               <PhoneIcon />
