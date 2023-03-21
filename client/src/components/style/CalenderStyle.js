@@ -8,43 +8,39 @@ export const CalenderContainer = styled.div`
   margin-bottom: 30px;
   display: flex;
   justify-content: center;
-`;
 
-export const StyledCalendar = styled(Calendar)`
   /* 캘린더 전체 스타일 */
-  font-size: 26px;
-  min-width: 500px;
-  height: 500px;
-  border-radius: 5px;
-  border-color: #ececec;
-  box-shadow: 2px 2px 10px rgba(50, 50, 50, 0.1);
+  .react-calendar {
+    border: 1px solid #ececec;
+    font-size: 26px;
+    min-width: 500px;
+    height: 475.75px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(50, 50, 50, 0.1);
+  }
 
   /* 날짜 선택 스타일 */
   .react-calendar__tile {
     font-size: 16px;
     border: none;
-    &:hover {
-      background: #74b9ff;
-      color: white;
+    :disabled {
+      color: #666;
+      cursor: default;
     }
-    &:focus {
-      background: #74b9ff;
-      color: white;
-    }
-  }
-
-  .react-calendar__tile--active {
-    background: #74b9ff;
-    color: white;
   }
 
   .react-calendar__tile--now {
     background: #ececec;
     color: #666;
-    &:hover {
-      background: #74b9ff;
-      color: white;
-    }
+  }
+
+  .react-calendar__tile--active,
+  .react-calendar__tile:enabled:hover,
+  .react-calendar__tile:enabled:focus,
+  .react-calendar__tile--now:enabled:hover,
+  .react-calendar__tile--now:enabled:focus {
+    background: #74b9ff;
+    color: white;
   }
 
   /* 달력의 헤더 스타일 */
@@ -54,6 +50,7 @@ export const StyledCalendar = styled(Calendar)`
     height: 50px;
     font-size: 22px;
     border-radius: 5px 5px 0 0;
+    margin-bottom: 0;
   }
 
   /* 이전/다음 버튼 스타일 */
@@ -66,14 +63,34 @@ export const StyledCalendar = styled(Calendar)`
     color: cornflowerblue;
     font-size: 18px;
     font-weight: 500;
+    pointer-events: none;
+    :enabled:hover {
+      background-color: transparent;
+    }
   }
 
-  .react-calendar__navigation__prev2-button {
+  .react-calendar__navigation__prev-button {
     border-radius: 5px 0 0 0;
+    :disabled {
+      background-color: transparent;
+      cursor: default;
+    }
+    :enabled:hover,
+    :enabled:focus {
+      background-color: transparent;
+    }
   }
 
-  .react-calendar__navigation__next2-button {
+  .react-calendar__navigation__next-button {
     border-radius: 0 5px 0 0;
+    :disabled {
+      background-color: transparent;
+      cursor: default;
+    }
+    :enabled:hover,
+    :enabled:focus {
+      background-color: transparent;
+    }
   }
 
   .react-calendar__month-view__days {
