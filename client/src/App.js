@@ -17,7 +17,10 @@ import {
   MYREVIEW,
   MYDOG,
   MYDOGEDIT,
+  NOTFOUND,
 } from './modules/routes';
+
+import NotFound from './pages/NotFound';
 
 const MainPage = lazy(() => import('./pages/MainPage'));
 const Signup = lazy(() => import('./pages/Signup'));
@@ -59,6 +62,7 @@ function App() {
             <Route path={MYDOG} element={<Mydog />} />
             <Route path={MYDOGEDIT} element={<MydogEditor />} />
           </Route>
+          <Route path={NOTFOUND} element={<NotFound />} />
         </Routes>
       </Suspense>
       <Toaster
