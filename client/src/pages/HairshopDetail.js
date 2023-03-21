@@ -9,8 +9,8 @@ import { useEffect } from 'react';
 import { asyncUpFetch } from '../modules/redux/shopSlice';
 import { setId } from '../modules/redux/setSlice';
 import Header from '../components/Header';
-import { Footer } from '../components/style/FooterStyle';
 import useScrollTop from '../hooks/useScrollTop';
+import Footer from '../components/Footer';
 
 function HairshopDetail() {
   const dispatch = useDispatch();

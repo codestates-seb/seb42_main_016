@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-// eslint-disable-next-line
-import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 export const CalenderContainer = styled.div`
@@ -17,6 +15,12 @@ export const CalenderContainer = styled.div`
     height: 475.75px;
     border-radius: 5px;
     box-shadow: 2px 2px 10px rgba(50, 50, 50, 0.1);
+  }
+
+  .react-calendar__month-view__weekdays__weekday {
+    abbr[title] {
+      text-decoration: none;
+    }
   }
 
   /* 날짜 선택 스타일 */

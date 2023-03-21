@@ -8,8 +8,11 @@ import API from '../modules/API';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN, HOME } from '../modules/routes';
 import { MEMBERS_ENDPOINT } from '../modules/endpoints';
+import { setError } from '../modules/redux/errorSlice';
+import { useDispatch } from 'react-redux';
 
 function SignupForm() {
+  const dispatch = useDispatch();
   const [value, setValue] = useState({
     nickname: '',
     email: '',
@@ -57,6 +60,7 @@ function SignupForm() {
         navigate(LOGIN);
       })
       .catch((err) => {
+        dispatch(setError('회원가입에 실패했습니다.'));
         console.log(err);
       });
   };

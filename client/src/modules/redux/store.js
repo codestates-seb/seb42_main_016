@@ -11,6 +11,7 @@ import likeSlice from './likeSlice';
 import reviewsReducer from './reviewsSlice';
 import shopSlice from './shopSlice';
 import bookSlice from './bookSlice';
+import errorSlice from './errorSlice';
 
 const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ const store = configureStore({
     reviews: reviewsReducer,
     shop: shopSlice,
     book: bookSlice,
+    error: errorSlice,
   },
 });
 

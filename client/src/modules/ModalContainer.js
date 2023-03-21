@@ -8,6 +8,7 @@ import LoginModal from '../components/modal/LoginModal';
 import HomeModal from '../components/modal/HomeModal';
 import WithdrawConfirmModal from '../components/modal/WithdrawConfirmModal';
 import LogoutConfirmModal from '../components/modal/LogoutConfirmModal';
+import BookConfirmModal from '../components/modal/BookConfirmModal';
 
 export const WEIGHTMODAL = 'WeightModal';
 export const TYPEMODAL = 'TypeModal';
@@ -16,6 +17,7 @@ export const LOGINMODAL = 'LoginModal';
 export const HOMEMODAL = 'HomeModal';
 export const WITHDRAWCONFIRMMODAL = 'WithdrawConfirmModal';
 export const LOGOUTCONFIRMMODAL = 'LogoutConfirmModal';
+export const BOOKCONFIRMMODAL = 'BookConfirmModal';
 
 const MODAL_TYPES = {
   WeightModal: WEIGHTMODAL,
@@ -25,6 +27,7 @@ const MODAL_TYPES = {
   HomeModal: HOMEMODAL,
   WithdrawConfirmModal: WITHDRAWCONFIRMMODAL,
   LogoutConfirmModal: LOGOUTCONFIRMMODAL,
+  BookConfirmModal: BOOKCONFIRMMODAL,
 };
 
 const MODAL_COMPONENTS = [
@@ -55,6 +58,10 @@ const MODAL_COMPONENTS = [
   {
     type: MODAL_TYPES.LogoutConfirmModal,
     component: <LogoutConfirmModal />,
+  },
+  {
+    type: MODAL_TYPES.BookConfirmModal,
+    component: <BookConfirmModal />,
   },
 ];
 
