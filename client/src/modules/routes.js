@@ -10,3 +10,4 @@ export const MYRESERVE = 'reserve';
 export const MYREVIEW = 'review';
 export const MYDOG = 'mydog';
 export const MYDOGEDIT = '/mypage/mydog/edit';
+export const NOTFOUND = `/*`;

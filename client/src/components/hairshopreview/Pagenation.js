@@ -1,5 +1,5 @@
 import * as S from '../style/ShopRevewStyle';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectShop } from '../../modules/redux/shopSlice';
 import {
@@ -9,9 +9,8 @@ import {
   AiOutlineLeft,
 } from 'react-icons/ai';
 
-function Pagenation() {
+function Pagenation({ currentPage, setCurrentPage }) {
   const shop = useSelector(selectShop);
-  const [currentPage, setCurrentPage] = useState(1);
   const reviewPerPage = 10;
   const pageNumbers = Math.ceil(shop.reviewCount / reviewPerPage);
 
