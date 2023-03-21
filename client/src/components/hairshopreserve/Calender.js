@@ -5,7 +5,7 @@ import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDate, setTime, selectBook } from '../../modules/redux/bookSlice';
 import { TimeOption } from '../../utils/BookOption';
-import Calendar from 'react-calendar';
+import ReactCalendar from 'react-calendar';
 
 function Calender() {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ function Calender() {
     <>
       {/* 캘린더 */}
       <S.CalenderContainer>
-        <Calendar
+        <ReactCalendar
           onChange={onChange}
           value={value}
           next2Label={null}
