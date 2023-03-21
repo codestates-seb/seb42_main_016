@@ -19,11 +19,9 @@ public class ReviewCompositeService {
 
     public Review createReview(Review creatingReview, MultipartFile reviewImage, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
-
-        // TODO: s3 저장하는 로직
-        fileUploadService.uploadImage(reviewImage);
-
         creatingReview.setMember(member);
+
+        creatingReview.setReviewImage(fileUploadService.uploadImage(reviewImage));
 
         Review createdReview = reviewService.createReview(creatingReview);
 

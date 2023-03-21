@@ -24,8 +24,8 @@ public class Review {
     @Column(nullable = false)
     private String reviewText;
 
-//    @Transient
-//    private MultipartFile reviewImage;
+    @Column
+    private String reviewImage;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
