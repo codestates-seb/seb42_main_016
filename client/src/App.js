@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GlobalStyle from './components/style/GlobalStyle';
 import ModalContainer from './modules/ModalContainer';
 import Loading from './components/Loading';
+import { Toaster } from 'react-hot-toast';
 import {
   HOME,
   LOGIN,
@@ -60,6 +61,14 @@ function App() {
           </Route>
         </Routes>
       </Suspense>
+      <Toaster
+        toastOptions={{
+          className: '',
+          style: {
+            fontSize: '16px',
+          },
+        }}
+      />
     </BrowserRouter>
   );
 }
