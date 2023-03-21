@@ -34,7 +34,6 @@ public class DogController {
     @PostMapping
     public ResponseEntity postDog (@Valid @RequestBody DogDto.Post post, Principal principal){
         Dog creatingDog = dogMapper.dogPostDtoToDog(post);
-
         Dog createdDog = compositeService.createDog(creatingDog, principal.getName());
         DogDto.Response response = dogMapper.dogToDogResponse(createdDog);
         return new ResponseEntity<>(response, HttpStatus.CREATED);

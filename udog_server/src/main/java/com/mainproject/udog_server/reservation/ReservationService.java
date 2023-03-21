@@ -9,7 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.time.*;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -47,6 +48,16 @@ public class ReservationService {
         return findReservation;
     }
 
+//    public List<LocalTime> findReservedTime(LocalDate reserveDate, long hairShopId) {
+//        List<Reservation> reservations = reservationRepository.findByReserveDateAndHairShop(reserveDate, hairShopId);
+//        List<LocalTime> reservedTime = new ArrayList<>();
+//
+//        for(Reservation reservation : reservations) {
+//            reservedTime.add(reservation.getReserveTime());
+//        }
+//
+//        return reservedTime;
+//    }
 //    private Reservation findExistHairShop(Member member, HairShop hairShop, Dog dog) {
 //        Optional<Reservation> reservation = reservationRepository.findByMemberAndHairShopAndDog(member, hairShop, dog);
 //
