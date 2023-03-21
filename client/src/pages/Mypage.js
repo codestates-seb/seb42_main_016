@@ -2,10 +2,10 @@ import MypageSidebar from '../components/mypage/MypageSidebar';
 import * as S from '../components/style/MyPageStyle';
 import { Outlet, Navigate } from 'react-router-dom';
 import Header from '../components/Header';
-import { Footer } from '../components/style/FooterStyle';
 import TopButton from '../components/stylebook/TopButton';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../modules/redux/userSlice';
+import Footer from '../components/Footer';
 
 export default function Mypage() {
   const { user } = useSelector(selectUser);
