@@ -13,8 +13,6 @@ function ReviewTab() {
   const data = useFetch(REVIEW_ENDPOINT);
   const minLen = 9;
 
-  console.log(shop.reviewCount);
-
   return (
     <S.HomeContainer>
       <S.HomeContent>
