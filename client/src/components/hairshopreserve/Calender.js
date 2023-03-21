@@ -5,11 +5,13 @@ import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { useDispatch, useSelector } from 'react-redux';
 import { setDate, setTime, selectBook } from '../../modules/redux/bookSlice';
 import { TimeOption } from '../../utils/BookOption';
+import Calendar from 'react-calendar';
 
 function Calender() {
   const dispatch = useDispatch();
   const { time } = useSelector(selectBook);
   const now = moment().toDate();
+  const maxDate = moment().add(1, 'months').toDate();
   const [value, onChange] = useState(now);
   const [isOpen, setIsopen] = useState(true);
   const formatDate = moment(value).format('YYYY-MM-DD');
@@ -27,7 +29,14 @@ function Calender() {
     <>
       {/* 캘린더 */}
       <S.CalenderContainer>
-        <S.StyledCalendar onChange={onChange} value={value} />
+        <Calendar
+          onChange={onChange}
+          value={value}
+          next2Label={null}
+          prev2Label={null}
+          maxDate={maxDate}
+          minDate={now}
+        />
       </S.CalenderContainer>
       {/* 타임 테이블*/}
       <S.CalenderContainer>
