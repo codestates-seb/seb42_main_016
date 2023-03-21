@@ -140,3 +140,19 @@ export const CountText = styled.strong`
   width: 100%;
   text-align: left;
 `;
+
+export const ReserveBtn = styled.button`
+  background-color: cornflowerblue;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  width: 150px;
+  height: 50px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  :disabled {
+    background-color: #f2f4f7;
+    cursor: default;
+    color: #ccc;
+  }
+`;

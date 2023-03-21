@@ -26,6 +26,7 @@ function DogForm() {
   const { option } = useSelector(selectModal);
   const { edit, data } = useSelector(selectEdit);
   const { dogWeight, dogSpecies } = option;
+  const originType = dogSpecies.replace(/_/g, ' ');
 
   useEffect(() => {
     if (edit) {
@@ -70,9 +71,9 @@ function DogForm() {
     const changeType = dogSpecies.replace(/\s/g, '_');
 
     if (edit) {
-      const { id } = data;
+      const { dogId } = data;
       PATCH(
-        `${MYDOG_ENDPOINT}/${id}`,
+        `${MYDOG_ENDPOINT}/${dogId}`,
         {
           dogName,
           dogBirthDate: changeDate,
@@ -144,7 +145,7 @@ function DogForm() {
           type="text"
           placeholder="견종을 선택해주세요."
           name="dogSpecies"
-          value={dogSpecies}
+          value={originType}
           readOnly
           onClick={handleOpenTypeModal}
         />

@@ -3,9 +3,9 @@ import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectModal, closeModal } from '../../modules/redux/modalSlice';
 import useScroll from '../../hooks/useScroll';
-import { logout } from '../../modules/redux/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { HOME } from '../../modules/routes';
+import { logout } from '../../modules/redux/userSlice';
 
 function LogoutConfirmModal() {
   const modalRef = useRef();
@@ -32,11 +32,11 @@ function LogoutConfirmModal() {
     dispatch(closeModal());
   };
 
-  const onClickDelete = async () => {
-    localStorage.clear();
-    await dispatch(logout());
+  const onClickDelete = () => {
+    dispatch(logout());
     dispatch(closeModal());
     navigate(HOME);
+    window.location.reload();
   };
 
   return (

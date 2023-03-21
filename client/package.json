@@ -11,11 +11,13 @@
 		"immer": "^9.0.19",
 		"moment": "^2.29.4",
 		"react": "^18.2.0",
+		"react-calendar": "^4.0.0",
 		"react-dom": "^18.2.0",
 		"react-icons": "^4.8.0",
 		"react-redux": "^8.0.5",
 		"react-router-dom": "^6.8.2",
 		"react-scripts": "5.0.1",
+		"react-spinners": "^0.13.8",
 		"styled-components": "^5.3.8",
 		"web-vitals": "^2.1.4"
 	},

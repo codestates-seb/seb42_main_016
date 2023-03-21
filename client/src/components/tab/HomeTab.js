@@ -1,31 +1,59 @@
 import * as S from '../style/HomeStyle';
+import { useState, useEffect } from 'react';
 import img from '../../utils/img.jpeg';
-import { useSelector } from 'react-redux';
-import { selectLoading } from '../../modules/redux/loadingSlice';
-import Loading from '../Loading';
+import { useSelector, useDispatch } from 'react-redux';
 import ClockIcon from '../../utils/ClockIcon';
 import PhoneIcon from '../../utils/PhoneIcon';
 import ReviewIcon from '../../utils/ReviewIcon';
 import { IoHeartOutline, IoHeart } from 'react-icons/io5';
-import { selectLike } from '../../modules/redux/likeSlice';
 import useComment from '../../hooks/useComment';
 import useShopLike from '../../hooks/useShopLike';
 import { selectShop } from '../../modules/redux/shopSlice';
+import { selectUser } from '../../modules/redux/userSlice';
+import { openModal } from '../../modules/redux/modalSlice';
+import { LOGINMODAL } from '../../modules/ModalContainer';
+import useFetch from '../../hooks/useFetch';
+import { HAIRSHOP_ENDPOINT } from '../../modules/endpoints';
+import { useParams } from 'react-router-dom';
+import { selectLike, setLikeId } from '../../modules/redux/likeSlice';
 
 function HomeTab() {
   const maxLen = 63;
-  const { loading } = useSelector(selectLoading);
-  const { like } = useSelector(selectLike);
-  const shop = useSelector(selectShop);
+  const hours = '10:00 ~ 20:00';
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const count = useSelector(selectShop);
+  const { likeId } = useSelector(selectLike);
+  const shop = useFetch(`${HAIRSHOP_ENDPOINT}/${id}`);
+  const [like, setLike] = useState(likeId);
+  const { user } = useSelector(selectUser);
   const { show, handleToggle, comment, getDisplayComment } = useComment(
     shop.hairShopDescription,
     maxLen,
   );
-  const { onLikeButtonClick } = useShopLike(shop.hairShopId);
+  const { onLikeButtonClick } = useShopLike(shop.hairShopId, like);
 
-  if (loading) {
-    return <Loading />;
-  }
+  useEffect(() => {
+    if (shop) {
+      dispatch(setLikeId(shop.hairShopLikeId));
+      setLike(shop.hairShopLikeId);
+    }
+  }, [shop]);
+
+  const handleLikeClick = () => {
+    if (!user) {
+      dispatch(
+        openModal({
+          modalType: LOGINMODAL,
+          isOpen: true,
+        }),
+      );
+      return;
+    }
+
+    setLike(!like);
+    onLikeButtonClick();
+  };
 
   return (
     <S.HomeContainer>
@@ -38,22 +66,21 @@ function HomeTab() {
             <S.ShopName>
               {shop.hairShopName}
               {like ? (
-                <IoHeart className="fill" onClick={onLikeButtonClick} />
+                <IoHeart className="fill" onClick={handleLikeClick} />
               ) : (
-                <IoHeartOutline className="outline" onClick={onLikeButtonClick} />
+                <IoHeartOutline className="outline" onClick={handleLikeClick} />
               )}
             </S.ShopName>
             <S.ShopAddress>{shop.hairShopAddress}</S.ShopAddress>
             <S.InfoText>
               <IoHeartOutline />
-              {shop?.likeCount?.toLocaleString() ?? shop?.likeCount}
+              {count ? count.toLocaleString() : count}
             </S.InfoText>
             <S.InfoText>
               <ReviewIcon /> {shop?.reviewCount?.toLocaleString() ?? shop?.reviewCount}
             </S.InfoText>
             <S.InfoText>
-              <ClockIcon />
-              10:00 ~ 19:00
+              <ClockIcon /> {hours}
             </S.InfoText>
             <S.InfoText>
               <PhoneIcon />
