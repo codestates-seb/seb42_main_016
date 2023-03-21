@@ -22,7 +22,7 @@ function HomeTab() {
   const hours = '10:00 ~ 20:00';
   const dispatch = useDispatch();
   const { id } = useParams();
-  const count = useSelector(selectShop);
+  const { likeCount } = useSelector(selectShop);
   const { likeId } = useSelector(selectLike);
   const shop = useFetch(`${HAIRSHOP_ENDPOINT}/${id}`);
   const [like, setLike] = useState(likeId);
@@ -74,7 +74,7 @@ function HomeTab() {
             <S.ShopAddress>{shop.hairShopAddress}</S.ShopAddress>
             <S.InfoText>
               <IoHeartOutline />
-              {count ? count.toLocaleString() : count}
+              {likeCount ? likeCount.toLocaleString() : likeCount}
             </S.InfoText>
             <S.InfoText>
               <ReviewIcon /> {shop?.reviewCount?.toLocaleString() ?? shop?.reviewCount}
