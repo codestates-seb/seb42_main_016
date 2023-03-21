@@ -27,10 +27,11 @@ import {
   MYREVIEW,
   MYDOG,
   MYDOGEDIT,
+  NOTFOUND,
 } from './modules/routes';
 import WriteReview from './components/mypageReview/WriteReview';
 import MyReviewList from './components/mypageReview/MyReviewList';
-
+import NotFound from './pages/NotFound';
 function App() {
   return (
     <BrowserRouter>
@@ -55,6 +56,7 @@ function App() {
           <Route path={MYDOG} element={<Mydog />} />
           <Route path={MYDOGEDIT} element={<MydogEditor />} />
         </Route>
+        <Route path={NOTFOUND} element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
