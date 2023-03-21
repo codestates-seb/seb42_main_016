@@ -29,10 +29,10 @@ function useInfiniteScroll(url, perPage) {
       headers: headers,
     })
       .then((res) => {
-        // setData((prevData) => [...prevData, ...res.data.data]);
-        // setHasMore(res.data.data.length > 0);
-        setData((prevData) => [...prevData, ...res.data]);
-        setHasMore(res.data.length > 0);
+        setData((prevData) => [...prevData, ...res.data.data]);
+        setHasMore(res.data.data.length > 0);
+        // setData((prevData) => [...prevData, ...res.data]);
+        // setHasMore(res.data.length > 0);
       })
       .finally(() => dispatch(setLoading(false)));
   }, [page]);

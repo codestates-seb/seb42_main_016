@@ -411,6 +411,33 @@
       "reviewLikeCount": 0,
       "createdAt": "2023-03-13T03:25:29.625171",
       "modifiedAt": null
+    },
+    {
+      "reviewId": 10,
+      "reviewImage": "1",
+      "reviewText": "11 번째 리뷰입니다.",
+      "hairShopId": 2,
+      "reviewLikeCount": 0,
+      "createdAt": "2023-03-13T03:25:29.625171",
+      "modifiedAt": null
+    },
+    {
+      "reviewId": 10,
+      "reviewImage": "1",
+      "reviewText": "12 번째 리뷰입니다.",
+      "hairShopId": 2,
+      "reviewLikeCount": 0,
+      "createdAt": "2023-03-13T03:25:29.625171",
+      "modifiedAt": null
+    },
+    {
+      "reviewId": 10,
+      "reviewImage": "1",
+      "reviewText": "13 번째 리뷰입니다.",
+      "hairShopId": 2,
+      "reviewLikeCount": 0,
+      "createdAt": "2023-03-13T03:25:29.625171",
+      "modifiedAt": null
     }
   ],
   "styleBook": [
