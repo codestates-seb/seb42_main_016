@@ -4,10 +4,10 @@ import moment from 'moment/moment';
 import 'moment/locale/ko';
 
 function ShopReview({ item, last }) {
+  const now = moment().toDate();
   const displayCreatedAt = () => {
-    let startTime = new Date(item.createdAt);
-    let nowTime = Date.now();
-    let diffTime = parseInt(nowTime - startTime);
+    let startTime = moment(item.createdAt).toDate();
+    let diffTime = parseInt(now - startTime);
 
     if (diffTime < 60000) {
       return moment(startTime).locale('ko').format('방금 전');
