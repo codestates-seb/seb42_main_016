@@ -14,8 +14,8 @@ function ReviewTab() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const data = useFetch(
-    `${REVIEW_ENDPOINT}?hariShopId=${shop.hairShopId}?page=${currentPage}&size=${10}`,
-  );
+    `${REVIEW_ENDPOINT}?hairShopId=${shop.hairShopId}&page=${currentPage}&size=${10}`,
+  )['data'];
   const minLen = 9;
 
   return (
@@ -24,9 +24,10 @@ function ReviewTab() {
         {shop.reviewCount ? (
           <>
             <S.CountText>리뷰 {shop.reviewCount} 개</S.CountText>
-            {data.map((item, index) => (
-              <ShopReview key={item.reviewId} item={item} last={index === data.length - 1} />
-            ))}
+            {data &&
+              data.map((item, index) => (
+                <ShopReview key={item.reviewId} item={item} last={index === data.length - 1} />
+              ))}
           </>
         ) : (
           <Empty text="작성된 리뷰가 없습니다." />
