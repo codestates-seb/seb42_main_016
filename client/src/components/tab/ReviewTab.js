@@ -9,7 +9,7 @@ import { selectShop } from '../../modules/redux/shopSlice';
 
 function ReviewTab() {
   const shop = useSelector(selectShop);
-  const data = useFetch(REVIEW_ENDPOINT);
+  const data = useFetch(`${REVIEW_ENDPOINT}`);
   const minLen = 9;
 
   return (

@@ -39,13 +39,13 @@ export default function ReserveItem() {
       formData.append('reviewImage', reviewImage);
       formData.append(
         'body',
-        new Blob([JSON.stringify(reviewText, hairShopId)], {
+        new Blob([JSON.stringify({ reviewText, hairShopId })], {
           type: 'application/json',
         }),
       );
       let entries = formData.entries();
       for (const pair of entries) {
-        console.log(pair[0] + ', ' + pair[1]);
+        console.log(pair[0] + ', ' + pair[1][0]);
       }
 
       API.post(REVIEW_ENDPOINT, formData, config)

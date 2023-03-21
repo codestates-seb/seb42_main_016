@@ -13,7 +13,7 @@ function Calender() {
   const [isOpen, setIsopen] = useState(true);
   const formatDate = moment(value).format('YYYY-MM-DD');
   const DisplayDate = moment(value).format('YYYY년 MM월 DD일 dddd');
-
+  const activeStartDate = new Date(2023, 2, 30);
   useEffect(() => {
     dispatch(clickDate(formatDate));
   }, [dispatch, formatDate]);
@@ -26,7 +26,7 @@ function Calender() {
     <>
       {/* 캘린더 */}
       <S.CalenderContainer>
-        <S.StyledCalendar onChange={onChange} value={value} />
+        <S.StyledCalendar onChange={onChange} value={value} activeStartDate={activeStartDate} />
       </S.CalenderContainer>
       {/* 타임 테이블*/}
       <S.CalenderContainer>
