@@ -6,6 +6,7 @@ import TopButton from '../stylebook/TopButton';
 import Pagenation from '../hairshopreview/Pagenation';
 import { useSelector } from 'react-redux';
 import { selectShop } from '../../modules/redux/shopSlice';
+import Empty from '../Empty';
 
 function ReviewTab() {
   const shop = useSelector(selectShop);
@@ -15,7 +16,11 @@ function ReviewTab() {
   return (
     <S.HomeContainer>
       <S.HomeContent>
-        <S.CountText>리뷰 {shop.reviewCount} 개</S.CountText>
+        {shop.reviewCount ? (
+          <S.CountText>리뷰 {shop.reviewCount} 개</S.CountText>
+        ) : (
+          <Empty text="작성된 리뷰가 없습니다." />
+        )}
         {data.map((item, index) => (
           <ShopReview key={item.reviewId} item={item} last={index === data.length - 1} />
         ))}

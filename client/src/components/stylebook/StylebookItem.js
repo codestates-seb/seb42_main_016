@@ -10,7 +10,7 @@ import { LOGINMODAL } from '../../modules/ModalContainer';
 import { useDispatch, useSelector } from 'react-redux';
 import { HAIRSHOP } from '../../modules/routes';
 
-export default function StylebookItem({ style, src }) {
+function StylebookItem({ style, src }) {
   const likeId = style.styleLikeId;
   const [like, setLike] = useState(likeId);
   const dispatch = useDispatch();
@@ -53,3 +53,5 @@ export default function StylebookItem({ style, src }) {
     </S.ItemWrap>
   );
 }
+
+export default StylebookItem;

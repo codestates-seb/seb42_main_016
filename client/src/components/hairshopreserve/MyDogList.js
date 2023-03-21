@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from '../../modules/redux/userSlice';
 import { MYPAGE, MYDOG, LOGIN } from '../../modules/routes';
-import { clickDog, selectBook } from '../../modules/redux/bookSlice';
+import { setDog, selectBook } from '../../modules/redux/bookSlice';
 
 function MyDogList() {
   const navigate = useNavigate();
@@ -18,11 +18,11 @@ function MyDogList() {
   const data = useFetch(MYDOG_ENDPOINT);
 
   useEffect(() => {
-    dispatch(clickDog(null));
+    dispatch(setDog(null));
   }, []);
 
   const onClikeOption = (mydog) => {
-    dispatch(clickDog(mydog === dog ? null : mydog));
+    dispatch(setDog(mydog === dog ? null : mydog));
   };
 
   const onClickCreate = () => {

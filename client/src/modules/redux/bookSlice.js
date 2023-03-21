@@ -11,19 +11,19 @@ const bookSlice = createSlice({
   name: 'book',
   initialState,
   reducers: {
-    clickDate: (state, action) => {
+    setDate: (state, action) => {
       state.date = action.payload;
     },
-    clickTime: (state, action) => {
+    setTime: (state, action) => {
       state.time = action.payload;
     },
-    clickDesign: (state, action) => {
+    setDesign: (state, action) => {
       state.design = action.payload;
     },
-    clickDog: (state, action) => {
+    setDog: (state, action) => {
       state.dog = action.payload;
     },
-    clearBook: (state) => {
+    deleteBook: (state) => {
       state.date = null;
       state.time = null;
       state.design = null;
@@ -32,7 +32,7 @@ const bookSlice = createSlice({
   },
 });
 
-export const { clickDate, clickTime, clickDesign, clickDog, clearBook } = bookSlice.actions;
+export const { setDate, setTime, setDesign, setDog, deleteBook } = bookSlice.actions;
 
 export const selectBook = (state) => state.book;
 
