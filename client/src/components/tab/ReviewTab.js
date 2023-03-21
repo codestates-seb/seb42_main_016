@@ -13,17 +13,21 @@ function ReviewTab() {
   const data = useFetch(REVIEW_ENDPOINT);
   const minLen = 9;
 
+  console.log(shop.reviewCount);
+
   return (
     <S.HomeContainer>
       <S.HomeContent>
         {shop.reviewCount ? (
-          <S.CountText>리뷰 {shop.reviewCount} 개</S.CountText>
+          <>
+            <S.CountText>리뷰 {shop.reviewCount} 개</S.CountText>
+            {data.map((item, index) => (
+              <ShopReview key={item.reviewId} item={item} last={index === data.length - 1} />
+            ))}
+          </>
         ) : (
           <Empty text="작성된 리뷰가 없습니다." />
         )}
-        {data.map((item, index) => (
-          <ShopReview key={item.reviewId} item={item} last={index === data.length - 1} />
-        ))}
       </S.HomeContent>
       {shop.reviewCount > minLen ? <Pagenation /> : ''}
       <TopButton />
