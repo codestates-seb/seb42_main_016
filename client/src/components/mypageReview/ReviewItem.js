@@ -2,14 +2,14 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { deleteReview } from '../../modules/redux/reviewsSlice';
-import useAxios from '../../hooks/useAxios';
+// import useAxios from '../../hooks/useAxios';
 import useScroll from '../../hooks/useScroll';
 import { REVIEW_ENDPOINT } from '../../modules/endpoints';
 import { MYPAGE, MYREVIEW } from '../../modules/routes';
+import API from '../../modules/API';
 
 export default function ReviewItem({ reviews }) {
   const [editModal, setEditModal] = useState(false);
-  const { POST, PATCH } = useAxios();
   const dispatch = useDispatch();
   const handleDelete = () => {
     dispatch(deleteReview(2));
@@ -23,7 +23,7 @@ export default function ReviewItem({ reviews }) {
     useScroll();
     const handleSubmit = (event) => {
       event.preventDefault();
-      PATCH(`${REVIEW_ENDPOINT}/${15}`, { reviewText }, `${MYPAGE}/${MYREVIEW}/readreview`);
+      API.patch(`${REVIEW_ENDPOINT}/${16}`, { reviewText }, `${MYPAGE}/${MYREVIEW}/readreview`);
       // setImage(null);
       setText('');
       // window.location.reload();

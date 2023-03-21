@@ -6,11 +6,11 @@ import styled from 'styled-components';
 // import { addReview } from '../../modules/redux/reviewsSlice';
 import useScroll from '../../hooks/useScroll';
 // import useAxios from '../../hooks/useAxios';
-// import API from '../../modules/API';
-import axios from 'axios';
+// import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { REVIEW_ENDPOINT } from '../../modules/endpoints';
 import { MYPAGE, MYREVIEW } from '../../modules/routes';
+import API from '../../modules/API';
 
 export default function ReserveItem() {
   const [modal, setModal] = useState(false);
@@ -38,14 +38,17 @@ export default function ReserveItem() {
       const formData = new FormData();
       formData.append('reviewImage', reviewImage);
       formData.append(
-        'post',
+        'body',
         new Blob([JSON.stringify(reviewText, hairShopId)], {
           type: 'application/json',
         }),
       );
+      let entries = formData.entries();
+      for (const pair of entries) {
+        console.log(pair[0] + ', ' + pair[1]);
+      }
 
-      axios
-        .post(REVIEW_ENDPOINT, formData, config)
+      API.post(REVIEW_ENDPOINT, formData, config)
         .then((res) => {
           console.log('등록성공', res);
           navigate(`${MYPAGE}/${MYREVIEW}/readreview`);
