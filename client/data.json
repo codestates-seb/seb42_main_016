@@ -8,7 +8,7 @@
       "hairShopName": "모란모란",
       "hairShopAddress": "경기 안산시 상록구 매화로2길 3 모란모란",
       "likeCount": 3,
-      "reviewCount": 11,
+      "reviewCount": 10,
       "hairShopPhone": "031-1234-5678",
       "hairShopDescription": "안녕하세요 1인샵 강아지미용실 입니다!"
     },
@@ -325,7 +325,7 @@
     {
       "reviewId": 1,
       "reviewImage": "1",
-      "reviewText": "첫 번째 리뷰입니다.",
+      "reviewText": "1 번째 리뷰입니다.",
       "hairShopId": 1,
       "reviewLikeCount": 0,
       "createdAt": "2023-03-13T03:25:29.625171",
@@ -334,7 +334,7 @@
     {
       "reviewId": 2,
       "reviewImage": "1",
-      "reviewText": "첫 번째 리뷰입니다.",
+      "reviewText": "2 번째 리뷰입니다.",
       "hairShopId": 1,
       "reviewLikeCount": 0,
       "createdAt": "2023-03-18T03:25:29.625171",
@@ -343,7 +343,7 @@
     {
       "reviewId": 3,
       "reviewImage": "1",
-      "reviewText": "첫 번째 리뷰입니다.",
+      "reviewText": "3 번째 리뷰입니다.",
       "hairShopId": 1,
       "reviewLikeCount": 0,
       "createdAt": "2023-03-17T03:25:29.625171",
@@ -352,7 +352,7 @@
     {
       "reviewId": 4,
       "reviewImage": "1",
-      "reviewText": "첫 번째 리뷰입니다.",
+      "reviewText": "4 번째 리뷰입니다.",
       "hairShopId": 1,
       "reviewLikeCount": 0,
       "createdAt": "2023-03-13T03:25:29.625171",
@@ -361,7 +361,7 @@
     {
       "reviewId": 5,
       "reviewImage": "1",
-      "reviewText": "첫 번째 리뷰입니다.",
+      "reviewText": "5 번째 리뷰입니다.",
       "hairShopId": 1,
       "reviewLikeCount": 0,
       "createdAt": "2023-03-13T03:25:29.625171",
@@ -370,7 +370,7 @@
     {
       "reviewId": 6,
       "reviewImage": "1",
-      "reviewText": "첫 번째 리뷰입니다.",
+      "reviewText": "6 번째 리뷰입니다.",
       "hairShopId": 2,
       "reviewLikeCount": 0,
       "createdAt": "2023-03-13T03:25:29.625171",
@@ -379,7 +379,7 @@
     {
       "reviewId": 7,
       "reviewImage": "1",
-      "reviewText": "첫 번째 리뷰입니다.",
+      "reviewText": "7 번째 리뷰입니다.",
       "hairShopId": 2,
       "reviewLikeCount": 0,
       "createdAt": "2023-03-13T03:25:29.625171",
@@ -388,7 +388,7 @@
     {
       "reviewId": 8,
       "reviewImage": "1",
-      "reviewText": "첫 번째 리뷰입니다.",
+      "reviewText": "8 번째 리뷰입니다.",
       "hairShopId": 2,
       "reviewLikeCount": 0,
       "createdAt": "2023-03-13T03:25:29.625171",
@@ -397,7 +397,7 @@
     {
       "reviewId": 9,
       "reviewImage": "1",
-      "reviewText": "첫 번째 리뷰입니다.",
+      "reviewText": "9 번째 리뷰입니다.",
       "hairShopId": 2,
       "reviewLikeCount": 0,
       "createdAt": "2023-03-13T03:25:29.625171",
@@ -406,7 +406,7 @@
     {
       "reviewId": 10,
       "reviewImage": "1",
-      "reviewText": "첫 번째 리뷰입니다.",
+      "reviewText": "10 번째 리뷰입니다.",
       "hairShopId": 2,
       "reviewLikeCount": 0,
       "createdAt": "2023-03-13T03:25:29.625171",

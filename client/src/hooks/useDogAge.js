@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
+import moment from 'moment/moment';
 
 function useDogAge(value) {
   const [validText, setValidText] = useState('');
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
-    const age = new Date().getFullYear() - value.slice(0, 4);
+    const now = moment().toDate();
+    const age = now.getFullYear() - value.slice(0, 4);
     const isMonth = value.slice(4, 6) > 12 || value.slice(4, 6) === '00';
     const isDay = value.slice(-2) > 31 || value.slice(-2) === '00';
 

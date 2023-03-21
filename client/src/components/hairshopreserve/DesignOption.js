@@ -2,7 +2,7 @@ import * as S from '../style/ReserveStyle';
 import { MdDone } from 'react-icons/md';
 import { StyleOption } from '../../utils/BookOption';
 import { useDispatch, useSelector } from 'react-redux';
-import { clickDesign, selectBook } from '../../modules/redux/bookSlice';
+import { setDesign, selectBook } from '../../modules/redux/bookSlice';
 import { useEffect } from 'react';
 
 function DesignOption() {
@@ -10,11 +10,11 @@ function DesignOption() {
   const { design } = useSelector(selectBook);
 
   const onClikeOption = (option) => {
-    dispatch(clickDesign(option === design ? null : option));
+    dispatch(setDesign(option === design ? null : option));
   };
 
   useEffect(() => {
-    dispatch(clickDesign(null));
+    dispatch(setDesign(null));
   }, []);
 
   return (

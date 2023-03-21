@@ -24,8 +24,8 @@ function useInfiniteScroll(url, perPage) {
       headers.Refresh = refresh;
     }
 
-    // API.get(`${url}?page=${page}&size=${perPage}`, {
-    API.get(`${url}?_page=${page}&_limit=${perPage}`, {
+    API.get(`${url}?page=${page}&size=${perPage}`, {
+      // API.get(`${url}?_page=${page}&_limit=${perPage}`, {
       headers: headers,
     })
       .then((res) => {
@@ -44,7 +44,7 @@ function useInfiniteScroll(url, perPage) {
     }
   };
 
-  return { data, loading, handleScroll };
+  return { data, handleScroll };
 }
 
 export default useInfiniteScroll;

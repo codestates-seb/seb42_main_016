@@ -3,30 +3,31 @@ import { useState, useEffect } from 'react';
 import moment from 'moment/moment';
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { useDispatch, useSelector } from 'react-redux';
-import { clickDate, clickTime, selectBook } from '../../modules/redux/bookSlice';
+import { setDate, setTime, selectBook } from '../../modules/redux/bookSlice';
 import { TimeOption } from '../../utils/BookOption';
 
 function Calender() {
   const dispatch = useDispatch();
   const { time } = useSelector(selectBook);
-  const [value, onChange] = useState(new Date());
+  const now = moment().toDate();
+  const [value, onChange] = useState(now);
   const [isOpen, setIsopen] = useState(true);
   const formatDate = moment(value).format('YYYY-MM-DD');
   const DisplayDate = moment(value).format('YYYY년 MM월 DD일 dddd');
-  const activeStartDate = new Date(2023, 2, 30);
+
   useEffect(() => {
-    dispatch(clickDate(formatDate));
+    dispatch(setDate(formatDate));
   }, [dispatch, formatDate]);
 
   useEffect(() => {
-    dispatch(clickTime(null));
+    dispatch(setTime(null));
   }, []);
 
   return (
     <>
       {/* 캘린더 */}
       <S.CalenderContainer>
-        <S.StyledCalendar onChange={onChange} value={value} activeStartDate={activeStartDate} />
+        <S.StyledCalendar onChange={onChange} value={value} />
       </S.CalenderContainer>
       {/* 타임 테이블*/}
       <S.CalenderContainer>
@@ -50,7 +51,7 @@ function Calender() {
                     <S.TimeItem key={idx}>
                       <S.TimeButton
                         onClick={() => {
-                          dispatch(clickTime(time));
+                          dispatch(setTime(time));
                           setIsopen(false);
                         }}>
                         {time}
