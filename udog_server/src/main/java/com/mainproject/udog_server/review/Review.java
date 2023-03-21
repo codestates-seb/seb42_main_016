@@ -6,7 +6,6 @@ import com.mainproject.udog_server.styleLike.StyleLike;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

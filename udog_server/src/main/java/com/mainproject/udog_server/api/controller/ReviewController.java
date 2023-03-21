@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Positive;
-import java.io.IOException;
 import java.net.URI;
 import java.security.Principal;
 import java.util.List;
