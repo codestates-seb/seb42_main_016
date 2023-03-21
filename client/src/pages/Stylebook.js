@@ -5,12 +5,11 @@ import { STYLEBOOK_ENDPOINT } from '../modules/endpoints';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import ScrollTopButton from '../components/ScrollTopButton';
 import Header from '../components/Header';
-import Loading from '../components/Loading';
 
 function Stylebook() {
   const PER_PAGE = 9;
 
-  const { data, loading, handleScroll } = useInfiniteScroll(STYLEBOOK_ENDPOINT, PER_PAGE);
+  const { data, handleScroll } = useInfiniteScroll(STYLEBOOK_ENDPOINT, PER_PAGE);
 
   const scrollAreaRef = useRef(null);
   const [showButton, setShowButton] = useState(false);
@@ -29,7 +28,6 @@ function Stylebook() {
       <Header />
       <S.StylebookWrap>
         <StylebookList data={data} />
-        {loading && <Loading />}
         {showButton && <ScrollTopButton area={scrollAreaRef} />}
       </S.StylebookWrap>
     </S.StyleScrollArea>
