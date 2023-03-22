@@ -67,7 +67,9 @@ function LoginForm() {
       <S.Container>
         <S.Border>
           <S.FormWrapper>
-            <S.Logo onClick={() => navigate('/')}>UDog</S.Logo>
+            <S.Logo onClick={() => navigate('/')}>
+              <img src="/assets/Logo.png" alt="logo" />
+            </S.Logo>
             <S.Form>
               <S.LabelContainer>
                 <S.Label>이메일</S.Label>

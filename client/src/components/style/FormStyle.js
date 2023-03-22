@@ -33,6 +33,9 @@ export const FormWrapper = styled.div`
   overflow: auto;
   position: relative;
   padding: 20px;
+  img {
+    width: 180px;
+  }
 `;
 
 export const Logo = styled.h2`

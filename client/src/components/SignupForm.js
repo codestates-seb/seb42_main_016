@@ -70,7 +70,9 @@ function SignupForm() {
       <S.Container>
         <S.Border>
           <S.FormWrapper>
-            <S.Logo onClick={() => navigate(HOME)}>UDog</S.Logo>
+            <S.Logo onClick={() => navigate(HOME)}>
+              <img src="/assets/Logo.png" alt="logo" />
+            </S.Logo>
             <S.Form>
               <S.LabelContainer>
                 <S.Label>닉네임</S.Label>
