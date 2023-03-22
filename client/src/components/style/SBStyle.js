@@ -91,10 +91,13 @@ export const Topcontainer = styled.div`
   z-index: 1;
   cursor: pointer;
   .icon {
+    color: cornflowerblue;
     font-size: 2rem;
+    transition: 0.5s;
   }
   .icon:hover {
-    color: #ddd;
+    opacity: 0.5;
+    transition: 0.5s;
   }
 `;
 
