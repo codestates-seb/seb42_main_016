@@ -11,3 +11,5 @@ export const MYREVIEW = 'review';
 export const MYDOG = 'mydog';
 export const MYDOGEDIT = '/mypage/mydog/edit';
 export const NOTFOUND = `/*`;
+export const WRITEREVIEW = 'writereview';
+export const READREVIEW = 'readreview';
