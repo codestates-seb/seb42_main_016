@@ -8,7 +8,8 @@ import javax.validation.constraints.NotNull;
 
 public class HairShopDto {
     @Getter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Post {
         @NotBlank
         private String hairShopName;
@@ -19,18 +20,11 @@ public class HairShopDto {
         private String hairShopDescription;
         private String hairShopImage;
 
-        @Builder
-        public Post(String hairShopName, String hairShopAddress, String hairShopPhone, String hairShopDescription, String hairShopImage) {
-            this.hairShopName = hairShopName;
-            this.hairShopAddress = hairShopAddress;
-            this.hairShopPhone = hairShopPhone;
-            this.hairShopDescription = hairShopDescription;
-            this.hairShopImage = hairShopImage;
-        }
     }
     @Getter
     @Setter
-    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class Response{
         private long hairShopId;
         private String hairShopName;
@@ -42,17 +36,6 @@ public class HairShopDto {
         private int reviewCount;
         private long hairShopLikeId;
 
-        @Builder
-        public Response(long hairShopId, String hairShopName, String hairShopAddress, String hairShopPhone, String hairShopDescription, String hairShopImage, int likeCount, int reviewCount, long hairShopLikeId) {
-            this.hairShopId = hairShopId;
-            this.hairShopName = hairShopName;
-            this.hairShopAddress = hairShopAddress;
-            this.hairShopPhone = hairShopPhone;
-            this.hairShopDescription = hairShopDescription;
-            this.hairShopImage = hairShopImage;
-            this.likeCount = likeCount;
-            this.reviewCount = reviewCount;
-            this.hairShopLikeId = hairShopLikeId;
-        }
+
     }
 }

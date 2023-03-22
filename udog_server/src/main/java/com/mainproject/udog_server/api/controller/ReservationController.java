@@ -4,6 +4,7 @@ import com.mainproject.udog_server.api.composite_service.ReservationCompositeSer
 import com.mainproject.udog_server.api.dto.ReservationDto;
 import com.mainproject.udog_server.api.mapper.ReservationMapper;
 import com.mainproject.udog_server.dto.MultiResponseDto;
+import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.reservation.Reservation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.Positive;
 import java.net.URI;
 import java.security.Principal;
+import java.time.*;
 import java.util.List;
 
 @RestController
@@ -36,16 +38,25 @@ public class ReservationController {
     // TODO: 특정 예약 정보 가져오기 필요한지?
 
     @GetMapping
-    public ResponseEntity getReservations(@Positive @RequestParam int page,
+    public ResponseEntity getReservations(Principal principal,
+                                          @Positive @RequestParam int page,
                                           @Positive @RequestParam int size) {
-        Page<Reservation> pageReservations = compositeService.getReservations(page, size);
+        Page<Reservation> pageReservations = compositeService.getReservations(principal.getName(), page -1, size);
         List<Reservation> reservations = pageReservations.getContent();
 
         MultiResponseDto response = new MultiResponseDto<>(mapper.reservationsToReservationResponseDto(reservations), pageReservations);
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
-
+    //달력에서 날짜를 눌렀을때 localdate로 getmapping 들어오면 (파라미터나 바디로) db까지 가서 해당 미용실의 해0당 날짜에 해당하는 시간들 LocalTime이 response로 리스트로
+    //달력 날짜 눌렀을때 예약 찬 시간들을 response로 받아주기
+    //pathVariable?
+    //마이페이지에서 예약내역은 정인님이 개발하시는 방향에 맞춰서
+//    @GetMapping("/{date-choice}")
+//    public ResponseEntity <List<ReservedTime>> getReservationTime(@RequestParam LocalDate reserveDate) {
+//        List<ReservedTime> reservedTimes =
+//    }
+    //마이페이지의 예약 내역들 불러오는거 따로 분기?
     @DeleteMapping("{reservation-id}")
     public ResponseEntity deleteReservation(@PathVariable("reservation-id") @Positive Long reservationId, Principal principal) {
         compositeService.deleteReservation(reservationId, principal.getName());
