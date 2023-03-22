@@ -12,7 +12,6 @@ function Footer() {
         <S.NavLinkWrapper>
           <S.NavLinkLogo to={HOME}>
             <img src="/assets/Logo.png" alt="logo" />
-            {/* <img src="/assets/UDog.png" alt="logo" /> */}
           </S.NavLinkLogo>
           <S.NavService activeclassname="active">서비스 소개</S.NavService>
           <S.NavService activeclassname="active">비즈니스 계정 등록</S.NavService>

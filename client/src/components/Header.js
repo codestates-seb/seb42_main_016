@@ -24,7 +24,6 @@ function Header() {
         <S.Logo>
           <S.LinkStyle className="logo" to={HOME}>
             <img src="/assets/Logo.png" alt="logo" />
-            {/* <img src="/assets/UDog.png" alt="logo" /> */}
           </S.LinkStyle>
         </S.Logo>
         <S.Menu>
