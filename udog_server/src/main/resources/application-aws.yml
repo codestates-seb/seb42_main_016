@@ -1,10 +1,8 @@
 cloud:
   aws:
     s3:
-      bucket: <AWS S3 버킷 이름>
+      bucket: udogservice
     region:
       static: ap-northeast-2  # AWS 리전 정보
     stack:
       auto: false
-    credentials:
-      instanceProfile: true  # AWS CLI에서 aws configure list 정보를 반영할건지 여부

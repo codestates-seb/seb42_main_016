@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### s3 개인 정보 보호 ###
-/src/main/resources/application-credentials.yml
+application-credentials.yml
