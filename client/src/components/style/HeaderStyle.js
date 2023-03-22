@@ -23,7 +23,7 @@ export const Logo = styled.div`
   align-items: center;
   img {
     padding-top: 10px;
-    width: 100px;
+    width: 80px;
   }
 `;
 
