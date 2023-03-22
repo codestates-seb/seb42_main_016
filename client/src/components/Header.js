@@ -23,7 +23,7 @@ function Header() {
       <S.NavStyle>
         <S.Logo>
           <S.LinkStyle className="logo" to={HOME}>
-            UDog
+            <img src="/assets/Logo.png" alt="logo" />
           </S.LinkStyle>
         </S.Logo>
         <S.Menu>

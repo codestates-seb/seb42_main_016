@@ -18,11 +18,13 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.div`
-  font-size: 20px;
-  font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
+  img {
+    padding-top: 10px;
+    width: 100px;
+  }
 `;
 
 export const Menu = styled.ul`
@@ -46,7 +48,7 @@ export const List = styled.li`
 `;
 
 export const Login = styled.ul`
-  margin-left: 50%;
+  margin-left: 45%;
   @media (max-width: 1200px) {
     margin-left: 0;
   }

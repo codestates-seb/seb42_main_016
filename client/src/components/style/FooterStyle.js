@@ -25,6 +25,9 @@ export const NavLinkLogo = styled(NavLink)`
 
   cursor: pointer;
   text-decoration: none;
+  img {
+    width: 100px;
+  }
 `;
 
 export const NavLinkWrapper = styled.div`
@@ -49,7 +52,7 @@ export const NavService = styled(NavLink)`
 export const SnsWrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 100px;
+  width: 150px;
   height: 50px;
   justify-content: space-between;
 `;

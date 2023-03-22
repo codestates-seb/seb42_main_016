@@ -2,14 +2,17 @@ import * as S from './style/FooterStyle';
 import { RxNotionLogo } from 'react-icons/rx';
 import { FiFigma } from 'react-icons/fi';
 import { AiFillGithub } from 'react-icons/ai';
-import { FIGMA, GITHUB, HOME, NOTION } from '../modules/routes';
+import { FaProjectDiagram } from 'react-icons/fa';
+import { DB, FIGMA, GITHUB, HOME, NOTION } from '../modules/routes';
 
 function Footer() {
   return (
     <S.Footer>
       <S.FooterContent>
         <S.NavLinkWrapper>
-          <S.NavLinkLogo to={HOME}>UDog</S.NavLinkLogo>
+          <S.NavLinkLogo to={HOME}>
+            <img src="/assets/Logo.png" alt="logo" />
+          </S.NavLinkLogo>
           <S.NavService activeclassname="active">서비스 소개</S.NavService>
           <S.NavService activeclassname="active">비즈니스 계정 등록</S.NavService>
         </S.NavLinkWrapper>
@@ -22,6 +25,9 @@ function Footer() {
           </S.SnsLink>
           <S.SnsLink to={FIGMA} target="_blank">
             <FiFigma />
+          </S.SnsLink>
+          <S.SnsLink to={DB} target="_blank">
+            <FaProjectDiagram />
           </S.SnsLink>
         </S.SnsWrapper>
       </S.FooterContent>
