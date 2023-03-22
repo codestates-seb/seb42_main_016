@@ -26,8 +26,6 @@ public class ReviewService {
         // 멤버id와 로그인 멤버id를 비교하는 로직
         compareIdAndLoginId(findReview.getMember().getMemberId(), memberId);
 
-//        Optional.ofNullable(review.getReviewImage())
-//                .ifPresent(review_pic -> findReview.setReviewImage(review_pic));
         Optional.ofNullable(review.getReviewText())
                 .ifPresent(review_text -> findReview.setReviewText(review_text));
 
