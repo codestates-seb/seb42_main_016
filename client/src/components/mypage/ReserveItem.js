@@ -24,7 +24,7 @@ export default function ReserveItem() {
           <IoIosCut className="icon" />
           미용실
         </S.HairshopName>
-        <S.CancelButton onClick={() => setModal(true)}>예약취소</S.CancelButton>
+        <S.Button onClick={() => setModal(true)}>예약취소</S.Button>
       </div>
       <S.ReserveInfo>
         <div className="info">

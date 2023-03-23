@@ -61,7 +61,7 @@ function ReviewEditModal() {
   };
   return (
     <S.ModalWrap ref={modalRef}>
-      <form encType="multipart/form-data" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <S.TopWrapper>
           <S.Title>리뷰 수정</S.Title>
           <div
@@ -78,9 +78,9 @@ function ReviewEditModal() {
           </div>
         </S.TopWrapper>
         <S.ReviewWrap>
-          <S.ReviewImg>
+          {/* <S.ReviewImg>
             <input id="dogImg" type="file" accept="image/*" />
-          </S.ReviewImg>
+          </S.ReviewImg> */}
           <S.ReviewText>
             <textarea
               rows="9"
@@ -98,7 +98,9 @@ function ReviewEditModal() {
           </S.ReviewText>
         </S.ReviewWrap>
         <S.ButtonBox>
-          <S.ConfirmButton type="submit">제출</S.ConfirmButton>
+          <S.ConfirmButton color="white" hover="#6893dd" type="submit">
+            제출
+          </S.ConfirmButton>
         </S.ButtonBox>
       </form>
     </S.ModalWrap>

@@ -1,19 +1,25 @@
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../modules/redux/modalSlice';
-import { deleteReview } from '../../modules/redux/reviewsSlice';
-import { REVIEWEDITMODAL } from '../../modules/ModalContainer';
+
+import { REVIEWEDITMODAL, REVIEWCONFIRMMODAL } from '../../modules/ModalContainer';
 // import useAxios from '../../hooks/useAxios';
 
 export default function ReviewItem({ reviews }) {
   const dispatch = useDispatch();
-  const handleDelete = () => {
-    dispatch(deleteReview(2));
-  };
-  const handleOpenTypeModal = () => {
+
+  const handleOpenReviewEditModal = () => {
     dispatch(
       openModal({
         modalType: REVIEWEDITMODAL,
+        isOpen: true,
+      }),
+    );
+  };
+  const handleOpenConfirmModal = () => {
+    dispatch(
+      openModal({
+        modalType: REVIEWCONFIRMMODAL,
         isOpen: true,
       }),
     );
@@ -27,8 +33,8 @@ export default function ReviewItem({ reviews }) {
         <Text>{reviews.reviewText}</Text>
       </div>
       <div className="buttons">
-        <Button onClick={handleOpenTypeModal}>수정</Button>
-        <Button onClick={handleDelete}>삭제</Button>
+        <Button onClick={handleOpenReviewEditModal}>수정</Button>
+        <Button onClick={handleOpenConfirmModal}>삭제</Button>
       </div>
     </RIWrap>
   );
@@ -75,7 +81,9 @@ export const Button = styled.button`
   font-size: 1rem;
   border: 1px solid #ddd;
   border-radius: 5px;
+  color: white;
+  background-color: #6495ed;
   :hover {
-    background-color: white;
+    color: black;
   }
 `;

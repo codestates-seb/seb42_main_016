@@ -8,6 +8,7 @@ import API from '../../modules/API';
 import { selectModal, closeModal } from '../../modules/redux/modalSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import CloseIcon from '../../utils/CloseIcon';
+import { TbDog } from 'react-icons/tb';
 
 function ReviewModal() {
   const [inputCount, setInputCount] = useState(0);
@@ -108,7 +109,9 @@ function ReviewModal() {
         </S.TopWrapper>
         <S.ReviewWrap>
           <S.ReviewImg>
-            <div className="preview">{preview && <img src={preview} alt="previewImg" />}</div>
+            <div className="preview">
+              {preview ? <img src={preview} alt="previewImg" /> : <TbDog className="dog" />}
+            </div>
             <label htmlFor="dogImg">사진 업로드</label>
             <input id="dogImg" type="file" accept="image/*" onChange={handleImageChange} />
           </S.ReviewImg>
@@ -129,7 +132,9 @@ function ReviewModal() {
           </S.ReviewText>
         </S.ReviewWrap>
         <S.ButtonBox>
-          <S.ConfirmButton type="submit">제출</S.ConfirmButton>
+          <S.ConfirmButton color="white" hover="#6893dd" type="submit">
+            제출
+          </S.ConfirmButton>
         </S.ButtonBox>
       </form>
     </S.ModalWrap>

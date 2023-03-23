@@ -1,15 +1,10 @@
-import styled from 'styled-components';
+import * as S from '../style/MyPageStyle';
 import ReserveItem from './ReserveItem';
 
 export default function WriteReview() {
   return (
-    <Container>
+    <S.Container>
       <ReserveItem />
-    </Container>
+    </S.Container>
   );
 }
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-`;

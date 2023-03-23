@@ -196,5 +196,10 @@ export const ReviewImg = styled.div`
     height: 150px;
     border-radius: 10px;
   }
+  .dog {
+    height: 150px;
+    width: 50px;
+    color: white;
+  }
 `;
 export const ReviewText = styled.div``;

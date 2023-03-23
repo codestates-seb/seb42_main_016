@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import * as S from '../style/MyPageStyle';
 import ReviewItem from './ReviewItem';
 // import { useSelector } from 'react-redux';
 // import { fetchReviews } from '../../modules/redux/reviewsSlice';
@@ -21,21 +21,12 @@ export default function MyReviewList() {
   // }, [dispatch]);
   console.log(reviews);
   return (
-    <>
-      <Container>
-        <ReviewItem reviews={reviews} />
-        {/* {reviews &&
+    <S.Container>
+      <ReviewItem reviews={reviews} />
+      {/* {reviews &&
           reviews.map((reviews) => {
             return <ReviewItem reviews={reviews} key={reviews.id} />;
           })} */}
-      </Container>
-    </>
+    </S.Container>
   );
 }
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
