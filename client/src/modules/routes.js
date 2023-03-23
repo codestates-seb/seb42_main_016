@@ -15,4 +15,6 @@ export const NOTION = 'https://codestates.notion.site/c2f76e39a1e64cdd924b9c1d02
 export const FIGMA =
   'https://www.figma.com/file/2AJqsZvAB9tN8PmBlACyIL/Untitled?node-id=0%3A1&t=ijcurlIhL8QjzfU4-1';
 export const NOTFOUND = `/*`;
+export const WRITEREVIEW = 'writereview';
+export const READREVIEW = 'readreview';
 export const DB = 'https://dbdiagram.io/d/64068de1296d97641d85e64c';

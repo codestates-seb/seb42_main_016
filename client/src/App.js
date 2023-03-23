@@ -18,6 +18,8 @@ import {
   MYDOG,
   MYDOGEDIT,
   NOTFOUND,
+  WRITEREVIEW,
+  READREVIEW,
 } from './modules/routes';
 
 import NotFound from './pages/NotFound';
@@ -56,8 +58,8 @@ function App() {
             <Route path={MYRESERVE} element={<Myreserve />} />
             <Route path={MYREVIEW} element={<Myreview />}>
               <Route index element={<WriteReview />} />
-              <Route path="writereview" element={<WriteReview />} />
-              <Route path="readreview" element={<MyReviewList />} />
+              <Route path={WRITEREVIEW} element={<WriteReview />} />
+              <Route path={READREVIEW} element={<MyReviewList />} />
             </Route>
             <Route path={MYDOG} element={<Mydog />} />
             <Route path={MYDOGEDIT} element={<MydogEditor />} />

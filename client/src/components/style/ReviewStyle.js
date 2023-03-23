@@ -12,10 +12,17 @@ export const TabWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: blue;
+  margin-bottom: 10px;
   div {
     width: 300px;
     text-align: center;
     text-decoration: none;
+  }
+  .nav-link {
+    text-decoration: none;
+    color: #333;
+  }
+  .nav-link.active {
+    color: cornflowerblue;
   }
 `;

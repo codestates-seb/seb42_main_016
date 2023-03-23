@@ -150,3 +150,56 @@ export const ConfirmButton = styled.button`
     background-color: ${(props) => props.hover || '#f4f7fa'};
   }
 `;
+
+export const ReviewWrap = styled.div`
+  color: #212529;
+  line-height: 22px;
+  font-size: 20px;
+  font-weight: 600;
+  height: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 44px;
+  margin-bottom: 44px;
+
+  textarea {
+    resize: none;
+  }
+
+  .count {
+    display: flex;
+    justify-content: end;
+    font-size: 16px;
+    font-weight: 400;
+  }
+`;
+export const ReviewImg = styled.div`
+  text-align: center;
+  input {
+    display: none;
+  }
+  label {
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .preview {
+    width: 150px;
+    height: 150px;
+    background-color: #ddd;
+    border-radius: 10px;
+  }
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+  }
+  .dog {
+    height: 150px;
+    width: 50px;
+    color: white;
+  }
+`;
+export const ReviewText = styled.div``;
