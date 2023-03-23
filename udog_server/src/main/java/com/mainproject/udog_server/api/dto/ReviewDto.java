@@ -19,6 +19,8 @@ public class ReviewDto {
         @NotBlank
         private long hairShopId;
         @NotBlank
+        private long reservationId;
+        @NotBlank
         private String reviewText;
         private Member member;
     }
