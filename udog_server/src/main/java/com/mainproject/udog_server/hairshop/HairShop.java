@@ -35,8 +35,17 @@ public class HairShop {
     @Column
     private String hairShopImage;
 
+    @Column(nullable = false)
+    private String latitude;
+
+    @Column(nullable = false)
+    private String longitude;
+
+    @Column(nullable = false)
+    private String kakaoApiId;
+
     @OneToMany(mappedBy = "hairShop")
-    private List<HairShopLike> hairShopLikes = new ArrayList<>();
+    private List<HairShopLike> hairShopLikes;
 
     @OneToMany(mappedBy = "hairShop", cascade = CascadeType.ALL)
     private List<Review> reviews;
