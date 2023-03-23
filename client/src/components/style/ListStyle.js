@@ -51,7 +51,7 @@ export const Img = styled.img`
 export const TextBox = styled.div`
   font-size: 18px;
   line-height: 21px;
-  width: 380px;
+  width: 50%;
   margin-left: 15px;
   height: 100%;
   color: #2d3436;
@@ -64,9 +64,10 @@ export const TextBox = styled.div`
 export const ShopName = styled.h2`
   margin-top: 20px;
   font-size: 35px;
-  line-height: 30px;
+  line-height: 40px;
   letter-spacing: 2px;
   font-weight: bold;
+  word-break: keep-all;
 `;
 
 export const Like = styled.div`
