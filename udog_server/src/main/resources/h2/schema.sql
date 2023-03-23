@@ -16,10 +16,13 @@ drop table if exists hair_shop CASCADE;
 --  addr VARCHAR(255)
 --);
 --
---LOAD DATA LOCAL INFILE '/Users/sangyoonlee/Downloads/exceldata.csv'
---INTO TABLE excel_list
+--LOAD DATA LOCAL INFILE '/Users/sangyoonlee/Downloads/DistrictOffice.csv'
+--INTO TABLE district_office
 --FIELDS TERMINATED BY ','
 --ENCLOSED BY '"'
 --LINES TERMINATED BY '\n'
 --IGNORE 1 ROWS
+--(district_office_id, name, address, latitude, longitude, keyword);
+--
+--
 --(id, addr);

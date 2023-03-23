@@ -24,7 +24,13 @@ public class DataSetController {
     public ResponseEntity test(@RequestParam int page,
                                @RequestParam int size) throws UnsupportedEncodingException, InterruptedException {
         List<Map<String,String>> result = compositeService.setData(page,size);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        System.out.println(result);
+
+
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+
+
+
 
 
 //        CRSFactory crsFactory = new CRSFactory();
