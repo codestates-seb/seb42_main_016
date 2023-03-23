@@ -6,6 +6,7 @@ import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.member.MemberService;
 import com.mainproject.udog_server.reservation.Reservation;
 import com.mainproject.udog_server.reservation.ReservationService;
+import com.mainproject.udog_server.review.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -43,14 +44,21 @@ public class ReservationCompositeService {
 
         return reservations;
     }
+
+    public Page<Reservation> getNoReviewReservations(String email,  int page, int size) {
+        Member member = memberService.findLoginMemberByEmail(email);
+
+        Page<Reservation> reservations = reservationService.findNoReviewsReservations(member, page, size);
+
+        return reservations;
+    }
     public void deleteReservation(Long reservationId, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
 
         reservationService.deleteReservation(reservationId, member.getMemberId());
     }
 
-    public List<LocalTime> getReservedTime(String email, LocalDate reserveDate, long hairShopId) {
-        Member member = memberService.findLoginMemberByEmail(email);
+    public List<LocalTime> getReservedTime(LocalDate reserveDate, long hairShopId) {
 
 
 //        reservedTime.setReserveTime(reservationService.findReservedTime(reserveTime));

@@ -44,7 +44,7 @@ public class Review {
     @JoinColumn(name = "HAIR_SHOP_ID")
     private HairShop hairShop;
 
-    @OneToOne(mappedBy = "review")
+    @OneToOne(mappedBy = "review", cascade = CascadeType.ALL)
     private Reservation reservation;
 
     @Transient
