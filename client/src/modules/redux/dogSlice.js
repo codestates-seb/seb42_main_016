@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// eslint-disable-next-line
 import produce from 'immer';
 import API from '../API';
 import { MYDOG_ENDPOINT } from '../endpoints';

@@ -90,6 +90,7 @@ export const Address = styled.div`
   font-size: 16px;
   color: #636e72;
   letter-spacing: 0.5px;
+  word-break: keep-all;
 `;
 
 export const LocationStyle = styled.h1`

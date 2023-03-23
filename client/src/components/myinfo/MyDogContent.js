@@ -9,13 +9,12 @@ import { asyncUpFetch, selectDog } from '../../modules/redux/dogSlice';
 function MyDogContent({ title, text, onClick }) {
   const dispatch = useDispatch();
   const data = useSelector(selectDog);
-  const maxLen = 1;
 
   useEffect(() => {
     dispatch(asyncUpFetch());
   }, [dispatch]);
 
-  const filteredData = data?.filter(({ id }) => id === maxLen);
+  const filteredData = data.length > 0 ? [data[0]] : [];
 
   return (
     <>
@@ -27,8 +26,9 @@ function MyDogContent({ title, text, onClick }) {
       </S.ContentTitleContainer>
       <S.MyInfoContent>
         {filteredData.length !== 0 ? (
+          filteredData &&
           filteredData.map((dog) => {
-            return <DogCard dog={dog} key={dog.id} />;
+            return <DogCard dog={dog} key={dog.dogId} />;
           })
         ) : (
           <Empty text={text} />

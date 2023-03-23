@@ -8,8 +8,11 @@ import API from '../modules/API';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN, HOME } from '../modules/routes';
 import { MEMBERS_ENDPOINT } from '../modules/endpoints';
+import { setError } from '../modules/redux/errorSlice';
+import { useDispatch } from 'react-redux';
 
 function SignupForm() {
+  const dispatch = useDispatch();
   const [value, setValue] = useState({
     nickname: '',
     email: '',
@@ -57,6 +60,7 @@ function SignupForm() {
         navigate(LOGIN);
       })
       .catch((err) => {
+        dispatch(setError('회원가입에 실패했습니다.'));
         console.log(err);
       });
   };
@@ -66,7 +70,9 @@ function SignupForm() {
       <S.Container>
         <S.Border>
           <S.FormWrapper>
-            <S.Logo onClick={() => navigate(HOME)}>UDog</S.Logo>
+            <S.Logo onClick={() => navigate(HOME)}>
+              <img src="/assets/Logo.png" alt="logo" />
+            </S.Logo>
             <S.Form>
               <S.LabelContainer>
                 <S.Label>닉네임</S.Label>

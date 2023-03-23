@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../modules/redux/userSlice';
 import { HOME, SIGNUP } from '../modules/routes';
 import { LOGIN_ENDPOINT } from '../modules/endpoints';
+import { setError } from '../modules/redux/errorSlice';
 
 function LoginForm() {
   const [value, setValue] = useState({
@@ -53,10 +54,10 @@ function LoginForm() {
         navigate(HOME);
       })
       .then(() => {
-        // eslint-disable-next-line
-        location.reload();
+        window.location.reload();
       })
       .catch((err) => {
+        dispatch(setError('로그인에 실패했습니다.'));
         console.log(err);
       });
   };
@@ -66,7 +67,9 @@ function LoginForm() {
       <S.Container>
         <S.Border>
           <S.FormWrapper>
-            <S.Logo onClick={() => navigate('/')}>UDog</S.Logo>
+            <S.Logo onClick={() => navigate('/')}>
+              <img src="/assets/Logo.png" alt="logo" />
+            </S.Logo>
             <S.Form>
               <S.LabelContainer>
                 <S.Label>이메일</S.Label>

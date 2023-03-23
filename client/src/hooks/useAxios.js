@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { openModal } from '../modules/redux/modalSlice';
 import { logout } from '../modules/redux/userSlice';
 
-function useAxios(url, body, path) {
+function useAxios() {
   const token = localStorage.getItem('accessToken');
   const refresh = localStorage.getItem('refresh');
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ function useAxios(url, body, path) {
       });
   };
 
-  const DELETE = (url) => {
+  const DELETE = (url, path) => {
     API.delete(url, {
       headers: {
         Authorization: token,
