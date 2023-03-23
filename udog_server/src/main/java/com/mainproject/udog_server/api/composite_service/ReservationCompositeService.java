@@ -6,10 +6,13 @@ import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.member.MemberService;
 import com.mainproject.udog_server.reservation.Reservation;
 import com.mainproject.udog_server.reservation.ReservationService;
+import com.mainproject.udog_server.review.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.mvc.method.annotation.*;
+
+import java.time.*;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -40,10 +43,29 @@ public class ReservationCompositeService {
 
 
         return reservations;
-    } //수정필요
+    }
+
+    public Page<Reservation> getNoReviewReservations(String email,  int page, int size) {
+        Member member = memberService.findLoginMemberByEmail(email);
+
+        Page<Reservation> reservations = reservationService.findNoReviewsReservations(member, page, size);
+
+        return reservations;
+    }
     public void deleteReservation(Long reservationId, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
 
         reservationService.deleteReservation(reservationId, member.getMemberId());
+    }
+
+    public List<LocalTime> getReservedTime(LocalDate reserveDate, long hairShopId) {
+
+
+//        reservedTime.setReserveTime(reservationService.findReservedTime(reserveTime));
+
+        List<LocalTime> response = reservationService.findReservedTime(reserveDate, hairShopId);
+        System.out.println("@".repeat(80));
+        System.out.println(response);
+        return response;
     }
 }

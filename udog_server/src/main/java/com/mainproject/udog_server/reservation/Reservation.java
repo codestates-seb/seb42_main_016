@@ -37,8 +37,6 @@ public class Reservation {
         }
     }
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "dog_id")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "dog_id")
     private Dog dog;
@@ -50,7 +48,7 @@ public class Reservation {
         }
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "review_id")
     private Review review;
 
