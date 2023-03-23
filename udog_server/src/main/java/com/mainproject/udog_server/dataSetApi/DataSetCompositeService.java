@@ -58,8 +58,8 @@ public class DataSetCompositeService {
             hairShop.setHairShopPhone(resultBody.get().get(0).get("phone"));
             hairShop.setHairShopName(resultBody.get().get(0).get("place_name"));
             hairShop.setKakaoApiId(resultBody.get().get(0).get("id"));
-            hairShop.setLongitude(resultBody.get().get(0).get("x"));
-            hairShop.setLatitude(resultBody.get().get(0).get("y"));
+            hairShop.setLongitude(Double.parseDouble(resultBody.get().get(0).get("x")));
+            hairShop.setLatitude(Double.parseDouble(resultBody.get().get(0).get("y")));
             hairShopService.createHairShop(hairShop);
         }
         });
