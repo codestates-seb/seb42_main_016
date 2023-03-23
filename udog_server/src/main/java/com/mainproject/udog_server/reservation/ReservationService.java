@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.*;
 import java.util.*;
+import java.util.stream.*;
 
 @Service
 @RequiredArgsConstructor
@@ -48,16 +49,25 @@ public class ReservationService {
         return findReservation;
     }
 
-//    public List<LocalTime> findReservedTime(LocalDate reserveDate, long hairShopId) {
-//        List<Reservation> reservations = reservationRepository.findByReserveDateAndHairShop(reserveDate, hairShopId);
+    public List<LocalTime> findReservedTime(LocalDate reserveDate, long hairShopId) {
+        List<Reservation> reservations = reservationRepository.findByReserveDateAndHairShopHairShopId(reserveDate, hairShopId);
+        List<LocalTime> reservedTime = reservations.stream().map(Reservation::getReserveTime).collect(Collectors.toList());
+        System.out.println("#".repeat(80));
+        System.out.println(reservedTime);
+//
 //        List<LocalTime> reservedTime = new ArrayList<>();
+//        System.out.println("@".repeat(80));
+//        System.out.println(reservedTime);
 //
 //        for(Reservation reservation : reservations) {
 //            reservedTime.add(reservation.getReserveTime());
 //        }
+//        System.out.println("@".repeat(80));
+//        System.out.println(reservedTime);
+////        List<LocalTime> reservedTimes = Stream.of(reservedTime).collect(Collectors.toList());
 //
-//        return reservedTime;
-//    }
+        return reservedTime;
+    }
 //    private Reservation findExistHairShop(Member member, HairShop hairShop, Dog dog) {
 //        Optional<Reservation> reservation = reservationRepository.findByMemberAndHairShopAndDog(member, hairShop, dog);
 //

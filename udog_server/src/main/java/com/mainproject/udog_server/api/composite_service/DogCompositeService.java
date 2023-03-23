@@ -38,8 +38,9 @@ public class DogCompositeService {
         return response;
     }
 
-    public List<Dog> findDogs() {
-        List<Dog> dogs = dogService.findDogs();
+    public List<Dog> findDogs(String email) {
+        Member member = memberService.findLoginMemberByEmail(email);
+        List<Dog> dogs = dogService.findDogs(member);
         return dogs;
     }
 

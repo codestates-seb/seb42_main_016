@@ -64,8 +64,8 @@ public class DogController {
     }
 
     @GetMapping
-    public ResponseEntity getDogs () {
-        List<Dog> dogs = compositeService.findDogs();
+    public ResponseEntity getDogs (Principal principal) {
+        List<Dog> dogs = compositeService.findDogs(principal.getName());
         List<DogDto.Response> response = dogMapper.dogsToDogResponsesDtos(dogs);
 
         return new ResponseEntity<>(response, HttpStatus.OK);

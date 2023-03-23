@@ -46,8 +46,8 @@ public class DogService {
     }
 
 
-    public List<Dog> findDogs() {
-        return (List<Dog>) dogRepository.findAll();
+    public List<Dog> findDogs(Member member) {
+        return (List<Dog>) dogRepository.findAllByMember(member);
     }
 
     public void deleteDog(long dogId, Member member) {

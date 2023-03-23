@@ -23,8 +23,6 @@ public class ReservationDto {
         @JsonFormat(pattern = "HH:MM")
         private LocalTime reserveTime;
         private Reservation.HairOption hairOption;
-
-
     }
 
     @Getter
@@ -38,6 +36,13 @@ public class ReservationDto {
         private String reserveDate;
         private String reserveTime;
         private Reservation.HairOption hairOption;
+    }
 
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class reservedTimeResponse {
+        private String reserveTime;
     }
 }
