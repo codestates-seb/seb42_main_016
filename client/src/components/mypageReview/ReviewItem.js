@@ -1,69 +1,23 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
+import { openModal } from '../../modules/redux/modalSlice';
 import { deleteReview } from '../../modules/redux/reviewsSlice';
+import { REVIEWEDITMODAL } from '../../modules/ModalContainer';
 // import useAxios from '../../hooks/useAxios';
-import useScroll from '../../hooks/useScroll';
-import { REVIEW_ENDPOINT } from '../../modules/endpoints';
-import { MYPAGE, MYREVIEW } from '../../modules/routes';
-import API from '../../modules/API';
 
 export default function ReviewItem({ reviews }) {
-  const [editModal, setEditModal] = useState(false);
   const dispatch = useDispatch();
   const handleDelete = () => {
     dispatch(deleteReview(2));
   };
-
-  function EditForm() {
-    const [inputCount, setInputCount] = useState(reviews.reviewText.length);
-    // const [reviewImage, setImage] = useState(reviews.reviewImage);
-    const [reviewText, setText] = useState(reviews.reviewText);
-
-    useScroll();
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      API.patch(`${REVIEW_ENDPOINT}/${16}`, { reviewText }, `${MYPAGE}/${MYREVIEW}/readreview`);
-      // setImage(null);
-      setText('');
-      // window.location.reload();
-    };
-
-    // const handleImageChange = (event) => setImage(event.target.files[0]);
-    const handleTextChange = (event) => {
-      setText(event.target.value);
-      setInputCount(event.target.value.length);
-    };
-    return (
-      <ModalWrap>
-        <form onSubmit={handleSubmit}>
-          <h2>리뷰 수정</h2>
-          <div>
-            <input type="file" accept="image/*" />
-          </div>
-          <div>
-            <textarea
-              rows="5"
-              cols="50"
-              type="text"
-              maxLength="120"
-              placeholder="리뷰를 작성해주세요"
-              value={reviewText}
-              onChange={handleTextChange}
-            />
-            <div>
-              <span>{inputCount}</span>
-              <span>/120자</span>
-            </div>
-          </div>
-
-          <button type="submit">수정</button>
-          <button onClick={() => setEditModal(false)}>취소</button>
-        </form>
-      </ModalWrap>
+  const handleOpenTypeModal = () => {
+    dispatch(
+      openModal({
+        modalType: REVIEWEDITMODAL,
+        isOpen: true,
+      }),
     );
-  }
-
+  };
   return (
     <RIWrap>
       <div className="review">
@@ -73,10 +27,9 @@ export default function ReviewItem({ reviews }) {
         <Text>{reviews.reviewText}</Text>
       </div>
       <div className="buttons">
-        <Button onClick={() => setEditModal(true)}>수정</Button>
+        <Button onClick={handleOpenTypeModal}>수정</Button>
         <Button onClick={handleDelete}>삭제</Button>
       </div>
-      {editModal ? <EditForm /> : null}
     </RIWrap>
   );
 }
@@ -124,20 +77,5 @@ export const Button = styled.button`
   border-radius: 5px;
   :hover {
     background-color: white;
-  }
-`;
-export const ModalWrap = styled.div`
-  width: 650px;
-  height: 500px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  text-align: center;
-  top: 10%;
-  background-color: white;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  textarea {
-    resize: none;
   }
 `;

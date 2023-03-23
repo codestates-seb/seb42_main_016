@@ -8,6 +8,8 @@ import LoginModal from '../components/modal/LoginModal';
 import HomeModal from '../components/modal/HomeModal';
 import WithdrawConfirmModal from '../components/modal/WithdrawConfirmModal';
 import LogoutConfirmModal from '../components/modal/LogoutConfirmModal';
+import ReviewModal from '../components/modal/ReviewModal';
+import ReviewEditModal from '../components/modal/ReviewEditModal';
 
 export const WEIGHTMODAL = 'WeightModal';
 export const TYPEMODAL = 'TypeModal';
@@ -16,6 +18,8 @@ export const LOGINMODAL = 'LoginModal';
 export const HOMEMODAL = 'HomeModal';
 export const WITHDRAWCONFIRMMODAL = 'WithdrawConfirmModal';
 export const LOGOUTCONFIRMMODAL = 'LogoutConfirmModal';
+export const REVIEWMODAL = 'ReveiwModal';
+export const REVIEWEDITMODAL = 'ReviewEditModal';
 
 const MODAL_TYPES = {
   WeightModal: WEIGHTMODAL,
@@ -25,6 +29,8 @@ const MODAL_TYPES = {
   HomeModal: HOMEMODAL,
   WithdrawConfirmModal: WITHDRAWCONFIRMMODAL,
   LogoutConfirmModal: LOGOUTCONFIRMMODAL,
+  ReviewModal: REVIEWMODAL,
+  ReviewEditModal: REVIEWEDITMODAL,
 };
 
 const MODAL_COMPONENTS = [
@@ -55,6 +61,14 @@ const MODAL_COMPONENTS = [
   {
     type: MODAL_TYPES.LogoutConfirmModal,
     component: <LogoutConfirmModal />,
+  },
+  {
+    type: MODAL_TYPES.ReviewModal,
+    component: <ReviewModal />,
+  },
+  {
+    type: MODAL_TYPES.ReviewEditModal,
+    component: <ReviewEditModal />,
   },
 ];
 
