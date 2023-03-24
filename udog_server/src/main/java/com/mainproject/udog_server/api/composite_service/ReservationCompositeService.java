@@ -60,10 +60,9 @@ public class ReservationCompositeService {
     }
 
     public List<LocalTime> getReservedTime(LocalDate reserveDate, long hairShopId) {
-
-
+        if(LocalDate.now().plusMonths(1).isBefore(reserveDate))
+            return null;
 //        reservedTime.setReserveTime(reservationService.findReservedTime(reserveTime));
-
         List<LocalTime> response = reservationService.findReservedTime(reserveDate, hairShopId);
         System.out.println("@".repeat(80));
         System.out.println(response);

@@ -60,11 +60,11 @@ public class Reservation {
     private LocalTime reserveTime;
 
     @Enumerated(value = EnumType.STRING)
-    @Column
-    private HairOption hairOption = HairOption.위생_미용;
+    @Column(nullable = false)
+    private HairOption hairOption = HairOption.위생미용;
 
     public enum HairOption {
-        위생_미용,
+        위생미용,
         클리핑,
         스포팅,
         가위컷;
