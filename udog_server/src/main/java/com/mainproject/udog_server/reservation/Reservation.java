@@ -48,7 +48,7 @@ public class Reservation {
         }
     }
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "review_id")
     private Review review;
 
@@ -69,15 +69,9 @@ public class Reservation {
         스포팅,
         가위컷;
 }
-    @Builder
-    public Reservation(long reservationId, Member member, HairShop hairShop, Dog dog, Review review, LocalDate reserveDate, LocalTime reserveTime, Reservation.HairOption hairOption) {
-        this.reservationId = reservationId;
-        this.member = member;
-        this.hairShop = hairShop;
-        this.dog = dog;
-        this.review = review;
-        this.reserveDate = reserveDate;
-        this.reserveTime = reserveTime;
-        this.hairOption = hairOption;
-    }
+//    public Reservation(Member member, Review review) {
+//        this.member = member;
+//        this.review = review;
+//    }
+
 }

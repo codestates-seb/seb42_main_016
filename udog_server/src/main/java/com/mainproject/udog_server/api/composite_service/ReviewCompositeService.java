@@ -2,6 +2,7 @@ package com.mainproject.udog_server.api.composite_service;
 
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.member.MemberService;
+import com.mainproject.udog_server.reservation.*;
 import com.mainproject.udog_server.review.Review;
 import com.mainproject.udog_server.review.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +16,12 @@ public class ReviewCompositeService {
     private final ReviewService reviewService;
     private final MemberService memberService;
 
+    private final ReservationService reservationService;
+
     public Review createReview(Review creatingReview, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
+
+        reservationService.updateReservation(creatingReview.getReservation());
 
         creatingReview.setMember(member);
 

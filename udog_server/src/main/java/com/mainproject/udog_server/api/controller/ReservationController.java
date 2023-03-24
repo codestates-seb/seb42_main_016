@@ -61,24 +61,15 @@ public class ReservationController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    //todo 예약 날짜 한달 기간 제한
-    //마이페이지에서 예약내역은 정인님이 개발하시는 방향에 맞춰서
     @GetMapping("/{hair-shops-id}")
-    public ResponseEntity getReservationTime(
-                                              @PathVariable("hair-shops-id") long hairShopId,
-                                              @RequestParam("select-date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate reserveDate) {
-        System.out.println("@".repeat(80));
-        System.out.println(hairShopId);
-        System.out.println(reserveDate);
-//        List<LocalTime> reservations = compositeService.getReservedTime(principal.getName(), reserveDate, null, hairShopId);
+    public ResponseEntity getReservationTime(@PathVariable("hair-shops-id") long hairShopId,
+                                             @RequestParam("select-date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate reserveDate) {
+
         List<LocalTime> reservations = compositeService.getReservedTime( reserveDate, hairShopId);
-        System.out.println("@".repeat(80));
-        System.out.println(reservations);
+        if(reservations == null)
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         List<ReservationDto.reservedTimeResponse> response = mapper.reservationsToReservedTimeResponseDto(reservations);
-
-        System.out.println("@".repeat(80));
-        System.out.println(response);
 
         return new ResponseEntity<>( response, HttpStatus.OK);
     }

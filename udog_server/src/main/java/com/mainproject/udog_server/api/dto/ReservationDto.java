@@ -7,6 +7,7 @@ import com.mainproject.udog_server.dog.Dog;
 import com.mainproject.udog_server.hairshop.HairShop;
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.reservation.*;
+import com.mainproject.udog_server.review.*;
 import lombok.*;
 
 import java.time.*;
@@ -44,5 +45,19 @@ public class ReservationDto {
     @AllArgsConstructor
     public static class reservedTimeResponse {
         private String reserveTime;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class NoReviewResponse {
+        private Long reservationId;
+        private String hairShopName;
+        private String dogNAme;
+        private String reserveDate;
+        private String reserveTime;
+        private Reservation.HairOption hairOption;
+        private Review reviewId;
     }
 }

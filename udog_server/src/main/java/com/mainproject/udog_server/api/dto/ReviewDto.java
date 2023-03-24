@@ -19,6 +19,8 @@ public class ReviewDto {
         @NotBlank
         private long hairShopId;
         @NotBlank
+        private long reservationId;
+        @NotBlank
         private String reviewImage;
         @NotBlank
         private String reviewText;
