@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class ReviewCompositeService {
     private final FileUploadService fileUploadService;
+
+    private final ReservationService reservationService;
     private final ReviewService reviewService;
     private final MemberService memberService;
     private final ReservationService reservationService;
@@ -26,10 +28,9 @@ public class ReviewCompositeService {
 
         creatingReview.setMember(member);
 
+        creatingReview.setMember(member);
         creatingReview.setReviewImage(fileUploadService.uploadImage(reviewImage));
-
         creatingReview.setReservation(foundReservation);
-
         Review createdReview = reviewService.createReview(creatingReview);
 
         foundReservation.setReview(createdReview);
@@ -48,14 +49,13 @@ public class ReviewCompositeService {
         return updatedReview;
     }
 
-    public Review getReview(Long reviewId) {
-        Review foundReview = reviewService.findReview(reviewId);
-
-        return foundReview;
+    public Page<Review> getMemberReviews(String email, int page, int size) {
+        Member member = memberService.findLoginMemberByEmail(email);
+        return reviewService.findMemberReviews(member.getMemberId(), page-1, size);
     }
 
     public Page<Review> getHairShopReviews(long hairShopId, int page, int size) {
-        return reviewService.findHairShopReviews(hairShopId,page-1, size);
+        return reviewService.findHairShopReviews(hairShopId, page-1, size);
     }
 
     public void deleteReview(Long reviewId, String email) {

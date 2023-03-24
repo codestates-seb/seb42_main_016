@@ -20,6 +20,7 @@ import java.util.*;
 @Service
 public class ReservationCompositeService {
     private final ReservationService reservationService;
+
     private final MemberService memberService;
 
     private final HairShopService hairShopService;

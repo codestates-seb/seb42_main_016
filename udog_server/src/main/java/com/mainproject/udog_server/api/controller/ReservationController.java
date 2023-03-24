@@ -53,9 +53,7 @@ public class ReservationController {
     public ResponseEntity getNoReviewReservations(Principal principal,
                                                   @Positive @RequestParam int page,
                                                   @Positive @RequestParam int size) {
-
         List<Reservation> reservations = compositeService.getNoReviewReservations(principal.getName(), page - 1 ,size);
-
         SingleResponseDto response = new SingleResponseDto(mapper.reservationsToReservationResponseDto(reservations));
 
         return ResponseEntity.status(HttpStatus.OK).body(response);

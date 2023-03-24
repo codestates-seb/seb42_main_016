@@ -4,7 +4,6 @@ import com.mainproject.udog_server.api.dto.ReviewDto;
 
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.reservation.*;
-
 import com.mainproject.udog_server.review.Review;
 import org.mapstruct.Mapper;
 
@@ -16,6 +15,7 @@ public interface ReviewMapper {
         HairShop hairShop = new HairShop();
         Reservation reservation = new Reservation();
         Review review = new Review();
+
         hairShop.setHairShopId(postDto.getHairShopId());
         reservation.setReservationId(postDto.getReservationId());
         review.setReservation(reservation);
@@ -26,5 +26,6 @@ public interface ReviewMapper {
     }
     Review reviewPatchDtoToReview(ReviewDto.Patch patchDto);
     ReviewDto.Response reviewToReviewResponseDto(Review review);
-    List<ReviewDto.listResponse> reviewsToReviewResponseDto(List<Review> reviews);
+    List<ReviewDto.hairShopReviewsResponse> hairShopReviewsToReviewResponseDto(List<Review> reviews);
+    List<ReviewDto.memberReviewsResponse> memberReviewsToReviewResponseDto(List<Review> reviews);
 }

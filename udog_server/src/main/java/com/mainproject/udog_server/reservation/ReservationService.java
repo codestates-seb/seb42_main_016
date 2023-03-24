@@ -41,10 +41,16 @@ public class ReservationService {
         return reservationRepository.findAllByMember(member,
                 PageRequest.of(page, size, Sort.by("reservationId").descending()));
     }
+    public Reservation updateReservation(Reservation reservation){
+        return reservationRepository.save(reservation);
+    }
 
-    @Transactional(readOnly = true)
     public List<Reservation> findNoReviewsReservations(Member member, int page, int size) {
-        Page<Reservation> reservations = reservationRepository.findAllByMember(member,PageRequest.of(page, size, Sort.by("reservationId").descending()));
+        System.out.println("@".repeat(90));
+        System.out.println(member.getMemberId());
+
+        Page<Reservation> reservations = reservationRepository.findAllByMember
+                (member, PageRequest.of(page, size, Sort.by("reservationId").descending()));
         List<Reservation> noReviewReservations = reservations.stream().filter(reservation -> reservation.getReview() == null).collect(Collectors.toList());
         return noReviewReservations;
     }
