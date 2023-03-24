@@ -48,22 +48,26 @@ public class ReviewController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/{review-id}")
-    public ResponseEntity getReview(@PathVariable("review-id") @Positive Long reviewId) {
-        Review review = compositeService.getReview(reviewId);
-        ReviewDto.Response response = mapper.reviewToReviewResponseDto(review);
+    @GetMapping("/member")
+    public ResponseEntity getMemberReviews(Principal principal,
+                                           @Positive @RequestParam int page,
+                                           @Positive @RequestParam int size) {
+        Page<Review> pageReviews = compositeService.getMemberReviews(principal.getName(), page, size);
+        List<Review> reviews = pageReviews.getContent();
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        MultiResponseDto response = new MultiResponseDto(mapper.memberReviewsToReviewResponseDto(reviews), pageReviews);
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @GetMapping
+    @GetMapping("/hairShop")
     public ResponseEntity getHairShopReviews(@Positive @RequestParam Long hairShopId,
                                              @Positive @RequestParam int page,
                                              @Positive @RequestParam int size) {
         Page<Review> pageReviews = compositeService.getHairShopReviews(hairShopId, page, size);
         List<Review> reviews = pageReviews.getContent();
 
-        MultiResponseDto response = new MultiResponseDto(mapper.reviewsToReviewResponseDto(reviews), pageReviews);
+        MultiResponseDto response = new MultiResponseDto(mapper.hairShopReviewsToReviewResponseDto(reviews), pageReviews);
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

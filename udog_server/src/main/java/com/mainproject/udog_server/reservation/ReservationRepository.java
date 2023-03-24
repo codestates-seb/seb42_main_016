@@ -13,5 +13,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     Page<Reservation> findAllByMemberAndReviewReviewIdIsNull(Member memberId, PageRequest pageRequest);
 //    List<Reservation> findByHairShopHairShopId( long hairShopId);
     List<Reservation> findByReserveDateAndHairShopHairShopId(LocalDate reserveDate, long hairShopId);
-//    Optional<Reservation> findByMemberAndHairShopAndDog(Member member, HairShop hairShop, Dog dog);
+
 }

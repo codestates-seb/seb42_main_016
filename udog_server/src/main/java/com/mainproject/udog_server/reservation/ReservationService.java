@@ -42,9 +42,16 @@ public class ReservationService {
                 PageRequest.of(page, size, Sort.by("reservationId").descending()));
     }
 
-    @Transactional(readOnly = true)
+
+
+
     public List<Reservation> findNoReviewsReservations(Member member, int page, int size) {
-        Page<Reservation> reservations = reservationRepository.findAllByMember(member,PageRequest.of(page, size, Sort.by("reservationId").descending()));
+        System.out.println("@".repeat(90));
+        System.out.println(member.getMemberId());
+
+        Page<Reservation> reservations = reservationRepository.findAllByMember
+                (member, PageRequest.of(page, size, Sort.by("reservationId").descending()));
+
         List<Reservation> noReviewReservations = reservations.stream().filter(reservation -> reservation.getReview() == null).collect(Collectors.toList());
         return noReviewReservations;
     }
@@ -59,10 +66,13 @@ public class ReservationService {
 
     // 존재하는 예약인지 확인
     public Reservation findVerifiedReservation(Long reservationId) {
+
         Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
 
         Reservation findReservation =
                 optionalReservation.orElseThrow(() -> null);
+        //Reservation findReservation =
+        //                optionalReservation.orElseThrow(() -> new BusinessLogicException(ExceptionCode.Reservation_Not_Found);
 
         return findReservation;
     }
