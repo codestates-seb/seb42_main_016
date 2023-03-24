@@ -6,3 +6,4 @@ export const HAIRSHOPLIKE_ENDPOINT = '/hair-shop-likes';
 export const REVIEW_ENDPOINT = '/reviews';
 export const STYLELIKE_ENDPOINT = '/styleLikes';
 export const STYLEBOOK_ENDPOINT = '/styleBook';
+export const RESERVATION_ENDPOINT = '/reservations';

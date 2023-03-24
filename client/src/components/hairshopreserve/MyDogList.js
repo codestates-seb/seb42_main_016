@@ -22,7 +22,7 @@ function MyDogList() {
   }, []);
 
   const onClikeOption = (mydog) => {
-    dispatch(setDog(mydog === dog ? null : mydog.dogId));
+    dispatch(setDog(mydog === dog ? null : mydog));
   };
 
   const onClickCreate = () => {
