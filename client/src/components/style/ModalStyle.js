@@ -128,6 +128,9 @@ export const ConfirmText = styled.div`
 export const ButtonBox = styled.div`
   gap: 4px;
   display: flex;
+  &.edit {
+    justify-content: center;
+  }
 `;
 
 export const ConfirmButton = styled.button`
@@ -146,8 +149,20 @@ export const ConfirmButton = styled.button`
   align-items: center;
   flex: 1 1 0%;
   display: flex;
+  &.edit {
+    flex: none;
+  }
   &:hover {
     background-color: ${(props) => props.hover || '#f4f7fa'};
+  }
+  &:disabled {
+    background-color: #f2f4f7;
+    color: gray;
+    border: none;
+    cursor: default;
+    span {
+      color: #ccc;
+    }
   }
 `;
 
@@ -222,4 +237,38 @@ export const SubmitButton = styled.button`
     }
   }
 `;
+
 export const ReviewText = styled.div``;
+
+export const EditContainer = styled.div`
+  margin: 30px 10px 40px 10px;
+`;
+
+export const EditInput = styled.input`
+  width: 100%;
+  height: 50px;
+  min-height: 50px;
+  padding: 0px 12px;
+  outline: none;
+  background-color: transparent;
+  border: 1px solid #e1e2e3;
+  color: #333;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  &:focus {
+    border-color: #6495ed;
+  }
+`;
+
+export const EditValid = styled.p`
+  color: #fe415c;
+  font-weight: 400;
+  text-align: left;
+  letter-spacing: 0.0192em;
+  font-size: 13px;
+  line-height: 18px;
+  margin-bottom: 8px;
+  margin-top: 0px;
+`;
