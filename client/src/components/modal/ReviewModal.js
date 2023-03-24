@@ -121,7 +121,7 @@ function ReviewModal() {
               cols="40"
               type="text"
               maxLength="120"
-              placeholder="리뷰를 작성해주세요"
+              placeholder="리뷰를 작성해주세요&#13;(참고: 작성된 리뷰는 스타일북에서 소개될 수 있습니다)"
               value={reviewText}
               onChange={handleTextChange}
             />
