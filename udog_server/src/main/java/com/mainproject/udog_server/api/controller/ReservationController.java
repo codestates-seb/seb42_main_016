@@ -3,7 +3,7 @@ package com.mainproject.udog_server.api.controller;
 import com.mainproject.udog_server.api.composite_service.ReservationCompositeService;
 import com.mainproject.udog_server.api.dto.ReservationDto;
 import com.mainproject.udog_server.api.mapper.ReservationMapper;
-import com.mainproject.udog_server.dto.MultiResponseDto;
+import com.mainproject.udog_server.dto.*;
 import com.mainproject.udog_server.reservation.*;
 import com.mainproject.udog_server.review.*;
 import lombok.RequiredArgsConstructor;
@@ -53,10 +53,9 @@ public class ReservationController {
     public ResponseEntity getNoReviewReservations(Principal principal,
                                                   @Positive @RequestParam int page,
                                                   @Positive @RequestParam int size) {
-        Page<Reservation> pageReservations = compositeService.getNoReviewReservations(principal.getName(), page - 1 , size);
-        List<Reservation> reservations = pageReservations.getContent();
+        List<Reservation> reservations = compositeService.getNoReviewReservations(principal.getName(), page - 1 , size);
 
-        MultiResponseDto response = new MultiResponseDto<>(mapper.reservationsToReservationResponseDto(reservations), pageReservations);
+        SingleResponseDto response = new SingleResponseDto(mapper.reservationsToReservationResponseDto(reservations));
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
