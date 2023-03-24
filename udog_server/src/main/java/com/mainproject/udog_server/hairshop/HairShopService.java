@@ -5,10 +5,12 @@ import lombok.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.geo.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.util.*;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -29,8 +31,15 @@ public class HairShopService {
     }
 
     @Transactional(readOnly = true)
-    public Page<HairShop> findHairShops(int page, int size) {
-        return hairShopRepository.findAll(PageRequest.of(page, size, Sort.by("hairShopId").descending()));
+    public Page<HairShop> findHairShops(int page, int size, double latitude, double longitude, List<String> keywords) {
+        System.out.println("latitude" + latitude);
+        System.out.println("longitude" + longitude);
+        return hairShopRepository.findClosestByKeywords(longitude,
+                latitude,
+                keywords.get(0),
+                keywords.get(1),
+                keywords.get(2),
+                PageRequest.of(page, size));
     }
 
     @Transactional(readOnly = true)

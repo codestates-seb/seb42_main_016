@@ -59,6 +59,9 @@ public class HairShop {
     @Transient
     private long myHairShopLikeId;
 
+    @Transient
+    private double distance;
+
     public void addHairShopLike(HairShopLike hairShopLike) {
         hairShopLikes.add(hairShopLike);
         if(hairShopLike.getHairShop() != this) {

@@ -1,5 +1,6 @@
 package com.mainproject.udog_server.api.composite_service;
 
+import com.mainproject.udog_server.districtOffice.*;
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.hairshopLike.*;
 import com.mainproject.udog_server.member.*;
@@ -23,6 +24,8 @@ public class HairShopCompositeService {
 
     private final MemberService memberService;
 
+    private final DistrictOfficeService officeService;
+
     public HairShop createHairShop(HairShop postHairShop) {
         return hairShopService.createHairShop(postHairShop);
     }
@@ -33,8 +36,15 @@ public class HairShopCompositeService {
     }
 
     @Transactional(readOnly = true)
-    public Page<HairShop> getHairShops(Principal principal, int page, int size){
-        Page<HairShop> pageHairShops =  hairShopService.findHairShops(page, size);
+    public Page<HairShop> getHairShops(Principal principal, int page, int size, double latitude, double longitude){
+        List<String> closestThreeOffices = officeService.getClosestThreeOfficeDistrict(latitude,longitude);
+        Page<HairShop> pageHairShops =  hairShopService.findHairShops(page, size, latitude, longitude, closestThreeOffices);
+        System.out.println("@".repeat(90));
+        System.out.println(pageHairShops.getContent().size());
+//        PageRequest pageRequest = PageRequest.of(page, size);
+//        int start = (int)pageRequest.getOffset();
+//        int end = Math.min((start + pageRequest.getPageSize()), listHairShops.size());
+//        Page<HairShop> pageHairShops = new PageImpl<>(listHairShops.subList(start, end), pageRequest, listHairShops.size());
         return setLikeCountAndHairShopLikeId(principal, pageHairShops);
     }
 
