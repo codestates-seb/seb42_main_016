@@ -21,9 +21,8 @@ import {
   WRITEREVIEW,
   READREVIEW,
   ABOUT,
+  PRE,
 } from './modules/routes';
-
-import NotFound from './pages/NotFound';
 
 const MainPage = lazy(() => import('./pages/MainPage'));
 const Signup = lazy(() => import('./pages/Signup'));
@@ -40,6 +39,8 @@ const MyReviewList = lazy(() => import('./components/mypageReview/MyReviewList')
 const Mydog = lazy(() => import('./pages/Mydog'));
 const MydogEditor = lazy(() => import('./pages/MydogEditor'));
 const About = lazy(() => import('./pages/About'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+const Prepare = lazy(() => import('./pages/Prepare'));
 
 function App() {
   return (
@@ -68,6 +69,7 @@ function App() {
           </Route>
           <Route path={NOTFOUND} element={<NotFound />} />
           <Route path={ABOUT} element={<About />} />
+          <Route path={PRE} element={<Prepare />} />
         </Routes>
       </Suspense>
       <Toaster

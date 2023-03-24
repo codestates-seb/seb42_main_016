@@ -8,7 +8,7 @@ import tabSlice from './tabSlice';
 import loadingSlice from './loadingSlice';
 import reserveSlice from './reserveSlice';
 import likeSlice from './likeSlice';
-import reviewsReducer from './reviewsSlice';
+import reviewsSlice from './reviewsSlice';
 import shopSlice from './shopSlice';
 import bookSlice from './bookSlice';
 import errorSlice from './errorSlice';
@@ -24,7 +24,7 @@ const store = configureStore({
     loading: loadingSlice,
     reserve: reserveSlice,
     like: likeSlice,
-    reviews: reviewsReducer,
+    reviews: reviewsSlice,
     shop: shopSlice,
     book: bookSlice,
     error: errorSlice,
