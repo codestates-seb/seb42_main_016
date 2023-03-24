@@ -1,7 +1,6 @@
 package com.mainproject.udog_server.api.mapper;
 
 import com.mainproject.udog_server.api.dto.ReviewDto;
-
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.reservation.*;
 import com.mainproject.udog_server.review.Review;
@@ -18,6 +17,7 @@ public interface ReviewMapper {
 
         hairShop.setHairShopId(postDto.getHairShopId());
         reservation.setReservationId(postDto.getReservationId());
+
         review.setReservation(reservation);
         review.setHairShop(hairShop);
         review.setReviewText(postDto.getReviewText());

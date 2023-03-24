@@ -53,21 +53,31 @@ public class ReservationController {
     public ResponseEntity getNoReviewReservations(Principal principal,
                                                   @Positive @RequestParam int page,
                                                   @Positive @RequestParam int size) {
-        List<Reservation> reservations = compositeService.getNoReviewReservations(principal.getName(), page - 1 ,size);
+        List<Reservation> reservations = compositeService.getNoReviewReservations(principal.getName(), page - 1 , size);
+
         SingleResponseDto response = new SingleResponseDto(mapper.reservationsToReservationResponseDto(reservations));
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    //todo 예약 날짜 한달 기간 제한
+    //마이페이지에서 예약내역은 정인님이 개발하시는 방향에 맞춰서
     @GetMapping("/{hair-shops-id}")
-    public ResponseEntity getReservationTime(@PathVariable("hair-shops-id") long hairShopId,
-                                             @RequestParam("select-date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate reserveDate) {
-
+    public ResponseEntity getReservationTime(
+                                              @PathVariable("hair-shops-id") long hairShopId,
+                                              @RequestParam("select-date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate reserveDate) {
+        System.out.println("@".repeat(80));
+        System.out.println(hairShopId);
+        System.out.println(reserveDate);
+//        List<LocalTime> reservations = compositeService.getReservedTime(principal.getName(), reserveDate, null, hairShopId);
         List<LocalTime> reservations = compositeService.getReservedTime( reserveDate, hairShopId);
-        if(reservations == null)
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        System.out.println("@".repeat(80));
+        System.out.println(reservations);
 
         List<ReservationDto.reservedTimeResponse> response = mapper.reservationsToReservedTimeResponseDto(reservations);
+
+        System.out.println("@".repeat(80));
+        System.out.println(response);
 
         return new ResponseEntity<>( response, HttpStatus.OK);
     }

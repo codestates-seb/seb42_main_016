@@ -1,6 +1,6 @@
 package com.mainproject.udog_server.api.composite_service;
 
-
+import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.member.*;
 import com.mainproject.udog_server.review.*;
 import com.mainproject.udog_server.styleBook.*;
