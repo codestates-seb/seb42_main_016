@@ -21,7 +21,7 @@ function Calender() {
   const DisplayDate = moment(value).format('YYYY년 MM월 DD일 dddd');
   const { id } = useParams();
   const timeData = useFetch(`${RESERVATION_ENDPOINT}/${id}?select-date=${formatDate}`);
-  const bookedTimes = timeData?.map((reservation) => reservation.time);
+  const bookedTimes = timeData?.map((reservation) => reservation.reserveTime);
 
   useEffect(() => {
     dispatch(setDate(formatDate));
