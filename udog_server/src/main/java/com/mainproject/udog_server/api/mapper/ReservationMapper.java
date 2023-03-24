@@ -30,6 +30,7 @@ public interface ReservationMapper {
     default ReservationDto.Response reservationToReservationResponseDto(Reservation reservation) {
         ReservationDto.Response responseDto = new ReservationDto.Response();
         responseDto.setReservationId(reservation.getReservationId());
+        responseDto.setHairShopId(reservation.getHairShop().getHairShopId());
         responseDto.setHairShopName(reservation.getHairShop().getHairShopName());
         responseDto.setDogName(reservation.getDog().getDogName());
         responseDto.setReserveDate(reservation.getReserveDate().toString());
