@@ -43,9 +43,10 @@ public class ReservationService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Reservation> findNoReviewsReservations(Member member, int page, int size) {
-        return reservationRepository.findAllByMemberAndReviewReviewIdIsNull
-                (member, PageRequest.of(page, size, Sort.by("reservationId").descending()));
+    public List<Reservation> findNoReviewsReservations(Member member, int page, int size) {
+        Page<Reservation> reservations = reservationRepository.findAllByMember(member,PageRequest.of(page, size, Sort.by("reservationId").descending()));
+        List<Reservation> noReviewReservations = reservations.stream().filter(reservation -> reservation.getReview() == null).collect(Collectors.toList());
+        return noReviewReservations;
     }
 
 
@@ -57,7 +58,7 @@ public class ReservationService {
     }
 
     // 존재하는 예약인지 확인
-    private Reservation findVerifiedReservation(Long reservationId) {
+    public Reservation findVerifiedReservation(Long reservationId) {
         Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
 
         Reservation findReservation =

@@ -36,13 +36,13 @@ public class HairShop {
     @Column
     private String hairShopImage;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private Double latitude;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private Double longitude;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private String kakaoApiId;
 
     @OneToMany(mappedBy = "hairShop")

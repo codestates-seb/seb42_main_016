@@ -49,10 +49,11 @@ public class ReservationCompositeService {
         return reservations;
     }
 
-    public Page<Reservation> getNoReviewReservations(String email,  int page, int size) {
+    public List<Reservation> getNoReviewReservations(String email,  int page, int size) {
         Member member = memberService.findLoginMemberByEmail(email);
 
-        Page<Reservation> reservations = reservationService.findNoReviewsReservations(member, page, size);
+        List<Reservation> reservations = reservationService.findNoReviewsReservations(member, page, size);
+
         return reservations;
     }
     public void deleteReservation(Long reservationId, String email) {
