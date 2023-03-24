@@ -36,16 +36,7 @@ function LoginModal() {
   return (
     <S.ConfirmContainer ref={modalRef}>
       <S.ConfirmContent>
-        <div
-          role="button"
-          tabIndex="0"
-          aria-label="Close"
-          onClick={() => dispatch(closeModal())}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-              dispatch(closeModal());
-            }
-          }}>
+        <div role="presentation" onClick={() => dispatch(closeModal())}>
           <CloseIcon />
         </div>
         <S.ConfirmText>로그인이 필요한 서비스 입니다.</S.ConfirmText>
