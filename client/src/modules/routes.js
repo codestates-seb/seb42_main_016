@@ -19,3 +19,4 @@ export const WRITEREVIEW = 'writereview';
 export const READREVIEW = 'readreview';
 export const DB = 'https://dbdiagram.io/d/64068de1296d97641d85e64c';
 export const ABOUT = '/about';
+export const PRE = '/pre';
