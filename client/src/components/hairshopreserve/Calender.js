@@ -6,16 +6,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setDate, setTime, selectBook } from '../../modules/redux/bookSlice';
 import { TimeOption } from '../../utils/BookOption';
 import Calendar from 'react-calendar';
+import useAuth from '../../hooks/useAuth';
+import { RESERVATION_ENDPOINT } from '../../modules/endpoints';
+import { useParams } from 'react-router-dom';
 
 function Calender() {
   const dispatch = useDispatch();
-  const { time } = useSelector(selectBook);
+  const { time, date } = useSelector(selectBook);
   const now = moment().toDate();
   const maxDate = moment().add(1, 'months').toDate();
   const [value, onChange] = useState(now);
   const [isOpen, setIsopen] = useState(true);
   const formatDate = moment(value).format('YYYY-MM-DD');
   const DisplayDate = moment(value).format('YYYY년 MM월 DD일 dddd');
+  const { id } = useParams();
 
   useEffect(() => {
     dispatch(setDate(formatDate));
@@ -24,6 +28,11 @@ function Calender() {
   useEffect(() => {
     dispatch(setTime(null));
   }, []);
+
+  const onClickDate = () => {
+    const data = useAuth(`${RESERVATION_ENDPOINT}/${id}?select-date=${date}`);
+    console.log(data);
+  };
 
   return (
     <>
@@ -36,6 +45,7 @@ function Calender() {
           prev2Label={null}
           maxDate={maxDate}
           minDate={now}
+          onClick={onClickDate}
         />
       </S.CalenderContainer>
       {/* 타임 테이블*/}
