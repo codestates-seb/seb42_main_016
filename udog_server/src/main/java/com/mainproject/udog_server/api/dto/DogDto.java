@@ -50,6 +50,7 @@ public class DogDto {
         @DateTimeFormat(pattern = "yyyy-MM-dd")
 //        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
         private LocalDate dogBirthDate;
+        private Dog.DogSpecies dogSpecies;
         private String dogWeight;
         private String dogDescription;
         private Member member;
