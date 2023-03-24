@@ -1,6 +1,7 @@
 package com.mainproject.udog_server.hairshop;
 
 import com.mainproject.udog_server.hairshopLike.HairShopLike;
+import com.mainproject.udog_server.reservation.*;
 import com.mainproject.udog_server.review.*;
 import com.mainproject.udog_server.styleLike.*;
 import lombok.*;
@@ -49,6 +50,9 @@ public class HairShop {
 
     @OneToMany(mappedBy = "hairShop", cascade = CascadeType.ALL)
     private List<Review> reviews;
+
+    @OneToMany(mappedBy = "hairShop", cascade = CascadeType.ALL)
+    private List<Reservation> reservations = new ArrayList<>();
 
     @Transient
     private int likeCount;

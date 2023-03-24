@@ -54,6 +54,7 @@ dependencies {
 	implementation files("libs/javaproj-1.0.6.jar")
 	implementation 'org.locationtech.proj4j:proj4j:1.2.2'
 	implementation 'org.seleniumhq.selenium:selenium-java:4.1.2'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 }
 
 tasks.named('test') {

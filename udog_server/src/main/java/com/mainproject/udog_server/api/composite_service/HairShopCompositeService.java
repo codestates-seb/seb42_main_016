@@ -31,8 +31,9 @@ public class HairShopCompositeService {
     }
 
     @Transactional(readOnly = true)
-    public HairShop getHairShop(long hairShopId){
-        return hairShopService.findHairShop(hairShopId);
+    public HairShop getHairShop(Principal principal, long hairShopId){
+        HairShop foundHairShop = hairShopService.findHairShop(hairShopId);
+        return setLikeCountAndHairShopLikeId(principal, new PageImpl<>(List.of(foundHairShop))).getContent().get(0);
     }
 
     @Transactional(readOnly = true)

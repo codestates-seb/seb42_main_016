@@ -1,0 +1,8 @@
+cloud:
+  aws:
+    s3:
+      bucket: udogservice
+    region:
+      static: ap-northeast-2  # AWS 리전 정보
+    stack:
+      auto: false
