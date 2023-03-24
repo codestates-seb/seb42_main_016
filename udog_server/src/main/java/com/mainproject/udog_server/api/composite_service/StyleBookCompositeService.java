@@ -20,6 +20,8 @@ import java.util.stream.*;
 public class StyleBookCompositeService {
     private final StyleBookService styleBookService;
 
+    private final StyleLikeService styleLikeService;
+
     private final MemberService memberService;
     @Transactional(readOnly = true)
     public Page<Review> getStyleBookList(Principal principal, int page, int size) {
@@ -29,7 +31,10 @@ public class StyleBookCompositeService {
 
     @Transactional(readOnly = true)
     public Page<Review> findTopStyles(Principal principal){
-        Page<Review> pageTopStyles = styleBookService.findTopStylesByDay();
+        List<Review> topStyle = styleLikeService.findTopStyleLikeByDay();
+        System.out.println("@".repeat(90));
+        topStyle.forEach(t -> System.out.println(t.getReviewId()));
+        Page<Review> pageTopStyles = styleBookService.findTopStyles(topStyle);
         return setLikeCountAndStyleLikeId(principal, pageTopStyles);
     }
 

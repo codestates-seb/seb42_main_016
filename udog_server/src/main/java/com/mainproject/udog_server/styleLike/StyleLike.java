@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.*;
 
 @NoArgsConstructor
 @Getter
@@ -24,6 +25,9 @@ public class StyleLike {
     @ManyToOne
     @JoinColumn(name = "review_id")
     private Review review;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     public StyleLike(Member member, Review review) {
         this.member = member;

@@ -11,18 +11,6 @@ import java.time.*;
 import java.util.*;
 
 public interface StyleBookRepository extends JpaRepository<Review, Long> {
-    @Query("SELECT r FROM Review r WHERE r.createdAt > :beginOfParam ORDER BY r.styleLikes.size DESC")
-    Page<Review> findTop(@Param("beginOfParam")LocalDateTime beginOfDay, Pageable pageable);
-
-    default Page<Review> findTopOfToday(Pageable pageable) {
-        LocalDate today = LocalDate.now();
-        LocalDateTime beginOfToday = today.atStartOfDay();
-        return findTop(beginOfToday, pageable);
-    }
-
-    default Page<Review> findTopOfTheWeek(Pageable pageable) {
-        LocalDate weekBeforeToday = LocalDate.now().minusWeeks(1);
-        LocalDateTime beginOfWeekBeforeToday = weekBeforeToday.atStartOfDay();
-        return findTop(beginOfWeekBeforeToday, pageable);
-    }
+    @Query("SELECT r FROM Review r WHERE r IN (:topList) ORDER BY r.styleLikes.size DESC")
+    Page<Review> findTop(@Param("topList")List<Review> topList, Pageable pageable);
 }
