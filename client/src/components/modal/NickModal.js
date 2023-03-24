@@ -72,6 +72,7 @@ function NickModal() {
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
           valid={!isValidNickname}
+          placeholder="변경할 닉네임을 입력해주세요."
         />
         <S.EditValid>{validNicknameText}</S.EditValid>
       </S.EditContainer>
