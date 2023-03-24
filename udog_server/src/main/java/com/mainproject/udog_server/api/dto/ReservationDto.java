@@ -1,11 +1,6 @@
 package com.mainproject.udog_server.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.mainproject.udog_server.dog.Dog;
-import com.mainproject.udog_server.hairshop.HairShop;
-import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.reservation.*;
 import com.mainproject.udog_server.review.*;
 import lombok.*;
@@ -45,19 +40,5 @@ public class ReservationDto {
     @AllArgsConstructor
     public static class reservedTimeResponse {
         private String reserveTime;
-    }
-
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class NoReviewResponse {
-        private Long reservationId;
-        private String hairShopName;
-        private String dogNAme;
-        private String reserveDate;
-        private String reserveTime;
-        private Reservation.HairOption hairOption;
-        private Review reviewId;
     }
 }

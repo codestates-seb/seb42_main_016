@@ -23,12 +23,7 @@ public class StyleBookService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Review> findTopStylesByDay(){
-        return styleBookRepository.findTopOfToday(PageRequest.of(0,AMOUNT_OF_TOP));
-    }
-
-    @Transactional(readOnly = true)
-    public Page<Review> findTopStylesByWeek(){
-        return styleBookRepository.findTopOfTheWeek(PageRequest.of(0,AMOUNT_OF_TOP));
+    public Page<Review> findTopStyles(List<Review> topList){
+        return styleBookRepository.findTop(topList, PageRequest.of(0, 3));
     }
 }

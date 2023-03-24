@@ -1,6 +1,8 @@
 package com.mainproject.udog_server.auth.handler;
 
+import com.google.gson.*;
 import com.mainproject.udog_server.member.Member;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -16,19 +18,12 @@ public class MemberAuthenticationSuccessHandler implements AuthenticationSuccess
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
                                         Authentication authentication) throws IOException {
-//        Gson gson = new Gson();
-//        response.setContentType("application/json");
-//        response.setCharacterEncoding("utf-8");
-//        MemberId memberId = new MemberId((Member) authentication.getPrincipal());
-//
-//        response.getWriter().write(gson.toJson(memberId));
-        log.info("# Authenticated successfully!");
-    }
+        Gson gson = new Gson();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
 
-    private class MemberId{
-        long memberId;
-        public MemberId(Member member){
-            this.memberId = member.getMemberId();
-        }
+        Member loginMember=  (Member) authentication.getPrincipal();
+        response.getWriter().write(gson.toJson(loginMember.getNickname()));
+        log.info("# Authenticated successfully!");
     }
 }

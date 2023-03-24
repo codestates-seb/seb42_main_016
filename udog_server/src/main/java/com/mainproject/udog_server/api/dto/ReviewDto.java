@@ -21,8 +21,6 @@ public class ReviewDto {
         @NotBlank
         private long reservationId;
         @NotBlank
-        private String reviewImage;
-        @NotBlank
         private String reviewText;
         private Member member;
     }
@@ -33,8 +31,6 @@ public class ReviewDto {
     @AllArgsConstructor
     public static class Patch {
         private Long reviewId;
-        @Nullable
-        private String reviewImage;
         @Nullable
         private String reviewText;
         private Member member;

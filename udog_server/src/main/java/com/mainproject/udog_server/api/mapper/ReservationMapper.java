@@ -2,9 +2,10 @@ package com.mainproject.udog_server.api.mapper;
 
 import com.mainproject.udog_server.api.dto.*;
 import com.mainproject.udog_server.dog.*;
+
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.reservation.Reservation;
-import com.mainproject.udog_server.review.*;
+
 import org.mapstruct.*;
 
 import java.time.*;
@@ -52,14 +53,4 @@ public interface ReservationMapper {
 
 
     List<ReservationDto.Response> reservationsToReservationResponseDto(List<Reservation> reservations);
-
-//    default List<ReservationDto.NoReviewResponse> reservationsToNoReviewResponseDto(List<Reservation> reviews) {
-//        List<ReservationDto.NoReviewResponse> responseDtos = new ArrayList<>();
-//        for(Reservation review : reviews) {
-//            ReservationDto.NoReviewResponse responseDto = new ReservationDto.NoReviewResponse();
-//            responseDto.setReviewId(review);
-//            responseDtos.add(responseDto);
-//        }
-//        return responseDtos;
-//    }
 }

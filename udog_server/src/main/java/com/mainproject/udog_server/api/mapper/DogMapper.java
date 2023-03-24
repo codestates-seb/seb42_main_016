@@ -12,7 +12,7 @@ import java.util.List;
 public interface DogMapper {
     @Mapping(source = "dogBirthDate", target = "dogBirthDate", dateFormat = "yyyy-MM-dd")
     Dog dogPostDtoToDog(DogDto.Post postDto);
-
+    @Mapping(source = "dogBirthDate", target = "dogBirthDate", dateFormat = "yyyy-MM-dd")
     Dog dogPatchDtoToDog(DogDto.Patch patchDto);
    
     @Mapping(source = "dogBirthDate", target = "dogBirthDate", dateFormat = "yyyy-MM-dd")

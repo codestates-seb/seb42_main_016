@@ -1,9 +1,10 @@
 package com.mainproject.udog_server.reservation;
 
 import com.mainproject.udog_server.dog.*;
+
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.member.*;
-import com.mainproject.udog_server.review.*;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,8 +21,7 @@ import java.util.stream.*;
 @Transactional
 public class ReservationService {
     private final ReservationRepository reservationRepository;
-    private final HairShopService hairShopService;
-    private final DogService dogService;
+
     public Reservation createReservation(Reservation reservation) {
 
 
@@ -29,6 +29,7 @@ public class ReservationService {
     }
 
     //리뷰가 예약 테이블에 안들어가는 부분 해결하기 위해 넣음
+    //리뷰가 등록되는 순간 예약이 업데이트 되어야 한다 << 있긴 한데 구체화
     public Reservation updateReservation(Reservation reservation) {
         Reservation foundReservation = findVerifiedReservation(reservation.getReservationId());
 
@@ -69,7 +70,7 @@ public class ReservationService {
 
         List<Reservation> reservations = reservationRepository.findByReserveDateAndHairShopHairShopId(reserveDate, hairShopId);
         List<LocalTime> reservedTime = reservations.stream().map(Reservation::getReserveTime).collect(Collectors.toList());
-        
+
         System.out.println("#".repeat(80));
         System.out.println(reservedTime);
 

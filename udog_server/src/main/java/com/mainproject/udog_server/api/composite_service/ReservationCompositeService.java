@@ -1,11 +1,13 @@
 package com.mainproject.udog_server.api.composite_service;
 
 import com.mainproject.udog_server.dog.*;
+
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.member.MemberService;
 import com.mainproject.udog_server.reservation.Reservation;
 import com.mainproject.udog_server.reservation.ReservationService;
+
 import com.mainproject.udog_server.review.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,7 +26,6 @@ public class ReservationCompositeService {
 
     private final DogService dogService;
 
-    private final ReviewService reviewService;
 
     public Reservation createReservation(Reservation creatingReservation, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
