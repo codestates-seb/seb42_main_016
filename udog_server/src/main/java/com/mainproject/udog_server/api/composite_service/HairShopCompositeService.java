@@ -1,17 +1,15 @@
 package com.mainproject.udog_server.api.composite_service;
 
 import com.mainproject.udog_server.districtOffice.*;
+
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.hairshopLike.*;
 import com.mainproject.udog_server.member.*;
-import com.mainproject.udog_server.review.*;
-import com.mainproject.udog_server.styleLike.*;
 import lombok.*;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
 
-import java.net.*;
 import java.security.*;
 import java.util.*;
 import java.util.stream.*;

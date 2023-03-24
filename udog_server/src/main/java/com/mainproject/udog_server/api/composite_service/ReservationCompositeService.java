@@ -1,11 +1,13 @@
 package com.mainproject.udog_server.api.composite_service;
 
 import com.mainproject.udog_server.dog.*;
+
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.member.MemberService;
 import com.mainproject.udog_server.reservation.Reservation;
 import com.mainproject.udog_server.reservation.ReservationService;
+
 import com.mainproject.udog_server.review.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -25,12 +27,14 @@ public class ReservationCompositeService {
 
     private final DogService dogService;
 
+
     public Reservation createReservation(Reservation creatingReservation, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
 
         creatingReservation.setMember(member);
         creatingReservation.setHairShop(hairShopService.findVerifiedHairShop(creatingReservation.getHairShop().getHairShopId()));
         creatingReservation.setDog(dogService.findVerifiedDog(creatingReservation.getDog().getDogId()));
+
 
         Reservation response = reservationService.createReservation(creatingReservation);
 
@@ -61,12 +65,10 @@ public class ReservationCompositeService {
 
     public List<LocalTime> getReservedTime(LocalDate reserveDate, long hairShopId) {
 
-
-//        reservedTime.setReserveTime(reservationService.findReservedTime(reserveTime));
-
+        if(LocalDate.now().plusMonths(1).isBefore(reserveDate))
+            return null;
         List<LocalTime> response = reservationService.findReservedTime(reserveDate, hairShopId);
-        System.out.println("@".repeat(80));
-        System.out.println(response);
+
         return response;
     }
 }

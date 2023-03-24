@@ -2,7 +2,7 @@ package com.mainproject.udog_server.api.controller;
 
 import com.mainproject.udog_server.api.composite_service.*;
 import com.mainproject.udog_server.api.dto.HairShopLikeDto;
-import com.mainproject.udog_server.hairshop.*;
+
 import com.mainproject.udog_server.hairshopLike.HairShopLike;
 import com.mainproject.udog_server.api.mapper.HairShopLikeMapper;
 import com.mainproject.udog_server.hairshopLike.HairShopLikeService;
@@ -43,7 +43,3 @@ public class HairShopLikeController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
-
-//Todo 코드 점검 해보기
-//todo 좋아요 갯수 카운트
-//todo 일주일간 좋아요 많이 받은 미용실 메인페이지로 응답

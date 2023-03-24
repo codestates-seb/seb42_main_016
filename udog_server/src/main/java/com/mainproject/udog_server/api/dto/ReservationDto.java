@@ -1,12 +1,8 @@
 package com.mainproject.udog_server.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.mainproject.udog_server.dog.Dog;
-import com.mainproject.udog_server.hairshop.HairShop;
-import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.reservation.*;
+import com.mainproject.udog_server.review.*;
 import lombok.*;
 
 import java.time.*;

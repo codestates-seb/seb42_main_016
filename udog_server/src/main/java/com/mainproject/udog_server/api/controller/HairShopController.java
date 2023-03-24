@@ -4,10 +4,7 @@ import com.mainproject.udog_server.api.composite_service.*;
 import com.mainproject.udog_server.api.dto.HairShopDto;
 import com.mainproject.udog_server.hairshop.HairShop;
 import com.mainproject.udog_server.api.mapper.HairShopMapper;
-import com.mainproject.udog_server.hairshop.HairShopService;
-import com.mainproject.udog_server.hairshopLike.HairShopLikeService;
 import com.mainproject.udog_server.dto.MultiResponseDto;
-import com.mainproject.udog_server.review.*;
 import com.mainproject.udog_server.util.UriCreator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.Positive;
 import java.net.URI;
 import java.security.*;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -77,8 +73,3 @@ public class HairShopController {
                 HttpStatus.OK);
     }
 }
-
-//TODO 거리순으로 출력
-//TODO 운영시간 테이블 따로 빼기
-//TODO 좋아요 갯수 응답 보내기
-//TODO 일주일간 좋아요 많이 받은 미용실 메인 페이지로 응답

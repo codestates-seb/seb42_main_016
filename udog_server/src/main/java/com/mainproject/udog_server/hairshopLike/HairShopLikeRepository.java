@@ -2,7 +2,6 @@ package com.mainproject.udog_server.hairshopLike;
 
 import com.mainproject.udog_server.hairshop.HairShop;
 import com.mainproject.udog_server.member.Member;
-import com.mainproject.udog_server.review.*;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.*;
