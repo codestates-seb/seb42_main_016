@@ -22,6 +22,8 @@ import java.util.stream.*;
 public class HairShopCompositeService {
     private final HairShopService hairShopService;
 
+    private final HairShopLikeService hairShopLikeService;
+
     private final MemberService memberService;
 
     private final DistrictOfficeService officeService;
@@ -51,7 +53,8 @@ public class HairShopCompositeService {
 
     @Transactional(readOnly = true)
     public Page<HairShop> getTopHairSHops(Principal principal){
-        Page<HairShop> pageTopHairShops = hairShopService.findTopHairShopsByDay();
+        List<HairShop> topHairShops = hairShopLikeService.findTopHairShopsByDay();
+        Page<HairShop> pageTopHairShops = hairShopService.findTopHairShops(topHairShops);
         return setLikeCountAndHairShopLikeId(principal, pageTopHairShops);
     }
 

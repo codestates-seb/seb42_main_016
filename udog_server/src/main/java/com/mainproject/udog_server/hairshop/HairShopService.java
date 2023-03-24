@@ -43,13 +43,8 @@ public class HairShopService {
     }
 
     @Transactional(readOnly = true)
-    public Page<HairShop> findTopHairShopsByDay(){
-        return hairShopRepository.findTopOfToday(PageRequest.of(0,AMOUNT_OF_TOP));
-    }
-
-    @Transactional(readOnly = true)
-    public Page<HairShop> findTopHairShopsByWeek(){
-        return hairShopRepository.findTopOfTheWeek(PageRequest.of(0,AMOUNT_OF_TOP));
+    public Page<HairShop> findTopHairShops(List<HairShop> topList){
+        return hairShopRepository.findTop(topList, PageRequest.of(0, AMOUNT_OF_TOP));
     }
 
     public HairShop findVerifiedHairShop(long hairShopId) {
