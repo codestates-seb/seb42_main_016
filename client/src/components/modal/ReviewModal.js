@@ -132,9 +132,13 @@ function ReviewModal() {
           </S.ReviewText>
         </S.ReviewWrap>
         <S.ButtonBox>
-          <S.ConfirmButton color="white" hover="#6893dd" type="submit">
+          <S.SubmitButton
+            disabled={!(reviewImage && reviewText)}
+            color="white"
+            hover="#6893dd"
+            type="submit">
             제출
-          </S.ConfirmButton>
+          </S.SubmitButton>
         </S.ButtonBox>
       </form>
     </S.ModalWrap>

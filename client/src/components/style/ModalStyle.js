@@ -202,4 +202,24 @@ export const ReviewImg = styled.div`
     color: white;
   }
 `;
+export const SubmitButton = styled.button`
+  width: 100%;
+  height: 50px;
+  min-height: 50px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 30px;
+  color: white;
+  border: none;
+  background-color: cornflowerblue;
+  &:disabled {
+    background-color: #f2f4f7;
+    color: gray;
+    border: none;
+    cursor: default;
+    span {
+      color: #ccc;
+    }
+  }
+`;
 export const ReviewText = styled.div``;
