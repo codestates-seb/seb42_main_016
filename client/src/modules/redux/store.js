@@ -12,6 +12,7 @@ import reviewsSlice from './reviewsSlice';
 import shopSlice from './shopSlice';
 import bookSlice from './bookSlice';
 import errorSlice from './errorSlice';
+import locationSlice from './locationSlice';
 
 const store = configureStore({
   reducer: {
@@ -28,6 +29,7 @@ const store = configureStore({
     shop: shopSlice,
     book: bookSlice,
     error: errorSlice,
+    location: locationSlice,
   },
 });
 

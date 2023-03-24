@@ -26,8 +26,7 @@ function MyDogContent({ title, text, onClick }) {
       </S.ContentTitleContainer>
       <S.MyInfoContent>
         {filteredData.length !== 0 ? (
-          filteredData &&
-          filteredData.map((dog) => {
+          filteredData?.map((dog) => {
             return <DogCard dog={dog} key={dog.dogId} />;
           })
         ) : (

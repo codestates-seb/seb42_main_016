@@ -1,6 +1,5 @@
 import * as S from '../style/ReserveStyle';
 import { useEffect } from 'react';
-import useFetch from '../../hooks/useFetch';
 import { MYDOG_ENDPOINT } from '../../modules/endpoints';
 import { MdDone } from 'react-icons/md';
 import { getDogAge } from '../../utils/getDogAge';
@@ -9,20 +8,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from '../../modules/redux/userSlice';
 import { MYPAGE, MYDOG, LOGIN } from '../../modules/routes';
 import { setDog, selectBook } from '../../modules/redux/bookSlice';
+import useAuth from '../../hooks/useAuth';
 
 function MyDogList() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { dog } = useSelector(selectBook);
   const { user } = useSelector(selectUser);
-  const data = useFetch(MYDOG_ENDPOINT);
+  const data = useAuth(MYDOG_ENDPOINT);
 
   useEffect(() => {
     dispatch(setDog(null));
   }, []);
 
   const onClikeOption = (mydog) => {
-    dispatch(setDog(mydog === dog ? null : mydog));
+    dispatch(setDog(mydog === dog ? null : mydog.dogId));
   };
 
   const onClickCreate = () => {

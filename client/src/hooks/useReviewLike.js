@@ -16,6 +16,8 @@ function useReviewLike(id, like, styleLikeId) {
       return;
     }
 
+    dispatch(setIsSubmit(true));
+
     if (!like) {
       API.post(
         `${STYLELIKE_ENDPOINT}/${id}`,

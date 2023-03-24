@@ -1,17 +1,17 @@
 import HairshopList from '../components/hairshop/HairshopList';
 import Location from '../components/hairshop/Location';
-import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import * as S from '../components/style/ListStyle';
 import { useRef, useState } from 'react';
 import ScrollTopButton from '../components/ScrollTopButton';
 import { HAIRSHOP_ENDPOINT } from '../modules/endpoints';
 import Header from '../components/Header';
+import useShopScroll from '../hooks/useShopScroll';
 
 function Hairshop() {
-  const PER_PAGE = 3;
-  const { data, handleScroll } = useInfiniteScroll(HAIRSHOP_ENDPOINT, PER_PAGE);
+  const PER_PAGE = 10;
   const scrollAreaRef = useRef(null);
   const [showButton, setShowButton] = useState(false);
+  const { data, handleScroll } = useShopScroll(HAIRSHOP_ENDPOINT, PER_PAGE);
 
   const handleScrollEvent = (e) => {
     if (e.target.scrollTop > 500) {
