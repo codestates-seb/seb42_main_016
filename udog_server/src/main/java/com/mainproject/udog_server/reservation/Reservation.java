@@ -7,12 +7,11 @@ import com.mainproject.udog_server.dog.Dog;
 import com.mainproject.udog_server.hairshop.HairShop;
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.review.Review;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import net.bytebuddy.asm.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.*;
 
 @NoArgsConstructor
 @Getter
@@ -23,28 +22,62 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reservationId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID", nullable = false)
     private Member member;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "HAIR_SHOP_ID", nullable = false)
     private HairShop hairShop;
 
-    @OneToOne
+    public void setHairShop(HairShop hairShop){
+        this.hairShop = hairShop;
+        if(hairShop.getReservations().contains(this)) {
+            hairShop.getReservations().add(this);
+        }
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dog_id")
     private Dog dog;
 
-    @OneToOne
+    public void setDog(Dog dog) {
+        this.dog = dog;
+        if(dog.getReservations().contains(this)) {
+            dog.getReservations().add(this);
+        }
+    }
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "review_id")
     private Review review;
 
     @Column(nullable = false)
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate reserveDate;
 
 
     @Column(nullable = false)
-    @JsonFormat(pattern = "HH:MM")
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    private LocalDate reserveTime;
+    private LocalTime reserveTime;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column
+    private HairOption hairOption = HairOption.위생_미용;
+
+    public enum HairOption {
+        위생_미용,
+        클리핑,
+        스포팅,
+        가위컷;
+}
+    @Builder
+    public Reservation(long reservationId, Member member, HairShop hairShop, Dog dog, Review review, LocalDate reserveDate, LocalTime reserveTime, Reservation.HairOption hairOption) {
+        this.reservationId = reservationId;
+        this.member = member;
+        this.hairShop = hairShop;
+        this.dog = dog;
+        this.review = review;
+        this.reserveDate = reserveDate;
+        this.reserveTime = reserveTime;
+        this.hairOption = hairOption;
+    }
 }

@@ -1,6 +1,7 @@
 package com.mainproject.udog_server.hairshop;
 
 import com.mainproject.udog_server.hairshopLike.HairShopLike;
+import com.mainproject.udog_server.reservation.*;
 import com.mainproject.udog_server.review.*;
 import com.mainproject.udog_server.styleLike.*;
 import lombok.*;
@@ -35,17 +36,35 @@ public class HairShop {
     @Column
     private String hairShopImage;
 
+    @Column
+    private Double latitude;
+
+    @Column
+    private Double longitude;
+
+    @Column
+    private String kakaoApiId;
+
     @OneToMany(mappedBy = "hairShop")
-    private List<HairShopLike> hairShopLikes = new ArrayList<>();
+    private List<HairShopLike> hairShopLikes;
 
     @OneToMany(mappedBy = "hairShop", cascade = CascadeType.ALL)
     private List<Review> reviews;
+
+    @OneToMany(mappedBy = "hairShop", cascade = CascadeType.ALL)
+    private List<Reservation> reservations = new ArrayList<>();
 
     @Transient
     private int likeCount;
 
     @Transient
     private int reviewCount;
+
+    @Transient
+    private long myHairShopLikeId;
+
+    @Transient
+    private double distance;
 
     public void addHairShopLike(HairShopLike hairShopLike) {
         hairShopLikes.add(hairShopLike);

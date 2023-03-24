@@ -1,4 +1,8 @@
 spring:
+  profiles:
+    include:
+      - aws
+      - credentials
   jpa:
     hibernate:
       ddl-auto: update
@@ -6,6 +10,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  servlet:
+    multipart:
+      maxFileSize: 50MB
+      maxRequestSize: 50MB
 logging:
   level:
     org:
@@ -22,5 +30,5 @@ mail:
 jwt:
   key: GlFU9fJQv7qL6pIcxQQwHZe1WQIeja6Cpt6WKjFEPcYMhKm2LEkj4xbKdA3d
   #  key: ${JWT_SECRET_KEY}
-  access-token-expiration-minutes: 40
+  access-token-expiration-minutes: 420
   refresh-token-expiration-minutes: 420

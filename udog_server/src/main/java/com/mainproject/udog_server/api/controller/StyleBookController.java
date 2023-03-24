@@ -11,6 +11,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.*;
+import java.security.*;
 import java.util.*;
 
 @CrossOrigin
@@ -22,14 +23,23 @@ public class StyleBookController {
 
     private final StyleBookMapper styleBookMapper;
     @GetMapping
-    public ResponseEntity getStyleBooks(@Positive @RequestParam int page,
-                                           @Positive @RequestParam int size) {
-        Page<Review> pageStyleBooks = compositeService.getStyleBookList(page - 1, size);
+    public ResponseEntity getStyleBooks(Principal principal,
+                                        @Positive@RequestParam int page,
+                                        @Positive @RequestParam int size) {
+        Page<Review> pageStyleBooks = compositeService.getStyleBookList(principal, page - 1, size);
 
         return new ResponseEntity<>(
                 new MultiResponseDto<>(
                         styleBookMapper.reviewsToStyleBookResponses(pageStyleBooks.getContent()),
                         pageStyleBooks),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/top")
+    public ResponseEntity getTopStyles(Principal principal){
+        Page<Review> top3StyleBooks = compositeService.findTopStyles(principal);
+        return new ResponseEntity<>(
+                styleBookMapper.reviewsToStyleBookResponses(top3StyleBooks.getContent()),
                 HttpStatus.OK);
     }
 }

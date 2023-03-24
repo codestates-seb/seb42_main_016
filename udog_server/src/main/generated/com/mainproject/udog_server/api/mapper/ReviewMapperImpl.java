@@ -1,7 +1,6 @@
 package com.mainproject.udog_server.api.mapper;
 
 import com.mainproject.udog_server.api.dto.ReviewDto.Patch;
-import com.mainproject.udog_server.api.dto.ReviewDto.Post;
 import com.mainproject.udog_server.api.dto.ReviewDto.Response;
 import com.mainproject.udog_server.api.dto.ReviewDto.listResponse;
 import com.mainproject.udog_server.review.Review;
@@ -13,26 +12,11 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-16T22:04:22+0900",
+    date = "2023-03-24T17:37:33+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component
 public class ReviewMapperImpl implements ReviewMapper {
-
-    @Override
-    public Review reviewPostDtoToReview(Post postDto) {
-        if ( postDto == null ) {
-            return null;
-        }
-
-        Review review = new Review();
-
-        review.setReviewText( postDto.getReviewText() );
-        review.setReviewImage( postDto.getReviewImage() );
-        review.setMember( postDto.getMember() );
-
-        return review;
-    }
 
     @Override
     public Review reviewPatchDtoToReview(Patch patchDto) {
@@ -42,9 +26,8 @@ public class ReviewMapperImpl implements ReviewMapper {
 
         Review review = new Review();
 
-        review.setId( patchDto.getId() );
+        review.setReviewId( patchDto.getReviewId() );
         review.setReviewText( patchDto.getReviewText() );
-        review.setReviewImage( patchDto.getReviewImage() );
         review.setMember( patchDto.getMember() );
 
         return review;
@@ -56,21 +39,19 @@ public class ReviewMapperImpl implements ReviewMapper {
             return null;
         }
 
-        Long id = null;
+        Long reviewId = null;
         String reviewImage = null;
         String reviewText = null;
         LocalDateTime createdAt = null;
         LocalDateTime modifiedAt = null;
 
-        id = review.getId();
+        reviewId = review.getReviewId();
         reviewImage = review.getReviewImage();
         reviewText = review.getReviewText();
         createdAt = review.getCreatedAt();
         modifiedAt = review.getModifiedAt();
 
-        int reviewLikeCount = 0;
-
-        Response response = new Response( id, reviewImage, reviewText, reviewLikeCount, createdAt, modifiedAt );
+        Response response = new Response( reviewId, reviewImage, reviewText, createdAt, modifiedAt );
 
         return response;
     }
@@ -94,17 +75,17 @@ public class ReviewMapperImpl implements ReviewMapper {
             return null;
         }
 
-        Long id = null;
+        Long reviewId = null;
         String reviewImage = null;
         String reviewText = null;
         LocalDateTime createdAt = null;
 
-        id = review.getId();
+        reviewId = review.getReviewId();
         reviewImage = review.getReviewImage();
         reviewText = review.getReviewText();
         createdAt = review.getCreatedAt();
 
-        listResponse listResponse = new listResponse( id, reviewImage, reviewText, createdAt );
+        listResponse listResponse = new listResponse( reviewId, reviewImage, reviewText, createdAt );
 
         return listResponse;
     }

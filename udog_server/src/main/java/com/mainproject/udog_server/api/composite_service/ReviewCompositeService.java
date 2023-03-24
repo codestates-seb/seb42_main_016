@@ -2,25 +2,35 @@ package com.mainproject.udog_server.api.composite_service;
 
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.member.MemberService;
+import com.mainproject.udog_server.reservation.*;
 import com.mainproject.udog_server.review.Review;
 import com.mainproject.udog_server.review.ReviewService;
+import com.mainproject.udog_server.s3.service.FileUploadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequiredArgsConstructor
 @Service
 public class ReviewCompositeService {
+    private final FileUploadService fileUploadService;
 
+    private final ReservationService reservationService;
     private final ReviewService reviewService;
     private final MemberService memberService;
 
-    public Review createReview(Review creatingReview, String email) {
+    public Review createReview(Review creatingReview, MultipartFile reviewImage, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
+        Reservation foundReservation = reservationService.findVerifiedReservation(creatingReview.getReservation().getReservationId());
 
         creatingReview.setMember(member);
-
+        creatingReview.setReviewImage(fileUploadService.uploadImage(reviewImage));
+        creatingReview.setReservation(foundReservation);
         Review createdReview = reviewService.createReview(creatingReview);
+
+        foundReservation.setReview(createdReview);
+        reservationService.updateReservation(foundReservation);
 
         return createdReview;
     }
