@@ -1,6 +1,6 @@
 package com.mainproject.udog_server.styleLike;
 
-
+import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.hairshopLike.*;
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.review.*;

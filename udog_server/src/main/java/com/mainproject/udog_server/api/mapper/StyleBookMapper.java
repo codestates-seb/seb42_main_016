@@ -1,7 +1,7 @@
 package com.mainproject.udog_server.api.mapper;
 
 import com.mainproject.udog_server.api.dto.*;
-
+import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.review.*;
 import org.mapstruct.*;
 
