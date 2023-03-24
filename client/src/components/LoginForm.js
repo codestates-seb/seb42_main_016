@@ -50,7 +50,7 @@ function LoginForm() {
         console.log('로그인 성공!', res);
         localStorage.setItem('accessToken', res.headers.authorization);
         localStorage.setItem('refresh', res.headers.refresh);
-        dispatch(login(email));
+        dispatch(login(res.data));
         navigate(HOME);
       })
       .then(() => {
