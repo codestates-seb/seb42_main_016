@@ -1,22 +1,19 @@
-import { useState } from 'react';
 import * as S from '../style/MyPageStyle';
 import { IoIosCut } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import { openModal } from '../../modules/redux/modalSlice';
+import { BOOKCANCELMODAL } from '../../modules/ModalContainer';
 
 export default function ReserveItem() {
-  let [modal, setModal] = useState(false);
-
-  function CancelModal() {
-    return (
-      <S.ModalWrap>
-        <p>예약을 취소하시겠습니까?</p>
-        <div className="button">
-          <button>예</button>
-          <button onClick={() => setModal(false)}>아니오</button>
-        </div>
-      </S.ModalWrap>
+  const dispatch = useDispatch();
+  const handleOpenBookCancelModal = () => {
+    dispatch(
+      openModal({
+        modalType: BOOKCANCELMODAL,
+        isOpen: true,
+      }),
     );
-  }
-
+  };
   return (
     <S.RIWrap>
       <div className="upper">
@@ -24,7 +21,7 @@ export default function ReserveItem() {
           <IoIosCut className="icon" />
           미용실
         </S.HairshopName>
-        <S.Button onClick={() => setModal(true)}>예약취소</S.Button>
+        <S.Button onClick={handleOpenBookCancelModal}>예약취소</S.Button>
       </div>
       <S.ReserveInfo>
         <div className="info">
@@ -33,7 +30,6 @@ export default function ReserveItem() {
         </div>
         <div className="cut">컷트</div>
       </S.ReserveInfo>
-      {modal ? <CancelModal /> : null}
     </S.RIWrap>
   );
 }

@@ -12,6 +12,7 @@ import ReviewModal from '../components/modal/ReviewModal';
 import ReviewEditModal from '../components/modal/ReviewEditModal';
 import BookConfirmModal from '../components/modal/BookConfirmModal';
 import ReviewConfirmModal from '../components/modal/ReviewConfirmModal';
+import BookCancelModal from '../components/modal/BookCancelModal';
 
 export const WEIGHTMODAL = 'WeightModal';
 export const TYPEMODAL = 'TypeModal';
@@ -24,6 +25,7 @@ export const REVIEWMODAL = 'ReveiwModal';
 export const REVIEWEDITMODAL = 'ReviewEditModal';
 export const BOOKCONFIRMMODAL = 'BookConfirmModal';
 export const REVIEWCONFIRMMODAL = 'ReviewConfirmModal';
+export const BOOKCANCELMODAL = 'BookCancelModal';
 
 const MODAL_TYPES = {
   WeightModal: WEIGHTMODAL,
@@ -37,6 +39,7 @@ const MODAL_TYPES = {
   ReviewEditModal: REVIEWEDITMODAL,
   BookConfirmModal: BOOKCONFIRMMODAL,
   ReviewConfirmModal: REVIEWCONFIRMMODAL,
+  BookCancelModal: BOOKCANCELMODAL,
 };
 
 const MODAL_COMPONENTS = [
@@ -83,6 +86,10 @@ const MODAL_COMPONENTS = [
   {
     type: MODAL_TYPES.ReviewConfirmModal,
     component: <ReviewConfirmModal />,
+  },
+  {
+    type: MODAL_TYPES.BookCancelModal,
+    component: <BookCancelModal />,
   },
 ];
 
