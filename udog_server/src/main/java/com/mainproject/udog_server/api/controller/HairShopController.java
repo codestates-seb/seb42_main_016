@@ -56,9 +56,11 @@ public class HairShopController {
     //내 주변 미용실
     @GetMapping
     public ResponseEntity getHairShops(Principal principal,
-                                       @Positive@RequestParam int page,
-                                       @Positive @RequestParam int size) {
-        Page<HairShop> pageHairShops = compositeService.getHairShops(principal,page - 1, size);
+                                       @Positive @RequestParam int page,
+                                       @Positive @RequestParam int size,
+                                       @RequestParam double latitude,
+                                       @RequestParam double longitude){
+        Page<HairShop> pageHairShops = compositeService.getHairShops(principal,page - 1, size, latitude, longitude);
 
         return new ResponseEntity<>(
                 new MultiResponseDto<>(
