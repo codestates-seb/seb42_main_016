@@ -2,7 +2,8 @@ package com.mainproject.udog_server.api.mapper;
 
 import com.mainproject.udog_server.api.dto.ReviewDto.Patch;
 import com.mainproject.udog_server.api.dto.ReviewDto.Response;
-import com.mainproject.udog_server.api.dto.ReviewDto.listResponse;
+import com.mainproject.udog_server.api.dto.ReviewDto.hairShopReviewsResponse;
+import com.mainproject.udog_server.api.dto.ReviewDto.memberReviewsResponse;
 import com.mainproject.udog_server.review.Review;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-03-24T17:37:33+0900",
+    date = "2023-03-24T19:10:47+0900",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.17 (Azul Systems, Inc.)"
 )
 @Component
@@ -57,20 +58,34 @@ public class ReviewMapperImpl implements ReviewMapper {
     }
 
     @Override
-    public List<listResponse> reviewsToReviewResponseDto(List<Review> reviews) {
+    public List<hairShopReviewsResponse> hairShopReviewsToReviewResponseDto(List<Review> reviews) {
         if ( reviews == null ) {
             return null;
         }
 
-        List<listResponse> list = new ArrayList<listResponse>( reviews.size() );
+        List<hairShopReviewsResponse> list = new ArrayList<hairShopReviewsResponse>( reviews.size() );
         for ( Review review : reviews ) {
-            list.add( reviewTolistResponse( review ) );
+            list.add( reviewTohairShopReviewsResponse( review ) );
         }
 
         return list;
     }
 
-    protected listResponse reviewTolistResponse(Review review) {
+    @Override
+    public List<memberReviewsResponse> memberReviewsToReviewResponseDto(List<Review> reviews) {
+        if ( reviews == null ) {
+            return null;
+        }
+
+        List<memberReviewsResponse> list = new ArrayList<memberReviewsResponse>( reviews.size() );
+        for ( Review review : reviews ) {
+            list.add( reviewTomemberReviewsResponse( review ) );
+        }
+
+        return list;
+    }
+
+    protected hairShopReviewsResponse reviewTohairShopReviewsResponse(Review review) {
         if ( review == null ) {
             return null;
         }
@@ -85,8 +100,32 @@ public class ReviewMapperImpl implements ReviewMapper {
         reviewText = review.getReviewText();
         createdAt = review.getCreatedAt();
 
-        listResponse listResponse = new listResponse( reviewId, reviewImage, reviewText, createdAt );
+        Long memberId = null;
 
-        return listResponse;
+        hairShopReviewsResponse hairShopReviewsResponse = new hairShopReviewsResponse( reviewId, memberId, reviewImage, reviewText, createdAt );
+
+        return hairShopReviewsResponse;
+    }
+
+    protected memberReviewsResponse reviewTomemberReviewsResponse(Review review) {
+        if ( review == null ) {
+            return null;
+        }
+
+        Long reviewId = null;
+        String reviewImage = null;
+        String reviewText = null;
+        LocalDateTime createdAt = null;
+
+        reviewId = review.getReviewId();
+        reviewImage = review.getReviewImage();
+        reviewText = review.getReviewText();
+        createdAt = review.getCreatedAt();
+
+        Long hairShopId = null;
+
+        memberReviewsResponse memberReviewsResponse = new memberReviewsResponse( reviewId, hairShopId, reviewImage, reviewText, createdAt );
+
+        return memberReviewsResponse;
     }
 }
