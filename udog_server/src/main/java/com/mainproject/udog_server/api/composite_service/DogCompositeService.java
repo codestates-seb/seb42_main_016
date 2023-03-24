@@ -32,13 +32,15 @@ public class DogCompositeService {
         return updatedDog;
     }
 
-    public Dog findDog(Long dogId) {
-        Dog response = dogService.findDog(dogId);
+    public Dog findDog(Long dogId, String email) {
+        Member member = memberService.findLoginMemberByEmail(email);
+        Dog response = dogService.findDog(dogId, member);
         return response;
     }
 
-    public List<Dog> findDogs() {
-        List<Dog> dogs = dogService.findDogs();
+    public List<Dog> findDogs(String email) {
+        Member member = memberService.findLoginMemberByEmail(email);
+        List<Dog> dogs = dogService.findDogs(member);
         return dogs;
     }
 
