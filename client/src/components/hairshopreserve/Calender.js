@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setDate, setTime, selectBook } from '../../modules/redux/bookSlice';
 import { TimeOption } from '../../utils/BookOption';
 import Calendar from 'react-calendar';
+import { RESERVATION_ENDPOINT } from '../../modules/endpoints';
+import { useParams } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
 
 function Calender() {
   const dispatch = useDispatch();
@@ -16,6 +19,9 @@ function Calender() {
   const [isOpen, setIsopen] = useState(true);
   const formatDate = moment(value).format('YYYY-MM-DD');
   const DisplayDate = moment(value).format('YYYY년 MM월 DD일 dddd');
+  const { id } = useParams();
+  const timeData = useFetch(`${RESERVATION_ENDPOINT}/${id}?select-date=${formatDate}`);
+  const bookedTimes = timeData?.map((reservation) => reservation.time);
 
   useEffect(() => {
     dispatch(setDate(formatDate));
@@ -59,6 +65,7 @@ function Calender() {
                   {TimeOption.map((time, idx) => (
                     <S.TimeItem key={idx}>
                       <S.TimeButton
+                        disabled={bookedTimes?.includes(time)}
                         onClick={() => {
                           dispatch(setTime(time));
                           setIsopen(false);

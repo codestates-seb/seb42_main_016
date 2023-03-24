@@ -23,6 +23,7 @@ function BookConfirmModal() {
 
   const clickModalOutside = (e) => {
     if (isOpen && !modalRef.current.contains(e.target)) {
+      window.location.reload();
       dispatch(closeModal());
     }
   };

@@ -12,7 +12,6 @@ function useFetch(url) {
   const refresh = localStorage.getItem('refresh');
 
   useEffect(() => {
-    if (window) window.scrollTo(0, 0);
     dispatch(setLoading(true));
 
     const headers = {};

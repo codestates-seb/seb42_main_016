@@ -34,8 +34,7 @@ export const CalenderContainer = styled.div`
   }
 
   .react-calendar__tile--now {
-    background: #ececec;
-    color: #666;
+    background: transparent;
   }
 
   .react-calendar__tile--active,

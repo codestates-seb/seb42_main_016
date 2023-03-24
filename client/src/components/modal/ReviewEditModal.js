@@ -64,16 +64,7 @@ function ReviewEditModal() {
       <form onSubmit={handleSubmit}>
         <S.TopWrapper>
           <S.Title>리뷰 수정</S.Title>
-          <div
-            role="button"
-            tabIndex="0"
-            aria-label="Close"
-            onClick={clickCancle}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                dispatch(closeModal());
-              }
-            }}>
+          <div role="presentation" onClick={clickCancle}>
             <CloseIcon />
           </div>
         </S.TopWrapper>
