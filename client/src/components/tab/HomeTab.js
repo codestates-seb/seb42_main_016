@@ -88,21 +88,19 @@ function HomeTab() {
             </S.InfoText>
           </S.Info>
           <S.CommentBox>
-            {shop && comment ? (
-              <>
-                <S.CommentTitleBox>
-                  <S.CommentTitle>매장 소개</S.CommentTitle>
-                  {comment.length > maxLen && (
-                    <S.CommentButton onClick={handleToggle}>
-                      {show ? '접기' : '더보기'}
-                    </S.CommentButton>
-                  )}
-                </S.CommentTitleBox>
-                <S.CommentText className={show ? '' : 'hide'}>
-                  {getDisplayComment(comment)}
-                </S.CommentText>
-              </>
-            ) : null}
+            <>
+              <S.CommentTitleBox>
+                <S.CommentTitle>매장 소개</S.CommentTitle>
+                {comment.length > maxLen && (
+                  <S.CommentButton onClick={handleToggle}>
+                    {show ? '접기' : '더보기'}
+                  </S.CommentButton>
+                )}
+              </S.CommentTitleBox>
+              <S.CommentText className={show ? '' : 'hide'}>
+                {comment ? getDisplayComment(comment) : '소개말이 없습니다.'}
+              </S.CommentText>
+            </>
           </S.CommentBox>
         </S.TextContainer>
       </S.HomeContent>

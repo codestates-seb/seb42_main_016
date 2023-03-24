@@ -20,6 +20,7 @@ import {
   NOTFOUND,
   WRITEREVIEW,
   READREVIEW,
+  ABOUT,
 } from './modules/routes';
 
 import NotFound from './pages/NotFound';
@@ -38,6 +39,7 @@ const WriteReview = lazy(() => import('./components/mypageReview/WriteReview'));
 const MyReviewList = lazy(() => import('./components/mypageReview/MyReviewList'));
 const Mydog = lazy(() => import('./pages/Mydog'));
 const MydogEditor = lazy(() => import('./pages/MydogEditor'));
+const About = lazy(() => import('./pages/About'));
 
 function App() {
   return (
@@ -65,6 +67,7 @@ function App() {
             <Route path={MYDOGEDIT} element={<MydogEditor />} />
           </Route>
           <Route path={NOTFOUND} element={<NotFound />} />
+          <Route path={ABOUT} element={<About />} />
         </Routes>
       </Suspense>
       <Toaster
