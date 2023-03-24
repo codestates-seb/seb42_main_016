@@ -50,8 +50,20 @@ public class ReviewDto {
     @Getter
     @Setter
     @AllArgsConstructor
-    public static class listResponse {
+    public static class hairShopReviewsResponse {
         private Long reviewId;
+        private Long memberId;
+        private String reviewImage;
+        private String reviewText;
+        private LocalDateTime createdAt;
+    }
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class memberReviewsResponse {
+        private Long reviewId;
+        private Long hairShopId;
         private String reviewImage;
         private String reviewText;
         private LocalDateTime createdAt;

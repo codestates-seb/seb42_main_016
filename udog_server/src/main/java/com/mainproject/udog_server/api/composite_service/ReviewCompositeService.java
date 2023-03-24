@@ -45,14 +45,13 @@ public class ReviewCompositeService {
         return updatedReview;
     }
 
-    public Review getReview(Long reviewId) {
-        Review foundReview = reviewService.findReview(reviewId);
-
-        return foundReview;
+    public Page<Review> getMemberReviews(String email, int page, int size) {
+        Member member = memberService.findLoginMemberByEmail(email);
+        return reviewService.findMemberReviews(member.getMemberId(), page-1, size);
     }
 
     public Page<Review> getHairShopReviews(long hairShopId, int page, int size) {
-        return reviewService.findHairShopReviews(hairShopId,page-1, size);
+        return reviewService.findHairShopReviews(hairShopId, page-1, size);
     }
 
     public void deleteReview(Long reviewId, String email) {
