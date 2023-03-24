@@ -3,8 +3,17 @@ import produce from 'immer';
 import API from '../API';
 import { MYDOG_ENDPOINT } from '../endpoints';
 
+const token = localStorage.getItem('accessToken');
+const refresh = localStorage.getItem('refresh');
+const config = {
+  headers: {
+    Authorization: token,
+    refresh: refresh,
+  },
+};
+
 const asyncUpFetch = createAsyncThunk('dogSlice/asyncUpFetch', async () => {
-  const response = await API.get(MYDOG_ENDPOINT);
+  const response = await API.get(MYDOG_ENDPOINT, config);
   return response.data;
 });
 
