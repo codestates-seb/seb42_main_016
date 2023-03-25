@@ -27,6 +27,8 @@ public class ReviewCompositeService {
         Reservation foundReservation = reservationService.findVerifiedReservation(creatingReview.getReservation().getReservationId());
 
         creatingReview.setMember(member);
+
+        creatingReview.setMember(member);
         creatingReview.setReviewImage(fileUploadService.uploadImage(reviewImage));
 
         creatingReview.setReservation(foundReservation);

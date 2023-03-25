@@ -54,8 +54,7 @@ public class ReservationController {
                                                   @Positive @RequestParam int page,
                                                   @Positive @RequestParam int size) {
 
-        List<Reservation> reservations = compositeService.getNoReviewReservations(principal.getName(), page - 1 , size);
-
+        List<Reservation> reservations = compositeService.getNoReviewReservations(principal.getName(), page - 1 ,size);
 
         SingleResponseDto response = new SingleResponseDto(mapper.reservationsToReservationResponseDto(reservations));
 
