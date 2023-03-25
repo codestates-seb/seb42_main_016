@@ -88,6 +88,11 @@ export const ConfirmContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: normal;
+  height: auto;
+  &.password {
+    width: 360px;
+    height: auto;
+  }
 `;
 
 export const ConfirmContent = styled.div`
@@ -151,6 +156,7 @@ export const ConfirmButton = styled.button`
   display: flex;
   &.edit {
     flex: none;
+    margin-bottom: 20px;
   }
   &:hover {
     background-color: ${(props) => props.hover || '#f4f7fa'};
@@ -241,7 +247,11 @@ export const SubmitButton = styled.button`
 export const ReviewText = styled.div``;
 
 export const EditContainer = styled.div`
-  margin: 30px 10px 40px 10px;
+  margin: 30px 10px;
+  &.password {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const EditInput = styled.input`
@@ -271,4 +281,17 @@ export const EditValid = styled.p`
   line-height: 18px;
   margin-bottom: 8px;
   margin-top: 0px;
+`;
+
+export const EditLabelContainer = styled.div`
+  margin-bottom: 7px;
+`;
+
+export const EditLabel = styled.label`
+  color: #888;
+  font-weight: 500;
+  text-align: left;
+  letter-spacing: 0.0145em;
+  font-size: 14px;
+  line-height: 20px;
 `;

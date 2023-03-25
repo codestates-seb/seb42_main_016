@@ -64,7 +64,6 @@ export const TextBox = styled.div`
 export const ShopName = styled.h2`
   margin-top: 20px;
   font-size: 35px;
-  line-height: 40px;
   letter-spacing: 2px;
   font-weight: bold;
   word-break: keep-all;
