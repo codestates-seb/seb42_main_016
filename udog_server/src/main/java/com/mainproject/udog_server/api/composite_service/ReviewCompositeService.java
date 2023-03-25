@@ -28,6 +28,10 @@ public class ReviewCompositeService {
             throw new IllegalArgumentException("Invalid hairShopId");
         }
 
+        if (foundReservation.getMember().getMemberId() != member.getMemberId()) {
+            throw new IllegalArgumentException("Invalid memberId");
+        }
+
         creatingReview.setMember(member);
         creatingReview.setReviewImage(fileUploadService.uploadImage(reviewImage));
 
