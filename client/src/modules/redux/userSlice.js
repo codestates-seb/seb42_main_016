@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   user: JSON.parse(localStorage.getItem('user')) || null,
+  nick: '',
 };
 
 const userSlice = createSlice({
@@ -14,10 +15,13 @@ const userSlice = createSlice({
     logout: (state) => {
       state.user = localStorage.clear();
     },
+    setNick: (state, action) => {
+      state.nick = action.payload;
+    },
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, setNick } = userSlice.actions;
 
 export const selectUser = (state) => state.user;
 
