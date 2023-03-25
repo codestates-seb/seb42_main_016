@@ -29,21 +29,25 @@ public class ReservationService {
     }
 
 
+    public Reservation updateReservation(Reservation reservation) {
+        Reservation foundReservation = findVerifiedReservation(reservation.getReservationId());
+
+        return reservationRepository.save(foundReservation);
+    }
+
+
     public Page<Reservation> findReservations(Member member, int page, int size) {
         return reservationRepository.findAllByMember(member,
                 PageRequest.of(page, size, Sort.by("reservationId").descending()));
     }
 
-    public Reservation updateReservation(Reservation reservation){
-        return reservationRepository.save(reservation);
-    }
 
     public List<Reservation> findNoReviewsReservations(Member member, int page, int size) {
-        System.out.println("@".repeat(90));
-        System.out.println(member.getMemberId());
+
 
         Page<Reservation> reservations = reservationRepository.findAllByMember
                 (member, PageRequest.of(page, size, Sort.by("reservationId").descending()));
+
         List<Reservation> noReviewReservations = reservations.stream().filter(reservation -> reservation.getReview() == null).collect(Collectors.toList());
         return noReviewReservations;
     }
@@ -59,7 +63,6 @@ public class ReservationService {
     // 존재하는 예약인지 확인
     public Reservation findVerifiedReservation(Long reservationId) {
 
-
         Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
 
         Reservation findReservation =
@@ -72,9 +75,6 @@ public class ReservationService {
 
         List<Reservation> reservations = reservationRepository.findByReserveDateAndHairShopHairShopId(reserveDate, hairShopId);
         List<LocalTime> reservedTime = reservations.stream().map(Reservation::getReserveTime).collect(Collectors.toList());
-        
-        System.out.println("#".repeat(80));
-        System.out.println(reservedTime);
 
         return reservedTime;
     }

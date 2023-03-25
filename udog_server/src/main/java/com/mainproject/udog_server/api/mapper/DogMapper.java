@@ -16,7 +16,7 @@ public interface DogMapper {
     Dog dogPatchDtoToDog(DogDto.Patch patchDto);
    
     @Mapping(source = "dogBirthDate", target = "dogBirthDate", dateFormat = "yyyy-MM-dd")
-//    @Mapping(source = "member.memberId", target =  "memberId")
+
     DogDto.Response dogToDogResponse(Dog dog);
 
     List<DogDto.Response> dogsToDogResponsesDtos(List<Dog> dogs);
