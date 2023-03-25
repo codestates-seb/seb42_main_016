@@ -55,6 +55,10 @@ export const AboutContent = styled.div`
   &.right {
     margin-right: 50px;
   }
+  span {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.56);
+  }
 `;
 
 export const StartContent = styled.div`
