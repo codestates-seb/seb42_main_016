@@ -23,6 +23,14 @@ function Calender() {
   const timeData = useFetch(`${RESERVATION_ENDPOINT}/${id}?select-date=${formatDate}`);
   const bookedTimes = timeData?.map((reservation) => reservation.reserveTime);
 
+  const disabledTime = (time) => {
+    const selectedDateTime = moment(value)
+      .hour(time.split(':')[0])
+      .minute(time.split(':')[1])
+      .toDate();
+    return selectedDateTime < now || bookedTimes?.includes(time);
+  };
+
   useEffect(() => {
     dispatch(setDate(formatDate));
   }, [dispatch, formatDate]);
@@ -65,7 +73,7 @@ function Calender() {
                   {TimeOption.map((time, idx) => (
                     <S.TimeItem key={idx}>
                       <S.TimeButton
-                        disabled={bookedTimes?.includes(time)}
+                        disabled={disabledTime(time)}
                         onClick={() => {
                           dispatch(setTime(time));
                           setIsopen(false);
