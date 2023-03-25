@@ -5,6 +5,7 @@ import ReviewItem from './ReviewItem';
 // import { fetchReviews } from '../../modules/redux/reviewsSlice';
 import useFetch from '../../hooks/useFetch';
 import { REVIEW_ENDPOINT } from '../../modules/endpoints';
+import Empty from '../Empty';
 
 export default function MyReviewList() {
   // const dispatch = useDispatch();
@@ -18,10 +19,13 @@ export default function MyReviewList() {
   return (
     <S.Container>
       {/* <ReviewItem reviews={reviews} /> */}
-      {reviews &&
+      {reviews?.length ? (
         reviews.map((reviews) => {
           return <ReviewItem reviews={reviews} key={reviews.id} />;
-        })}
+        })
+      ) : (
+        <Empty text={'작성한 리뷰가 없습니다.'} />
+      )}
     </S.Container>
   );
 }
