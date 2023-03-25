@@ -41,7 +41,7 @@ function useInfiniteScroll(url, perPage) {
     }
   };
 
-  return { data, handleScroll, loading };
+  return { data, handleScroll };
 }
 
 export default useInfiniteScroll;

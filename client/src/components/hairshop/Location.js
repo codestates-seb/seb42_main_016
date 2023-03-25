@@ -8,18 +8,13 @@ function Location() {
   const dispatch = useDispatch();
   const location = useGeolocation();
   const { address } = useSelector(selectLocation);
-  const defaultLat = '37.5044953';
-  const defaultLng = '127.0491212';
-  const lat = location.loaded ? JSON.stringify(location.coordinates.lat) : defaultLat;
-  const lng = location.loaded ? JSON.stringify(location.coordinates.lng) : defaultLng;
 
   useEffect(() => {
     if (location.loaded) {
+      const lat = JSON.stringify(location.coordinates.lat);
+      const lng = JSON.stringify(location.coordinates.lng);
       dispatch(setLat(lat));
       dispatch(setLng(lng));
-    } else {
-      dispatch(setLat(defaultLat));
-      dispatch(setLng(defaultLng));
     }
   }, [location.loaded]);
 
