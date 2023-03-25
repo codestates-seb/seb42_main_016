@@ -14,7 +14,7 @@ export default function ReviewItem({ reviews }) {
       openModal({
         modalType: REVIEWEDITMODAL,
         isOpen: true,
-        data: reviewId,
+        data: reviews,
       }),
     );
   };

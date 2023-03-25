@@ -9,14 +9,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import CloseIcon from '../../utils/CloseIcon';
 
 function ReviewEditModal() {
-  const [inputCount, setInputCount] = useState();
-  // const [reviewImage, setImage] = useState();
-  const [reviewText, setText] = useState();
-  const modalRef = useRef();
   const { isOpen, data } = useSelector(selectModal);
+  const { reviewId } = data;
+
+  const [inputCount, setInputCount] = useState(data.reviewText.length);
+  // const [reviewImage, setImage] = useState();
+  const [reviewText, setText] = useState(data.reviewText);
+  const modalRef = useRef();
 
   const dispatch = useDispatch();
-
   const token = localStorage.getItem('accessToken');
   const refresh = localStorage.getItem('refresh');
   const config = {
@@ -41,7 +42,7 @@ function ReviewEditModal() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    API.patch(`${REVIEW_ENDPOINT}/${data}`, { reviewText }, config)
+    API.patch(`${REVIEW_ENDPOINT}/${reviewId}`, { reviewText }, config)
       .then((res) => {
         console.log('수정 성공', res);
         dispatch(closeModal());
@@ -88,9 +89,9 @@ function ReviewEditModal() {
           </S.ReviewText>
         </S.ReviewWrap>
         <S.ButtonBox>
-          <S.ConfirmButton color="white" hover="#6893dd" type="submit">
+          <S.SubmitButton disabled={!reviewText} color="white" hover="#6893dd" type="submit">
             제출
-          </S.ConfirmButton>
+          </S.SubmitButton>
         </S.ButtonBox>
       </form>
     </S.ModalWrap>
