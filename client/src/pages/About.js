@@ -11,11 +11,7 @@ function About() {
   useScrollTop();
 
   const handleScroll = ([entry]) => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = 1;
-    } else {
-      entry.target.style.opacity = 0;
-    }
+    entry.target.style.opacity = entry.isIntersecting ? 1 : 0;
   };
 
   useEffect(() => {
