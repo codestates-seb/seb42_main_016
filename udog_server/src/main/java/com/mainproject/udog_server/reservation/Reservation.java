@@ -26,7 +26,7 @@ public class Reservation {
     @JoinColumn(name = "MEMBER_ID", nullable = false)
     private Member member;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "HAIR_SHOP_ID", nullable = false)
     private HairShop hairShop;
 
@@ -48,8 +48,9 @@ public class Reservation {
         }
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id")
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "review_id")
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
     private Review review;
 
     @Column(nullable = false)
