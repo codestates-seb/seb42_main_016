@@ -25,6 +25,7 @@ export const ImgReview = styled.div`
   border-radius: 3px;
   img {
     width: 100%;
+    height: 100px;
     overflow: clip;
   }
 `;
