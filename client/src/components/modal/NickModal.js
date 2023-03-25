@@ -69,6 +69,7 @@ function NickModal() {
       </S.TopWrapper>
       <S.EditContainer>
         <S.EditInput
+          type="text"
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
           valid={!isValidNickname}
