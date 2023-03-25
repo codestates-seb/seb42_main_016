@@ -7,13 +7,9 @@ import ReviewIcon from '../../utils/ReviewIcon';
 import { IoHeartOutline, IoHeart } from 'react-icons/io5';
 import useComment from '../../hooks/useComment';
 import useShopLike from '../../hooks/useShopLike';
-// import { selectShop, setLikeCount } from '../../modules/redux/shopSlice';
 import { selectUser } from '../../modules/redux/userSlice';
 import { openModal } from '../../modules/redux/modalSlice';
 import { LOGINMODAL } from '../../modules/ModalContainer';
-// import useFetch from '../../hooks/useFetch';
-// import { HAIRSHOP_ENDPOINT } from '../../modules/endpoints';
-// import { useParams } from 'react-router-dom';
 import { selectLike, setLikeId, setLikeCount } from '../../modules/redux/likeSlice';
 import { selectShop } from '../../modules/redux/shopSlice';
 
@@ -21,11 +17,8 @@ function HomeTab() {
   const maxLen = 63;
   const hours = '10:00 ~ 20:00';
   const dispatch = useDispatch();
-  // const { id } = useParams();
-  // const { likeCount } = useSelector(selectShop);
   const shop = useSelector(selectShop);
   const { likeId, likeCount } = useSelector(selectLike);
-  // const shop = useFetch(`${HAIRSHOP_ENDPOINT}/${id}`);
   const [like, setLike] = useState(likeId);
   const { user } = useSelector(selectUser);
   const { show, handleToggle, comment, getDisplayComment } = useComment(
