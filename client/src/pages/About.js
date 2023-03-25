@@ -84,7 +84,7 @@ function About() {
               </p>
             </S.AboutContent>
             <S.AboutImg>
-              <img src="/assets/Style.png" alt="best" />
+              <img src="/assets/Best.png" alt="best" />
             </S.AboutImg>
           </S.AboutSection>
         </S.ContentContainer>
