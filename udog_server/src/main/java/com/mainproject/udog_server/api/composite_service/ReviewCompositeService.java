@@ -32,6 +32,10 @@ public class ReviewCompositeService {
             throw new IllegalArgumentException("Invalid memberId");
         }
 
+        if (foundReservation.getReview() != null) {
+            throw new IllegalArgumentException("Already existing review");
+        }
+
         creatingReview.setMember(member);
         creatingReview.setReviewImage(fileUploadService.uploadImage(reviewImage));
 
