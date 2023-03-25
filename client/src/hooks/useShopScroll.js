@@ -10,7 +10,6 @@ function useShopScroll(url, perPage) {
   const [data, setData] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
-  const [latLng, setLatLng] = useState(null);
   const { user } = useSelector(selectUser);
   const { loading } = useSelector(selectLoading);
   const token = localStorage.getItem('accessToken');
@@ -18,18 +17,7 @@ function useShopScroll(url, perPage) {
   const { lat, lng } = useSelector(selectLocation);
 
   useEffect(() => {
-    if (!lat || !lng) {
-      return;
-    }
-    setLatLng({ lat, lng });
-  }, [lat, lng]);
-
-  useEffect(() => {
     dispatch(setLoading(true));
-
-    if (!latLng) {
-      return;
-    }
 
     const headers = {};
 
@@ -44,8 +32,10 @@ function useShopScroll(url, perPage) {
       .then((res) => {
         setData((prevData) => [...prevData, ...res.data.data]);
         setHasMore(res.data.data.length > 0);
-        const words = res.data.data[0].hairShopAddress.split(' ');
-        dispatch(setAddress(`${words[1]} ${words[2]}`));
+        if (res.data.pageInfo.page === 1) {
+          const words = res.data.data[0].hairShopAddress.split(' ');
+          dispatch(setAddress(`${words[1]} ${words[2]}`));
+        }
       })
       .finally(() => dispatch(setLoading(false)));
   }, [page, lat, lng]);
@@ -57,7 +47,7 @@ function useShopScroll(url, perPage) {
     }
   };
 
-  return { data, handleScroll, loading };
+  return { data, handleScroll };
 }
 
 export default useShopScroll;
