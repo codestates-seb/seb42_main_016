@@ -22,16 +22,19 @@ public interface HairShopRepository extends JpaRepository<HairShop, Long> {
 //            //"order by hs.distance")
 //                "hair_shop_address like '%서초구%' or "+
 //
-    @Query(value = "select *, ST_Distance_Sphere(Point(127.0491212,37.5044953),Point(longitude,latitude)) as distance "+
-            "from hair_shop as hs where "+
-            "hair_shop_address like '%강남구%' or "+
-            "hair_shop_address like '%광진구%' or "+
-            "hair_shop_address like '%서초구%' order by distance",
+    @Query(value = "select *, ST_Distance_Sphere(Point(?1,?2),Point(longitude,latitude)) as distance "+
+            "from hair_shop as hs "+
+//            "where "+
+//            "hair_shop_address like '%강남구%' or "+
+//            "hair_shop_address like '%광진구%' or "+
+//            "hair_shop_address like '%서초구%' "+
+            "order by distance",
             nativeQuery = true)
-    Page<HairShop> findClosestByKeywords(double userLatitude,
-                                         double userLongitude,
-                                         String keyword1,
-                                         String keyword2,
-                                         String keyword3,
+    Page<HairShop> findClosestByKeywords(
+                                         @Param("userLongitude")double userLongitude,
+                                         @Param("userLatitude")double userLatitude,
+//                                         @Param("keywordOne") String keyword1,
+//                                         @Param("keywordTwo")String keyword2,
+//                                         @Param("keywordThree")String keyword3,
                                          Pageable pageable);
 }
