@@ -187,6 +187,9 @@ export const ReviewWrap = styled.div`
 
   textarea {
     resize: none;
+    font-size: 14px;
+    padding: 10px;
+    letter-spacing: 0.2px;
   }
 
   .count {
@@ -227,7 +230,7 @@ export const SubmitButton = styled.button`
   width: 100%;
   height: 50px;
   min-height: 50px;
-  border-radius: 5px;
+  border-radius: 0 0 20px 20px;
   font-size: 16px;
   margin-top: 30px;
   color: white;
