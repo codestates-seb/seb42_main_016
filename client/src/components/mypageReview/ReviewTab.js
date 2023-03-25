@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export default function ReviewTab() {
-  const [selected, setSelected] = useState(true);
+  const [selected, setSelected] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     if (location.pathname === `${MYPAGE}/${MYREVIEW}`) {
       setSelected(true);
+    } else {
+      setSelected(false);
     }
   }, [location]);
 
