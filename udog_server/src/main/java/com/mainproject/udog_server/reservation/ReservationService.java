@@ -1,10 +1,9 @@
 package com.mainproject.udog_server.reservation;
 
 import com.mainproject.udog_server.dog.*;
-
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.member.*;
-
+import com.mainproject.udog_server.review.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,12 +20,14 @@ import java.util.stream.*;
 @Transactional
 public class ReservationService {
     private final ReservationRepository reservationRepository;
-
+    private final HairShopService hairShopService;
+    private final DogService dogService;
     public Reservation createReservation(Reservation reservation) {
 
 
         return reservationRepository.save(reservation);
     }
+
 
     public Reservation updateReservation(Reservation reservation) {
         Reservation foundReservation = findVerifiedReservation(reservation.getReservationId());
@@ -41,11 +42,8 @@ public class ReservationService {
     }
 
 
-
-
     public List<Reservation> findNoReviewsReservations(Member member, int page, int size) {
-        System.out.println("@".repeat(90));
-        System.out.println(member.getMemberId());
+
 
         Page<Reservation> reservations = reservationRepository.findAllByMember
                 (member, PageRequest.of(page, size, Sort.by("reservationId").descending()));
@@ -77,7 +75,6 @@ public class ReservationService {
 
         List<Reservation> reservations = reservationRepository.findByReserveDateAndHairShopHairShopId(reserveDate, hairShopId);
         List<LocalTime> reservedTime = reservations.stream().map(Reservation::getReserveTime).collect(Collectors.toList());
-
 
         return reservedTime;
     }

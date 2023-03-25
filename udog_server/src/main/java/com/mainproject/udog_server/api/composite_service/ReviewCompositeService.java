@@ -21,12 +21,9 @@ public class ReviewCompositeService {
     private final MemberService memberService;
 
 
-
     public Review createReview(Review creatingReview, MultipartFile reviewImage, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
         Reservation foundReservation = reservationService.findVerifiedReservation(creatingReview.getReservation().getReservationId());
-
-        creatingReview.setMember(member);
 
         creatingReview.setMember(member);
         creatingReview.setReviewImage(fileUploadService.uploadImage(reviewImage));

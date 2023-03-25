@@ -1,9 +1,8 @@
 package com.mainproject.udog_server.hairshopLike;
 
-
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.member.Member;
-
+import com.mainproject.udog_server.review.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -17,6 +16,7 @@ public class HairShopLikeService {
     private static final int AMOUNT_OF_TOP = 10;
 
     private final HairShopLikeRepository hairShopLikeRepository;
+    private final HairShopRepository hairShopRepository;
     private final HairShopService hairShopService;
 
 

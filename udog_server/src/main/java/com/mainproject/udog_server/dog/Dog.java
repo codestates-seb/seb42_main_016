@@ -81,4 +81,14 @@ public class Dog {
         DogSpecies() {
         }
     }
+
+//    @Builder
+//    public Dog (long dogId, String dogName, LocalDate dogBirthDate, String dogSpecies, int dogWeight, String dogDescription) {
+//        this.dogId = dogId;
+//        this.dogName = dogName;
+//        this.dogBirthDate = dogBirthDate;
+//        this.dogSpecies = dogSpecies;
+//        this.dogWeight = dogWeight;
+//        this.dogDescription = dogDescription;
+//    }
 }

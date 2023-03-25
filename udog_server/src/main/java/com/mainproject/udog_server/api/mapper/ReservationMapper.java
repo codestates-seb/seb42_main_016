@@ -2,10 +2,8 @@ package com.mainproject.udog_server.api.mapper;
 
 import com.mainproject.udog_server.api.dto.*;
 import com.mainproject.udog_server.dog.*;
-
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.reservation.Reservation;
-
 import org.mapstruct.*;
 
 import java.time.*;
@@ -32,6 +30,7 @@ public interface ReservationMapper {
     default ReservationDto.Response reservationToReservationResponseDto(Reservation reservation) {
         ReservationDto.Response responseDto = new ReservationDto.Response();
         responseDto.setReservationId(reservation.getReservationId());
+        responseDto.setHairShopId(reservation.getHairShop().getHairShopId());
         responseDto.setHairShopName(reservation.getHairShop().getHairShopName());
         responseDto.setDogName(reservation.getDog().getDogName());
         responseDto.setReserveDate(reservation.getReserveDate().toString());
@@ -49,8 +48,11 @@ public interface ReservationMapper {
         }
 
         return responseDtos;
+//        ReservationDto.reservedTimeResponse responseDto = new ReservationDto.reservedTimeResponse();
+//        responseDto.setReserveTime(reservation.getReserveTime().toString());
+//        return (List<ReservationDto.reservedTimeResponse>) responseDto;
     }
-
+//    List<ReservationDto.reservedTimeResponse> reservationsToReservedTimeResponseDto (List<LocalTime> reservations);
 
     List<ReservationDto.Response> reservationsToReservationResponseDto(List<Reservation> reservations);
 }

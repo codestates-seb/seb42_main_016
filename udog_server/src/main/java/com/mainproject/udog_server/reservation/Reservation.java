@@ -1,10 +1,14 @@
 package com.mainproject.udog_server.reservation;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.mainproject.udog_server.dog.Dog;
 import com.mainproject.udog_server.hairshop.HairShop;
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.review.Review;
 import lombok.*;
+import net.bytebuddy.asm.*;
 
 import javax.persistence.*;
 import java.time.*;
@@ -64,5 +68,16 @@ public class Reservation {
         클리핑,
         스포팅,
         가위컷;
+}
+    @Builder
+    public Reservation(long reservationId, Member member, HairShop hairShop, Dog dog, Review review, LocalDate reserveDate, LocalTime reserveTime, Reservation.HairOption hairOption) {
+        this.reservationId = reservationId;
+        this.member = member;
+        this.hairShop = hairShop;
+        this.dog = dog;
+        this.review = review;
+        this.reserveDate = reserveDate;
+        this.reserveTime = reserveTime;
+        this.hairOption = hairOption;
     }
 }

@@ -1,9 +1,12 @@
 package com.mainproject.udog_server.hairshop;
 
+import com.mainproject.udog_server.review.*;
 import org.springframework.data.domain.*;
+import org.springframework.data.geo.*;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.*;
 
+import java.time.*;
 import java.util.*;
 
 public interface HairShopRepository extends JpaRepository<HairShop, Long> {
