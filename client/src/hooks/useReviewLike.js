@@ -21,7 +21,7 @@ function useReviewLike(id, like, styleLikeId) {
     if (!like) {
       API.post(
         `${STYLELIKE_ENDPOINT}/${id}`,
-        { reviewId: id },
+        {},
         {
           headers: {
             Authorization: token,
