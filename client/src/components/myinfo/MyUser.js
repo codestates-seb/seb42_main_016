@@ -2,7 +2,7 @@ import * as S from '../style/MyInfoStyle';
 import { MdNavigateNext } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../../modules/redux/modalSlice';
-import { NICKMODAL } from '../../modules/ModalContainer';
+import { NICKMODAL, PASSWORDMODAL } from '../../modules/ModalContainer';
 import { MEMBERS_ENDPOINT } from '../../modules/endpoints';
 import useAuth from '../../hooks/useAuth';
 import { selectUser, setNick } from '../../modules/redux/userSlice';
@@ -26,6 +26,15 @@ function MyUser() {
     );
   };
 
+  const onClickPassword = () => {
+    dispatch(
+      openModal({
+        modalType: PASSWORDMODAL,
+        isOpen: true,
+      }),
+    );
+  };
+
   return (
     <S.UserContainer>
       <S.InfoTitle>{nick}님의 마이페이지</S.InfoTitle>
@@ -33,7 +42,7 @@ function MyUser() {
         <S.InfoButton onClick={onClickNick}>
           닉네임 변경 <MdNavigateNext />
         </S.InfoButton>
-        <S.InfoButton>
+        <S.InfoButton onClick={onClickPassword}>
           비밀번호 변경 <MdNavigateNext />
         </S.InfoButton>
       </S.InfoButtonBox>

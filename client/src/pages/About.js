@@ -57,6 +57,8 @@ function About() {
               <p>
                 위치 정보 제공 동의를 받으면,
                 <br />내 주변의 애견 미용실을 찾아드립니다.
+                <br />
+                <span>(현재 서비스 가능 업체 : 서울시 기준 1,500여 개)</span>
               </p>
             </S.AboutContent>
             <S.AboutImg>
