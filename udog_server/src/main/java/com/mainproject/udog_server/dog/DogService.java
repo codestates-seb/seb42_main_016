@@ -61,7 +61,6 @@ public class DogService {
     public Dog findVerifiedDog(long dogId) {
         Optional<Dog> optionalDog = dogRepository.findById(dogId);
         Dog findDog = optionalDog.orElseThrow(() -> null);
-        //Dog findDog = optionalDog.orElseThrow(() -> new BusinessLogicException(ExceptionCode.Dog_Not_Found));
 
         return findDog;
     }
@@ -69,7 +68,7 @@ public class DogService {
     public Dog findVerifiedDogAndMember(long dogId, Member member) {
         Optional<Dog> optionalDog = dogRepository.findByDogIdAndMember(dogId, member);
         Dog findDogAndMember = optionalDog.orElseThrow(() -> null);
-        //Dog findDogAndMember = optionalDog.orElseThrow(() -> new BusinessLogicException(ExceptionCode.Not_Your_Dogs);
+
         return findDogAndMember;
     }
 }

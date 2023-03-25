@@ -28,8 +28,6 @@ public class ReservationService {
         return reservationRepository.save(reservation);
     }
 
-    //리뷰가 예약 테이블에 안들어가는 부분 해결하기 위해 넣음
-    //리뷰가 등록되는 순간 예약이 업데이트 되어야 한다 << 있긴 한데 구체화
     public Reservation updateReservation(Reservation reservation) {
         Reservation foundReservation = findVerifiedReservation(reservation.getReservationId());
 
@@ -71,8 +69,6 @@ public class ReservationService {
 
         Reservation findReservation =
                 optionalReservation.orElseThrow(() -> null);
-        //Reservation findReservation =
-        //                optionalReservation.orElseThrow(() -> new BusinessLogicException(ExceptionCode.Reservation_Not_Found);
 
         return findReservation;
     }
@@ -82,8 +78,6 @@ public class ReservationService {
         List<Reservation> reservations = reservationRepository.findByReserveDateAndHairShopHairShopId(reserveDate, hairShopId);
         List<LocalTime> reservedTime = reservations.stream().map(Reservation::getReserveTime).collect(Collectors.toList());
 
-        System.out.println("#".repeat(80));
-        System.out.println(reservedTime);
 
         return reservedTime;
     }
