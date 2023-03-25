@@ -73,13 +73,13 @@ public interface ReviewMapper {
 
         List<ReviewDto.memberReviewsResponse> list = new ArrayList<ReviewDto.memberReviewsResponse>( reviews.size() );
         for ( Review review : reviews ) {
-            list.add( reviewTomemberReviewsResponse( review ) );
+            list.add( reviewToMemberReviewsResponse( review ) );
         }
 
         return list;
     }
 
-    default ReviewDto.memberReviewsResponse reviewTomemberReviewsResponse(Review review) {
+    default ReviewDto.memberReviewsResponse reviewToMemberReviewsResponse(Review review) {
         if ( review == null ) {
             return null;
         }
@@ -89,14 +89,16 @@ public interface ReviewMapper {
         String reviewText = null;
         LocalDateTime createdAt = null;
         Long hairShopId = null;
+        String hairShopName = null;
 
         reviewId = review.getReviewId();
         reviewImage = review.getReviewImage();
         reviewText = review.getReviewText();
         createdAt = review.getCreatedAt();
         hairShopId = review.getHairShop().getHairShopId();
+        hairShopName = review.getHairShop().getHairShopName();
 
-        ReviewDto.memberReviewsResponse memberReviewsResponse = new ReviewDto.memberReviewsResponse( reviewId, hairShopId, reviewImage, reviewText, createdAt );
+        ReviewDto.memberReviewsResponse memberReviewsResponse = new ReviewDto.memberReviewsResponse( reviewId, hairShopId, hairShopName, reviewImage, reviewText, createdAt );
 
         return memberReviewsResponse;
     }
