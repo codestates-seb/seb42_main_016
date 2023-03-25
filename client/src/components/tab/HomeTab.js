@@ -1,6 +1,5 @@
 import * as S from '../style/HomeStyle';
 import { useState, useEffect } from 'react';
-import img from '../../utils/img.jpeg';
 import { useSelector, useDispatch } from 'react-redux';
 import ClockIcon from '../../utils/ClockIcon';
 import PhoneIcon from '../../utils/PhoneIcon';
@@ -59,7 +58,7 @@ function HomeTab() {
     <S.HomeContainer>
       <S.HomeContent>
         <S.ImgContainer>
-          <S.HomeImg src={img} alt="img" />
+          <S.HomeImg src={shop.hairShopImage} alt="img" />
         </S.ImgContainer>
         <S.TextContainer>
           <S.Info>
