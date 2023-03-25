@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class ReviewCompositeService {
     private final FileUploadService fileUploadService;
-
     private final ReservationService reservationService;
     private final ReviewService reviewService;
     private final MemberService memberService;
@@ -24,6 +23,10 @@ public class ReviewCompositeService {
     public Review createReview(Review creatingReview, MultipartFile reviewImage, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
         Reservation foundReservation = reservationService.findVerifiedReservation(creatingReview.getReservation().getReservationId());
+
+        if (foundReservation.getHairShop().getHairShopId() != creatingReview.getHairShop().getHairShopId()) {
+            throw new IllegalArgumentException("Invalid hairShopId");
+        }
 
         creatingReview.setMember(member);
         creatingReview.setReviewImage(fileUploadService.uploadImage(reviewImage));
