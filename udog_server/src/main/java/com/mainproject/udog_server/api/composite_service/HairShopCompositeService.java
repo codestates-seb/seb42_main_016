@@ -42,12 +42,6 @@ public class HairShopCompositeService {
     public Page<HairShop> getHairShops(Principal principal, int page, int size, double latitude, double longitude){
         List<String> closestThreeOffices = officeService.getClosestThreeOfficeDistrict(latitude,longitude);
         Page<HairShop> pageHairShops =  hairShopService.findHairShops(page, size, latitude, longitude, closestThreeOffices);
-        System.out.println("@".repeat(90));
-        System.out.println(pageHairShops.getContent().size());
-//        PageRequest pageRequest = PageRequest.of(page, size);
-//        int start = (int)pageRequest.getOffset();
-//        int end = Math.min((start + pageRequest.getPageSize()), listHairShops.size());
-//        Page<HairShop> pageHairShops = new PageImpl<>(listHairShops.subList(start, end), pageRequest, listHairShops.size());
         return setLikeCountAndHairShopLikeId(principal, pageHairShops);
     }
 
