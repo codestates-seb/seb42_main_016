@@ -13,7 +13,7 @@ export default function MyReviewList() {
   // useEffect(() => {
   //   dispatch(fetchReviews());
   // }, [dispatch]);
-  // console.log(reviews);
+  console.log(reviews);
 
   return (
     <S.Container>

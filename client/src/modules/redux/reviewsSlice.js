@@ -22,8 +22,9 @@ export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async () =>
 //   }
 // );
 
-export const deleteReview = createAsyncThunk('reviews/deleteReview', async (id) => {
-  await API.delete(`${REVIEW_ENDPOINT}/${id}`, config);
+export const deleteReview = createAsyncThunk('reviews/deleteReview', async (reviewId) => {
+  await API.delete(`${REVIEW_ENDPOINT}/${reviewId}`, config);
+  return reviewId;
 });
 
 const initialState = { reviews: [], status: 'idle', error: null };
@@ -61,5 +62,4 @@ const reviewsSlice = createSlice({
 });
 
 export const { updateReview } = reviewsSlice.actions;
-export const selectReview = (state) => state.review.rev;
 export default reviewsSlice.reducer;
