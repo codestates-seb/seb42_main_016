@@ -1,10 +1,11 @@
-// import { useSelector } from 'react-redux';
+import useFetch from '../../hooks/useFetch';
+import { RESERVATION_ENDPOINT } from '../../modules/endpoints';
 import * as S from '../style/MyPageStyle';
 import ReserveItem from './ReserveItem';
 
 export default function ReserveList() {
-  // let reserve = useSelector((state) => state.reserve);
-  // console.log(reserve);
+  const reserve = useFetch(`${RESERVATION_ENDPOINT}?page=${1}&size=${10}`)['data'];
+
   return (
     <S.Container>
       <S.ContentBox>
@@ -12,7 +13,11 @@ export default function ReserveList() {
           <S.TitleBox>
             <S.Title>예약 내역</S.Title>
           </S.TitleBox>
-          <ReserveItem />
+          {reserve
+            ? reserve.map((reserve) => {
+                return <ReserveItem key={reserve.reservationId} reserve={reserve} />;
+              })
+            : null}
         </S.Content>
       </S.ContentBox>
     </S.Container>

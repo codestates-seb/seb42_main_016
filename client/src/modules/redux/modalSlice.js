@@ -7,6 +7,7 @@ const initialState = {
     dogWeight: '',
     dogSpecies: '',
   },
+  data: null,
 };
 
 const modalSlice = createSlice({
@@ -14,12 +15,14 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
     openModal: (state, action) => {
-      const { modalType } = action.payload;
+      const { modalType, data } = action.payload;
       state.modalType = modalType;
       state.isOpen = true;
+      state.data = data;
     },
     closeModal: (state) => {
       state.isOpen = false;
+      state.data = null;
     },
     selectOption: (state, action) => {
       state.isOpen = false;

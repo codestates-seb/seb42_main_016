@@ -2,13 +2,13 @@ import * as S from '../style/ModalStyle';
 import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectModal, closeModal } from '../../modules/redux/modalSlice';
+import { cancelReserve } from '../../modules/redux/reserveSlice';
 import useScroll from '../../hooks/useScroll';
 
 function BookCancelModal() {
   const modalRef = useRef();
-  const { isOpen } = useSelector(selectModal);
+  const { isOpen, data } = useSelector(selectModal);
   const dispatch = useDispatch();
-
   useScroll();
 
   useEffect(() => {
@@ -28,6 +28,10 @@ function BookCancelModal() {
     dispatch(closeModal());
   };
 
+  const handleCancle = () => {
+    dispatch(cancelReserve(data));
+    dispatch(closeModal());
+  };
   return (
     <S.ConfirmContainer ref={modalRef}>
       <S.ConfirmContent>
@@ -36,7 +40,7 @@ function BookCancelModal() {
           <S.ConfirmButton bgcolor="white" onClick={clickCancle}>
             취소
           </S.ConfirmButton>
-          <S.ConfirmButton color="white" border="none" hover="#6893dd">
+          <S.ConfirmButton color="white" border="none" hover="#6893dd" onClick={handleCancle}>
             확인
           </S.ConfirmButton>
         </S.ButtonBox>

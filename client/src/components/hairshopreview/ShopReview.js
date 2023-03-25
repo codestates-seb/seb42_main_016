@@ -1,5 +1,4 @@
 import * as S from '../style/ShopRevewStyle';
-import img from '../../utils/sample.jpeg';
 import moment from 'moment/moment';
 import 'moment/locale/ko';
 
@@ -23,7 +22,7 @@ function ShopReview({ item, last }) {
       <S.Content>
         <S.ReviewWrapper>
           <S.ImgReview>
-            <img src={img} alt="review" />
+            <img src={item.reviewImage} alt="review" />
           </S.ImgReview>
           <S.TextWrapper>
             <S.TextReview>{item.reviewText}</S.TextReview>
