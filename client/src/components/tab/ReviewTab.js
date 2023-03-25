@@ -14,7 +14,7 @@ function ReviewTab() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const data = useFetch(
-    `${REVIEW_ENDPOINT}?hairShopId=${shop.hairShopId}&page=${currentPage}&size=${10}`,
+    `${REVIEW_ENDPOINT}/hairShop?hairShopId=${shop.hairShopId}&page=${currentPage}&size=${10}`,
   )['data'];
   const minLen = 9;
 

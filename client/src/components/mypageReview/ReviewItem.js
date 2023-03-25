@@ -7,12 +7,14 @@ import { REVIEWEDITMODAL, REVIEWCONFIRMMODAL } from '../../modules/ModalContaine
 
 export default function ReviewItem({ reviews }) {
   const dispatch = useDispatch();
-
+  const { reviewId } = reviews;
+  console.log(reviews);
   const handleOpenReviewEditModal = () => {
     dispatch(
       openModal({
         modalType: REVIEWEDITMODAL,
         isOpen: true,
+        data: reviewId,
       }),
     );
   };
@@ -21,12 +23,14 @@ export default function ReviewItem({ reviews }) {
       openModal({
         modalType: REVIEWCONFIRMMODAL,
         isOpen: true,
+        data: reviewId,
       }),
     );
   };
   return (
     <RIWrap>
       <div className="review">
+        <div>{reviews.hairShopName}</div>
         <Photo>
           <img src={reviews.reviewImage} alt="img" />
         </Photo>

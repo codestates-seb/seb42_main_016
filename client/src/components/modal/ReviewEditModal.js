@@ -1,9 +1,8 @@
 import * as S from '../style/ModalStyle';
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import useScroll from '../../hooks/useScroll';
 import { REVIEW_ENDPOINT } from '../../modules/endpoints';
-import { MYPAGE, MYREVIEW } from '../../modules/routes';
+// import { MYPAGE, MYREVIEW } from '../../modules/routes';
 import API from '../../modules/API';
 import { selectModal, closeModal } from '../../modules/redux/modalSlice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,8 +13,8 @@ function ReviewEditModal() {
   // const [reviewImage, setImage] = useState();
   const [reviewText, setText] = useState();
   const modalRef = useRef();
-  const { isOpen } = useSelector(selectModal);
-  const navigate = useNavigate();
+  const { isOpen, data } = useSelector(selectModal);
+
   const dispatch = useDispatch();
 
   const token = localStorage.getItem('accessToken');
@@ -42,10 +41,10 @@ function ReviewEditModal() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    API.patch(`${REVIEW_ENDPOINT}/${16}`, { reviewText }, config)
+    API.patch(`${REVIEW_ENDPOINT}/${data}`, { reviewText }, config)
       .then((res) => {
         console.log('수정 성공', res);
-        navigate(`${MYPAGE}/${MYREVIEW}/readreview`);
+        dispatch(closeModal());
       })
       .catch((err) => {
         console.log(err);

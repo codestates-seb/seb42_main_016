@@ -15,12 +15,17 @@ function ReviewModal() {
   const [reviewImage, setImage] = useState(null);
   const [reviewText, setText] = useState('');
   const [preview, setPreview] = useState('');
+
   const modalRef = useRef();
   const { isOpen } = useSelector(selectModal);
+  const { data } = useSelector(selectModal);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const hairShopId = 1;
+  const body = {
+    hairShopId: data.hairShopId,
+    reservationId: data.reservationId,
+    reviewText: reviewText,
+  };
   const token = localStorage.getItem('accessToken');
   const refresh = localStorage.getItem('refresh');
   const config = {
@@ -43,19 +48,20 @@ function ReviewModal() {
       dispatch(closeModal());
     }
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append('reviewImage', reviewImage);
     formData.append(
       'body',
-      new Blob([JSON.stringify({ reviewText, hairShopId })], {
+      new Blob([JSON.stringify(body)], {
         type: 'application/json',
       }),
     );
+    formData.append('image', reviewImage);
     let entries = formData.entries();
     for (const pair of entries) {
-      console.log(pair[0] + ', ' + pair[1][0]);
+      console.log(pair[0] + ', ' + pair[1]);
     }
 
     API.post(REVIEW_ENDPOINT, formData, config)
@@ -74,6 +80,7 @@ function ReviewModal() {
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
+    console.log(event.target.files[0]);
     const reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
     return new Promise((resolve) => {

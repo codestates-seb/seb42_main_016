@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { REVIEW_ENDPOINT } from '../endpoints';
 import API from '../API';
+
 const token = localStorage.getItem('accessToken');
 const refresh = localStorage.getItem('refresh');
 const config = {
@@ -10,7 +11,7 @@ const config = {
   },
 };
 export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async () => {
-  const response = await API.get(REVIEW_ENDPOINT, config);
+  const response = await API.get(`${REVIEW_ENDPOINT}/member?page=${1}&size=${10}`, config);
   return response.data;
 });
 // export const addReview = createAsyncThunk(
@@ -23,13 +24,12 @@ export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async () =>
 
 export const deleteReview = createAsyncThunk('reviews/deleteReview', async (id) => {
   await API.delete(`${REVIEW_ENDPOINT}/${id}`, config);
-  return id;
 });
 
 const initialState = { reviews: [], status: 'idle', error: null };
 
 const reviewsSlice = createSlice({
-  name: 'review',
+  name: 'reviews',
   initialState,
   reducers: {
     // deleteReview(state, action) {
@@ -56,32 +56,10 @@ const reviewsSlice = createSlice({
           state.status = 'failed';
           state.error = action.error.message;
         });
-      // .addCase(addReview.pending, (state) => {
-      //   state.status = 'loading';
-      // })
-      // .addCase(addReview.fulfilled, (state, action) => {
-      //   state.status = 'succeeded';
-      //   state.reviews.push(action.payload);
-      // })
-      // .addCase(addReview.rejected, (state, action) => {
-      //   state.status = 'failed';
-      //   state.error = action.error.message;
-      // })
-      // .addCase(deleteReview.pending, (state) => {
-      //   state.status = 'loading';
-      // })
-      // .addCase(deleteReview.fulfilled, (state, action) => {
-      //   state.status = 'succeeded';
-      //   const id = action.payload;
-      //   state.reviews = state.reviews.filter((review) => review.id !== id);
-      // })
-      // .addCase(deleteReview.rejected, (state, action) => {
-      //   state.status = 'failed';
-      //   state.error = action.error.message;
-      // });
     },
   },
 });
 
 export const { updateReview } = reviewsSlice.actions;
+export const selectReview = (state) => state.review.rev;
 export default reviewsSlice.reducer;

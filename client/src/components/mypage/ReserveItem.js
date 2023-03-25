@@ -4,13 +4,15 @@ import { useDispatch } from 'react-redux';
 import { openModal } from '../../modules/redux/modalSlice';
 import { BOOKCANCELMODAL } from '../../modules/ModalContainer';
 
-export default function ReserveItem() {
+export default function ReserveItem({ reserve }) {
   const dispatch = useDispatch();
+  const { reservationId } = reserve;
   const handleOpenBookCancelModal = () => {
     dispatch(
       openModal({
         modalType: BOOKCANCELMODAL,
         isOpen: true,
+        data: reservationId,
       }),
     );
   };
@@ -19,16 +21,16 @@ export default function ReserveItem() {
       <div className="upper">
         <S.HairshopName>
           <IoIosCut className="icon" />
-          미용실
+          {reserve.hairShopName}
         </S.HairshopName>
         <S.Button onClick={handleOpenBookCancelModal}>예약취소</S.Button>
       </div>
       <S.ReserveInfo>
         <div className="info">
-          <div className="date">2023.03.10</div>
-          <div className="time">2:00</div>
+          <div className="date">{reserve.reserveDate}</div>
+          <div className="time">{reserve.reserveTime}</div>
         </div>
-        <div className="cut">컷트</div>
+        <div className="cut">{reserve.hairOption}</div>
       </S.ReserveInfo>
     </S.RIWrap>
   );
