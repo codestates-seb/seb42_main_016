@@ -44,7 +44,9 @@ public class Review {
     @JoinColumn(name = "HAIR_SHOP_ID")
     private HairShop hairShop;
 
-    @OneToOne(mappedBy = "review")
+//    @OneToOne(mappedBy = "review")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RESERVATION_ID")
     private Reservation reservation;
 
     @Transient

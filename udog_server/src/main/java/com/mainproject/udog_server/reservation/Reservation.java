@@ -48,8 +48,9 @@ public class Reservation {
         }
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id")
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "review_id")
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
     private Review review;
 
     @Column(nullable = false)
