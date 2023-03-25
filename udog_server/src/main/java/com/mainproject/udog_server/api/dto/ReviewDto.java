@@ -64,6 +64,7 @@ public class ReviewDto {
     public static class memberReviewsResponse {
         private Long reviewId;
         private Long hairShopId;
+        private String hairShopName;
         private String reviewImage;
         private String reviewText;
         private LocalDateTime createdAt;
