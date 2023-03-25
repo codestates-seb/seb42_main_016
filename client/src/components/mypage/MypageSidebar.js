@@ -6,11 +6,13 @@ import { useState, useEffect } from 'react';
 function MypageSidebar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [selected, setSelected] = useState(true);
+  const [selected, setSelected] = useState(false);
 
   useEffect(() => {
     if (location.pathname === `${MYPAGE}`) {
       setSelected(true);
+    } else {
+      setSelected(false);
     }
   }, [location]);
 

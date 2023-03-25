@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsSubmit, selectLike, setLikeId } from '../modules/redux/likeSlice';
-import { setLikeCount } from '../modules/redux/shopSlice';
+import { setIsSubmit, selectLike, setLikeId, setLikeCount } from '../modules/redux/likeSlice';
 import API from '../modules/API';
 import { HAIRSHOPLIKE_ENDPOINT, HAIRSHOP_ENDPOINT } from '../modules/endpoints';
 import { selectUser } from '../modules/redux/userSlice';
