@@ -8,7 +8,7 @@ import { REVIEWEDITMODAL, REVIEWCONFIRMMODAL } from '../../modules/ModalContaine
 export default function ReviewItem({ reviews }) {
   const dispatch = useDispatch();
   const { reviewId } = reviews;
-  console.log(reviews);
+
   const handleOpenReviewEditModal = () => {
     dispatch(
       openModal({
@@ -18,6 +18,7 @@ export default function ReviewItem({ reviews }) {
       }),
     );
   };
+
   const handleOpenConfirmModal = () => {
     dispatch(
       openModal({
@@ -27,6 +28,7 @@ export default function ReviewItem({ reviews }) {
       }),
     );
   };
+
   return (
     <RIWrap>
       <div className="review">

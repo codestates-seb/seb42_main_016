@@ -3,7 +3,7 @@ import ReserveItem from './ReserveItem';
 import useFetch from '../../hooks/useFetch';
 import { RESERVATION_ENDPOINT } from '../../modules/endpoints';
 export default function WriteReview() {
-  const reserve = useFetch(`${RESERVATION_ENDPOINT}?page=${1}&size=${10}`)['data'];
+  const reserve = useFetch(`${RESERVATION_ENDPOINT}/non-review?page=${1}&size=${10}`)['data'];
   return (
     <S.Container>
       {reserve &&
