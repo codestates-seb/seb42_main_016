@@ -120,6 +120,13 @@ export const ReserveInfo = styled.div`
     margin: 0 24px;
     padding: 10px 20px;
   }
+  .dog {
+    margin: 0 24px;
+    padding: 10px 20px;
+  }
+  .option {
+    display: flex;
+  }
 `;
 export const Button = styled.button`
   font-size: 1rem;

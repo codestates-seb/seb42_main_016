@@ -72,6 +72,7 @@ function ReviewModal() {
       .catch((err) => {
         console.log(err);
       });
+    dispatch(closeModal());
   };
 
   const clickCancle = () => {

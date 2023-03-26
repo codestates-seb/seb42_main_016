@@ -8,7 +8,6 @@ import { REVIEWEDITMODAL, REVIEWCONFIRMMODAL } from '../../modules/ModalContaine
 export default function ReviewItem({ reviews }) {
   const dispatch = useDispatch();
   const { reviewId } = reviews;
-
   const handleOpenReviewEditModal = () => {
     dispatch(
       openModal({

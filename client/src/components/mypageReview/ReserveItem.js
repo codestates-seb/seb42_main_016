@@ -32,7 +32,10 @@ export default function ReserveItem({ reserve }) {
           <div className="date">{reserve.reserveDate}</div>
           <div className="time">{reserve.reserveTime}</div>
         </div>
-        <div className="cut">{reserve.hairOption}</div>
+        <div className="option">
+          <div className="cut">옵션: {reserve.hairOption}</div>
+          <div className="dog">강아지: {reserve.dogName}</div>
+        </div>
       </S.ReserveInfo>
     </S.RIWrap>
   );

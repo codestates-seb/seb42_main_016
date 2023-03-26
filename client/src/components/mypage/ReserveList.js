@@ -1,12 +1,17 @@
-import useFetch from '../../hooks/useFetch';
-import { RESERVATION_ENDPOINT } from '../../modules/endpoints';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchReserve, selectReserve } from '../../modules/redux/reserveSlice';
 import * as S from '../style/MyPageStyle';
 import ReserveItem from './ReserveItem';
 import Empty from '../Empty';
 
 export default function ReserveList() {
-  const reserve = useFetch(`${RESERVATION_ENDPOINT}?page=${1}&size=${10}`)['data'];
+  const dispatch = useDispatch();
+  const reserve = useSelector(selectReserve);
 
+  useEffect(() => {
+    dispatch(fetchReserve());
+  }, [dispatch]);
   return (
     <S.Container>
       <S.ContentBox>
