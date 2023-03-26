@@ -20,7 +20,7 @@ export default function ReserveItem({ reserve }) {
     <S.RIWrap>
       <div className="upper">
         <S.HairshopName>
-          <IoIosCut className="icon" />
+          <IoIosCut className="icon" color="cornflowerblue" />
           {reserve.hairShopName}
         </S.HairshopName>
         <S.Button onClick={handleOpenBookCancelModal}>예약취소</S.Button>
