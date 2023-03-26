@@ -39,41 +39,33 @@ public class MemberService {
     }
 
     public Member updateMemberNickname(Member patchMember){
-        Member foundMember = findVerifiedMember(patchMember.getMemberId());
         Optional.ofNullable(patchMember.getNickname())
-                .ifPresent(nickname -> foundMember.setNickname(nickname));
-        Member updateMember = memberRepository.save(foundMember);
+                .ifPresent(nickname -> patchMember.setNickname(nickname));
+        Member updateMember = memberRepository.save(patchMember);
         return updateMember;
     }
 
     public Member updateMemberPassword(Member patchMember){
-        Member foundMember = findVerifiedMember(patchMember.getMemberId());
-
         Optional.ofNullable(patchMember.getPassword())
-                .ifPresent(password -> foundMember.setPassword(passwordEncoder.encode(password)));
+                .ifPresent(password -> patchMember.setPassword(passwordEncoder.encode(password)));
 
-        Member updateMember = memberRepository.save(foundMember);
+        Member updateMember = memberRepository.save(patchMember);
         return updateMember;
     }
 
 
-    @Transactional(readOnly = true)
-    public Member findMember(long memberId){
-        return findVerifiedMember(memberId);
-    }
 
     public void deleteMember(Member foundMember){
         foundMember.setMemberStatus(Member.MemberStatus.MEMBER_QUIT);
         memberRepository.save(foundMember);
 //        memberRepository.deleteById(memberId);
     }
-
-    public Member findVerifiedMember(long memberId){
-        Optional<Member> optionalMember = memberRepository.findById(memberId);
-        //Todo : exception
-        Member foundMember = optionalMember.orElseThrow(() -> null);
-        verifyActiveMember(foundMember);
-        return foundMember;
+    public Member findLoginMemberByEmail(String email){
+        Optional<Member> optionalMember = memberRepository.findByEmail(email);
+        //Todo : exeption
+        Member member = optionalMember.orElseThrow(() -> null);
+        verifyActiveMember(member);
+        return member;
     }
 
     private void verifyExistsEmail(Member member) {
@@ -100,10 +92,16 @@ public class MemberService {
             throw null;
     }
 
-    public Member findLoginMemberByEmail(String email){
-        Optional<Member> optionalMember = memberRepository.findByEmail(email);
-        //Todo : exeption
-        Member member = optionalMember.orElseThrow(() -> null);
-        return member;
-    }
+//    @Transactional(readOnly = true)
+//    public Member findMember(long memberId){
+//        return findVerifiedMember(memberId);
+//    }
+//
+//    public Member findVerifiedMember(long memberId){
+//        Optional<Member> optionalMember = memberRepository.findById(memberId);
+//        //Todo : exception
+//        Member foundMember = optionalMember.orElseThrow(() -> null);
+//        verifyActiveMember(foundMember);
+//        return foundMember;
+//    }
 }
