@@ -57,17 +57,22 @@ public class HairShopCompositeService {
         //로그인 상태가 아니라 토큰값이 없다면
         if (principal == null) {
             hairShops.getContent().stream().forEach(hairShop ->
-                    hairShop.setLikeCount(hairShop.getHairShopLikes().size())
+                    setHairShopCounts(hairShop)
             );
         } else {
             String loginEmail = principal.getName();
             long loginMemberId = memberService.findLoginMemberByEmail(loginEmail).getMemberId();
             hairShops.getContent().stream().forEach(hairShop -> {
-                hairShop.setLikeCount(hairShop.getHairShopLikes().size());
+                setHairShopCounts(hairShop);
                 hairShop.setMyHairShopLikeId(findHairShopLikeId(hairShop.getHairShopLikes(), loginMemberId));
             });
         }
         return hairShops;
+    }
+
+    public void setHairShopCounts(HairShop hairShop){
+        hairShop.setLikeCount(hairShop.getHairShopLikes().size());
+        hairShop.setReviewCount(hairShop.getReviews().size());
     }
 
     public long findHairShopLikeId(List<HairShopLike> hairShopLikes, long loginMemberId) {

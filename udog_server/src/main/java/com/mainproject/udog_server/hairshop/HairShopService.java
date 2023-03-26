@@ -25,8 +25,6 @@ public class HairShopService {
     @Transactional(readOnly = true)
     public HairShop findHairShop(long hairShopId) {
         HairShop foundHairShop = findVerifiedHairShop(hairShopId);
-        foundHairShop.setLikeCount(foundHairShop.getHairShopLikes().size());
-        foundHairShop.setReviewCount(foundHairShop.getReviews().size());
         return foundHairShop;
     }
 
