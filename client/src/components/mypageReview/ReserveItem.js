@@ -22,7 +22,7 @@ export default function ReserveItem({ reserve }) {
     <S.RIWrap>
       <div className="upper">
         <S.HairshopName>
-          <IoIosCut className="icon" color="cornflowerblue" />
+          <IoIosCut className="icon" />
           {reserve.hairShopName}
         </S.HairshopName>
         <S.Button onClick={handleOpenTypeModal}>{'리뷰 작성'}</S.Button>
