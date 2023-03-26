@@ -15,8 +15,9 @@ export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async () =>
   return response.data.data;
 });
 
-export const deleteReview = createAsyncThunk('reviews/deleteReview', async (id) => {
-  await API.delete(`${REVIEW_ENDPOINT}/${id}`, config);
+export const deleteReview = createAsyncThunk('reviews/deleteReview', async (reviewId) => {
+  await API.delete(`${REVIEW_ENDPOINT}/${reviewId}`, config);
+  return reviewId;
 });
 
 const initialState = { reviews: [], status: 'idle', error: null };
@@ -24,12 +25,7 @@ const initialState = { reviews: [], status: 'idle', error: null };
 const reviewsSlice = createSlice({
   name: 'reviews',
   initialState,
-  reducers: {
-    // deleteReview(state, action) {
-    //   const reviewId = action.payload;
-    //   state.reviews.reviews.splice(reviewId, 1);
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchReviews.pending, (state) => {
@@ -42,13 +38,18 @@ const reviewsSlice = createSlice({
       .addCase(fetchReviews.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(deleteReview.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteReview.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.reviews = state.reviews.filter((review) => review.reviewId !== action.payload);
+      })
+      .addCase(deleteReview.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
       });
-    // .addCase(deleteReview.fulfilled, (state, action) => {
-    //   const { payload: reviewId } = action;
-    //   state.reviews.reviews = state.reviews.reviews.filter(
-    //     (review) => review.reviewId !== reviewId,
-    //   );
-    // });
   },
 });
 // export const { deleteReview } = reviewsSlice.actions;

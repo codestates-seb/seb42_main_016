@@ -3,8 +3,6 @@ import * as S from '../style/MyPageStyle';
 import ReviewItem from './ReviewItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectReviews, fetchReviews } from '../../modules/redux/reviewsSlice';
-// import useFetch from '../../hooks/useFetch';
-// import { REVIEW_ENDPOINT } from '../../modules/endpoints';
 import Empty from '../Empty';
 
 export default function MyReviewList() {
