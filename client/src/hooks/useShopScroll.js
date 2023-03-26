@@ -17,6 +17,10 @@ function useShopScroll(url, perPage) {
   const { lat, lng } = useSelector(selectLocation);
 
   useEffect(() => {
+    setData([]);
+  }, [lat, lng]);
+
+  useEffect(() => {
     dispatch(setLoading(true));
 
     const headers = {};
