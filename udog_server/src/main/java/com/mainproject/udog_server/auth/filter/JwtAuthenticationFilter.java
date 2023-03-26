@@ -47,7 +47,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             FilterChain chain,
                                             Authentication authResult) throws ServletException, IOException {
         Member member = (Member) authResult.getPrincipal();
-
+        if(member.getMemberStatus() == Member.MemberStatus.MEMBER_QUIT)
+            throw  null;
         String accessToken = delegateAccessToken(member);
         String refreshToken = delegateRefreshToken(member);
 

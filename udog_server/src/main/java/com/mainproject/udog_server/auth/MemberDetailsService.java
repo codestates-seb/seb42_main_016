@@ -37,6 +37,7 @@ public class MemberDetailsService implements UserDetailsService {
             setEmail(member.getEmail());
             setPassword(member.getPassword());
             setNickname(member.getNickname());
+            setMemberStatus(member.getMemberStatus());
             setRoles(member.getRoles());
         }
 
