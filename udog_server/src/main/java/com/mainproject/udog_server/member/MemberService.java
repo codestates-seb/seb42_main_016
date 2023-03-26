@@ -38,18 +38,21 @@ public class MemberService {
         return createdMember;
     }
 
-    public Member updateMemberNickname(Member patchMember){
+    public Member updateMemberNickname(Member patchMember, String email){
+        Member foundMember = findLoginMemberByEmail(email);
+
         Optional.ofNullable(patchMember.getNickname())
-                .ifPresent(nickname -> patchMember.setNickname(nickname));
-        Member updateMember = memberRepository.save(patchMember);
+                .ifPresent(nickname -> foundMember.setNickname(nickname));
+        Member updateMember = memberRepository.save(foundMember);
         return updateMember;
     }
 
-    public Member updateMemberPassword(Member patchMember){
-        Optional.ofNullable(patchMember.getPassword())
-                .ifPresent(password -> patchMember.setPassword(passwordEncoder.encode(password)));
+    public Member updateMemberPassword(String changingPassword, String prevPassword, String email){
+        Member foundMember = findLoginMemberByEmail(email);
+        verifyPasswordMatch(foundMember.getPassword(), prevPassword);
+        foundMember.setPassword(passwordEncoder.encode(changingPassword));
 
-        Member updateMember = memberRepository.save(patchMember);
+        Member updateMember = memberRepository.save(foundMember);
         return updateMember;
     }
 
@@ -80,9 +83,9 @@ public class MemberService {
         });
     }
 
-    public void verifyPasswordMatch(Member member, String prevPassword){
+    public void verifyPasswordMatch(String userPassword, String prevPassword){
         //Todo : exeption
-        if(!passwordEncoder.matches(prevPassword, member.getPassword()))
+        if(!passwordEncoder.matches(prevPassword, userPassword))
             throw null;
     }
 
