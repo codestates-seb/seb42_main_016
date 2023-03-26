@@ -84,7 +84,7 @@ function NickModal() {
           hover="#6893dd"
           className="edit"
           onClick={clickEdit}
-          disabled={!nickname.length}>
+          disabled={!(nickname.length && nickname !== nick)}>
           변경하기
         </S.ConfirmButton>
       </S.ButtonBox>
