@@ -9,10 +9,6 @@ function ReviewConfirmModal() {
   const modalRef = useRef();
   const { isOpen, data } = useSelector(selectModal);
   const dispatch = useDispatch();
-  const handleDelete = () => {
-    dispatch(deleteReview(data));
-    dispatch(closeModal());
-  };
   useScroll();
 
   useEffect(() => {
@@ -33,7 +29,8 @@ function ReviewConfirmModal() {
   };
 
   const onClickDelete = () => {
-    dispatch(handleDelete());
+    dispatch(deleteReview(data));
+    dispatch(closeModal());
   };
 
   return (
