@@ -11,11 +11,7 @@ function About() {
   useScrollTop();
 
   const handleScroll = ([entry]) => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = 1;
-    } else {
-      entry.target.style.opacity = 0;
-    }
+    entry.target.style.opacity = entry.isIntersecting ? 1 : 0;
   };
 
   useEffect(() => {
@@ -88,7 +84,7 @@ function About() {
               </p>
             </S.AboutContent>
             <S.AboutImg>
-              <img src="/assets/Style.png" alt="best" />
+              <img src="/assets/Best.png" alt="best" />
             </S.AboutImg>
           </S.AboutSection>
         </S.ContentContainer>

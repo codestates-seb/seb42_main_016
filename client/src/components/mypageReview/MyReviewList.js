@@ -2,7 +2,10 @@ import { useEffect } from 'react';
 import * as S from '../style/MyPageStyle';
 import ReviewItem from './ReviewItem';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchReviews, selectReviews } from '../../modules/redux/reviewsSlice';
+import { selectReviews, fetchReviews } from '../../modules/redux/reviewsSlice';
+// import useFetch from '../../hooks/useFetch';
+// import { REVIEW_ENDPOINT } from '../../modules/endpoints';
+import Empty from '../Empty';
 
 export default function MyReviewList() {
   const dispatch = useDispatch();
@@ -10,12 +13,16 @@ export default function MyReviewList() {
   useEffect(() => {
     dispatch(fetchReviews());
   }, [dispatch]);
+  console.log(reviews);
   return (
     <S.Container>
-      {reviews &&
+      {reviews?.length ? (
         reviews.map((reviews) => {
-          return <ReviewItem reviews={reviews} key={reviews.reviewId} />;
-        })}
+          return <ReviewItem reviews={reviews} key={reviews.id} />;
+        })
+      ) : (
+        <Empty text={'작성한 리뷰가 없습니다.'} />
+      )}
     </S.Container>
   );
 }

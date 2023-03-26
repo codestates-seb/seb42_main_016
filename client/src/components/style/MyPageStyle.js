@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const MyPageWrapper = styled.div`
   height: 100%;
@@ -42,11 +43,12 @@ export const SidebarContainer = styled.div`
     letter-spacing: 0px;
     padding-bottom: 3px;
   }
-  .nav-link {
-    text-decoration: none;
-    color: #333;
-  }
-  .nav-link.active {
+`;
+
+export const SideNav = styled(NavLink)`
+  text-decoration: none;
+  color: #333;
+  &.active {
     color: cornflowerblue;
   }
 `;
@@ -75,7 +77,7 @@ export const RLWrap = styled.div`
 //ReserveItem
 export const RIWrap = styled.div`
   width: 700px;
-  height: 200px;
+  margin-bottom: 30px;
   .upper {
     display: flex;
     justify-content: space-between;
@@ -88,6 +90,7 @@ export const HairshopName = styled.div`
   padding: 10px 0 2px 10px;
   font-size: 1.3rem;
   font-weight: bold;
+  align-items: center;
   .icon {
     margin: 4px;
     width: 30px;

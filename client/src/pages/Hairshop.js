@@ -22,12 +22,19 @@ function Hairshop() {
     handleScroll(e);
   };
 
+  const reduceShops = data.reduce((acc, shop) => {
+    if (!acc.find((item) => item.hairShopId === shop.hairShopId)) {
+      acc.push(shop);
+    }
+    return acc;
+  }, []);
+
   return (
     <S.ScrollArea onScroll={handleScrollEvent} ref={scrollAreaRef}>
       <Header />
       <Location />
-      {data.map((shop, index) => {
-        return <HairshopList shop={shop} key={shop.hairShopId} last={index === shop.length - 1} />;
+      {reduceShops.map((shop, index) => {
+        return <HairshopList shop={shop} key={index} last={index === shop.length - 1} />;
       })}
       {showButton && <ScrollTopButton area={scrollAreaRef} />}
     </S.ScrollArea>

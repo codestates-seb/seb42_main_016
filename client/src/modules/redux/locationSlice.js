@@ -1,8 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const defaultLat = '37.5044953';
+const defaultLng = '127.0491212';
+
 const initialState = {
-  lat: '',
-  lng: '',
+  lat: defaultLat,
+  lng: defaultLng,
   address: '',
 };
 

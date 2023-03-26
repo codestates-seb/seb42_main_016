@@ -1,8 +1,24 @@
 import * as S from '../style/MyPageStyle';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { MYPAGE, MYDOG, MYINFO, MYRESERVE, MYREVIEW } from '../../modules/routes';
-export default function MypageSidebar() {
+import { useState, useEffect } from 'react';
+
+function MypageSidebar() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [selected, setSelected] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname === `${MYPAGE}`) {
+      setSelected(true);
+    } else {
+      setSelected(false);
+    }
+  }, [location]);
+
+  const handleClick = () => {
+    setSelected(false);
+  };
 
   return (
     <S.SidebarContainer>
@@ -11,34 +27,28 @@ export default function MypageSidebar() {
       </h3>
       <ul>
         <li>
-          <NavLink
-            to={MYINFO}
-            className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+          <S.SideNav to={MYINFO} className={selected ? 'active' : ''}>
             나의 정보
-          </NavLink>
+          </S.SideNav>
         </li>
         <li>
-          <NavLink
-            to={MYRESERVE}
-            className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+          <S.SideNav to={MYRESERVE} onClick={handleClick}>
             예약 관리
-          </NavLink>
+          </S.SideNav>
         </li>
         <li>
-          <NavLink
-            to={MYREVIEW}
-            className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+          <S.SideNav to={MYREVIEW} onClick={handleClick}>
             리뷰 관리
-          </NavLink>
+          </S.SideNav>
         </li>
         <li>
-          <NavLink
-            to={MYDOG}
-            className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+          <S.SideNav to={MYDOG} onClick={handleClick}>
             강아지 정보
-          </NavLink>
+          </S.SideNav>
         </li>
       </ul>
     </S.SidebarContainer>
   );
 }
+
+export default MypageSidebar;

@@ -26,21 +26,16 @@ function useShopScroll(url, perPage) {
       headers.Refresh = refresh;
     }
 
-    if (!lat || !lng) {
-      return;
-    }
-
     API.get(`${url}?page=${page}&size=${perPage}&latitude=${lat}&longitude=${lng}`, {
-      // API.get(`${url}?_page=${page}&_limit=${perPage}`, {
       headers: headers,
     })
       .then((res) => {
         setData((prevData) => [...prevData, ...res.data.data]);
         setHasMore(res.data.data.length > 0);
-        const words = res.data.data[0].hairShopAddress.split(' ');
-        dispatch(setAddress(`${words[1]} ${words[2]}`));
-        // setData((prevData) => [...prevData, ...res.data]);
-        // setHasMore(res.data.length > 0);
+        if (res.data.pageInfo.page === 1) {
+          const words = res.data.data[0].hairShopAddress.split(' ');
+          dispatch(setAddress(`${words[1]} ${words[2]}`));
+        }
       })
       .finally(() => dispatch(setLoading(false)));
   }, [page, lat, lng]);

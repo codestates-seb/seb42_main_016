@@ -25,11 +25,7 @@ const initialState = { value: [], status: 'idle' };
 const shopSlice = createSlice({
   name: 'shop',
   initialState,
-  reducers: {
-    setLikeCount: (state, action) => {
-      state.value.likeCount = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(asyncUpFetch.pending, (state) => {
@@ -44,8 +40,6 @@ const shopSlice = createSlice({
       });
   },
 });
-
-export const { setLikeCount } = shopSlice.actions;
 
 export { asyncUpFetch };
 

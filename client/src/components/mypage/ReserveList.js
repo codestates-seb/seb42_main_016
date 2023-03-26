@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchReserve, selectReserve } from '../../modules/redux/reserveSlice';
 import * as S from '../style/MyPageStyle';
 import ReserveItem from './ReserveItem';
-// import useFetch from '../../hooks/useFetch';
-// import { RESERVATION_ENDPOINT } from '../../modules/endpoints';
+import Empty from '../Empty';
+
 export default function ReserveList() {
   const dispatch = useDispatch();
   const reserve = useSelector(selectReserve);
@@ -19,10 +19,13 @@ export default function ReserveList() {
           <S.TitleBox>
             <S.Title>예약 내역</S.Title>
           </S.TitleBox>
-          {reserve &&
+          {reserve?.length ? (
             reserve.map((reserve) => {
               return <ReserveItem key={reserve.reservationId} reserve={reserve} />;
-            })}
+            })
+          ) : (
+            <Empty text={'예약 내역이 없습니다.'} />
+          )}
         </S.Content>
       </S.ContentBox>
     </S.Container>

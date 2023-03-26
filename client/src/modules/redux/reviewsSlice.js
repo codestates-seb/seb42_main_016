@@ -12,7 +12,7 @@ const config = {
 };
 export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async () => {
   const response = await API.get(`${REVIEW_ENDPOINT}/member?page=${1}&size=${10}`, config);
-  return response.data;
+  return response.data.data;
 });
 
 export const deleteReview = createAsyncThunk('reviews/deleteReview', async (id) => {
@@ -52,5 +52,5 @@ const reviewsSlice = createSlice({
   },
 });
 // export const { deleteReview } = reviewsSlice.actions;
-export const selectReviews = (state) => state.reviews.reviews.data;
+export const selectReviews = (state) => state.reviews.reviews;
 export default reviewsSlice.reducer;

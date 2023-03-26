@@ -37,7 +37,7 @@ function Footer() {
       </S.FooterContent>
       <S.FooterDetail>
         <S.FooterText>
-          우리멍군 | BE 이상윤, 김창하, 엄영준 | FE 신수현, 조정인, 이현건 <br />
+          우리멍군 | BE 이상윤, 김창하, 엄영준 | FE 신수현, 조정인 <br />
         </S.FooterText>
       </S.FooterDetail>
     </S.Footer>

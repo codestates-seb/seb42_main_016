@@ -51,7 +51,7 @@ export const RIWrap = styled.div`
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 10px;
-
+  margin-bottom: 30px;
   .review {
     display: flex;
   }

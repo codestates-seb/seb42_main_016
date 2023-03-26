@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 //review
 export const Container = styled.div`
@@ -13,16 +14,27 @@ export const TabWrap = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  div {
-    width: 300px;
-    text-align: center;
-    text-decoration: none;
-  }
-  .nav-link {
-    text-decoration: none;
+  margin-top: 40px;
+  box-shadow: 0 1px 0 0 rgb(0 0 0 / 10%);
+  font-size: 20px;
+  max-width: 700px;
+`;
+
+export const NavLinkReview = styled(NavLink)`
+  width: 300px;
+  text-align: center;
+  text-decoration: none;
+  color: #888;
+  font-weight: 500;
+
+  &.active {
     color: #333;
-  }
-  .nav-link.active {
-    color: cornflowerblue;
+    font-weight: 700;
+    span {
+      width: 100%;
+      display: inline;
+      box-shadow: inset 0 -10px 0 #badcff;
+      transition: 0.5s;
+    }
   }
 `;

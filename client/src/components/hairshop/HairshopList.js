@@ -1,5 +1,4 @@
 import * as S from '../style/ListStyle';
-import img from '../../utils/img.jpeg';
 import { useNavigate } from 'react-router-dom';
 import { IoHeart } from 'react-icons/io5';
 import { HAIRSHOP } from '../../modules/routes';
@@ -13,7 +12,7 @@ function HairshopList({ shop, last }) {
         <S.List onClick={() => navigate(`${HAIRSHOP}/${shop.hairShopId}`)} last={last}>
           <S.ListFlex>
             <S.ImgBox>
-              <S.Img src={img} alt="img" />
+              <S.Img src={shop.hairShopImage} alt="img" />
             </S.ImgBox>
             <S.TextBox>
               <S.ShopName>{shop.hairShopName}</S.ShopName>
