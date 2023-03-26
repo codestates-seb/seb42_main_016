@@ -1,26 +1,20 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import * as S from '../style/MyPageStyle';
 import ReviewItem from './ReviewItem';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { fetchReviews } from '../../modules/redux/reviewsSlice';
-import useFetch from '../../hooks/useFetch';
-import { REVIEW_ENDPOINT } from '../../modules/endpoints';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchReviews, selectReviews } from '../../modules/redux/reviewsSlice';
 
 export default function MyReviewList() {
-  // const dispatch = useDispatch();
-  // const reviews = useSelector((state) => state.reviews.reviews);
-  const reviews = useFetch(`${REVIEW_ENDPOINT}/member?page=${1}&size=${10}`)['data'];
-  // useEffect(() => {
-  //   dispatch(fetchReviews());
-  // }, [dispatch]);
-  console.log(reviews);
-
+  const dispatch = useDispatch();
+  const reviews = useSelector(selectReviews);
+  useEffect(() => {
+    dispatch(fetchReviews());
+  }, [dispatch]);
   return (
     <S.Container>
-      {/* <ReviewItem reviews={reviews} /> */}
       {reviews &&
         reviews.map((reviews) => {
-          return <ReviewItem reviews={reviews} key={reviews.id} />;
+          return <ReviewItem reviews={reviews} key={reviews.reviewId} />;
         })}
     </S.Container>
   );

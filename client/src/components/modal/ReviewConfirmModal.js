@@ -8,8 +8,8 @@ import useScroll from '../../hooks/useScroll';
 function ReviewConfirmModal() {
   const modalRef = useRef();
   const { isOpen, data } = useSelector(selectModal);
-
   const dispatch = useDispatch();
+
   const handleDelete = () => {
     dispatch(deleteReview(data));
     dispatch(closeModal());
