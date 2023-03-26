@@ -34,11 +34,12 @@ public class HairShopService {
     public Page<HairShop> findHairShops(int page, int size, double latitude, double longitude, List<String> keywords) {
         System.out.println("latitude" + latitude);
         System.out.println("longitude" + longitude);
-        return hairShopRepository.findClosestByKeywords(longitude,
+        return hairShopRepository.findClosestByKeywords(
+                longitude,
                 latitude,
-                keywords.get(0),
-                keywords.get(1),
-                keywords.get(2),
+//                keywords.get(0),
+//                keywords.get(1),
+//                keywords.get(2),
                 PageRequest.of(page, size));
     }
 

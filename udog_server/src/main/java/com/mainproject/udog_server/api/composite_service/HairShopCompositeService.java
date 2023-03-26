@@ -40,8 +40,9 @@ public class HairShopCompositeService {
 
     @Transactional(readOnly = true)
     public Page<HairShop> getHairShops(Principal principal, int page, int size, double latitude, double longitude){
-        List<String> closestThreeOffices = officeService.getClosestThreeOfficeDistrict(latitude,longitude);
-        Page<HairShop> pageHairShops =  hairShopService.findHairShops(page, size, latitude, longitude, closestThreeOffices);
+//        List<String> closestThreeOffices = officeService.getClosestThreeOfficeDistrict(latitude,longitude);
+        Page<HairShop> pageHairShops =  hairShopService.findHairShops(page, size, latitude, longitude, null);
+        System.out.println(pageHairShops.getContent().size());
         return setLikeCountAndHairShopLikeId(principal, pageHairShops);
     }
 
