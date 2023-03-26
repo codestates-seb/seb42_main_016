@@ -5,7 +5,6 @@ import { selectModal, closeModal } from '../../modules/redux/modalSlice';
 import useScroll from '../../hooks/useScroll';
 import useAxios from '../../hooks/useAxios';
 import { MEMBERS_ENDPOINT } from '../../modules/endpoints';
-import { HOME } from '../../modules/routes';
 
 function WithdrawConfirmModal() {
   const modalRef = useRef();
@@ -33,7 +32,7 @@ function WithdrawConfirmModal() {
   };
 
   const onClickDelete = () => {
-    DELETE(MEMBERS_ENDPOINT, HOME);
+    DELETE(MEMBERS_ENDPOINT);
   };
 
   return (
