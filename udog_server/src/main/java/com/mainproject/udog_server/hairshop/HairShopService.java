@@ -55,4 +55,8 @@ public class HairShopService {
 
         return findHairShop;
     }
+
+    public HairShop findVerifiedHairShopByApiId(String apiId){
+        return hairShopRepository.findByKakaoApiId(apiId);
+    }
 }

@@ -37,4 +37,6 @@ public interface HairShopRepository extends JpaRepository<HairShop, Long> {
 //                                         @Param("keywordTwo")String keyword2,
 //                                         @Param("keywordThree")String keyword3,
                                          Pageable pageable);
+
+    HairShop findByKakaoApiId (String kakaoApiId);
 }
