@@ -145,8 +145,20 @@ export const Button = styled.button`
   padding: 2px;
   background-color: #6495ed;
   color: white;
-  :hover {
+  &:hover {
     opacity: 0.5;
+  }
+  &:disabled {
+    background-color: #f2f4f7;
+    color: gray;
+    border: none;
+    cursor: default;
+    span {
+      color: #ccc;
+    }
+  }
+  &:hover {
+    opacity: 1;
   }
 `;
 export const ModalWrap = styled.div`
