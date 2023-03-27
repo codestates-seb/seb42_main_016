@@ -11,19 +11,19 @@ public class DistrictOffice {
     @Id
     private int districtOfficeId;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String address;
 
-    @Column
+    @Column(nullable = false)
     private double latitude;
 
-    @Column
+    @Column(nullable = false)
     private double longitude;
 
-    @Column
+    @Column(nullable = false)
     private String keyword;
 
     @Transient
