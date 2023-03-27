@@ -8,10 +8,11 @@ import Empty from '../Empty';
 export default function MyReviewList() {
   const dispatch = useDispatch();
   const reviews = useSelector(selectReviews);
+
   useEffect(() => {
     dispatch(fetchReviews());
   }, [dispatch]);
-  console.log(reviews);
+
   return (
     <S.Container>
       {reviews?.length ? (
