@@ -38,7 +38,7 @@ public class Dog {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MEMBER_ID")
+    @JoinColumn(name = "MEMBER_ID", nullable = false)
     private Member member;
 
     @OneToMany(mappedBy = "dog", cascade = CascadeType.ALL)
