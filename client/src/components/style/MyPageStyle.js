@@ -89,7 +89,7 @@ export const HairshopName = styled.div`
   justify-content: flex-start;
   padding: 10px 0 2px 10px;
   font-size: 1.3rem;
-  font-weight: bold;
+  font-weight: 500;
   align-items: center;
   .icon {
     margin: 4px;
@@ -103,7 +103,7 @@ export const ReserveInfo = styled.div`
   font-size: 1.1rem;
   border: 1px solid #ddd;
   border-radius: 10px;
-  /* box-shadow: 0 2px 5px rgba(50, 50, 50, 0.1); */
+  box-shadow: 0 2px 5px rgba(50, 50, 50, 0.1);
   .info {
     margin: 0 24px;
     display: flex;
@@ -140,9 +140,17 @@ export const Button = styled.button`
   padding: 2px;
   background-color: #6495ed;
   color: white;
-  :hover {
-    background-color: #6893dd;
-    color: #1b1e21;
+  &:hover {
+    background-color: #aac5f5;
+  }
+  &:disabled {
+    background-color: #f2f4f7;
+    color: gray;
+    border: none;
+    cursor: default;
+    span {
+      color: #ccc;
+    }
   }
 `;
 export const ModalWrap = styled.div`

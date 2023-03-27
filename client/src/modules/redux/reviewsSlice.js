@@ -10,9 +10,9 @@ const config = {
     refresh: refresh,
   },
 };
-export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async () => {
-  const response = await API.get(`${REVIEW_ENDPOINT}/member?page=${1}&size=${10}`, config);
-  return response.data.data;
+export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async (page) => {
+  const response = await API.get(`${REVIEW_ENDPOINT}/member?page=${page}&size=${10}`, config);
+  return response.data;
 });
 
 export const deleteReview = createAsyncThunk('reviews/deleteReview', async (reviewId) => {
@@ -20,7 +20,12 @@ export const deleteReview = createAsyncThunk('reviews/deleteReview', async (revi
   return reviewId;
 });
 
-const initialState = { reviews: [], status: 'idle', error: null };
+const initialState = {
+  reviews: [],
+  pageInfo: { totalElements: null },
+  status: 'idle',
+  error: null,
+};
 
 const reviewsSlice = createSlice({
   name: 'reviews',
@@ -33,7 +38,8 @@ const reviewsSlice = createSlice({
       })
       .addCase(fetchReviews.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.reviews = action.payload;
+        state.reviews = action.payload.data;
+        state.pageInfo.totalElements = action.payload.pageInfo.totalElements;
       })
       .addCase(fetchReviews.rejected, (state, action) => {
         state.status = 'failed';
@@ -52,6 +58,7 @@ const reviewsSlice = createSlice({
       });
   },
 });
-// export const { deleteReview } = reviewsSlice.actions;
+
 export const selectReviews = (state) => state.reviews.reviews;
+export const selectPageInfo = (state) => state.reviews.pageInfo;
 export default reviewsSlice.reducer;
