@@ -41,17 +41,14 @@ public class ReservationService {
 
 
     public Page<Reservation> findNoReviewsReservations(Member member, int page, int size) {
-
-
-        Page<Reservation> reservations = reservationRepository.findAllByMember
-                (member, PageRequest.of(page, size, Sort.by("reservationId").descending()));
-
-        List<Reservation> noReviewReservations = reservations.stream().filter(reservation -> reservation.getReview() == null).collect(Collectors.toList());
-
-        int start = (int) reservations.getPageable().getOffset();
-        int end = Math.min((start + reservations.getPageable().getPageSize()),noReviewReservations.size());
-        Page<Reservation> result = new PageImpl<>(noReviewReservations.subList(start,end), reservations.getPageable(), noReviewReservations.size());
-        return result;
+//        Page<Reservation> reservations = reservationRepository.findAllByMember
+//                (member, PageRequest.of(page, size, Sort.by("reservationId").descending()));
+//        List<Reservation> noReviewReservations = reservations.stream().filter(reservation -> reservation.getReview() == null).collect(Collectors.toList());
+//        int start = (int) reservations.getPageable().getOffset();
+//        int end = Math.min((start + reservations.getPageable().getPageSize()),noReviewReservations.size());
+//        Page<Reservation> result = new PageImpl<>(noReviewReservations.subList(start,end), reservations.getPageable(), noReviewReservations.size());
+//        return result;
+        return reservationRepository.findAllByMemberAndReviewIsNull(member, PageRequest.of(page, size, Sort.by("reservationId").descending()));
     }
 
 
