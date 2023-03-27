@@ -8,7 +8,7 @@ import API from '../modules/API';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN, HOME } from '../modules/routes';
 import { MEMBERS_ENDPOINT } from '../modules/endpoints';
-import { setError } from '../modules/redux/errorSlice';
+import { setError, setSuccess } from '../modules/redux/messageSlice';
 import { useDispatch } from 'react-redux';
 
 function SignupForm() {
@@ -55,13 +55,12 @@ function SignupForm() {
       email,
       password,
     })
-      .then((res) => {
-        console.log('회원가입 성공', res.data);
+      .then(() => {
+        dispatch(setSuccess('회원가입 성공'));
         navigate(LOGIN);
       })
       .catch((err) => {
-        dispatch(setError('회원가입에 실패했습니다.'));
-        console.log(err);
+        dispatch(setError(err.response.data.message));
       });
   };
 

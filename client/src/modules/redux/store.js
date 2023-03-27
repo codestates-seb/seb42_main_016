@@ -11,7 +11,7 @@ import likeSlice from './likeSlice';
 import reviewsSlice from './reviewsSlice';
 import shopSlice from './shopSlice';
 import bookSlice from './bookSlice';
-import errorSlice from './errorSlice';
+import messageSlice from './messageSlice';
 import locationSlice from './locationSlice';
 
 const store = configureStore({
@@ -28,7 +28,7 @@ const store = configureStore({
     reviews: reviewsSlice,
     shop: shopSlice,
     book: bookSlice,
-    error: errorSlice,
+    message: messageSlice,
     location: locationSlice,
   },
 });

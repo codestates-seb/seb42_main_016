@@ -9,7 +9,7 @@ import useConfirmPassword from '../../hooks/useConfirmPassword';
 import { MEMBERS_ENDPOINT } from '../../modules/endpoints';
 import { logout } from '../../modules/redux/userSlice';
 import API from '../../modules/API';
-import { setError } from '../../modules/redux/errorSlice';
+import { setError, setSuccess } from '../../modules/redux/messageSlice';
 
 function PasswordModal() {
   const modalRef = useRef();
@@ -58,13 +58,12 @@ function PasswordModal() {
         },
       },
     )
-      .then((res) => {
-        console.log('변경완료', res.data);
+      .then(() => {
+        dispatch(setSuccess('비밀번호 변경완료'));
         dispatch(logout());
       })
       .catch((err) => {
-        dispatch(setError('비밀번호 변경에 실패했습니다.'));
-        console.log(err);
+        dispatch(setError(err.response.data.message));
       })
       .finally(() => {
         dispatch(closeModal());
