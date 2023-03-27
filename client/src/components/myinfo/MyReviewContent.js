@@ -20,7 +20,7 @@ function MyReviewContent({ title, text, onClick }) {
       <S.MyInfoContent>
         {reviews?.length ? (
           reviews.map((reviews) => {
-            return <ReviewItem reviews={reviews} key={reviews.id} />;
+            return <ReviewItem reviews={reviews} key={reviews.reviewId} />;
           })
         ) : (
           <Empty text={text} />

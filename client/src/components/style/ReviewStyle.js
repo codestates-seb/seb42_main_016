@@ -75,12 +75,12 @@ export const Button = styled.button`
   border-radius: 5px;
   color: white;
   background-color: #6495ed;
-  :hover {
+  &:hover {
     background-color: #aac5f5;
   }
 `;
 
-export const Photo = styled.image`
+export const Photo = styled.div`
   img {
     width: 150px;
     height: 150px;
