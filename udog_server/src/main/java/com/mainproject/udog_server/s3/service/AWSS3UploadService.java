@@ -13,11 +13,13 @@ import java.io.InputStream;
 @RequiredArgsConstructor
 @Component
 public class AWSS3UploadService implements UploadService {
+    private static final String DIR_NAME = "udog-review-images/";
     private final AmazonS3 amazonS3;
     private final S3Component component;
 
     @Override
     public void uploadFile(InputStream inputStream, ObjectMetadata objectMetadata, String fileName) {
+        fileName = DIR_NAME + fileName;
         amazonS3.putObject(new PutObjectRequest(component.getBucket(), fileName, inputStream, objectMetadata)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
     }
