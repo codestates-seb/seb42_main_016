@@ -45,7 +45,7 @@ function useShopScroll(url, perPage) {
   }, [page, lat, lng]);
 
   const handleScroll = (e) => {
-    const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    const bottom = e.target.scrollHeight - e.target.scrollTop <= e.target.clientHeight + 10;
     if (bottom && !loading && hasMore) {
       setPage((prevPage) => prevPage + 1);
     }
