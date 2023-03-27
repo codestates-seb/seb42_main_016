@@ -1,7 +1,7 @@
 cloud:
   aws:
     s3:
-      bucket: udogservice
+      bucket: udog-bucket
     region:
       static: ap-northeast-2  # AWS 리전 정보
     stack:
