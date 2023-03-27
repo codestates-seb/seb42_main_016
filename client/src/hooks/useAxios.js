@@ -43,7 +43,7 @@ function useAxios() {
       });
   };
 
-  const DELETE = (url, path) => {
+  const DELETE = (url) => {
     API.delete(url, {
       headers: {
         Authorization: token,
@@ -57,10 +57,10 @@ function useAxios() {
             isOpen: true,
           }),
         );
-        dispatch(logout());
-        navigate(path);
-        window.location.reload();
         console.log('탈퇴성공', res);
+      })
+      .then(() => {
+        dispatch(logout());
       })
       .catch((err) => {
         console.log(err);
