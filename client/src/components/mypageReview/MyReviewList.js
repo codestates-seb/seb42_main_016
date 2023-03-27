@@ -12,7 +12,7 @@ export default function MyReviewList() {
   const reviews = useSelector(selectReviews);
   const pageInfo = useSelector(selectPageInfo);
   const totalElements = pageInfo.totalElements;
-  const minLen = 9;
+  const minLen = 4;
 
   useEffect(() => {
     dispatch(fetchReviews(currentPage));

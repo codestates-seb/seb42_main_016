@@ -54,7 +54,7 @@ function HomeTab() {
     <S.HomeContainer>
       <S.HomeContent>
         <S.ImgContainer>
-          <S.HomeImg src={shop.hairShopImage} alt="img" />
+          <S.HomeImg src={shop.hairShopImage ? shop.hairShopImage : '/assets/Img.png'} alt="img" />
         </S.ImgContainer>
         <S.TextContainer>
           <S.Info>
