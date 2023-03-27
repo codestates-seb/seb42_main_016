@@ -11,5 +11,5 @@ import java.util.*;
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
     Page<Reservation> findAllByMember(Member memberId, PageRequest pageRequest);
     List<Reservation> findByReserveDateAndHairShopHairShopId(LocalDate reserveDate, long hairShopId);
-
+    Page<Reservation> findAllByMemberAndReviewIsNull(Member member, PageRequest pageRequest);
 }

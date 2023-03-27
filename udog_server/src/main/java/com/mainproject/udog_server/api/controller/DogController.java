@@ -80,4 +80,4 @@ public class DogController {
     }
 }
 
-//todo 포스트맨으로 post 요청은 되는데 get,patch 요청이 안됨
+

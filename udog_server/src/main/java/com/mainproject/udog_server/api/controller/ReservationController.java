@@ -53,7 +53,7 @@ public class ReservationController {
     public ResponseEntity getNoReviewReservations(Principal principal,
                                                   @Positive @RequestParam int page,
                                                   @Positive @RequestParam int size) {
-//        Page<Reservation> reservation
+
         Page<Reservation> reservations = compositeService.getNoReviewReservations(principal.getName(), page - 1 , size);
         List<Reservation> reservation = reservations.getContent();
 
