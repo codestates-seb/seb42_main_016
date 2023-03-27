@@ -76,9 +76,11 @@ export const RLWrap = styled.div`
 
 //ReserveItem
 export const RIWrap = styled.div`
-  width: 700px;
+  width: 400px;
+  margin: 0 auto;
   margin-bottom: 30px;
   .upper {
+    margin-top: 5px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -88,27 +90,29 @@ export const HairshopName = styled.div`
   display: flex;
   justify-content: flex-start;
   padding: 10px 0 2px 10px;
-  font-size: 1.3rem;
-  font-weight: 500;
+  color: #333;
+  font-weight: 700;
+  font-size: 18px;
   align-items: center;
+  letter-spacing: 1px;
   .icon {
     margin: 4px;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
   }
 `;
 export const ReserveInfo = styled.div`
   display: flex;
   flex-direction: column;
-  font-size: 1.1rem;
-  border: 1px solid #ddd;
+  color: #666;
+  font-size: 14px;
+  box-shadow: 0 2px 10px rgba(50, 50, 50, 0.1);
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(50, 50, 50, 0.1);
   .info {
     margin: 0 24px;
     display: flex;
     padding: 5px 5px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ececec;
   }
   .date {
     padding: 0 10px;
@@ -117,31 +121,32 @@ export const ReserveInfo = styled.div`
     padding: 0 10px;
   }
   .cut {
-    margin: 0 24px;
+    min-width: 120px;
+    margin-left: 20px;
     padding: 10px 20px;
   }
   .dog {
-    margin: 0 24px;
-    padding: 10px 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
   .option {
     display: flex;
   }
 `;
 export const Button = styled.button`
-  font-size: 1rem;
+  font-size: 14px;
   padding: 0 2px;
-  width: 90px;
+  width: 70px;
   height: 30px;
   margin-bottom: 6px;
   margin-right: 10px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
+  border-radius: 5px;
+  border: none;
   padding: 2px;
   background-color: #6495ed;
   color: white;
   &:hover {
-    background-color: #aac5f5;
+    opacity: 0.5;
   }
   &:disabled {
     background-color: #f2f4f7;
@@ -151,6 +156,9 @@ export const Button = styled.button`
     span {
       color: #ccc;
     }
+  }
+  &:hover {
+    opacity: 1;
   }
 `;
 export const ModalWrap = styled.div`
@@ -175,7 +183,7 @@ export const ModalWrap = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 100%;
+  width: 700px;
   height: 100%;
   margin-top: 30px;
   line-height: normal;

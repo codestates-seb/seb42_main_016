@@ -7,7 +7,7 @@ import {
 } from 'react-icons/ai';
 
 function Pagenation({ currentPage, setCurrentPage, totalElements }) {
-  const reviewPerPage = 10;
+  const reviewPerPage = 5;
   const pageNumbers = Math.ceil(totalElements / reviewPerPage);
 
   const renderPageNumbers = () => {

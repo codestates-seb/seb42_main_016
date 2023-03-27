@@ -11,7 +11,7 @@ const config = {
   },
 };
 export const fetchReviews = createAsyncThunk('reviews/fetchReviews', async (page) => {
-  const response = await API.get(`${REVIEW_ENDPOINT}/member?page=${page}&size=${10}`, config);
+  const response = await API.get(`${REVIEW_ENDPOINT}/member?page=${page}&size=${5}`, config);
   return response.data;
 });
 

@@ -12,7 +12,7 @@ const config = {
 };
 
 export const fetchReserve = createAsyncThunk('reserve/fetchReserve', async (page) => {
-  const response = await API.get(`${RESERVATION_ENDPOINT}?page=${page}&size=${10}`, config);
+  const response = await API.get(`${RESERVATION_ENDPOINT}?page=${page}&size=${5}`, config);
   return response.data;
 });
 export const cancelReserve = createAsyncThunk('reserve/cancelReserve', async (id) => {
