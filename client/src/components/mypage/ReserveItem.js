@@ -3,10 +3,15 @@ import { IoIosCut } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../modules/redux/modalSlice';
 import { BOOKCANCELMODAL } from '../../modules/ModalContainer';
+import moment from 'moment/moment';
+import 'moment/locale/ko';
 
 export default function ReserveItem({ reserve }) {
   const dispatch = useDispatch();
   const { reservationId } = reserve;
+  const now = moment().format('YYYY-MM-DD');
+  const isCancelable = moment(reserve.reserveDate).format('YYYY-MM-DD') > now;
+
   const handleOpenBookCancelModal = () => {
     dispatch(
       openModal({
@@ -23,7 +28,9 @@ export default function ReserveItem({ reserve }) {
           <IoIosCut className="icon" />
           {reserve.hairShopName}
         </S.HairshopName>
-        <S.Button onClick={handleOpenBookCancelModal}>예약취소</S.Button>
+        <S.Button disabled={!isCancelable} onClick={handleOpenBookCancelModal}>
+          예약취소
+        </S.Button>
       </div>
       <S.ReserveInfo>
         <div className="info">
