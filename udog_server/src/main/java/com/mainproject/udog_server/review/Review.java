@@ -34,19 +34,19 @@ public class Review {
     private LocalDateTime modifiedAt;
 
     @ManyToOne
-    @JoinColumn(name = "MEMBER_ID")
+    @JoinColumn(name = "MEMBER_ID", nullable = false)
     private Member member;
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<StyleLike> styleLikes = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "HAIR_SHOP_ID")
+    @JoinColumn(name = "HAIR_SHOP_ID", nullable = false)
     private HairShop hairShop;
 
 //    @OneToOne(mappedBy = "review")
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "RESERVATION_ID")
+    @JoinColumn(name = "RESERVATION_ID", nullable = false)
     private Reservation reservation;
 
     @Transient

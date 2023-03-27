@@ -38,7 +38,7 @@ public class Reservation {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dog_id")
+    @JoinColumn(name = "dog_id", nullable = false)
     private Dog dog;
 
     public void setDog(Dog dog) {
@@ -61,7 +61,7 @@ public class Reservation {
     private LocalTime reserveTime;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private HairOption hairOption = HairOption.위생미용;
 
     public enum HairOption {
