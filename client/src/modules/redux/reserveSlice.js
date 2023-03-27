@@ -11,9 +11,9 @@ const config = {
   },
 };
 
-export const fetchReserve = createAsyncThunk('reserve/fetchReserve', async () => {
-  const response = await API.get(`${RESERVATION_ENDPOINT}?page=${1}&size=${10}`, config);
-  return response.data.data;
+export const fetchReserve = createAsyncThunk('reserve/fetchReserve', async (page) => {
+  const response = await API.get(`${RESERVATION_ENDPOINT}?page=${page}&size=${10}`, config);
+  return response.data;
 });
 export const cancelReserve = createAsyncThunk('reserve/cancelReserve', async (id) => {
   await API.delete(`${RESERVATION_ENDPOINT}/${id}`, config);
@@ -23,6 +23,7 @@ const reserveSlice = createSlice({
   name: 'reserve',
   initialState: {
     reservation: [],
+    pageInfo: { totalElements: null },
     status: 'idle',
     error: null,
   },
@@ -35,7 +36,8 @@ const reserveSlice = createSlice({
       })
       .addCase(fetchReserve.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.reservation = action.payload;
+        state.reservation = action.payload.data;
+        state.pageInfo.totalElements = action.payload.pageInfo.totalElements;
       })
       .addCase(fetchReserve.rejected, (state, action) => {
         state.status = 'failed';
@@ -57,4 +59,5 @@ const reserveSlice = createSlice({
   },
 });
 export const selectReserve = (state) => state.reserve.reservation;
+export const selectPageInfo = (state) => state.reserve.pageInfo;
 export default reserveSlice.reducer;
