@@ -1,16 +1,14 @@
-package com.mainproject.udog_server.auth.response;
+package com.mainproject.udog_server.exception;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 
-@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum ExceptionCode {
-    MEMBER_NOT_FOUND(404, "Member not found"),
-    MEMBER_EXISTS(409, "Member exists"),
+    MEMBER_NOT_FOUND(404, "존재하지 않는 회원입니다."),
+    MEMBER_EXISTS(409, "존재하는 이메일입니다."),
+    CANNOT_CHANGE_(403, "can not change"),
     NOT_IMPLEMENTATION(501, "Not Implementation"),
     INVALID_MEMBER_STATUS(400, "Invalid member status"),
-    MEMBER_NOT_MATCH(404,"멤버가 일치하지 않습니다");
+    INVALID_MEMBER_PASSWORD(400, "비밀번호가 일치하지 않습니다.");
 
     @Getter
     private int status;
@@ -23,3 +21,4 @@ public enum ExceptionCode {
         this.message = message;
     }
 }
+
