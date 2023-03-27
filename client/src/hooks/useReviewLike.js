@@ -30,7 +30,6 @@ function useReviewLike(id, like, styleLikeId) {
         },
       )
         .then((res) => {
-          console.log('좋아요 등록', res);
           setParam(res.data.styleLikeId);
         })
         .finally(() => {
@@ -42,13 +41,9 @@ function useReviewLike(id, like, styleLikeId) {
           Authorization: token,
           Refresh: refresh,
         },
-      })
-        .then((res) => {
-          console.log('좋아요 취소', res);
-        })
-        .finally(() => {
-          dispatch(setIsSubmit(false));
-        });
+      }).finally(() => {
+        dispatch(setIsSubmit(false));
+      });
     }
   };
 

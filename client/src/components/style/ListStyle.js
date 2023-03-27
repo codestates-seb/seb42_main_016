@@ -4,6 +4,8 @@ export const ListContainer = styled.div`
   display: flex;
   justify-content: center;
   line-height: normal;
+  max-width: 1500px;
+  margin: 0 auto;
 `;
 
 export const ListWrapper = styled.div`
@@ -99,10 +101,15 @@ export const LocationStyle = styled.h1`
   display: flex;
   justify-content: center;
   font-size: 40px;
+  display: flex;
+  justify-content: flex-start;
+  line-height: normal;
+  max-width: 900px;
+  margin: 0 auto;
   margin-top: 50px;
   margin-bottom: 10px;
   @media (max-width: 1000px) {
-    width: 50%;
+    width: 80%;
   }
 `;
 

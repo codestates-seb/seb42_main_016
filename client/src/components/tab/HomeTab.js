@@ -52,7 +52,7 @@ function HomeTab() {
 
   return (
     <S.HomeContainer>
-      <S.HomeContent>
+      <S.HomeContent className="flex">
         <S.ImgContainer>
           <S.HomeImg src={shop.hairShopImage ? shop.hairShopImage : '/assets/Img.png'} alt="img" />
         </S.ImgContainer>

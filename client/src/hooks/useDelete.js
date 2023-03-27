@@ -1,6 +1,7 @@
 import API from '../modules/API';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '../modules/redux/modalSlice';
+import { setError, setSuccess } from '../modules/redux/messageSlice';
 
 function useDelete(url) {
   const token = localStorage.getItem('accessToken');
@@ -14,11 +15,11 @@ function useDelete(url) {
         Refresh: refresh,
       },
     })
-      .then((res) => {
-        console.log('삭제성공', res);
+      .then(() => {
+        dispatch(setSuccess('삭제 성공'));
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        dispatch(setError('삭제 실패'));
       })
       .finally(() => {
         dispatch(closeModal());

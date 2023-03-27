@@ -42,7 +42,6 @@ function useShopLike(id, like) {
         },
       )
         .then((res) => {
-          console.log('좋아요 등록', res);
           dispatch(setLikeId(res.data.hairShopLikeId));
           getLikeCount();
         })
@@ -56,8 +55,7 @@ function useShopLike(id, like) {
           Refresh: refresh,
         },
       })
-        .then((res) => {
-          console.log('좋아요 취소', res);
+        .then(() => {
           getLikeCount();
         })
         .finally(() => {

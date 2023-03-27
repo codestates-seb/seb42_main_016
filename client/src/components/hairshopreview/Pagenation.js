@@ -1,5 +1,4 @@
 import * as S from '../style/ShopRevewStyle';
-// import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectShop } from '../../modules/redux/shopSlice';
 import {

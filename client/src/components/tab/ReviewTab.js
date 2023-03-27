@@ -20,7 +20,7 @@ function ReviewTab() {
 
   return (
     <S.HomeContainer>
-      <S.HomeContent>
+      <S.HomeContent className="review">
         {shop.reviewCount ? (
           <>
             <S.CountText>리뷰 {shop.reviewCount} 개</S.CountText>
