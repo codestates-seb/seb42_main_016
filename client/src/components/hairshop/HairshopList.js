@@ -12,7 +12,7 @@ function HairshopList({ shop, last }) {
         <S.List onClick={() => navigate(`${HAIRSHOP}/${shop.hairShopId}`)} last={last}>
           <S.ListFlex>
             <S.ImgBox>
-              <S.Img src={shop.hairShopImage} alt="img" />
+              <S.Img src={shop.hairShopImage ? shop.hairShopImage : '/assets/Img.png'} alt="img" />
             </S.ImgBox>
             <S.TextBox>
               <S.ShopName>{shop.hairShopName}</S.ShopName>
