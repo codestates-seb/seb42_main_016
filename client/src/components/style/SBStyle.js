@@ -3,9 +3,11 @@ import styled from 'styled-components';
 //Stylebook
 export const StylebookWrap = styled.div`
   position: relative;
+  max-width: 1500px;
   width: 100%;
   height: 100%;
   top: 0px;
+  margin: 0 auto;
 `;
 //List
 export const Container = styled.div`
@@ -13,7 +15,6 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  // border-top: 1px solid #ddd;
 `;
 
 //Item
@@ -23,13 +24,12 @@ export const ItemWrap = styled.div`
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  border: 1px solid #ddd;
   position: relative;
 `;
 
 export const ItemImage = styled.div`
-  width: 350px;
-  height: 350px;
+  width: 363px;
+  height: 363px;
   position: relative;
   cursor: pointer;
   line-height: 0;

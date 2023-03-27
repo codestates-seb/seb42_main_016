@@ -13,15 +13,16 @@ export const HomeContainer = styled.div`
 `;
 
 export const HomeContent = styled.div`
-  width: 60%;
-  height: 100%;
   &.flex {
+    max-width: 900px;
     display: flex;
     justify-content: space-between;
   }
   &.review {
-    width: 50%;
+    max-width: 700px;
   }
+  width: 60%;
+  height: 100%;
 `;
 
 export const ImgContainer = styled.div`
