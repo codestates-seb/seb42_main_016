@@ -7,15 +7,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectBook } from '../../modules/redux/bookSlice';
 import { openModal } from '../../modules/redux/modalSlice';
 import { BOOKCONFIRMMODAL } from '../../modules/ModalContainer';
-import useAxios from '../../hooks/useAxios';
 import { RESERVATION_ENDPOINT } from '../../modules/endpoints';
 import { useParams } from 'react-router-dom';
+import API from '../../modules/API';
+import { setError } from '../../modules/redux/messageSlice';
 
 function BookTab() {
   const { date, time, design, dog } = useSelector(selectBook);
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { POST } = useAxios();
+  const token = localStorage.getItem('accessToken');
+  const refresh = localStorage.getItem('refresh');
   const reqBody = {
     hairShopId: id,
     dogId: dog?.dogId,
@@ -25,13 +27,23 @@ function BookTab() {
   };
 
   const onClick = () => {
-    POST(RESERVATION_ENDPOINT, reqBody);
-    dispatch(
-      openModal({
-        modalType: BOOKCONFIRMMODAL,
-        isOpen: true,
-      }),
-    );
+    API.post(RESERVATION_ENDPOINT, reqBody, {
+      headers: {
+        Authorization: token,
+        Refresh: refresh,
+      },
+    })
+      .then(() => {
+        dispatch(
+          openModal({
+            modalType: BOOKCONFIRMMODAL,
+            isOpen: true,
+          }),
+        );
+      })
+      .catch(() => {
+        dispatch(setError('예약 실패'));
+      });
   };
 
   return (
