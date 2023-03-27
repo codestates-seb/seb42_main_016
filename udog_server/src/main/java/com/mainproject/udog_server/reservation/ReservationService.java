@@ -5,9 +5,7 @@ import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.member.*;
 import com.mainproject.udog_server.review.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.*;
 
@@ -42,14 +40,18 @@ public class ReservationService {
     }
 
 
-    public List<Reservation> findNoReviewsReservations(Member member, int page, int size) {
+    public Page<Reservation> findNoReviewsReservations(Member member, int page, int size) {
 
 
         Page<Reservation> reservations = reservationRepository.findAllByMember
                 (member, PageRequest.of(page, size, Sort.by("reservationId").descending()));
 
         List<Reservation> noReviewReservations = reservations.stream().filter(reservation -> reservation.getReview() == null).collect(Collectors.toList());
-        return noReviewReservations;
+
+        int start = (int) reservations.getPageable().getOffset();
+        int end = Math.min((start + reservations.getPageable().getPageSize()),noReviewReservations.size());
+        Page<Reservation> result = new PageImpl<>(noReviewReservations.subList(start,end), reservations.getPageable(), noReviewReservations.size());
+        return result;
     }
 
 
