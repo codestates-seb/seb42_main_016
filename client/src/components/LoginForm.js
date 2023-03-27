@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { login } from '../modules/redux/userSlice';
 import { HOME, SIGNUP } from '../modules/routes';
 import { LOGIN_ENDPOINT } from '../modules/endpoints';
-import { setError } from '../modules/redux/errorSlice';
+import { setError } from '../modules/redux/messageSlice';
 
 function LoginForm() {
   const [value, setValue] = useState({
@@ -47,7 +47,6 @@ function LoginForm() {
       password,
     })
       .then((res) => {
-        console.log('로그인 성공!', res);
         localStorage.setItem('accessToken', res.headers.authorization);
         localStorage.setItem('refresh', res.headers.refresh);
         dispatch(login(res.data));
@@ -57,8 +56,7 @@ function LoginForm() {
         window.location.reload();
       })
       .catch((err) => {
-        dispatch(setError('로그인에 실패했습니다.'));
-        console.log(err);
+        dispatch(setError(err.response.data.message));
       });
   };
 

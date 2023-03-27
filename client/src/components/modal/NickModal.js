@@ -7,7 +7,7 @@ import CloseIcon from '../../utils/CloseIcon';
 import { selectUser, setNick } from '../../modules/redux/userSlice';
 import useNickname from '../../hooks/useNickname';
 import { MEMBERS_ENDPOINT } from '../../modules/endpoints';
-import { setError } from '../../modules/redux/errorSlice';
+import { setError, setSuccess } from '../../modules/redux/messageSlice';
 import API from '../../modules/API';
 
 function NickModal() {
@@ -47,12 +47,11 @@ function NickModal() {
       },
     )
       .then((res) => {
-        console.log('변경완료', res.data);
+        dispatch(setSuccess('닉네임 변경완료'));
         dispatch(setNick(res.data.nickname));
       })
-      .catch((err) => {
+      .catch(() => {
         dispatch(setError('닉네임 변경에 실패했습니다.'));
-        console.log(err);
       })
       .finally(() => {
         dispatch(closeModal());

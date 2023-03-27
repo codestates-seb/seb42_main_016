@@ -4,6 +4,7 @@ import { HOMEMODAL } from '../modules/ModalContainer';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../modules/redux/modalSlice';
 import { logout } from '../modules/redux/userSlice';
+import { setError, setSuccess } from '../modules/redux/messageSlice';
 
 function useAxios() {
   const token = localStorage.getItem('accessToken');
@@ -18,12 +19,12 @@ function useAxios() {
         Refresh: refresh,
       },
     })
-      .then((res) => {
-        console.log('등록성공', res);
+      .then(() => {
+        dispatch(setSuccess('등록 성공'));
         navigate(path);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        dispatch(setError('등록 실패'));
       });
   };
 
@@ -34,12 +35,12 @@ function useAxios() {
         Refresh: refresh,
       },
     })
-      .then((res) => {
-        console.log('수정성공', res);
+      .then(() => {
+        dispatch(setSuccess('수정 성공'));
         navigate(path);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        dispatch(setError('수정 실패'));
       });
   };
 
@@ -50,20 +51,19 @@ function useAxios() {
         Refresh: refresh,
       },
     })
-      .then((res) => {
+      .then(() => {
         dispatch(
           openModal({
             modalType: HOMEMODAL,
             isOpen: true,
           }),
         );
-        console.log('탈퇴성공', res);
       })
       .then(() => {
         dispatch(logout());
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        dispatch(setError('탈퇴 실패'));
       });
   };
 
