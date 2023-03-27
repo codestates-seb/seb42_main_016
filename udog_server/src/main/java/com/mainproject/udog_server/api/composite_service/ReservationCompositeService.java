@@ -46,12 +46,12 @@ public class ReservationCompositeService {
         return reservations;
     }
 
-    public List<Reservation> getNoReviewReservations(String email,  int page, int size) {
+    public Page<Reservation> getNoReviewReservations(String email,  int page, int size) {
         Member member = memberService.findLoginMemberByEmail(email);
 
-        List<Reservation> reservations = reservationService.findNoReviewsReservations(member, page, size);
+//        List<Reservation> reservations = reservationService.findNoReviewsReservations(member, page, size);
 
-        return reservations;
+        return reservationService.findNoReviewsReservations(member, page, size);
     }
     public void deleteReservation(Long reservationId, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
