@@ -104,7 +104,7 @@ export const Button = styled.button`
   border-radius: 5px;
   color: white;
   background-color: #6495ed;
-  :hover {
+  &:hover {
     opacity: 0.8;
   }
 `;

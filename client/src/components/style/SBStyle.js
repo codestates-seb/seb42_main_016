@@ -28,8 +28,8 @@ export const ItemWrap = styled.div`
 `;
 
 export const ItemImage = styled.div`
-  width: 100%;
-  height: 363px;
+  width: 350px;
+  height: 350px;
   position: relative;
   cursor: pointer;
   line-height: 0;

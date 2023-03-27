@@ -15,10 +15,16 @@ export const HomeContainer = styled.div`
 export const HomeContent = styled.div`
   width: 60%;
   height: 100%;
+  &.flex {
+    display: flex;
+    justify-content: space-between;
+  }
+  &.review {
+    width: 50%;
+  }
 `;
 
 export const ImgContainer = styled.div`
-  float: left;
   width: 400px;
   height: 400px;
   @media (max-width: 1200px) {
@@ -33,7 +39,6 @@ export const HomeImg = styled.img`
 `;
 
 export const TextContainer = styled.div`
-  float: right;
   width: 420px;
   @media (max-width: 1200px) {
     float: none;

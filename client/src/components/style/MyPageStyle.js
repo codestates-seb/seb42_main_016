@@ -146,7 +146,7 @@ export const Button = styled.button`
   background-color: #6495ed;
   color: white;
   &:hover {
-    opacity: 0.5;
+    opacity: 0.8;
   }
   &:disabled {
     background-color: #f2f4f7;
@@ -156,9 +156,9 @@ export const Button = styled.button`
     span {
       color: #ccc;
     }
-  }
-  &:hover {
-    opacity: 1;
+    &:hover {
+      opacity: 1;
+    }
   }
 `;
 export const ModalWrap = styled.div`
