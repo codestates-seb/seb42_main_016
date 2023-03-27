@@ -13,7 +13,6 @@ export default function ReserveList() {
   const reserve = useSelector(selectReserve);
   const pageInfo = useSelector(selectPageInfo);
   const totalElements = pageInfo.totalElements;
-
   const minLen = 4;
   useEffect(() => {
     dispatch(fetchReserve(currentPage));
