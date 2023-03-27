@@ -60,6 +60,7 @@ export const Review = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 export const ButtonBox = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -78,7 +79,6 @@ export const HairshopInfo = styled.div`
   display: flex;
   align-items: center;
 `;
-
 export const Photo = styled.image`
   img {
     width: 150px;
@@ -86,6 +86,7 @@ export const Photo = styled.image`
     border-radius: 5px 0px 0px 5px;
   }
 `;
+
 export const Text = styled.div`
   font-size: 16px;
   color: #333;
