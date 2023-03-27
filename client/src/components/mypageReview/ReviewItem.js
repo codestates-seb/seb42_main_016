@@ -3,7 +3,6 @@ import { openModal } from '../../modules/redux/modalSlice';
 import { IoIosCut } from 'react-icons/io';
 import * as S from '../style/ReviewStyle';
 import { REVIEWEDITMODAL, REVIEWCONFIRMMODAL } from '../../modules/ModalContainer';
-// import useAxios from '../../hooks/useAxios';
 
 export default function ReviewItem({ reviews }) {
   const dispatch = useDispatch();

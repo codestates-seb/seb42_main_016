@@ -9,6 +9,7 @@ import { selectModal, closeModal } from '../../modules/redux/modalSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import CloseIcon from '../../utils/CloseIcon';
 import { TbDog } from 'react-icons/tb';
+import { setSuccess, setError } from '../../modules/redux/messageSlice';
 
 function ReviewModal() {
   const [inputCount, setInputCount] = useState(0);
@@ -65,12 +66,12 @@ function ReviewModal() {
     }
 
     API.post(REVIEW_ENDPOINT, formData, config)
-      .then((res) => {
-        console.log('등록성공', res);
+      .then(() => {
+        dispatch(setSuccess('등록 성공'));
         navigate(`${MYPAGE}/${MYREVIEW}/readreview`);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        dispatch(setError('등록 실패'));
       });
     dispatch(closeModal());
   };

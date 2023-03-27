@@ -13,6 +13,7 @@ import shopSlice from './shopSlice';
 import bookSlice from './bookSlice';
 import messageSlice from './messageSlice';
 import locationSlice from './locationSlice';
+import nonreviewSlice from './nonreviewSlice';
 
 const store = configureStore({
   reducer: {
@@ -30,6 +31,7 @@ const store = configureStore({
     book: bookSlice,
     message: messageSlice,
     location: locationSlice,
+    nonreview: nonreviewSlice,
   },
 });
 

@@ -22,7 +22,7 @@ export default function MyReviewList() {
     <S.Container>
       {reviews?.length ? (
         reviews.map((reviews) => {
-          return <ReviewItem reviews={reviews} key={reviews.id} />;
+          return <ReviewItem reviews={reviews} key={reviews.reviewId} />;
         })
       ) : (
         <Empty text={'작성한 리뷰가 없습니다.'} />

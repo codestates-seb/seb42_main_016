@@ -7,6 +7,7 @@ import API from '../../modules/API';
 import { selectModal, closeModal } from '../../modules/redux/modalSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import CloseIcon from '../../utils/CloseIcon';
+import { setSuccess, setError } from '../../modules/redux/messageSlice';
 
 function ReviewEditModal() {
   const { isOpen, data } = useSelector(selectModal);
@@ -43,12 +44,12 @@ function ReviewEditModal() {
   const handleSubmit = (event) => {
     event.preventDefault();
     API.patch(`${REVIEW_ENDPOINT}/${reviewId}`, { reviewText }, config)
-      .then((res) => {
-        console.log('수정 성공', res);
+      .then(() => {
+        dispatch(setSuccess('수정 성공'));
         dispatch(closeModal());
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        dispatch(setError('수정 실패'));
       });
   };
   const clickCancle = () => {
