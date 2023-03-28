@@ -45,8 +45,7 @@ export const RIWrap = styled.div`
   padding: 10px;
   box-shadow: 0 2px 10px rgba(50, 50, 50, 0.1);
   border-radius: 10px;
-  margin: 0 auto;
-  margin-bottom: 30px;
+  margin: 15px auto;
   .icon {
     margin-right: 4px;
     width: 24px;
