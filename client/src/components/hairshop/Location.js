@@ -8,15 +8,15 @@ function Location() {
   const dispatch = useDispatch();
   const location = useGeolocation();
   const { address } = useSelector(selectLocation);
+  const lat = JSON.stringify(location.coordinates.lat);
+  const lng = JSON.stringify(location.coordinates.lng);
 
   useEffect(() => {
-    if (location.loaded) {
-      const lat = JSON.stringify(location.coordinates.lat);
-      const lng = JSON.stringify(location.coordinates.lng);
+    if (location.loaded && (lat || lng)) {
       dispatch(setLat(lat));
       dispatch(setLng(lng));
     }
-  }, [location.loaded]);
+  }, [location, lat, lng]);
 
   return (
     <>
