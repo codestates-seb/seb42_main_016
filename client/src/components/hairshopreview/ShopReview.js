@@ -25,6 +25,10 @@ function ShopReview({ item, last }) {
             <img src={item.reviewImage} alt="review" />
           </S.ImgReview>
           <S.TextWrapper>
+            <S.ReviewFlex>
+              <S.ReviewText>닉네임</S.ReviewText>
+              <S.ReviewText>[옵션]위생미용</S.ReviewText>
+            </S.ReviewFlex>
             <S.TextReview>{item.reviewText}</S.TextReview>
             <S.ReviewDate>{displayCreatedAt()}</S.ReviewDate>
           </S.TextWrapper>
