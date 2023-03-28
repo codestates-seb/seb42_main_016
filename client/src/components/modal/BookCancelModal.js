@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectModal, closeModal } from '../../modules/redux/modalSlice';
 import { cancelReserve } from '../../modules/redux/reserveSlice';
 import useScroll from '../../hooks/useScroll';
+import { setSuccess } from '../../modules/redux/messageSlice';
 
 function BookCancelModal() {
   const modalRef = useRef();
@@ -31,7 +32,9 @@ function BookCancelModal() {
   const handleCancle = () => {
     dispatch(cancelReserve(data));
     dispatch(closeModal());
+    dispatch(setSuccess('예약 취소 완료'));
   };
+
   return (
     <S.ConfirmContainer ref={modalRef}>
       <S.ConfirmContent>
