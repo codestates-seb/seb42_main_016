@@ -111,3 +111,32 @@ export const StartButton = styled.button`
     background-color: ${(props) => props.hover || '#f4f7fa'};
   }
 `;
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  .icon {
+    width: 150px;
+    height: 150px;
+  }
+`;
+
+export const GoHome = styled.div`
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  :hover {
+    opacity: 0.5;
+  }
+`;
