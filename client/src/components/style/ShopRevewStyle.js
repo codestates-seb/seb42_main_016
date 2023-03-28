@@ -33,12 +33,11 @@ export const ImgReview = styled.div`
 export const TextReview = styled.p`
   overflow: hidden;
   position: relative;
-  margin-bottom: 6px;
   font-size: 15px;
   line-height: 22px;
-  color: #111;
+  color: #333;
   white-space: pre-wrap;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 `;
 
 export const ReviewDate = styled.div`
@@ -117,4 +116,18 @@ export const ArrowBtn = styled.button`
     font-size: 16px;
     color: #888;
   }
+`;
+
+export const ReviewFlex = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+`;
+
+export const ReviewText = styled.div`
+  color: #666;
+  font-size: 15px;
+  line-height: 17px;
+  margin-right: 10px;
+  font-weight: 400;
 `;

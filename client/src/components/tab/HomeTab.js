@@ -81,7 +81,7 @@ function HomeTab() {
             </S.InfoText>
             <S.InfoText>
               <PhoneIcon />
-              {shop.hairShopPhone}
+              {shop.hairShopPhone ? shop.hairShopPhone : '등록된 연락처가 없습니다.'}
             </S.InfoText>
           </S.Info>
           <S.CommentBox>
