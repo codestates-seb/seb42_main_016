@@ -1,7 +1,5 @@
 import * as S from '../style/MyPageStyle';
 import ReserveItem from './ReserveItem';
-import useFetch from '../../hooks/useFetch';
-import { RESERVATION_ENDPOINT } from '../../modules/endpoints';
 import Empty from '../Empty';
 import Pagenation from '../mypage/PagenationR';
 import { useState, useEffect } from 'react';
@@ -15,13 +13,11 @@ import {
 export default function WriteReview() {
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const fetch = useFetch(`${RESERVATION_ENDPOINT}/non-review?page=${1}&size=${20}`)['pageInfo'];
-  console.log(fetch);
   const reserve = useSelector(selectNonReview);
   const pageInfo = useSelector(selectPageInfo);
   const totalElements = pageInfo.totalElements;
-  console.log(pageInfo);
   const minLen = 4;
+
   useEffect(() => {
     dispatch(fetchNonReview(currentPage));
   }, [dispatch, currentPage]);

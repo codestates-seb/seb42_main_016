@@ -1,7 +1,5 @@
 import * as S from '../style/MyPageStyle';
 import { IoIosCut } from 'react-icons/io';
-// import { useDispatch } from 'react-redux';
-// import { addReview } from '../../modules/redux/reviewsSlice';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../modules/redux/modalSlice';
 import { REVIEWMODAL } from '../../modules/ModalContainer';

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectModal, closeModal } from '../../modules/redux/modalSlice';
 import { deleteReview } from '../../modules/redux/reviewsSlice';
 import useScroll from '../../hooks/useScroll';
+import { setSuccess } from '../../modules/redux/messageSlice';
 
 function ReviewConfirmModal() {
   const modalRef = useRef();
@@ -31,6 +32,7 @@ function ReviewConfirmModal() {
   const onClickDelete = () => {
     dispatch(deleteReview(data));
     dispatch(closeModal());
+    dispatch(setSuccess('리뷰 삭제 완료'));
   };
 
   return (
