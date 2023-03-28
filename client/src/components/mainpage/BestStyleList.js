@@ -7,10 +7,12 @@ export default function BestStyleList() {
   const data = useFetch(`${STYLEBOOK_ENDPOINT}/top`);
 
   return (
-    <S.Container>
-      {data.map((style) => (
-        <StylebookItem key={style.reviewId} style={style} src={style.reviewImage} />
-      ))}
-    </S.Container>
+    <S.StylebookWrap>
+      <S.Container>
+        {data.map((style) => (
+          <StylebookItem key={style.reviewId} style={style} src={style.reviewImage} />
+        ))}
+      </S.Container>
+    </S.StylebookWrap>
   );
 }
