@@ -50,11 +50,13 @@ function HomeTab() {
     onLikeButtonClick();
   };
 
+  const url = shop.hairShopImage ? shop.hairShopImage.replace('http', 'https') : '/assets/Img.png';
+
   return (
     <S.HomeContainer>
       <S.HomeContent className="flex">
         <S.ImgContainer>
-          <S.HomeImg src={shop.hairShopImage ? shop.hairShopImage : '/assets/Img.png'} alt="img" />
+          <S.HomeImg src={url} alt="img" />
         </S.ImgContainer>
         <S.TextContainer>
           <S.Info>
