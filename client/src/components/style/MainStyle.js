@@ -13,5 +13,6 @@ export const BS = styled.div`
   font-weight: 600;
   border-bottom: 1px solid #666;
   letter-spacing: 1px;
-  margin: 30px 10% 0px 10%;
+  margin: 30px 15% 0px;
+  max-width: 1300px;
 `;
