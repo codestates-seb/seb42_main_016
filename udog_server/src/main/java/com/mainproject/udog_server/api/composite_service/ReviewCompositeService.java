@@ -5,6 +5,7 @@ import com.mainproject.udog_server.member.MemberService;
 import com.mainproject.udog_server.reservation.*;
 import com.mainproject.udog_server.review.Review;
 import com.mainproject.udog_server.review.ReviewService;
+import com.mainproject.udog_server.s3.service.AWSS3UploadService;
 import com.mainproject.udog_server.s3.service.FileUploadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,7 @@ import java.time.LocalTime;
 @RequiredArgsConstructor
 @Service
 public class ReviewCompositeService {
+    private final AWSS3UploadService s3UploadService;
     private final FileUploadService fileUploadService;
     private final ReservationService reservationService;
     private final ReviewService reviewService;
@@ -82,6 +84,13 @@ public class ReviewCompositeService {
 
     public void deleteReview(Long reviewId, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
+        Review review = reviewService.findReview(reviewId);
+
+        String imageUrl = review.getReviewImage();
+        String fileName = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
+        String s3FileName = "udog-review-images/" + fileName;
+
+        s3UploadService.deleteFile(s3FileName);
 
         reviewService.deleteReview(reviewId, member.getMemberId());
     }
