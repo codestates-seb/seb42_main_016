@@ -75,7 +75,7 @@ function DogForm() {
       PATCH(
         `${MYDOG_ENDPOINT}/${dogId}`,
         {
-          dogName,
+          dogName: onlyString,
           dogBirthDate: changeDate,
           dogWeight,
           dogSpecies: changeType,
@@ -87,7 +87,7 @@ function DogForm() {
       POST(
         MYDOG_ENDPOINT,
         {
-          dogName,
+          dogName: onlyString,
           dogBirthDate: changeDate,
           dogWeight,
           dogSpecies: changeType,
