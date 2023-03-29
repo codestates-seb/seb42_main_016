@@ -60,10 +60,6 @@ function ReviewModal() {
       }),
     );
     formData.append('image', reviewImage);
-    let entries = formData.entries();
-    for (const pair of entries) {
-      console.log(pair[0] + ', ' + pair[1]);
-    }
 
     API.post(REVIEW_ENDPOINT, formData, config)
       .then(() => {
