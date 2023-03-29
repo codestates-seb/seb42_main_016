@@ -78,7 +78,7 @@ export const HairshopInfo = styled.div`
   display: flex;
   align-items: center;
 `;
-export const Photo = styled.image`
+export const Photo = styled.div`
   img {
     width: 150px;
     height: 150px;
