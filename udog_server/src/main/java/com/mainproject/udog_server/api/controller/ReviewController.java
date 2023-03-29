@@ -8,8 +8,10 @@ import com.mainproject.udog_server.dto.MultiResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Positive;
 import java.net.URI;
@@ -24,10 +26,12 @@ public class ReviewController {
 
     private final ReviewCompositeService compositeService;
     private final ReviewMapper mapper;
-    @PostMapping
-    public ResponseEntity postReview(@RequestBody ReviewDto.Post postDto, Principal principal) {
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity postReview(@RequestPart("body") ReviewDto.Post postDto,
+                                     @RequestPart("image") MultipartFile reviewImage,
+                                     Principal principal) {
         Review creatingReview = mapper.reviewPostDtoToReview(postDto);
-        Review createdReview = compositeService.createReview(creatingReview,principal.getName());
+        Review createdReview = compositeService.createReview(creatingReview, reviewImage, principal.getName());
 
         return ResponseEntity.status(HttpStatus.CREATED).location(URI.create("/reviews")).body(mapper.reviewToReviewResponseDto(createdReview));
     }
@@ -44,22 +48,26 @@ public class ReviewController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/{review-id}")
-    public ResponseEntity getReview(@PathVariable("review-id") @Positive Long reviewId) {
-        Review review = compositeService.getReview(reviewId);
-        ReviewDto.Response response = mapper.reviewToReviewResponseDto(review);
+    @GetMapping("/member")
+    public ResponseEntity getMemberReviews(Principal principal,
+                                           @Positive @RequestParam int page,
+                                           @Positive @RequestParam int size) {
+        Page<Review> pageReviews = compositeService.getMemberReviews(principal.getName(), page, size);
+        List<Review> reviews = pageReviews.getContent();
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        MultiResponseDto response = new MultiResponseDto(mapper.memberReviewsToReviewResponseDto(reviews), pageReviews);
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @GetMapping
+    @GetMapping("/hairShop")
     public ResponseEntity getHairShopReviews(@Positive @RequestParam Long hairShopId,
                                              @Positive @RequestParam int page,
                                              @Positive @RequestParam int size) {
         Page<Review> pageReviews = compositeService.getHairShopReviews(hairShopId, page, size);
         List<Review> reviews = pageReviews.getContent();
 
-        MultiResponseDto response = new MultiResponseDto(mapper.reviewsToReviewResponseDto(reviews), pageReviews);
+        MultiResponseDto response = new MultiResponseDto(mapper.hairShopReviewsToReviewResponseDto(reviews), pageReviews);
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

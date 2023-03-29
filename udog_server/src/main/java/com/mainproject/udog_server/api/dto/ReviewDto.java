@@ -1,6 +1,7 @@
 package com.mainproject.udog_server.api.dto;
 
 import com.mainproject.udog_server.member.Member;
+import com.mainproject.udog_server.reservation.Reservation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,7 @@ public class ReviewDto {
         @NotBlank
         private long hairShopId;
         @NotBlank
-        private String reviewImage;
+        private long reservationId;
         @NotBlank
         private String reviewText;
         private Member member;
@@ -31,8 +32,6 @@ public class ReviewDto {
     @AllArgsConstructor
     public static class Patch {
         private Long reviewId;
-        @Nullable
-        private String reviewImage;
         @Nullable
         private String reviewText;
         private Member member;
@@ -52,8 +51,23 @@ public class ReviewDto {
     @Getter
     @Setter
     @AllArgsConstructor
-    public static class listResponse {
+    public static class hairShopReviewsResponse {
         private Long reviewId;
+        private Long memberId;
+        private String reviewImage;
+        private String reviewText;
+        private String nickname;
+        private Reservation.HairOption hairOption;
+        private LocalDateTime createdAt;
+    }
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class memberReviewsResponse {
+        private Long reviewId;
+        private Long hairShopId;
+        private String hairShopName;
         private String reviewImage;
         private String reviewText;
         private LocalDateTime createdAt;

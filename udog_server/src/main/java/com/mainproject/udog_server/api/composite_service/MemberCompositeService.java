@@ -13,17 +13,12 @@ public class MemberCompositeService {
         return memberService.createMember(member);
     }
 
-    public Member updateMemberNickname(Member member, String email){
-        Member foundMember = memberService.findLoginMemberByEmail(email);
-        member.setMemberId(foundMember.getMemberId());
-        return memberService.updateMemberNickname(member);
+    public Member updateMemberNickname(Member patchMember, String email){
+        return memberService.updateMemberNickname(patchMember, email);
     }
 
-    public Member updateMemberPassword(Member member, String prevPassword, String email){
-        Member foundMember = memberService.findLoginMemberByEmail(email);
-        memberService.verifyPasswordMatch(member, prevPassword);
-        member.setMemberId(foundMember.getMemberId());
-        return memberService.updateMemberPassword(member);
+    public Member updateMemberPassword(String changingPassword, String prevPassword, String email){
+        return memberService.updateMemberPassword(changingPassword, prevPassword, email);
     }
 
     public Member findMember(String email){

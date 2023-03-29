@@ -37,8 +37,8 @@ public class MemberController {
     @PatchMapping("nickname")
     public ResponseEntity patchMemberNickname(Principal principal,
                                       @Valid @RequestBody MemberDto.NicknamePatch memberPatch){
-        Member member = mapper.MemberNicknamePatchDtoToMember(memberPatch);
-        Member updateMember = compositeService.updateMemberNickname(member, principal.getName());
+        Member updatingMember = mapper.MemberNicknamePatchDtoToMember(memberPatch);
+        Member updateMember = compositeService.updateMemberNickname(updatingMember, principal.getName());
 
         return new ResponseEntity<>(mapper.MemberToMemberResponseDto(updateMember), HttpStatus.OK);
     }
@@ -46,9 +46,7 @@ public class MemberController {
     @PatchMapping("password")
     public ResponseEntity patchMemberPassword(Principal principal,
                                       @Valid @RequestBody MemberDto.PasswordPatch memberPatch){
-        Member member = mapper.MemberPasswordPatchDtoToMember(memberPatch);
-        Member updateMember = compositeService.updateMemberPassword(member, memberPatch.getPrevPassword(), principal.getName());
-
+        Member updateMember = compositeService.updateMemberPassword(memberPatch.getPassword(), memberPatch.getPrevPassword(), principal.getName());
         return new ResponseEntity<>(mapper.MemberToMemberResponseDto(updateMember), HttpStatus.OK);
     }
 

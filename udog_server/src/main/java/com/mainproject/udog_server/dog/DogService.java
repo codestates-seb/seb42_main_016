@@ -4,8 +4,9 @@ import com.mainproject.udog_server.member.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.*;
 
+import java.time.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,11 +17,17 @@ import java.util.Optional;
 public class DogService {
     private final DogRepository dogRepository;
 
+
     public Dog createDog(Dog dog) {
+        LocalDate birthDate = dog.getDogBirthDate();
+
+        if(birthDate.isAfter(LocalDate.now()) || birthDate.isBefore(LocalDate.parse("2003-01-01"))) {
+            throw new IllegalArgumentException("incorrect dogBirthDate");
+        }
         return dogRepository.save(dog);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(propagation= Propagation.REQUIRES_NEW)
     public Dog updateDog(Dog dog, Member member) {
         Dog findDog = findVerifiedDogAndMember(dog.getDogId(), member);
 
@@ -39,13 +46,14 @@ public class DogService {
     }
 
     @Transactional(readOnly = true)
-    public Dog findDog(long dogId) {
-        return findVerifiedDog(dogId);
+    public Dog findDog(long dogId, Member member) {
+        Dog foundDog = findVerifiedDogAndMember(dogId, member);
+        return foundDog;
     }
 
 
-    public List<Dog> findDogs() {
-        return (List<Dog>) dogRepository.findAll();
+    public List<Dog> findDogs(Member member) {
+        return (List<Dog>) dogRepository.findAllByMember(member);
     }
 
     public void deleteDog(long dogId, Member member) {

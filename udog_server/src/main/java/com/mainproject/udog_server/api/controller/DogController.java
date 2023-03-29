@@ -34,7 +34,6 @@ public class DogController {
     @PostMapping
     public ResponseEntity postDog (@Valid @RequestBody DogDto.Post post, Principal principal){
         Dog creatingDog = dogMapper.dogPostDtoToDog(post);
-
         Dog createdDog = compositeService.createDog(creatingDog, principal.getName());
         DogDto.Response response = dogMapper.dogToDogResponse(createdDog);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -47,7 +46,9 @@ public class DogController {
                                     {
         patch.setDogId(dogId);
         Dog updatingDog = dogMapper.dogPatchDtoToDog(patch);
+
         Dog updatedDog = compositeService.updateDog(updatingDog, principal.getName());
+
         DogDto.Response response = dogMapper.dogToDogResponse(updatedDog);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -55,15 +56,16 @@ public class DogController {
 
 
     @GetMapping("/{dog-id}")
-    public ResponseEntity getDog (@Positive @PathVariable("dog-id") long dogId) {
-        Dog response = compositeService.findDog(dogId);
+    public ResponseEntity getDog (@Positive @PathVariable("dog-id") long dogId, Principal principal) {
+
+        Dog response = compositeService.findDog(dogId, principal.getName());
 
         return new ResponseEntity<>(dogMapper.dogToDogResponse(response), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity getDogs () {
-        List<Dog> dogs = compositeService.findDogs();
+    public ResponseEntity getDogs (Principal principal) {
+        List<Dog> dogs = compositeService.findDogs(principal.getName());
         List<DogDto.Response> response = dogMapper.dogsToDogResponsesDtos(dogs);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -78,4 +80,4 @@ public class DogController {
     }
 }
 
-//todo 포스트맨으로 post 요청은 되는데 get,patch 요청이 안됨
+

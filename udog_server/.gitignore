@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### s3 개인 정보 보호 ###
+application-credentials.yml

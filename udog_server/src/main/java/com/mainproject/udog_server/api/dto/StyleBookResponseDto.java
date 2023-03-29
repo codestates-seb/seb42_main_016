@@ -10,4 +10,5 @@ public class StyleBookResponseDto {
     long reviewId;
     int likeCount;
     long hairShopId;
+    long styleLikeId;
 }

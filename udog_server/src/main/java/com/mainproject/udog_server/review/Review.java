@@ -2,6 +2,7 @@ package com.mainproject.udog_server.review;
 
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.member.Member;
+import com.mainproject.udog_server.reservation.*;
 import com.mainproject.udog_server.styleLike.StyleLike;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,16 +34,24 @@ public class Review {
     private LocalDateTime modifiedAt;
 
     @ManyToOne
-    @JoinColumn(name = "MEMBER_ID")
+    @JoinColumn(name = "MEMBER_ID", nullable = false)
     private Member member;
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<StyleLike> styleLikes = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "HAIR_SHOP_ID")
+    @JoinColumn(name = "HAIR_SHOP_ID", nullable = false)
     private HairShop hairShop;
+
+//    @OneToOne(mappedBy = "review")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "RESERVATION_ID", nullable = false)
+    private Reservation reservation;
 
     @Transient
     private int likeCount;
+
+    @Transient
+    private long myStyleLikeId;
 }

@@ -2,6 +2,7 @@ package com.mainproject.udog_server.dog;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mainproject.udog_server.member.Member;
+import com.mainproject.udog_server.reservation.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,11 +23,8 @@ public class Dog {
     private String dogName;
 
     @Column(nullable = false, length = 20)
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-//    @JsonDeserialize(using = LocalDateDeserializer.class)
-//    @JsonSerialize(using = LocalDateSerializer.class)
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date dogBirthDate;
+
+    private LocalDate dogBirthDate;
 
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false, length = 25)
@@ -40,8 +38,11 @@ public class Dog {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MEMBER_ID")
+    @JoinColumn(name = "MEMBER_ID", nullable = false)
     private Member member;
+
+    @OneToMany(mappedBy = "dog", cascade = CascadeType.ALL)
+    private List<Reservation> reservations = new ArrayList<>();
 
     public enum DogSpecies {
         기타,

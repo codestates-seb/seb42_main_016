@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:mysql://my-database.c97sruw5pom4.ap-northeast-2.rds.amazonaws.com:13306/udog?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://my-database.c97sruw5pom4.ap-northeast-2.rds.amazonaws.com:13306/udog?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: admin
     password: asdfasdf
-    driver-class: com.mysql.cj.jdbc.Driver
+    driver-class: com.mysql.cj.jdbc.Driver4
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

@@ -7,6 +7,7 @@ import com.mainproject.udog_server.api.mapper.HairShopMapper;
 import com.mainproject.udog_server.hairshop.HairShopService;
 import com.mainproject.udog_server.hairshopLike.HairShopLikeService;
 import com.mainproject.udog_server.dto.MultiResponseDto;
+import com.mainproject.udog_server.review.*;
 import com.mainproject.udog_server.util.UriCreator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Positive;
 import java.net.URI;
+import java.security.*;
 import java.util.List;
 
 @RestController
@@ -33,7 +35,7 @@ public class HairShopController {
     private final HairShopCompositeService compositeService;
 
     @PostMapping
-    public ResponseEntity addHariShop(@RequestBody HairShopDto.Post post) {
+    public ResponseEntity addHairShop(@RequestBody HairShopDto.Post post) {
         HairShop postHairShop = hairShopMapper.hairShopPostDtoToHairShop(post);
         HairShop createdHairShop = compositeService.createHairShop(postHairShop);
 
@@ -44,24 +46,34 @@ public class HairShopController {
 
     //미용실 상세페이지
     @GetMapping("/{hair-shops-id}")
-    public ResponseEntity getHairShop(@PathVariable("hair-shops-id") @Positive long hairShopId) {
-        HairShop response = compositeService.getHairShop(hairShopId);
+    public ResponseEntity getHairShop(Principal principal,
+                                      @PathVariable("hair-shops-id") @Positive long hairShopId) {
+        HairShop response = compositeService.getHairShop(principal, hairShopId);
 
         return new ResponseEntity<>(hairShopMapper.hairShopToHairShopResponse(response), HttpStatus.OK);
     }
 
-    //todo PathVariable 값 오타 알려드리기
-    //todo 엔티티에서 builder중에 this.hairshopname
     //내 주변 미용실
     @GetMapping
-    public ResponseEntity getHairShops(@Positive @RequestParam int page,
-                                       @Positive @RequestParam int size) {
-        Page<HairShop> pageHairShops = compositeService.getHairShops(page - 1, size);
+    public ResponseEntity getHairShops(Principal principal,
+                                       @Positive @RequestParam int page,
+                                       @Positive @RequestParam int size,
+                                       @RequestParam double latitude,
+                                       @RequestParam double longitude){
+        Page<HairShop> pageHairShops = compositeService.getHairShops(principal,page - 1, size, latitude, longitude);
 
         return new ResponseEntity<>(
                 new MultiResponseDto<>(
                         hairShopMapper.hairShopsToHairShopResponses(pageHairShops.getContent()),
                         pageHairShops),
+                HttpStatus.OK);
+    }
+
+    @GetMapping("/top")
+    public ResponseEntity getTopHairShops(Principal principal){
+        Page<HairShop> top10HairShops = compositeService.getTopHairSHops(principal);
+        return new ResponseEntity<>(
+                hairShopMapper.hairShopsToHairShopResponses(top10HairShops.getContent()),
                 HttpStatus.OK);
     }
 }
