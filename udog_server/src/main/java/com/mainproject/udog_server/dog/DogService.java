@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.*;
 
+import java.time.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,11 @@ public class DogService {
 
 
     public Dog createDog(Dog dog) {
+        LocalDate birthDate = dog.getDogBirthDate();
+
+        if(birthDate.isAfter(LocalDate.now()) || birthDate.isBefore(LocalDate.parse("2003-01-01"))) {
+            throw new IllegalArgumentException("incorrect dogBirthDate");
+        }
         return dogRepository.save(dog);
     }
 
