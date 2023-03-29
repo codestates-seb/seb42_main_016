@@ -15,4 +15,7 @@ export const BS = styled.div`
   letter-spacing: 1px;
   margin: 30px 15% 0px;
   max-width: 1300px;
+  @media (max-width: 1500px) {
+    margin: 30px 10% 0px;
+  }
 `;

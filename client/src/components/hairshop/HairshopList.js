@@ -6,7 +6,9 @@ import { HAIRSHOP } from '../../modules/routes';
 function HairshopList({ shop, last }) {
   const navigate = useNavigate();
   const url =
-    shop && shop.hairShopImage ? shop.hairShopImage.replace('http', 'https') : '/assets/Img.png';
+    shop && shop.hairShopImage
+      ? shop.hairShopImage.replace('http', 'https')
+      : '/assets/ShopImg.png';
 
   return (
     <S.ListContainer>
