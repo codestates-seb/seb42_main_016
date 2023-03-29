@@ -14,6 +14,8 @@ import java.util.UUID;
 public class FileUploadService {
     private final UploadService s3Service;
 
+    private static final String DIR_NAME = "udog-review-images/";
+
     // Multipart를 통해 전송된 파일을 업로드하는 메소드
     public String uploadImage(MultipartFile file) {
         String fileName = createFileName(file.getOriginalFilename());
@@ -31,7 +33,9 @@ public class FileUploadService {
 
     // 기존 확장자명을 유지한 채, 유니크한 파일의 이름을 생성하는 로직
     private String createFileName(String originalFileName) {
-        return UUID.randomUUID().toString().concat(getFileExtension(originalFileName));
+        String fileName = UUID.randomUUID().toString().concat(getFileExtension(originalFileName));
+        String s3FileName = DIR_NAME + fileName;
+        return s3FileName ;
     }
 
     // 파일의 확장자명을 가져오는 로직
