@@ -11,7 +11,7 @@ function MyReviewContent({ title, text, onClick }) {
   const reviews = useSelector(selectReviews);
   useEffect(() => {
     dispatch(fetchReviews(1));
-  }, [dispatch]);
+  }, [dispatch, reviews]);
 
   const filteredData = reviews.length > 0 ? [reviews[0]] : [];
   return (
