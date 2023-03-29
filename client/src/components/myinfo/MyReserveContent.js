@@ -1,15 +1,19 @@
 import * as S from '../style/MyInfoStyle';
 import { MdNavigateNext } from 'react-icons/md';
 import Empty from '../Empty';
-import { RESERVATION_ENDPOINT } from '../../modules/endpoints';
-import useFetch from '../../hooks/useFetch';
 import ReserveItem from '../mypage/ReserveItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchReserve, selectReserve } from '../../modules/redux/reserveSlice';
 
 function MyReserveContent({ title, text, onClick }) {
-  const maxPage = 1;
-  const maxLen = 2;
-  const reserve = useFetch(`${RESERVATION_ENDPOINT}?page=${maxPage}&size=${maxLen}`)['data'];
+  const dispatch = useDispatch();
+  const reserve = useSelector(selectReserve);
+  useEffect(() => {
+    dispatch(fetchReserve(1));
+  }, [dispatch]);
 
+  const filteredData = reserve.length > 0 ? [reserve[0], reserve[1]] : [];
   return (
     <>
       <S.ContentTitleContainer>
@@ -19,8 +23,8 @@ function MyReserveContent({ title, text, onClick }) {
         </S.MoreButton>
       </S.ContentTitleContainer>
       <S.MyInfoContent>
-        {reserve?.length ? (
-          reserve.map((reserve) => {
+        {filteredData?.length ? (
+          filteredData.map((reserve) => {
             return <ReserveItem key={reserve.reservationId} reserve={reserve} />;
           })
         ) : (
