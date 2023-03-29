@@ -22,7 +22,7 @@ function DogForm() {
   const onlyString = dogName.replace(/[0-9]|[' ']/g, '');
   const onlyNumber = dogBirthDate.replace(/[^0-9]/g, '');
 
-  const { validText, isValid } = useDogAge(dogBirthDate);
+  const { validText, isValid } = useDogAge(onlyNumber);
   const { option } = useSelector(selectModal);
   const { edit, data } = useSelector(selectEdit);
   const { dogWeight, dogSpecies } = option;
@@ -75,7 +75,7 @@ function DogForm() {
       PATCH(
         `${MYDOG_ENDPOINT}/${dogId}`,
         {
-          dogName: onlyString,
+          dogName,
           dogBirthDate: changeDate,
           dogWeight,
           dogSpecies: changeType,
@@ -87,7 +87,7 @@ function DogForm() {
       POST(
         MYDOG_ENDPOINT,
         {
-          dogName: onlyString,
+          dogName,
           dogBirthDate: changeDate,
           dogWeight,
           dogSpecies: changeType,
