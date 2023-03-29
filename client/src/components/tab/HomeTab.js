@@ -50,7 +50,9 @@ function HomeTab() {
     onLikeButtonClick();
   };
 
-  const url = shop.hairShopImage ? shop.hairShopImage.replace('http', 'https') : '/assets/Img.png';
+  const url = shop.hairShopImage
+    ? shop.hairShopImage.replace('http', 'https')
+    : '/assets/ShopImg.png';
 
   return (
     <S.HomeContainer>
