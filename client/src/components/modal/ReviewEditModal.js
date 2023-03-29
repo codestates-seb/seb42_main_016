@@ -2,7 +2,6 @@ import * as S from '../style/ModalStyle';
 import { useState, useRef, useEffect } from 'react';
 import useScroll from '../../hooks/useScroll';
 import { REVIEW_ENDPOINT } from '../../modules/endpoints';
-// import { MYPAGE, MYREVIEW } from '../../modules/routes';
 import API from '../../modules/API';
 import { selectModal, closeModal } from '../../modules/redux/modalSlice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,7 +13,7 @@ function ReviewEditModal() {
   const { reviewId } = data;
 
   const [inputCount, setInputCount] = useState(data.reviewText.length);
-  // const [reviewImage, setImage] = useState();
+
   const [reviewText, setText] = useState(data.reviewText);
   const modalRef = useRef();
 
@@ -55,7 +54,7 @@ function ReviewEditModal() {
   const clickCancle = () => {
     dispatch(closeModal());
   };
-  // const handleImageChange = (event) => setImage(event.target.files[0]);
+
   const handleTextChange = (event) => {
     setText(event.target.value);
     setInputCount(event.target.value.length);
@@ -70,9 +69,6 @@ function ReviewEditModal() {
           </div>
         </S.TopWrapper>
         <S.ReviewWrap>
-          {/* <S.ReviewImg>
-            <input id="dogImg" type="file" accept="image/*" />
-          </S.ReviewImg> */}
           <S.ReviewText>
             <textarea
               rows="9"
