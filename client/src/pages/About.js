@@ -16,7 +16,7 @@ function About() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleScroll, {
-      threshold: 0.25,
+      threshold: 0.3,
     });
 
     elementRef.current.forEach((el) => {
