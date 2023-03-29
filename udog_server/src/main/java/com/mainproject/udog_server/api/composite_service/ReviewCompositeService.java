@@ -11,6 +11,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @RequiredArgsConstructor
 @Service
 public class ReviewCompositeService {
@@ -34,6 +37,15 @@ public class ReviewCompositeService {
 
         if (foundReservation.getReview() != null) {
             throw new IllegalArgumentException("Already existing review");
+        }
+
+        if (foundReservation.getReserveDate().isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Not yet scheduled");
+        }
+
+        if (foundReservation.getReserveDate().isEqual(LocalDate.now()) &&
+                foundReservation.getReserveTime().isAfter(LocalTime.now())) {
+            throw new IllegalArgumentException("Not yet scheduled");
         }
 
         creatingReview.setMember(member);
