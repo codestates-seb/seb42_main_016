@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { setClose, setError, setLoading, setSuccess } from '../modules/redux/messageSlice';
 
 function useGeolocation() {
   const [location, setLocation] = useState({
@@ -12,6 +13,8 @@ function useGeolocation() {
     coordinates: { lat: 37.5044953, lng: 127.0491212 },
   };
 
+  const dispatch = useDispatch();
+
   const onSuccess = (location) => {
     setLocation({
       loaded: true,
@@ -20,14 +23,14 @@ function useGeolocation() {
         lng: location.coords.longitude,
       },
     });
-    toast.dismiss();
-    toast.success('위치 정보를 성공적으로 가져왔습니다.');
+    dispatch(setClose());
+    dispatch(setSuccess('위치 정보를 성공적으로 가져왔습니다.'));
   };
 
   const onError = () => {
     setLocation(defaultLocation);
-    toast.dismiss();
-    toast.error('위치 정보를 가져오지 못했습니다.');
+    dispatch(setClose());
+    dispatch(setError('위치 정보를 성공적으로 못했습니다.'));
   };
 
   useEffect(() => {
@@ -37,7 +40,7 @@ function useGeolocation() {
         message: 'Geolocation not supported',
       });
     } else if (!location.loaded) {
-      toast.loading('위치 정보를 가져오는 중입니다.');
+      dispatch(setLoading('위치 정보를 가져오는 중입니다.'));
     }
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
   }, []);
