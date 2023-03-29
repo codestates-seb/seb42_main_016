@@ -1,14 +1,19 @@
 import * as S from '../style/MyInfoStyle';
 import { MdNavigateNext } from 'react-icons/md';
 import Empty from '../Empty';
-import { REVIEW_ENDPOINT } from '../../modules/endpoints';
-import useFetch from '../../hooks/useFetch';
 import ReviewItem from '../mypageReview/ReviewItem';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchReviews, selectReviews } from '../../modules/redux/reviewsSlice';
 
 function MyReviewContent({ title, text, onClick }) {
-  const maxNum = 1;
-  const reviews = useFetch(`${REVIEW_ENDPOINT}/member?page=${maxNum}&size=${maxNum}`)['data'];
+  const dispatch = useDispatch();
+  const reviews = useSelector(selectReviews);
+  useEffect(() => {
+    dispatch(fetchReviews(1));
+  }, [dispatch]);
 
+  const filteredData = reviews.length > 0 ? [reviews[0]] : [];
   return (
     <>
       <S.ContentTitleContainer>
@@ -18,8 +23,8 @@ function MyReviewContent({ title, text, onClick }) {
         </S.MoreButton>
       </S.ContentTitleContainer>
       <S.MyInfoContent>
-        {reviews?.length ? (
-          reviews.map((reviews) => {
+        {filteredData?.length ? (
+          filteredData.map((reviews) => {
             return <ReviewItem reviews={reviews} key={reviews.reviewId} />;
           })
         ) : (
