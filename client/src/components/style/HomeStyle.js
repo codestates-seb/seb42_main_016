@@ -162,3 +162,40 @@ export const ReserveBtn = styled.button`
     color: #ccc;
   }
 `;
+
+export const ConfirmWrapper = styled.div`
+  width: 100%;
+  margin-bottom: 30px;
+`;
+
+export const ConfirmContainer = styled.div`
+  flex-direction: column;
+  padding: 15px 18px 30px;
+  width: 500px;
+  margin: 0 auto;
+  padding: 18px 18px 16px;
+  border-radius: 5px;
+  background-color: #fff4f4;
+  font-size: 15px;
+  line-height: 20px;
+  box-sizing: border-box;
+`;
+
+export const ConfirmTitle = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: #fc4c42;
+  font-style: normal;
+  .icon {
+    margin-right: 5px;
+  }
+`;
+
+export const ConfirmText = styled.div`
+  display: block;
+  letter-spacing: -0.3px;
+  color: #333;
+  padding-bottom: 5px;
+`;

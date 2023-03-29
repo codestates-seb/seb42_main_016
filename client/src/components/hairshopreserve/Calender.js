@@ -33,11 +33,8 @@ function Calender() {
 
   useEffect(() => {
     dispatch(setDate(formatDate));
-  }, [dispatch, formatDate]);
-
-  useEffect(() => {
     dispatch(setTime(null));
-  }, []);
+  }, [dispatch, formatDate]);
 
   return (
     <>

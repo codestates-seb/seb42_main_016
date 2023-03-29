@@ -11,6 +11,7 @@ import { RESERVATION_ENDPOINT } from '../../modules/endpoints';
 import { useParams } from 'react-router-dom';
 import API from '../../modules/API';
 import { setError } from '../../modules/redux/messageSlice';
+import { ImNotification } from 'react-icons/im';
 
 function BookTab() {
   const { date, time, design, dog } = useSelector(selectBook);
@@ -52,6 +53,16 @@ function BookTab() {
         <Calender />
         <DesignOption />
         <MyDogList />
+        <S.ConfirmWrapper>
+          <S.ConfirmContainer>
+            <S.ConfirmTitle>
+              <ImNotification className="icon" />
+              유의사항
+            </S.ConfirmTitle>
+            <S.ConfirmText>- 예약 취소는 하루 전까지 가능합니다.</S.ConfirmText>
+            <S.ConfirmText>- 당일 예약은 신중하게 결정해주세요.</S.ConfirmText>
+          </S.ConfirmContainer>
+        </S.ConfirmWrapper>
       </S.HomeContent>
       <S.ReserveBtn disabled={!(date && time && design && dog)} onClick={onClick}>
         예약하기
