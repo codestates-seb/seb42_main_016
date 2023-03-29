@@ -25,8 +25,6 @@ public class HairShopService {
     @Transactional(readOnly = true)
     public HairShop findHairShop(long hairShopId) {
         HairShop foundHairShop = findVerifiedHairShop(hairShopId);
-        foundHairShop.setLikeCount(foundHairShop.getHairShopLikes().size());
-        foundHairShop.setReviewCount(foundHairShop.getReviews().size());
         return foundHairShop;
     }
 
@@ -34,11 +32,12 @@ public class HairShopService {
     public Page<HairShop> findHairShops(int page, int size, double latitude, double longitude, List<String> keywords) {
         System.out.println("latitude" + latitude);
         System.out.println("longitude" + longitude);
-        return hairShopRepository.findClosestByKeywords(longitude,
+        return hairShopRepository.findClosestByKeywords(
+                longitude,
                 latitude,
-                keywords.get(0),
-                keywords.get(1),
-                keywords.get(2),
+//                keywords.get(0),
+//                keywords.get(1),
+//                keywords.get(2),
                 PageRequest.of(page, size));
     }
 
@@ -53,5 +52,9 @@ public class HairShopService {
         HairShop findHairShop = optionalHairShop.orElseThrow(() -> null);
 
         return findHairShop;
+    }
+
+    public HairShop findVerifiedHairShopByApiId(String apiId){
+        return hairShopRepository.findByKakaoApiId(apiId);
     }
 }

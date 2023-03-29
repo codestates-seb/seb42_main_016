@@ -1,5 +1,7 @@
 package com.mainproject.udog_server.auth;
 
+import com.mainproject.udog_server.exception.BusinessLogicException;
+import com.mainproject.udog_server.exception.ExceptionCode;
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.member.MemberRepository;
 import com.mainproject.udog_server.auth.utils.CustomAuthorityUtils;
@@ -25,18 +27,18 @@ public class MemberDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
-        Member findMember = optionalMember.orElseThrow(() -> null);//new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+        Member findMember = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
 
         return new MemberDetails(findMember);
     }
 
     private final class MemberDetails extends Member implements UserDetails {
-        // (1)
         MemberDetails(Member member) {
             setMemberId(member.getMemberId());
             setEmail(member.getEmail());
             setPassword(member.getPassword());
             setNickname(member.getNickname());
+            setMemberStatus(member.getMemberStatus());
             setRoles(member.getRoles());
         }
 

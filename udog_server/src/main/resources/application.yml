@@ -28,7 +28,10 @@ mail:
   address:
     admin: admin@gmail.com
 jwt:
-  key: GlFU9fJQv7qL6pIcxQQwHZe1WQIeja6Cpt6WKjFEPcYMhKm2LEkj4xbKdA3d
+  key:
   #  key: ${JWT_SECRET_KEY}
   access-token-expiration-minutes: 420
   refresh-token-expiration-minutes: 420
+api:
+  kakao:
+    key:

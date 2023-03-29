@@ -10,8 +10,6 @@ import java.util.*;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
     Page<Reservation> findAllByMember(Member memberId, PageRequest pageRequest);
-    Page<Reservation> findAllByMemberAndReviewReviewIdIsNull(Member memberId, PageRequest pageRequest);
-//    List<Reservation> findByHairShopHairShopId( long hairShopId);
     List<Reservation> findByReserveDateAndHairShopHairShopId(LocalDate reserveDate, long hairShopId);
-//    Optional<Reservation> findByMemberAndHairShopAndDog(Member member, HairShop hairShop, Dog dog);
+    Page<Reservation> findAllByMemberAndReviewIsNull(Member member, PageRequest pageRequest);
 }

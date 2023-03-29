@@ -5,12 +5,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ReviewService {
     private final ReviewRepository reviewRepository;
 
@@ -40,6 +42,10 @@ public class ReviewService {
         return review;
     }
 
+    public Page<Review> findMemberReviews(long memberId, int page, int size) {
+        return reviewRepository.findAllByMemberMemberId(memberId, PageRequest.of(page, size, Sort.by("reviewId").descending()));
+    }
+
     public Page<Review> findHairShopReviews(long hairShopId, int page, int size) {
         return reviewRepository.findAllByHairShopHairShopId(hairShopId, PageRequest.of(page, size, Sort.by("reviewId").descending()));
     }
@@ -52,7 +58,7 @@ public class ReviewService {
     }
 
     // 존재하는 리뷰인지 확인
-    private Review findVerifiedReview(Long reviewId) {
+    public Review findVerifiedReview(Long reviewId) {
         Optional<Review> optionalReview = reviewRepository.findById(reviewId);
 
         Review findReview =

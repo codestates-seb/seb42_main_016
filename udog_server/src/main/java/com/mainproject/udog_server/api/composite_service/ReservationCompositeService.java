@@ -46,12 +46,12 @@ public class ReservationCompositeService {
         return reservations;
     }
 
-    public List<Reservation> getNoReviewReservations(String email,  int page, int size) {
+    public Page<Reservation> getNoReviewReservations(String email,  int page, int size) {
         Member member = memberService.findLoginMemberByEmail(email);
 
-        List<Reservation> reservations = reservationService.findNoReviewsReservations(member, page, size);
+//        List<Reservation> reservations = reservationService.findNoReviewsReservations(member, page, size);
 
-        return reservations;
+        return reservationService.findNoReviewsReservations(member, page, size);
     }
     public void deleteReservation(Long reservationId, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
@@ -60,10 +60,9 @@ public class ReservationCompositeService {
     }
 
     public List<LocalTime> getReservedTime(LocalDate reserveDate, long hairShopId) {
-
-
+        if(LocalDate.now().plusMonths(1).isBefore(reserveDate))
+            return null;
 //        reservedTime.setReserveTime(reservationService.findReservedTime(reserveTime));
-
         List<LocalTime> response = reservationService.findReservedTime(reserveDate, hairShopId);
         System.out.println("@".repeat(80));
         System.out.println(response);

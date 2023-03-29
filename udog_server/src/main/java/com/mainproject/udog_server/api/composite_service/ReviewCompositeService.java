@@ -11,22 +11,48 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @RequiredArgsConstructor
 @Service
 public class ReviewCompositeService {
     private final FileUploadService fileUploadService;
-
     private final ReservationService reservationService;
     private final ReviewService reviewService;
     private final MemberService memberService;
+
 
     public Review createReview(Review creatingReview, MultipartFile reviewImage, String email) {
         Member member = memberService.findLoginMemberByEmail(email);
         Reservation foundReservation = reservationService.findVerifiedReservation(creatingReview.getReservation().getReservationId());
 
+        if (foundReservation.getHairShop().getHairShopId() != creatingReview.getHairShop().getHairShopId()) {
+            throw new IllegalArgumentException("Invalid hairShopId");
+        }
+
+        if (foundReservation.getMember().getMemberId() != member.getMemberId()) {
+            throw new IllegalArgumentException("Invalid memberId");
+        }
+
+        if (foundReservation.getReview() != null) {
+            throw new IllegalArgumentException("Already existing review");
+        }
+
+        if (foundReservation.getReserveDate().isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Not yet scheduled");
+        }
+
+        if (foundReservation.getReserveDate().isEqual(LocalDate.now()) &&
+                foundReservation.getReserveTime().isAfter(LocalTime.now())) {
+            throw new IllegalArgumentException("Not yet scheduled");
+        }
+
         creatingReview.setMember(member);
         creatingReview.setReviewImage(fileUploadService.uploadImage(reviewImage));
+
         creatingReview.setReservation(foundReservation);
+
         Review createdReview = reviewService.createReview(creatingReview);
 
         foundReservation.setReview(createdReview);
@@ -45,14 +71,13 @@ public class ReviewCompositeService {
         return updatedReview;
     }
 
-    public Review getReview(Long reviewId) {
-        Review foundReview = reviewService.findReview(reviewId);
-
-        return foundReview;
+    public Page<Review> getMemberReviews(String email, int page, int size) {
+        Member member = memberService.findLoginMemberByEmail(email);
+        return reviewService.findMemberReviews(member.getMemberId(), page-1, size);
     }
 
     public Page<Review> getHairShopReviews(long hairShopId, int page, int size) {
-        return reviewService.findHairShopReviews(hairShopId,page-1, size);
+        return reviewService.findHairShopReviews(hairShopId, page-1, size);
     }
 
     public void deleteReview(Long reviewId, String email) {

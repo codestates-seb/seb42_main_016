@@ -40,14 +40,9 @@ public class HairShopCompositeService {
 
     @Transactional(readOnly = true)
     public Page<HairShop> getHairShops(Principal principal, int page, int size, double latitude, double longitude){
-        List<String> closestThreeOffices = officeService.getClosestThreeOfficeDistrict(latitude,longitude);
-        Page<HairShop> pageHairShops =  hairShopService.findHairShops(page, size, latitude, longitude, closestThreeOffices);
-        System.out.println("@".repeat(90));
+//        List<String> closestThreeOffices = officeService.getClosestThreeOfficeDistrict(latitude,longitude);
+        Page<HairShop> pageHairShops =  hairShopService.findHairShops(page, size, latitude, longitude, null);
         System.out.println(pageHairShops.getContent().size());
-//        PageRequest pageRequest = PageRequest.of(page, size);
-//        int start = (int)pageRequest.getOffset();
-//        int end = Math.min((start + pageRequest.getPageSize()), listHairShops.size());
-//        Page<HairShop> pageHairShops = new PageImpl<>(listHairShops.subList(start, end), pageRequest, listHairShops.size());
         return setLikeCountAndHairShopLikeId(principal, pageHairShops);
     }
 
@@ -62,17 +57,22 @@ public class HairShopCompositeService {
         //로그인 상태가 아니라 토큰값이 없다면
         if (principal == null) {
             hairShops.getContent().stream().forEach(hairShop ->
-                    hairShop.setLikeCount(hairShop.getHairShopLikes().size())
+                    setHairShopCounts(hairShop)
             );
         } else {
             String loginEmail = principal.getName();
             long loginMemberId = memberService.findLoginMemberByEmail(loginEmail).getMemberId();
             hairShops.getContent().stream().forEach(hairShop -> {
-                hairShop.setLikeCount(hairShop.getHairShopLikes().size());
+                setHairShopCounts(hairShop);
                 hairShop.setMyHairShopLikeId(findHairShopLikeId(hairShop.getHairShopLikes(), loginMemberId));
             });
         }
         return hairShops;
+    }
+
+    public void setHairShopCounts(HairShop hairShop){
+        hairShop.setLikeCount(hairShop.getHairShopLikes().size());
+        hairShop.setReviewCount(hairShop.getReviews().size());
     }
 
     public long findHairShopLikeId(List<HairShopLike> hairShopLikes, long loginMemberId) {

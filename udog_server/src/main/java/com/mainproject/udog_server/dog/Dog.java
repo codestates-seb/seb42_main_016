@@ -23,10 +23,7 @@ public class Dog {
     private String dogName;
 
     @Column(nullable = false, length = 20)
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-//    @JsonDeserialize(using = LocalDateDeserializer.class)
-//    @JsonSerialize(using = LocalDateSerializer.class)
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private LocalDate dogBirthDate;
 
     @Enumerated(value = EnumType.STRING)
@@ -41,7 +38,7 @@ public class Dog {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MEMBER_ID")
+    @JoinColumn(name = "MEMBER_ID", nullable = false)
     private Member member;
 
     @OneToMany(mappedBy = "dog", cascade = CascadeType.ALL)

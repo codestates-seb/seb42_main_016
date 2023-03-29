@@ -1,6 +1,8 @@
 package com.mainproject.udog_server.member;
 
 import com.mainproject.udog_server.auth.utils.CustomAuthorityUtils;
+import com.mainproject.udog_server.exception.BusinessLogicException;
+import com.mainproject.udog_server.exception.ExceptionCode;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,42 +40,37 @@ public class MemberService {
         return createdMember;
     }
 
-    public Member updateMemberNickname(Member patchMember){
-        Member foundMember = findVerifiedMember(patchMember.getMemberId());
+    public Member updateMemberNickname(Member patchMember, String email){
+        Member foundMember = findLoginMemberByEmail(email);
+
         Optional.ofNullable(patchMember.getNickname())
                 .ifPresent(nickname -> foundMember.setNickname(nickname));
         Member updateMember = memberRepository.save(foundMember);
         return updateMember;
     }
 
-    public Member updateMemberPassword(Member patchMember){
-        Member foundMember = findVerifiedMember(patchMember.getMemberId());
-
-        Optional.ofNullable(patchMember.getPassword())
-                .ifPresent(password -> foundMember.setPassword(passwordEncoder.encode(password)));
+    public Member updateMemberPassword(String changingPassword, String prevPassword, String email){
+        Member foundMember = findLoginMemberByEmail(email);
+        verifyPasswordMatch(foundMember.getPassword(), prevPassword);
+        foundMember.setPassword(passwordEncoder.encode(changingPassword));
 
         Member updateMember = memberRepository.save(foundMember);
         return updateMember;
     }
 
 
-    @Transactional(readOnly = true)
-    public Member findMember(long memberId){
-        return findVerifiedMember(memberId);
-    }
 
     public void deleteMember(Member foundMember){
         foundMember.setMemberStatus(Member.MemberStatus.MEMBER_QUIT);
         memberRepository.save(foundMember);
 //        memberRepository.deleteById(memberId);
     }
-
-    public Member findVerifiedMember(long memberId){
-        Optional<Member> optionalMember = memberRepository.findById(memberId);
-        //Todo : exception
-        Member foundMember = optionalMember.orElseThrow(() -> null);
-        verifyActiveMember(foundMember);
-        return foundMember;
+    public Member findLoginMemberByEmail(String email){
+        Optional<Member> optionalMember = memberRepository.findByEmail(email);
+        //Todo : exeption
+        Member member = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+        verifyActiveMember(member);
+        return member;
     }
 
     private void verifyExistsEmail(Member member) {
@@ -81,29 +78,35 @@ public class MemberService {
         //Todo : exeption
         optionalMember.ifPresent(foundMember -> {
             if(foundMember.getMemberStatus().equals(Member.MemberStatus.MEMBER_ACTIVE))
-                throw null;
+                throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
             else if (foundMember.getMemberStatus().equals(Member.MemberStatus.MEMBER_QUIT)) {
                 member.setMemberId(foundMember.getMemberId());
             }
         });
     }
 
-    public void verifyPasswordMatch(Member member, String prevPassword){
+    public void verifyPasswordMatch(String userPassword, String prevPassword){
         //Todo : exeption
-        if(!passwordEncoder.matches(prevPassword, member.getPassword()))
-            throw null;
+        if(!passwordEncoder.matches(prevPassword, userPassword))
+            throw new BusinessLogicException(ExceptionCode.INVALID_MEMBER_PASSWORD);
     }
 
     private void verifyActiveMember(Member member){
         //Todo : exeption
         if(member.getMemberStatus().equals(Member.MemberStatus.MEMBER_QUIT))
-            throw null;
+            throw new BusinessLogicException(ExceptionCode.INVALID_MEMBER_STATUS);
     }
 
-    public Member findLoginMemberByEmail(String email){
-        Optional<Member> optionalMember = memberRepository.findByEmail(email);
-        //Todo : exeption
-        Member member = optionalMember.orElseThrow(() -> null);
-        return member;
-    }
+//    @Transactional(readOnly = true)
+//    public Member findMember(long memberId){
+//        return findVerifiedMember(memberId);
+//    }
+//
+//    public Member findVerifiedMember(long memberId){
+//        Optional<Member> optionalMember = memberRepository.findById(memberId);
+//        //Todo : exception
+//        Member foundMember = optionalMember.orElseThrow(() -> null);
+//        verifyActiveMember(foundMember);
+//        return foundMember;
+//    }
 }

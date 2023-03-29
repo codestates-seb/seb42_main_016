@@ -31,6 +31,7 @@ public class ReservationDto {
     @AllArgsConstructor
     public static class Response {
         private Long reservationId;
+        private Long hairShopId;
         private String hairShopName;
         private String dogName;
         private String reserveDate;

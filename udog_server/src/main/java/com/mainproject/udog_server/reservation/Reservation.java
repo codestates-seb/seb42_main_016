@@ -26,7 +26,7 @@ public class Reservation {
     @JoinColumn(name = "MEMBER_ID", nullable = false)
     private Member member;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "HAIR_SHOP_ID", nullable = false)
     private HairShop hairShop;
 
@@ -38,7 +38,7 @@ public class Reservation {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dog_id")
+    @JoinColumn(name = "dog_id", nullable = false)
     private Dog dog;
 
     public void setDog(Dog dog) {
@@ -48,8 +48,9 @@ public class Reservation {
         }
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id")
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "review_id")
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
     private Review review;
 
     @Column(nullable = false)
@@ -60,11 +61,11 @@ public class Reservation {
     private LocalTime reserveTime;
 
     @Enumerated(value = EnumType.STRING)
-    @Column
-    private HairOption hairOption = HairOption.위생_미용;
+    @Column(nullable = false, length = 20)
+    private HairOption hairOption = HairOption.위생미용;
 
     public enum HairOption {
-        위생_미용,
+        위생미용,
         클리핑,
         스포팅,
         가위컷;
