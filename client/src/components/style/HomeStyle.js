@@ -122,6 +122,14 @@ export const CommentText = styled.div`
     height: 52px;
     text-overflow: ellipsis;
   }
+  a {
+    height: auto;
+    font-size: 16px;
+    line-height: 26px;
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.56);
+    text-decoration: none;
+  }
 `;
 
 export const InfoText = styled.div`
