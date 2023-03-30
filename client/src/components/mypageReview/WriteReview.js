@@ -17,7 +17,6 @@ export default function WriteReview() {
   const pageInfo = useSelector(selectPageInfo);
   const totalElements = pageInfo.totalElements;
   const minLen = 4;
-
   useEffect(() => {
     dispatch(fetchNonReview(currentPage));
   }, [dispatch, currentPage]);
