@@ -16,7 +16,12 @@ function StylebookItem({ style, src }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector(selectUser);
-  const { onLikeButtonClick } = useReviewLike(style.reviewId, like, likeId);
+  const { onLikeButtonClick, likeCount } = useReviewLike(
+    style.reviewId,
+    like,
+    likeId,
+    style.likeCount,
+  );
 
   const handleShopClick = () => {
     navigate(`${HAIRSHOP}/${style.hairShopId}`);
@@ -42,11 +47,14 @@ function StylebookItem({ style, src }) {
       <S.ItemImage>
         <div className="image" style={{ backgroundImage: `url(${src})` }}></div>
         <S.Itembar>
-          {like ? (
-            <IoHeart className="icon" onClick={handleLikeClick} />
-          ) : (
-            <IoHeartOutline className="icon" onClick={handleLikeClick} />
-          )}
+          <S.LikeWrapper>
+            {like ? (
+              <IoHeart className="icon" onClick={handleLikeClick} />
+            ) : (
+              <IoHeartOutline className="icon" onClick={handleLikeClick} />
+            )}
+            {likeCount !== 0 && likeCount}
+          </S.LikeWrapper>
           <BiCut className="icon" onClick={handleShopClick} />
         </S.Itembar>
       </S.ItemImage>

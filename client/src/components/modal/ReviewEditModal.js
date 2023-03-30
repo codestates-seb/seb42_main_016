@@ -1,12 +1,10 @@
 import * as S from '../style/ModalStyle';
 import { useState, useRef, useEffect } from 'react';
 import useScroll from '../../hooks/useScroll';
-import { REVIEW_ENDPOINT } from '../../modules/endpoints';
-import API from '../../modules/API';
 import { selectModal, closeModal } from '../../modules/redux/modalSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import CloseIcon from '../../utils/CloseIcon';
-import { setSuccess, setError } from '../../modules/redux/messageSlice';
+import { patchReviews } from '../../modules/redux/reviewsSlice';
 
 function ReviewEditModal() {
   const { isOpen, data } = useSelector(selectModal);
@@ -18,14 +16,6 @@ function ReviewEditModal() {
   const modalRef = useRef();
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem('accessToken');
-  const refresh = localStorage.getItem('refresh');
-  const config = {
-    headers: {
-      Authorization: token,
-      refresh: refresh,
-    },
-  };
   useScroll();
   useEffect(() => {
     document.addEventListener('mousedown', clickModalOutside);
@@ -42,14 +32,8 @@ function ReviewEditModal() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    API.patch(`${REVIEW_ENDPOINT}/${reviewId}`, { reviewText }, config)
-      .then(() => {
-        dispatch(setSuccess('수정 성공'));
-        dispatch(closeModal());
-      })
-      .catch(() => {
-        dispatch(setError('수정 실패'));
-      });
+    dispatch(patchReviews({ reviewId, reviewText }));
+    dispatch(closeModal());
   };
   const clickCancle = () => {
     dispatch(closeModal());
