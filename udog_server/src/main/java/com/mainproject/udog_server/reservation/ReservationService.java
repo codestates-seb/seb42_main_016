@@ -21,8 +21,28 @@ public class ReservationService {
     private final HairShopService hairShopService;
     private final DogService dogService;
     public Reservation createReservation(Reservation reservation) {
+        LocalDate invalidDate = reservation.getReserveDate();
+        LocalTime invalidTime = reservation.getReserveTime();
 
+        if(invalidDate.isAfter(LocalDate.now().plusMonths(1)) || invalidDate.isBefore(LocalDate.now())) {
+            throw new IllegalArgumentException("Invalid Date");
+        }
 
+        List<Reservation> reservations = reservationRepository.findByReserveDateAndHairShopHairShopId(reservation.getReserveDate(), reservation.getHairShop().getHairShopId());
+        List<LocalTime> reservedTime = reservations.stream().map(Reservation::getReserveTime).collect(Collectors.toList());
+
+        List<LocalTime> availableTime = new ArrayList<>();
+        for(int i = 10; i <= 20; i++) {
+            availableTime.add(LocalTime.of(i,0));
+        }
+
+       if(!availableTime.contains(invalidTime)) {
+           throw new IllegalArgumentException("Invalid time");
+       }
+
+       if(reservedTime.contains(invalidTime)) {
+           throw new IllegalArgumentException("Already reserved time");
+       }
         return reservationRepository.save(reservation);
     }
 
@@ -74,6 +94,19 @@ public class ReservationService {
 
         List<Reservation> reservations = reservationRepository.findByReserveDateAndHairShopHairShopId(reserveDate, hairShopId);
         List<LocalTime> reservedTime = reservations.stream().map(Reservation::getReserveTime).collect(Collectors.toList());
+
+        List<LocalTime> availableTime = new ArrayList<>();
+        for(int i = 10; i <= 20; i++) {
+            availableTime.add(LocalTime.of(i,0));
+        }
+
+        List<LocalTime> invalidTime = reservedTime.stream()
+                .filter(time -> !availableTime.contains(time))
+                .collect(Collectors.toList());
+
+        if(!invalidTime.isEmpty()) {
+            throw new IllegalArgumentException("Not available for reservation");
+        }
 
         return reservedTime;
     }
