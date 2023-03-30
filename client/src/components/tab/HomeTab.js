@@ -54,6 +54,16 @@ function HomeTab() {
     ? shop.hairShopImage.replace('http', 'https')
     : '/assets/ShopImg.png';
 
+  const handleDescription = (comment, link) => {
+    if (comment) {
+      return getDisplayComment(comment);
+    } else if (link) {
+      return <a href={link}>{link}</a>;
+    } else {
+      return '소개말이 없습니다.';
+    }
+  };
+
   return (
     <S.HomeContainer>
       <S.HomeContent className="flex">
@@ -97,7 +107,7 @@ function HomeTab() {
                 )}
               </S.CommentTitleBox>
               <S.CommentText className={show ? '' : 'hide'}>
-                {comment ? getDisplayComment(comment) : '소개말이 없습니다.'}
+                {handleDescription(comment, shop.link)}
               </S.CommentText>
             </>
           </S.CommentBox>
