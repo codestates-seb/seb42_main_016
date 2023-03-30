@@ -10,8 +10,12 @@ export default function ReserveItem({ reserve }) {
   const dispatch = useDispatch();
   const { reservationId } = reserve;
   const now = moment().format('YYYY-MM-DD');
+  const date = moment().format('YYYY-MM-DD HH:mm');
+  const reserveDay = moment(reserve.reserveDate + ' ' + reserve.reserveTime).format(
+    'YYYY-MM-DD HH:mm',
+  );
   const isCancelable = moment(reserve.reserveDate).format('YYYY-MM-DD') > now;
-
+  const complete = reserveDay >= date;
   const handleOpenBookCancelModal = () => {
     dispatch(
       openModal({
@@ -29,7 +33,7 @@ export default function ReserveItem({ reserve }) {
           {reserve.hairShopName}
         </S.HairshopName>
         <S.Button disabled={!isCancelable} onClick={handleOpenBookCancelModal}>
-          예약취소
+          {!complete && !isCancelable ? '방문완료' : '예약취소'}
         </S.Button>
       </div>
       <S.ReserveInfo>
