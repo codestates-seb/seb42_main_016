@@ -6,12 +6,16 @@ import ScrollTopButton from '../components/ScrollTopButton';
 import { HAIRSHOP_ENDPOINT } from '../modules/endpoints';
 import Header from '../components/Header';
 import useShopScroll from '../hooks/useShopScroll';
+import { useSelector } from 'react-redux';
+import { selectLoading } from '../modules/redux/loadingSlice';
+import Loading from '../components/Loading';
 
 function Hairshop() {
   const PER_PAGE = 10;
   const scrollAreaRef = useRef(null);
   const [showButton, setShowButton] = useState(false);
   const { data, handleScroll } = useShopScroll(HAIRSHOP_ENDPOINT, PER_PAGE);
+  const { loading } = useSelector(selectLoading);
 
   const handleScrollEvent = (e) => {
     if (e.target.scrollTop > 500) {
@@ -30,6 +34,7 @@ function Hairshop() {
         return <HairshopList shop={shop} key={shop.hairShopId} last={index === shop.length - 1} />;
       })}
       {showButton && <ScrollTopButton area={scrollAreaRef} />}
+      {loading && <Loading />}
     </S.ScrollArea>
   );
 }
