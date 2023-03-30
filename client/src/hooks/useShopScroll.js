@@ -4,17 +4,21 @@ import { selectUser } from '../modules/redux/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectLoading, setLoading } from '../modules/redux/loadingSlice';
 import { selectLocation, setAddress } from '../modules/redux/locationSlice';
+import { setScroll } from '../modules/redux/scrollSlice';
 
 function useShopScroll(url, perPage) {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
+  const [size, setSize] = useState(perPage);
   const { user } = useSelector(selectUser);
   const { loading } = useSelector(selectLoading);
   const token = localStorage.getItem('accessToken');
   const refresh = localStorage.getItem('refresh');
   const { lat, lng } = useSelector(selectLocation);
+  // const { page } = useSelector(selectScroll);
+  // const size = perPage * page;
 
   useEffect(() => {
     if (!lat && !lng) {
@@ -33,7 +37,7 @@ function useShopScroll(url, perPage) {
         headers.Refresh = refresh;
       }
 
-      API.get(`${url}?page=${page}&size=${perPage}&latitude=${lat}&longitude=${lng}`, {
+      API.get(`${url}?page=${page}&size=${size}&latitude=${lat}&longitude=${lng}`, {
         headers: headers,
       })
         .then((res) => {
@@ -49,9 +53,12 @@ function useShopScroll(url, perPage) {
   }, [page, lat, lng]);
 
   const handleScroll = (e) => {
+    dispatch(setScroll(e.target.scrollTop));
     const bottom = e.target.scrollHeight - e.target.scrollTop <= e.target.clientHeight + 10;
     if (bottom && !loading && hasMore) {
       setPage((prevPage) => prevPage + 1);
+      setSize(size * page);
+      // dispatch(setPage(page + 1));
     }
   };
 
