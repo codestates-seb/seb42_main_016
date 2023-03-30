@@ -77,6 +77,7 @@ export const ShopAddress = styled.p`
   padding-top: 6px;
   margin-bottom: 20px;
   color: rgba(0, 0, 0, 0.56);
+  word-break: keep-all;
 `;
 
 export const CommentBox = styled.div`
