@@ -4,12 +4,13 @@ import API from '../modules/API';
 import { STYLELIKE_ENDPOINT } from '../modules/endpoints';
 import { useState } from 'react';
 
-function useReviewLike(id, like, styleLikeId) {
+function useReviewLike(id, like, styleLikeId, styleLikeCount) {
   const { isSubmit } = useSelector(selectLike);
   const dispatch = useDispatch();
   const token = localStorage.getItem('accessToken');
   const refresh = localStorage.getItem('refresh');
   const [param, setParam] = useState(styleLikeId);
+  const [likeCount, setLikeCount] = useState(styleLikeCount);
 
   const onLikeButtonClick = () => {
     if (isSubmit) {
@@ -31,6 +32,7 @@ function useReviewLike(id, like, styleLikeId) {
       )
         .then((res) => {
           setParam(res.data.styleLikeId);
+          setLikeCount(likeCount + 1);
         })
         .finally(() => {
           dispatch(setIsSubmit(false));
@@ -41,13 +43,17 @@ function useReviewLike(id, like, styleLikeId) {
           Authorization: token,
           Refresh: refresh,
         },
-      }).finally(() => {
-        dispatch(setIsSubmit(false));
-      });
+      })
+        .then(() => {
+          setLikeCount(likeCount - 1);
+        })
+        .finally(() => {
+          dispatch(setIsSubmit(false));
+        });
     }
   };
 
-  return { onLikeButtonClick };
+  return { onLikeButtonClick, likeCount };
 }
 
 export default useReviewLike;

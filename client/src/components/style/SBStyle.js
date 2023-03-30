@@ -105,3 +105,14 @@ export const StyleScrollArea = styled.div`
   height: 100vh;
   overflow-y: auto;
 `;
+
+export const LikeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 10px;
+  font-weight: 400;
+  .icon {
+    margin-right: 5px;
+  }
+`;
