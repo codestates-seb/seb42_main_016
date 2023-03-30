@@ -9,6 +9,7 @@ import { login } from '../modules/redux/userSlice';
 import { HOME, SIGNUP } from '../modules/routes';
 import { LOGIN_ENDPOINT } from '../modules/endpoints';
 import { setError } from '../modules/redux/messageSlice';
+import moment from 'moment/moment';
 
 function LoginForm() {
   const [value, setValue] = useState({
@@ -22,6 +23,7 @@ function LoginForm() {
   const inputRef = useRef([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const expiration = moment().add(40, 'minutes').toISOString();
 
   const onChange = (e) => {
     const changeValue = {
@@ -49,6 +51,7 @@ function LoginForm() {
       .then((res) => {
         localStorage.setItem('accessToken', res.headers.authorization);
         localStorage.setItem('refresh', res.headers.refresh);
+        localStorage.setItem('exp', expiration);
         dispatch(login(res.data));
         navigate(HOME);
       })
