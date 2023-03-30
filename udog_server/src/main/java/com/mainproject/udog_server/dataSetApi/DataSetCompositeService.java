@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.*;
 @RequiredArgsConstructor
 @Transactional
 public class DataSetCompositeService {
-
+    private final DataSetNaverCompositeService naverCompositeService;
     private WebDriver driver;
     private final DataSetService dataSetService;
 
@@ -60,10 +60,14 @@ public class DataSetCompositeService {
         ResponseEntity<Map> result = restTemplate.exchange(targetUrl, HttpMethod.GET, httpEntity, Map.class);
         resultBody.set((List<Map<String, String>>) result.getBody().get("documents"));
         System.out.println("@".repeat(80));
+        System.out.println(content);
         System.out.println(resultBody);
         if(!resultBody.get().isEmpty()){
-            updateApiImageDataHairShop(resultBody);
+        naverCompositeService.callNaverApiKakao(content, resultBody.get().get(0));
+//            updateApiImageDataHairShop(resultBody);
 //            createApiDataHairShop(resultBody);
+        }else {
+            naverCompositeService.callNaverApiKakao(content, null);
         }
     }
 

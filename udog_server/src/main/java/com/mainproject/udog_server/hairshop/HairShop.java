@@ -45,6 +45,9 @@ public class HairShop {
     @Column
     private String kakaoApiId;
 
+    @Column
+    private String link;
+
     @OneToMany(mappedBy = "hairShop")
     private List<HairShopLike> hairShopLikes;
 

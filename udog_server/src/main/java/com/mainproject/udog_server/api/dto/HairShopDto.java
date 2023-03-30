@@ -32,10 +32,9 @@ public class HairShopDto {
         private String hairShopPhone;
         private String hairShopDescription;
         private String hairShopImage;
+        private String link;
         private int likeCount;
         private int reviewCount;
         private long hairShopLikeId;
-
-
     }
 }
