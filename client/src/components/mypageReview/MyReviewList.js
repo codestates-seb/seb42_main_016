@@ -15,7 +15,7 @@ export default function MyReviewList() {
   const minLen = 4;
   useEffect(() => {
     dispatch(fetchReviews(currentPage));
-  }, [dispatch, currentPage, reviews]);
+  }, [dispatch, currentPage]);
 
   return (
     <S.Container>
