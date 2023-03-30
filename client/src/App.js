@@ -4,6 +4,9 @@ import GlobalStyle from './components/style/GlobalStyle';
 import ModalContainer from './modules/ModalContainer';
 import Loading from './components/Loading';
 import { Toaster } from 'react-hot-toast';
+import { useSelector } from 'react-redux';
+import { selectUser } from './modules/redux/userSlice';
+import TokenChecker from './components/TokenChecker';
 import {
   HOME,
   LOGIN,
@@ -43,10 +46,13 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const Prepare = lazy(() => import('./pages/Prepare'));
 
 function App() {
+  const { user } = useSelector(selectUser);
+
   return (
     <BrowserRouter>
       <ModalContainer />
       <GlobalStyle />
+      {user && <TokenChecker />}
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path={HOME} element={<MainPage />} />
