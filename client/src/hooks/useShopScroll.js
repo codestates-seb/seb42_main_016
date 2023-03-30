@@ -17,31 +17,35 @@ function useShopScroll(url, perPage) {
   const { lat, lng } = useSelector(selectLocation);
 
   useEffect(() => {
-    setData([]);
-  }, [lat, lng]);
+    if (!lat && !lng) {
+      dispatch(setLoading(true));
+    }
+  }, []);
 
   useEffect(() => {
-    dispatch(setLoading(true));
+    if (lat && lng) {
+      dispatch(setLoading(true));
 
-    const headers = {};
+      const headers = {};
 
-    if (user) {
-      headers.Authorization = token;
-      headers.Refresh = refresh;
-    }
+      if (user) {
+        headers.Authorization = token;
+        headers.Refresh = refresh;
+      }
 
-    API.get(`${url}?page=${page}&size=${perPage}&latitude=${lat}&longitude=${lng}`, {
-      headers: headers,
-    })
-      .then((res) => {
-        setData((prevData) => [...prevData, ...res.data.data]);
-        setHasMore(res.data.data.length > 0);
-        if (res.data.pageInfo.page === 1) {
-          const words = res.data.data[0].hairShopAddress.split(' ');
-          dispatch(setAddress(`${words[1]} ${words[2]}`));
-        }
+      API.get(`${url}?page=${page}&size=${perPage}&latitude=${lat}&longitude=${lng}`, {
+        headers: headers,
       })
-      .finally(() => dispatch(setLoading(false)));
+        .then((res) => {
+          setData((prevData) => [...prevData, ...res.data.data]);
+          setHasMore(res.data.data.length > 0);
+          if (res.data.pageInfo.page === 1) {
+            const words = res.data.data[0].hairShopAddress.split(' ');
+            dispatch(setAddress(`${words[1]} ${words[2]}`));
+          }
+        })
+        .finally(() => dispatch(setLoading(false)));
+    }
   }, [page, lat, lng]);
 
   const handleScroll = (e) => {
