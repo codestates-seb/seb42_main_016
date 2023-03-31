@@ -4,9 +4,12 @@ import * as S from '../components/style/AboutStyle';
 import TopButton from '../components/stylebook/TopButton';
 import { useEffect, useRef } from 'react';
 import useScrollTop from '../hooks/useScrollTop';
+import { useNavigate } from 'react-router-dom';
+import { HAIRSHOP, STYLEBOOK, MYDOG, MYPAGE } from '../modules/routes';
 
 function About() {
   const elementRef = useRef([]);
+  const navigate = useNavigate();
 
   useScrollTop();
 
@@ -45,6 +48,11 @@ function About() {
                 <br />
                 해당 스타일의 미용실로 바로 이동합니다.
               </p>
+              <S.NavigateWrapper>
+                <S.NavigateButton onClick={() => navigate(STYLEBOOK)}>
+                  스타일 구경하기
+                </S.NavigateButton>
+              </S.NavigateWrapper>
             </S.AboutContent>
           </S.AboutSection>
           <S.AboutSection ref={(el) => (elementRef.current[1] = el)}>
@@ -56,6 +64,11 @@ function About() {
                 <br />
                 <span>(현재 서비스 가능 업체 : 서울시 기준 1,200여 개)</span>
               </p>
+              <S.NavigateWrapper>
+                <S.NavigateButton onClick={() => navigate(HAIRSHOP)}>
+                  미용실 찾아보기
+                </S.NavigateButton>
+              </S.NavigateWrapper>
             </S.AboutContent>
             <S.AboutImg>
               <img src="/assets/Shop.png" alt="shop" />
@@ -72,16 +85,26 @@ function About() {
                 <br />
                 미용 옵션과 강아지만 선택하면 예약이 완료됩니다.
               </p>
+              <S.NavigateWrapper>
+                <S.NavigateButton onClick={() => navigate(`${MYPAGE}/${MYDOG}`)}>
+                  강아지 등록하기
+                </S.NavigateButton>
+              </S.NavigateWrapper>
             </S.AboutContent>
           </S.AboutSection>
           <S.AboutSection ref={(el) => (elementRef.current[3] = el)}>
             <S.AboutContent className="right">
               <h2>스타일과 미용실을 추천해드려요</h2>
               <p>
-                마음에 드는 스타일과 미용실에 좋아요 버튼을 눌러주세요.
+                마음에 드는 스타일과 미용실에 좋아요를 눌러주세요.
                 <br />
-                좋아요 개수를 기준으로 추천해드립니다.
+                좋아요 수를 기준으로 추천해드립니다.
               </p>
+              <S.NavigateWrapper>
+                <S.NavigateButton onClick={() => navigate(STYLEBOOK)}>
+                  서비스 이용하기
+                </S.NavigateButton>
+              </S.NavigateWrapper>
             </S.AboutContent>
             <S.AboutImg>
               <img src="/assets/Best.png" alt="best" />

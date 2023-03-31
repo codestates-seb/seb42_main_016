@@ -140,3 +140,26 @@ export const GoHome = styled.div`
     opacity: 0.5;
   }
 `;
+
+export const NavigateWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 30px;
+`;
+
+export const NavigateButton = styled.button`
+  color: #fff;
+  background-color: cornflowerblue;
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  transition: 0.2s ease;
+  letter-spacing: 1px;
+  padding: 13px;
+  &:hover {
+    opacity: 0.7;
+    transition: 0.2s ease;
+  }
+`;
