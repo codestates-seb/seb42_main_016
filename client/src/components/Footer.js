@@ -3,7 +3,7 @@ import { RxNotionLogo } from 'react-icons/rx';
 import { FiFigma } from 'react-icons/fi';
 import { AiFillGithub } from 'react-icons/ai';
 import { FaProjectDiagram } from 'react-icons/fa';
-import { ABOUT, DB, FIGMA, GITHUB, HOME, NOTION, PRE } from '../modules/routes';
+import { DB, FIGMA, GITHUB, HOME, NOTION, PRE } from '../modules/routes';
 
 function Footer() {
   return (
@@ -13,9 +13,6 @@ function Footer() {
           <S.NavLinkLogo to={HOME}>
             <img src="/assets/Logo.png" alt="logo" />
           </S.NavLinkLogo>
-          <S.NavService activeclassname="active" to={ABOUT}>
-            서비스 소개
-          </S.NavService>
           <S.NavService activeclassname="active" to={PRE}>
             비즈니스 계정 등록
           </S.NavService>
