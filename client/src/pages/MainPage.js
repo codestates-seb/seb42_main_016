@@ -9,9 +9,13 @@ export default function MainPage() {
   return (
     <S.MainContainer>
       <Header />
-      <S.BS>Best 스타일</S.BS>
+      <S.BS>
+        BEST 스타일<span>지난 24시간 좋아요 수 기준, TOP 3 스타일</span>
+      </S.BS>
       <BestStyleList />
-      <S.BS>추천 미용실</S.BS>
+      <S.BS>
+        BEST 미용실<span>지난 24시간 좋아요 수 기준, TOP 10 미용실</span>
+      </S.BS>
       <BestShopList />
       <TopButton />
       <Footer />
