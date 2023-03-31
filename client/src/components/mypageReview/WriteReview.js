@@ -4,6 +4,7 @@ import Empty from '../Empty';
 import Pagenation from '../mypage/PagenationR';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ImNotification } from 'react-icons/im';
 import {
   fetchNonReview,
   selectNonReview,
@@ -23,6 +24,12 @@ export default function WriteReview() {
 
   return (
     <S.Container>
+      {reserve?.length ? (
+        <S.Desc>
+          <ImNotification className="icon" />
+          리뷰는 방문 완료된 예약만 작성 가능합니다.
+        </S.Desc>
+      ) : null}
       {reserve?.length ? (
         reserve.map((reserve) => {
           return <ReserveItem key={reserve.reservationId} reserve={reserve} />;

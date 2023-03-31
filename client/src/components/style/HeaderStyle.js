@@ -48,7 +48,7 @@ export const List = styled.li`
 `;
 
 export const Login = styled.ul`
-  margin-left: 45%;
+  margin-left: 40%;
   @media (max-width: 1200px) {
     margin-left: 0;
   }
