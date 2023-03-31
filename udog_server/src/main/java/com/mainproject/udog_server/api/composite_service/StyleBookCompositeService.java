@@ -32,9 +32,6 @@ public class StyleBookCompositeService {
     @Transactional(readOnly = true)
     public Page<Review> findTopStyles(Principal principal){
         List<Review> topStyle = styleLikeService.findTopStyleLikeByDay();
-        System.out.println("@".repeat(90));
-        topStyle.forEach(t -> System.out.println(t.getReviewId()));
-        Page<Review> pageTopStyles = styleBookService.findTopStyles(topStyle);
         return setLikeCountAndStyleLikeId(principal, pageTopStyles);
     }
 
