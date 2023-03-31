@@ -5,7 +5,7 @@ import TopButton from '../components/stylebook/TopButton';
 import { useEffect, useRef } from 'react';
 import useScrollTop from '../hooks/useScrollTop';
 import { useNavigate } from 'react-router-dom';
-import { HAIRSHOP, STYLEBOOK, MYDOG, MYPAGE } from '../modules/routes';
+import { HAIRSHOP, STYLEBOOK, MYDOG, MYPAGE, BEST } from '../modules/routes';
 
 function About() {
   const elementRef = useRef([]);
@@ -71,7 +71,7 @@ function About() {
               </S.NavigateWrapper>
             </S.AboutContent>
             <S.AboutImg>
-              <img src="/assets/Shop.png" alt="shop" />
+              <img src="/assets/HairShop.png" alt="shop" className="shop" />
             </S.AboutImg>
           </S.AboutSection>
           <S.AboutSection ref={(el) => (elementRef.current[2] = el)}>
@@ -101,13 +101,11 @@ function About() {
                 좋아요 수를 기준으로 추천해드립니다.
               </p>
               <S.NavigateWrapper>
-                <S.NavigateButton onClick={() => navigate(STYLEBOOK)}>
-                  서비스 이용하기
-                </S.NavigateButton>
+                <S.NavigateButton onClick={() => navigate(BEST)}>서비스 이용하기</S.NavigateButton>
               </S.NavigateWrapper>
             </S.AboutContent>
             <S.AboutImg>
-              <img src="/assets/Best.png" alt="best" />
+              <img src="/assets/BestTop.png" alt="best" />
             </S.AboutImg>
           </S.AboutSection>
         </S.ContentContainer>
