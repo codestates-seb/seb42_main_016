@@ -9,7 +9,7 @@ import Header from '../components/Header';
 function Stylebook() {
   const PER_PAGE = 9;
 
-  const { data, handleScroll } = useInfiniteScroll(STYLEBOOK_ENDPOINT, PER_PAGE);
+  const { data, lastRef } = useInfiniteScroll(STYLEBOOK_ENDPOINT, PER_PAGE);
 
   const scrollAreaRef = useRef(null);
   const [showButton, setShowButton] = useState(false);
@@ -20,7 +20,6 @@ function Stylebook() {
     } else {
       setShowButton(false);
     }
-    handleScroll(e);
   };
 
   return (
@@ -29,6 +28,7 @@ function Stylebook() {
       <S.StylebookWrap>
         <StylebookList data={data} />
         {showButton && <ScrollTopButton area={scrollAreaRef} />}
+        <div ref={lastRef}></div>
       </S.StylebookWrap>
     </S.StyleScrollArea>
   );
