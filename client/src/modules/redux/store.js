@@ -14,7 +14,6 @@ import bookSlice from './bookSlice';
 import messageSlice from './messageSlice';
 import locationSlice from './locationSlice';
 import nonreviewSlice from './nonreviewSlice';
-import scrollSlice from './scrollSlice';
 
 const store = configureStore({
   reducer: {
@@ -33,7 +32,6 @@ const store = configureStore({
     message: messageSlice,
     location: locationSlice,
     nonreview: nonreviewSlice,
-    scroll: scrollSlice,
   },
 });
 
