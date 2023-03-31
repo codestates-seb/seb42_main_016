@@ -219,7 +219,7 @@ export const Desc = styled.div`
   padding: 10px;
   border-radius: 5px;
   width: 400px;
-  margin: 0px auto 10px;
+  margin: 0px auto 15px;
   color: #1e7ae3;
   font-size: 16px;
   line-height: 30px;
