@@ -29,7 +29,7 @@ function Header() {
         <S.Menu>
           <S.List>
             <S.NavLinkStyle to={BEST} activeclassname="active">
-              Best
+              BEST
             </S.NavLinkStyle>
           </S.List>
           <S.List>
