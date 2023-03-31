@@ -3,27 +3,38 @@
 
 <p align="center">
   <br>
-  <img src="./images/common/logo-sample.jpeg">
+  <img src="./images/udog_image.png">
   <br>
 </p>
 
+---
 ## 프로젝트 소개
 
-<p align="justify">
-프로젝트 개요/동기
+<p align="center">
+  <br>
+  <img src="./images/project_background.png">
+  <br>
 </p>
 
 <p align="center">
-GIF Images
+  <br>
+  <img src="./images/project_intro.png">
+  <br>
 </p>
 
 <br>
 
+---
 ## 기술 스택
-
+<p align="center">
+  <br>
+  <img src="./images/project_tech_tree.png">
+  <br>
+</p>
 
 <br>
 
+---
 ## 구현 기능
 
 ### 미용실
@@ -72,6 +83,7 @@ GIF Images
 
 <br>
 
+---
 ## 배운 점 & 아쉬운 점
 - 배운 점
   - 상윤 : 팀으로서 하나의 유기적인 프로그램을 구현하기 위해 얼마나 체계적으로 움직여야 하는지, 여러 기술과 로직을 경험하고 구현 하면서 정답은 아니지만 더 이 코드의 목적에 맞게 구현해야한다는 것을 깨닫게 되었다.
@@ -91,11 +103,12 @@ GIF Images
 
 <br>
 
+---
 ## 라이센스
 
 MIT License
 
-Copyright (c) 2023 SangYoon Lee, SooHyun Shin, ChangHa Kim, JeongIn Cho, YoungJun Eom
+Copyright (c) 2023 SangYoon,Lee / SooHyun,Shin / ChangHa,Kim / JeongIn,Cho / YoungJun,Eom
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
