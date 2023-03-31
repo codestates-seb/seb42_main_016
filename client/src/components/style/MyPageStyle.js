@@ -214,3 +214,19 @@ export const Title = styled.h2`
   line-height: 30px;
   width: 100%;
 `;
+
+export const Desc = styled.div`
+  padding: 10px;
+  border-radius: 5px;
+  width: 400px;
+  margin: 0px auto 10px;
+  color: #1e7ae3;
+  font-size: 16px;
+  line-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .icon {
+    margin-right: 5px;
+  }
+`;
