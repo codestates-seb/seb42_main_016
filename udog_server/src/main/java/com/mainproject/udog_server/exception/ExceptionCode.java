@@ -8,7 +8,10 @@ public enum ExceptionCode {
     CANNOT_CHANGE_(403, "can not change"),
     NOT_IMPLEMENTATION(501, "Not Implementation"),
     INVALID_MEMBER_STATUS(400, "Invalid member status"),
-    INVALID_MEMBER_PASSWORD(400, "비밀번호가 일치하지 않습니다.");
+    INVALID_MEMBER_PASSWORD(400, "비밀번호가 일치하지 않습니다."),
+    INVALID_ACCESS_TOKEN(400, "Invalid access token"),
+    INVALID_REFRESH_TOKEN(400, "Invalid refresh token"),
+    COULD_NOT_REFRESH_TOKEN(401, "Refresh Token not found.");
 
     @Getter
     private int status;

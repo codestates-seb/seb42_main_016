@@ -2,7 +2,11 @@ package com.mainproject.udog_server.auth.filter;
 
 import com.mainproject.udog_server.auth.utils.CustomAuthorityUtils;
 import com.mainproject.udog_server.auth.utils.JwtTokenizer;
+import com.mainproject.udog_server.exception.BusinessLogicException;
+import com.mainproject.udog_server.exception.ExceptionCode;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.security.SignatureException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,52 +37,52 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         System.out.println(request);
-
-        String authorizationHeader = request.getHeader("Authorization");
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            try {
-                // Access Token 검증 및 인증
-                Map<String, Object> claims = verifyJws(request);
-                setAuthenticationToContext(claims);
-            } catch (ExpiredJwtException e) {
-                // Access Token이 만료되었다면 Refresh Token을 이용하여 새로운 Access Token 발급
-                String refreshToken = request.getHeader("Refresh");
-                if (refreshToken != null) {
-                    try {
-
-                        // Refresh Token 검증 및 새로운 Access Token 발급
-                        Map<String, Object> refreshClaims = verifyJws(refreshToken);
-                        String subject = (String) refreshClaims.get("sub");
-                        String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
-                        Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
-                        Map<String, Object> newClaims = new HashMap<>();
-                        newClaims.put("email", subject);
-                        newClaims.put("roles", refreshClaims.get("roles"));
-                        String newAccessToken = jwtTokenizer.generateAccessToken(newClaims, subject, expiration, base64EncodedSecretKey);
-
-                        // 새로운 Access Token을 Authorization 헤더에 추가
-                        response.setHeader("Authorization", "Bearer " + newAccessToken);
-
-                        // 새로운 Access Token으로 인증 설정
-//                        setAuthenticationToContext(newClaims);
-                    } catch (Exception ex) {
-                        // Refresh Token이 만료되었거나 검증에 실패한 경우
-                        logger.error("Could not refresh token", ex);
-                    }
-                } else {
-                    // Refresh Token이 없는 경우
-                    logger.error("Could not refresh token: Refresh token not found.");
-                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Could not refresh token: Refresh token not found.");
-                }
-            } catch (Exception e) {
-                // JWT 검증 실패
-                logger.error("JWT verification failed", e);
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Could not refresh token: Access token not found.");
-            }
-        }
-            // Access Token이 만료되지 않은 경우
-            filterChain.doFilter(request, response);
-        }
+//
+//        String authorizationHeader = request.getHeader("Authorization");
+//        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+//            try {
+//                // Access Token 검증 및 인증
+//                Map<String, Object> claims = verifyJws(request);
+//                setAuthenticationToContext(claims);
+//            } catch (ExpiredJwtException e) {
+//                // Access Token이 만료되었다면 Refresh Token을 이용하여 새로운 Access Token 발급
+//                String refreshToken = request.getHeader("Refresh");
+//                if (refreshToken != null) {
+//                    try {
+//
+//                        // Refresh Token 검증 및 새로운 Access Token 발급
+//                        Map<String, Object> refreshClaims = verifyJws(refreshToken);
+//                        String subject = (String) refreshClaims.get("sub");
+//                        String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
+//                        Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
+//                        Map<String, Object> newClaims = new HashMap<>();
+//                        newClaims.put("email", subject);
+//                        newClaims.put("roles", refreshClaims.get("roles"));
+//                        String newAccessToken = jwtTokenizer.generateAccessToken(newClaims, subject, expiration, base64EncodedSecretKey);
+//
+//                        // 새로운 Access Token을 Authorization 헤더에 추가
+//                        response.setHeader("Authorization", "Bearer " + newAccessToken);
+//
+//                        // 새로운 Access Token으로 인증 설정
+////                        setAuthenticationToContext(newClaims);
+//                    } catch (Exception ex) {
+//                        // Refresh Token이 만료되었거나 검증에 실패한 경우
+//                        logger.error("Could not refresh token", ex);
+//                    }
+//                } else {
+//                    // Refresh Token이 없는 경우
+//                    logger.error("Could not refresh token: Refresh token not found.");
+//                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Could not refresh token: Refresh token not found.");
+//                }
+//            } catch (Exception e) {
+//                // JWT 검증 실패
+//                logger.error("JWT verification failed", e);
+//                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Could not refresh token: Access token not found.");
+//            }
+//        }
+//            // Access Token이 만료되지 않은 경우
+//            filterChain.doFilter(request, response);
+//        }
 
 /* verifyJws 사용 안한 코드: 에러 뜨는 중..
         String authorizationHeader = request.getHeader("Authorization");
@@ -144,21 +148,27 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
     }
  */
 
-/* 기존 코드
         try {
             Map<String, Object> claims = verifyJws(request);
             setAuthenticationToContext(claims);
         } catch (SignatureException se) {
             request.setAttribute("exception", se);
-        } catch (ExpiredJwtException ee) {
-            request.setAttribute("exception", ee);
-        } catch (Exception e) {
-            request.setAttribute("exception", e);
+            throw new BusinessLogicException(ExceptionCode.INVALID_ACCESS_TOKEN);
+        } catch (ExpiredJwtException ee) {  // Refresh 토큰 검증 try catch문
+            try {
+                String refreshToken = request.getHeader("Refresh");
+                Map<String, Object> refreshClaims = verifyJws(refreshToken);
+                setAuthenticationToContext(refreshClaims);
+            } catch (SignatureException se) {
+                request.setAttribute("exception", se);
+                throw new BusinessLogicException(ExceptionCode.INVALID_REFRESH_TOKEN);
+            } catch (Exception e) { // Refresh 불가 시 ExceptionCode 추가해주고 그거 활용
+                request.setAttribute("exception", e);
+                throw new BusinessLogicException(ExceptionCode.COULD_NOT_REFRESH_TOKEN);
+            }
         }
-
         filterChain.doFilter(request, response);
     }
-*/
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
