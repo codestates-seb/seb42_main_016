@@ -1,5 +1,7 @@
 package com.mainproject.udog_server.api.composite_service;
 
+import com.mainproject.udog_server.exception.BusinessLogicException;
+import com.mainproject.udog_server.exception.ExceptionCode;
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.member.MemberService;
 import com.mainproject.udog_server.reservation.*;
@@ -30,24 +32,24 @@ public class ReviewCompositeService {
         Reservation foundReservation = reservationService.findVerifiedReservation(creatingReview.getReservation().getReservationId());
 
         if (foundReservation.getHairShop().getHairShopId() != creatingReview.getHairShop().getHairShopId()) {
-            throw new IllegalArgumentException("Invalid hairShopId");
+            throw new BusinessLogicException(ExceptionCode.INVALID_HAIR_SHOP_ID);
         }
 
         if (foundReservation.getMember().getMemberId() != member.getMemberId()) {
-            throw new IllegalArgumentException("Invalid memberId");
+            throw new BusinessLogicException(ExceptionCode.INVALID_MEMBER_ID);
         }
 
         if (foundReservation.getReview() != null) {
-            throw new IllegalArgumentException("Already existing review");
+            throw new BusinessLogicException(ExceptionCode.ALREADY_EXISTING_REVIEW);
         }
 
         if (foundReservation.getReserveDate().isAfter(LocalDate.now())) {
-            throw new IllegalArgumentException("Not yet scheduled");
+            throw new BusinessLogicException(ExceptionCode.REVIEW_DATE_IS_BEFORE);
         }
 
         if (foundReservation.getReserveDate().isEqual(LocalDate.now()) &&
                 foundReservation.getReserveTime().isAfter(LocalTime.now())) {
-            throw new IllegalArgumentException("Not yet scheduled");
+            throw new BusinessLogicException(ExceptionCode.REVIEW_TIME_IS_BEFORE);
         }
 
         creatingReview.setMember(member);
