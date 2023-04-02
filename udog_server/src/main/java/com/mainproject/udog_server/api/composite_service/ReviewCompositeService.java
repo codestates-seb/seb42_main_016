@@ -37,7 +37,7 @@ public class ReviewCompositeService {
         }
 
         creatingReview.setMember(member);
-        creatingReview.setReviewImage(fileUploadService.uploadImage(reviewImage));
+//        creatingReview.setReviewImage(fileUploadService.uploadImage(reviewImage));
 
         creatingReview.setReservation(foundReservation);
 

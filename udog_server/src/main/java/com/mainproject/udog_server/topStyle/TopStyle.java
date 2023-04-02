@@ -1,18 +1,9 @@
-package com.mainproject.udog_server.bestStyleScheduled;
+package com.mainproject.udog_server.topStyle;
 
 import com.mainproject.udog_server.review.*;
-import com.mainproject.udog_server.styleBook.*;
-import com.mainproject.udog_server.styleLike.*;
 import lombok.*;
 
-import lombok.extern.slf4j.*;
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.data.domain.*;
-import org.springframework.scheduling.annotation.*;
-import org.springframework.stereotype.*;
-
 import javax.persistence.*;
-import java.time.*;
 import java.util.*;
 
 
@@ -20,10 +11,9 @@ import java.util.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class BestStyleScheduled {
+public class TopStyle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long topId;
@@ -31,6 +21,10 @@ public class BestStyleScheduled {
     @Column(nullable = false)
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Review> topStyles;
+
+    public TopStyle(List<Review> topStyles) {
+        this.topStyles = topStyles;
+    }
 
 //    @Column(nullable = false)
 //    private Review topOne;
