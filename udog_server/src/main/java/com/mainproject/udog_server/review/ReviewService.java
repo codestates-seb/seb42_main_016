@@ -1,5 +1,7 @@
 package com.mainproject.udog_server.review;
 
+import com.mainproject.udog_server.exception.BusinessLogicException;
+import com.mainproject.udog_server.exception.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -62,7 +64,7 @@ public class ReviewService {
         Optional<Review> optionalReview = reviewRepository.findById(reviewId);
 
         Review findReview =
-                optionalReview.orElseThrow(() -> null);
+                optionalReview.orElseThrow(() -> new BusinessLogicException(ExceptionCode.REVIEW_NOT_FOUND));
 
         return findReview;
     }
@@ -70,6 +72,6 @@ public class ReviewService {
     // 틀리면 -> 요청 오류
     private void compareIdAndLoginId(Long id, Long memberId) {
         if(!id.equals(memberId))
-            throw null;
+            throw new BusinessLogicException(ExceptionCode.INVALID_MEMBER_ID);
     }
 }

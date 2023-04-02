@@ -53,14 +53,19 @@ public interface ReviewMapper {
         String reviewText = null;
         LocalDateTime createdAt = null;
         Long memberId = null;
+        String nickname = null;
+        Reservation.HairOption hairOption = null;
 
         reviewId = review.getReviewId();
         reviewImage = review.getReviewImage();
         reviewText = review.getReviewText();
         createdAt = review.getCreatedAt();
         memberId = review.getMember().getMemberId();
+        nickname = review.getMember().getNickname();
+        hairOption = review.getReservation().getHairOption();
 
-        ReviewDto.hairShopReviewsResponse hairShopReviewsResponse = new ReviewDto.hairShopReviewsResponse( reviewId, memberId, reviewImage, reviewText, createdAt );
+        ReviewDto.hairShopReviewsResponse hairShopReviewsResponse = new ReviewDto.hairShopReviewsResponse(
+                reviewId, memberId, reviewImage, reviewText, nickname, hairOption, createdAt );
 
         return hairShopReviewsResponse;
     }

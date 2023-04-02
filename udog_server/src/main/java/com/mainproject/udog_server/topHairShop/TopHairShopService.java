@@ -7,10 +7,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -29,10 +31,8 @@ public class TopHairShopService {
     }
 
     public Page<HairShop> findTopHairShop(){
-        List<TopHairShop> result = topHairShopRepository.findAll();
-        Page<HairShop> topHairShops = new PageImpl<>(result.get(0).getTopHairShops());
-        System.out.println(LocalDateTime.now());
-        topHairShops.forEach(t -> System.out.println(t.getHairShopName()));
-        return null;
+        List<HairShop> result = topHairShopRepository.findAll().get(0).getTopHairShops();
+        Page<HairShop> topHairShops = new PageImpl<>(result);
+        return topHairShops;
     }
 }

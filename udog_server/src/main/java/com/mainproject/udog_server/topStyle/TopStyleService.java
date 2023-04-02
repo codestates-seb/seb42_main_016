@@ -24,18 +24,12 @@ public class TopStyleService {
         List<Review> topStyles = styleLikeService.findTopStyleLikeByDay();
         TopStyle topstyle = new TopStyle(topStyles);
         topStyleRepository.save(topstyle);
-
-        System.out.println("@".repeat(80));
-        System.out.println(topstyle.getTopStyles());
-        topStyles.forEach(t -> System.out.println(t.getReviewText()));
-
     }
 
     public Page<Review> findTopStyle() {
-        List<TopStyle> result = topStyleRepository.findAll();
-        Page<Review> topStyles = new PageImpl<>(result.get(0).getTopStyles());
-        System.out.println(LocalDateTime.now());
-        topStyles.forEach(t -> System.out.println(t.getReviewText()));
-        return null;
+        List<Review> result = topStyleRepository.findAll().get(0).getTopStyles();
+
+        Page<Review> topStyles = new PageImpl<>(result);
+        return topStyles;
     }
 }

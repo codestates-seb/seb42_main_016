@@ -1,6 +1,7 @@
 package com.mainproject.udog_server.api.dto;
 
 import com.mainproject.udog_server.member.Member;
+import com.mainproject.udog_server.reservation.Reservation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -55,6 +56,8 @@ public class ReviewDto {
         private Long memberId;
         private String reviewImage;
         private String reviewText;
+        private String nickname;
+        private Reservation.HairOption hairOption;
         private LocalDateTime createdAt;
     }
 

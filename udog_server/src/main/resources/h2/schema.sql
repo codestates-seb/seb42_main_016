@@ -34,3 +34,10 @@ drop table if exists hair_shop CASCADE;
 --LINES TERMINATED BY '\n'
 --IGNORE 1 ROWS
 --(id, addr);
+
+--SELECT kakao_api_id, COUNT(kakao_api_id)
+--FROM hair_shop
+--GROUP BY COLUMN_NAME
+--HAVING COUNT(COLUMN_NAME) > 1 ;
+--
+--UPDATE hair_shop AS t1 INNER JOIN hair_shop_cp AS t2 ON t1.kakao_api_id = t2.kakao_api_id SET t1.hair_shop_image = t2.hair_shop_image;

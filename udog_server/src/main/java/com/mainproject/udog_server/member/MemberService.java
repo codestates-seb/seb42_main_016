@@ -1,6 +1,8 @@
 package com.mainproject.udog_server.member;
 
 import com.mainproject.udog_server.auth.utils.CustomAuthorityUtils;
+import com.mainproject.udog_server.exception.BusinessLogicException;
+import com.mainproject.udog_server.exception.ExceptionCode;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,7 +68,7 @@ public class MemberService {
     public Member findLoginMemberByEmail(String email){
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
         //Todo : exeption
-        Member member = optionalMember.orElseThrow(() -> null);
+        Member member = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
         verifyActiveMember(member);
         return member;
     }
@@ -76,7 +78,7 @@ public class MemberService {
         //Todo : exeption
         optionalMember.ifPresent(foundMember -> {
             if(foundMember.getMemberStatus().equals(Member.MemberStatus.MEMBER_ACTIVE))
-                throw null;
+                throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
             else if (foundMember.getMemberStatus().equals(Member.MemberStatus.MEMBER_QUIT)) {
                 member.setMemberId(foundMember.getMemberId());
             }
@@ -86,13 +88,13 @@ public class MemberService {
     public void verifyPasswordMatch(String userPassword, String prevPassword){
         //Todo : exeption
         if(!passwordEncoder.matches(prevPassword, userPassword))
-            throw null;
+            throw new BusinessLogicException(ExceptionCode.INVALID_MEMBER_PASSWORD);
     }
 
     private void verifyActiveMember(Member member){
         //Todo : exeption
         if(member.getMemberStatus().equals(Member.MemberStatus.MEMBER_QUIT))
-            throw null;
+            throw new BusinessLogicException(ExceptionCode.INVALID_MEMBER_STATUS);
     }
 
 //    @Transactional(readOnly = true)
