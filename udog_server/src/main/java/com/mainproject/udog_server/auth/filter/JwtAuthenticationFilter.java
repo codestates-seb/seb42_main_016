@@ -1,6 +1,8 @@
 package com.mainproject.udog_server.auth.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mainproject.udog_server.exception.BusinessLogicException;
+import com.mainproject.udog_server.exception.ExceptionCode;
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.auth.utils.JwtTokenizer;
 import com.mainproject.udog_server.auth.LoginDto;
@@ -48,7 +50,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             Authentication authResult) throws ServletException, IOException {
         Member member = (Member) authResult.getPrincipal();
         if(member.getMemberStatus() == Member.MemberStatus.MEMBER_QUIT)
-            throw  null;
+            throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND);
         String accessToken = delegateAccessToken(member);
         String refreshToken = delegateRefreshToken(member);
 
