@@ -1,15 +1,3 @@
-INSERT INTO member (email, member_status, nickname, password, sign_up_at) VALUES
-('asd@gmail.com', null, '닉네임', '1111qq!!', null);
-
-INSERT INTO dog(dog_birth_date, dog_description, dog_name, dog_species, dog_weight, member_id) VALUES
-('2020-01-01', null, 'happy', '기타', '6kg', 1);
-
-INSERT INTO reservation (hair_option, reserve_date, reserve_time, dog_id, hair_shop_id, member_id) VALUES
-('위생미용', '2023-04-01', '11:21:2', 1, 1, 1),
-('위생미용', '2023-04-01', '12:21:2', 1, 1, 1),
-('위생미용', '2023-04-01', '13:21:2', 1, 1, 1);
-
-
 INSERT INTO hair_shop (hair_shop_address, hair_shop_description, hair_shop_image, hair_shop_name, hair_shop_phone) VALUES
 ('서울 강남구 역삼로 156 태광빌딩 102호',
  'Always for My Little Precious, 가위컷전문 ㅣ 펫아로마 스파 ㅣ 24시간 상주호텔 ㅣ 놀이방 ㅣ 고급 수제간식 페스츄리는 강남, 역삼동 가위컷 전문 반려동물 미용실입니다.',
@@ -39,8 +27,3 @@ INSERT INTO hair_shop (hair_shop_address, hair_shop_description, hair_shop_image
 '설명설명설명','imgimgimgimg', '샤워하는 강아지','02-561-4484'),
 ('서울 강남구 언주로106길 13 1층 조이피아',
 '소형견 전문 미용/부띠끄 조이피아입니다.','imgimgimgimg', '조이피아','02-6497-3633');
-
-INSERT INTO review (review_text, review_image, created_at, last_modified_at, hair_shop_id, member_id, reservation_id) VALUES
-('텍스트', 'imgimgimg', '2023-04-01T15:00:00', '2023-04-01T02:01:00', 1, 1, 1),
-('텍스트2', 'imgimgimg', '2023-04-01T17:01:00', null, 1, 1, 2),
-('텍스트3', 'imgimgimg', '2023-04-01T18:02:00', null, 1, 1, 3);

@@ -17,7 +17,7 @@ public class TopStyleService {
     private final StyleLikeService styleLikeService;
 
     private final TopStyleRepository topStyleRepository;
-    @Scheduled(cron = "0/10 * * * * *")
+    @Scheduled(cron = "0 0 * * * *")
     private void getTopStyle() {
         topStyleRepository.deleteAll();
         //24시간 이내 가장 좋아요를 많이 받은 스타일 3개 가져오기
