@@ -21,8 +21,6 @@ import java.util.stream.*;
 public class StyleBookCompositeService {
     private final StyleBookService styleBookService;
 
-    private final StyleLikeService styleLikeService;
-
     private final TopStyleService topStyleService;
 
     private final MemberService memberService;
