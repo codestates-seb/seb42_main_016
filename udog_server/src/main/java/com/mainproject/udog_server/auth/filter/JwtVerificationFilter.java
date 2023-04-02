@@ -149,25 +149,52 @@ public class JwtVerificationFilter extends OncePerRequestFilter {
  */
 
         try {
-            Map<String, Object> claims = verifyJws(request);
+            Map<String, Object> claims = verifyJws(request);    // AccessToken 검증
             setAuthenticationToContext(claims);
-        } catch (SignatureException se) {
+        } catch (SignatureException se) {   // AccessToken이 잘못되었을 경우
             request.setAttribute("exception", se);
             throw new BusinessLogicException(ExceptionCode.INVALID_ACCESS_TOKEN);
-        } catch (ExpiredJwtException ee) {  // Refresh 토큰 검증 try catch문
-            try {
-                String refreshToken = request.getHeader("Refresh");
-                Map<String, Object> refreshClaims = verifyJws(refreshToken);
-                setAuthenticationToContext(refreshClaims);
-            } catch (SignatureException se) {
-                request.setAttribute("exception", se);
-                throw new BusinessLogicException(ExceptionCode.INVALID_REFRESH_TOKEN);
-            } catch (Exception e) { // Refresh 불가 시 ExceptionCode 추가해주고 그거 활용
-                request.setAttribute("exception", e);
-                throw new BusinessLogicException(ExceptionCode.COULD_NOT_REFRESH_TOKEN);
-            }
+        } catch (ExpiredJwtException ee) {  // AccessToken이 만료되었을 경우
+            verifyRefresh(request, response);
         }
+//        catch (Exception e) {
+//            request.setAttribute("exception", e);
+//            throw new BusinessLogicException(ExceptionCode.ACCESS_TOKEN_TIME_OUT);
+//        }
         filterChain.doFilter(request, response);
+    }
+
+    private void verifyRefresh(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            System.out.println("here1");
+            String refreshToken = request.getHeader("Refresh");
+            System.out.println("here2");
+            Map<String, Object> refreshClaims = verifyJws(refreshToken);    // RefreshToken 검증
+            System.out.println("here3");
+//            setAuthenticationToContext(refreshClaims);
+            String subject = (String) refreshClaims.get("sub");
+            Map<String, Object> newClaims = new HashMap<>();
+            newClaims.put("email", subject);
+            newClaims.put("roles", refreshClaims.get("roles"));
+            String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
+            Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
+            String newAccessToken = jwtTokenizer.generateAccessToken(newClaims, subject, expiration, base64EncodedSecretKey);
+
+            // 새로운 Access Token을 Authorization 헤더에 추가
+            response.setHeader("Authorization", "Bearer " + newAccessToken);
+            setAuthenticationToContext(newClaims);
+
+        } catch (SignatureException se) {   // RefreshToken이 잘못되었을 경우
+            request.setAttribute("exception", se);
+            throw new BusinessLogicException(ExceptionCode.INVALID_REFRESH_TOKEN);
+        } catch (ExpiredJwtException ee) {
+            request.setAttribute("exception", ee);
+            throw new BusinessLogicException(ExceptionCode.REFRASH_TOKEN_TIME_OUT);
+        }
+//        catch (Exception e) { // RefreshToken이 없는 경우? 잘됐을 때 AccessToken 발급?
+//            request.setAttribute("exception", e);
+//            throw new BusinessLogicException(ExceptionCode.COULD_NOT_REFRESH_TOKEN);
+//        }
     }
 
     @Override
