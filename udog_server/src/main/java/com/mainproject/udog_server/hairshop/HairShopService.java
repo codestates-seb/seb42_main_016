@@ -16,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 public class HairShopService {
-    private static final int AMOUNT_OF_TOP = 10;
     private final HairShopRepository hairShopRepository;
 
     public HairShop createHairShop(HairShop hairShop) {
@@ -39,11 +38,6 @@ public class HairShopService {
 //                keywords.get(1),
 //                keywords.get(2),
                 PageRequest.of(page, size));
-    }
-
-    @Transactional(readOnly = true)
-    public Page<HairShop> findTopHairShops(List<HairShop> topList){
-        return hairShopRepository.findTop(topList, PageRequest.of(0, AMOUNT_OF_TOP));
     }
 
     public HairShop findVerifiedHairShop(long hairShopId) {

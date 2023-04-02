@@ -15,15 +15,9 @@ import java.util.stream.*;
 @RequiredArgsConstructor
 @Transactional
 public class StyleBookService {
-    private static final int AMOUNT_OF_TOP = 3;
     private final StyleBookRepository styleBookRepository;
     @Transactional(readOnly = true)
     public Page<Review> findStyles(int page, int size) {
         return styleBookRepository.findAll(PageRequest.of(page, size, Sort.by("createdAt").descending()));
-    }
-
-    @Transactional(readOnly = true)
-    public Page<Review> findTopStyles(List<Review> topList){
-        return styleBookRepository.findTop(topList, PageRequest.of(0, 3));
     }
 }
