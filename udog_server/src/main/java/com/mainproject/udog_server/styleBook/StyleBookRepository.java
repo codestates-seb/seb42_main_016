@@ -11,6 +11,4 @@ import java.time.*;
 import java.util.*;
 
 public interface StyleBookRepository extends JpaRepository<Review, Long> {
-    @Query("SELECT r FROM Review r WHERE r IN (:topList) ORDER BY r.styleLikes.size DESC")
-    Page<Review> findTop(@Param("topList")List<Review> topList, Pageable pageable);
 }

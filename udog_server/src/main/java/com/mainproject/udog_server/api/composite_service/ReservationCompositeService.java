@@ -1,6 +1,7 @@
 package com.mainproject.udog_server.api.composite_service;
 
 import com.mainproject.udog_server.dog.*;
+import com.mainproject.udog_server.exception.*;
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.member.Member;
 import com.mainproject.udog_server.member.MemberService;
@@ -49,8 +50,6 @@ public class ReservationCompositeService {
     public Page<Reservation> getNoReviewReservations(String email,  int page, int size) {
         Member member = memberService.findLoginMemberByEmail(email);
 
-//        List<Reservation> reservations = reservationService.findNoReviewsReservations(member, page, size);
-
         return reservationService.findNoReviewsReservations(member, page, size);
     }
     public void deleteReservation(Long reservationId, String email) {
@@ -60,12 +59,12 @@ public class ReservationCompositeService {
     }
 
     public List<LocalTime> getReservedTime(LocalDate reserveDate, long hairShopId) {
-        if(LocalDate.now().plusMonths(1).isBefore(reserveDate))
-            return null;
-//        reservedTime.setReserveTime(reservationService.findReservedTime(reserveTime));
+        if(LocalDate.now().plusMonths(1).isBefore(LocalDate.now())) {
+            throw new BusinessLogicException(ExceptionCode.INVALID_RESERVATION_DATE);
+        }
+
         List<LocalTime> response = reservationService.findReservedTime(reserveDate, hairShopId);
-        System.out.println("@".repeat(80));
-        System.out.println(response);
+
         return response;
     }
 }

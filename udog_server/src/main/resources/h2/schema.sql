@@ -10,6 +10,13 @@ drop table if exists hair_shop CASCADE;
         primary key (hair_shop_id)
     );
 
+
+
+--CREATE TABLE test_entity (
+--  id INT PRIMARY KEY,
+--  name VARCHAR(255),
+--  addr VARCHAR(255)
+--);
 --
 --LOAD DATA LOCAL INFILE '/Users/sangyoonlee/Downloads/DistrictOffice.csv'
 --INTO TABLE district_office
