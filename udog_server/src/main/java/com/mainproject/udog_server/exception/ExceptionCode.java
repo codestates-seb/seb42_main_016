@@ -19,7 +19,15 @@ public enum ExceptionCode {
     ACCESS_TOKEN_TIME_OUT(401, "Access Token Time out"),
     INVALID_REFRESH_TOKEN(400, "Invalid refresh token"),
     REFRASH_TOKEN_TIME_OUT(401, "Refresh Token Time out"),
-    COULD_NOT_REFRESH_TOKEN(401, "Refresh Token not found.");
+    COULD_NOT_REFRESH_TOKEN(401, "Refresh Token not found."),
+    INCORRECT_DOG_BIRTHDATE(400,  "유효한 강아지 출생연도 및 날짜가 아닙니다."),
+    DOG_NOT_FOUND(404, "존재하지 않는 강아지입니다."),
+    NOT_YOUR_DOG(404, "본인이 등록한 강아지가 아닙니다."),
+    INVALID_RESERVATION_DATE(400, "유효한 예약 날짜가 아닙니다."),
+    INVALID_RESERVATION_TIME(400, "유효한 예약 시간이 아닙니다."),
+    ALREADY_EXISTING_TIME(409, "이미 예약된 시간입니다."),
+    RESERVATION_NOT_FOUND(404, "존재하지 않는 예약입니다.");
+
 
     @Getter
     private int status;
