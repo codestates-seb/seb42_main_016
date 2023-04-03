@@ -5,6 +5,7 @@ import com.mainproject.udog_server.member.*;
 import com.mainproject.udog_server.review.*;
 import com.mainproject.udog_server.styleBook.*;
 import com.mainproject.udog_server.styleLike.*;
+import com.mainproject.udog_server.topStyle.*;
 import lombok.*;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.*;
@@ -20,7 +21,7 @@ import java.util.stream.*;
 public class StyleBookCompositeService {
     private final StyleBookService styleBookService;
 
-    private final StyleLikeService styleLikeService;
+    private final TopStyleService topStyleService;
 
     private final MemberService memberService;
     @Transactional(readOnly = true)
@@ -31,10 +32,8 @@ public class StyleBookCompositeService {
 
     @Transactional(readOnly = true)
     public Page<Review> findTopStyles(Principal principal){
-        List<Review> topStyle = styleLikeService.findTopStyleLikeByDay();
-        System.out.println("@".repeat(90));
-        topStyle.forEach(t -> System.out.println(t.getReviewId()));
-        Page<Review> pageTopStyles = styleBookService.findTopStyles(topStyle);
+//        List<Review> topStyle = styleLikeService.findTopStyleLikeByDay();
+        Page<Review> pageTopStyles = topStyleService.findTopStyle();
         return setLikeCountAndStyleLikeId(principal, pageTopStyles);
     }
 

@@ -10,8 +10,6 @@ import java.time.*;
 import java.util.*;
 
 public interface HairShopRepository extends JpaRepository<HairShop, Long> {
-    @Query("SELECT hs FROM HairShop hs WHERE hs IN (:topList) ORDER BY hs.hairShopLikes.size DESC")
-    Page<HairShop> findTop(@Param("topList")List<HairShop> topList, Pageable pageable);
 
 //    @Query(value = "SELECT *" +
 ////            "ST_Distance_Sphere(Point(:x,:y),POINT(hs.longitude, hs.latitude)) AS hs.distance"+

@@ -1,5 +1,6 @@
 package com.mainproject.udog_server.dog;
 
+import com.mainproject.udog_server.exception.*;
 import com.mainproject.udog_server.member.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,7 @@ public class DogService {
         LocalDate birthDate = dog.getDogBirthDate();
 
         if(birthDate.isAfter(LocalDate.now()) || birthDate.isBefore(LocalDate.parse("2003-01-01"))) {
-            throw new IllegalArgumentException("incorrect dogBirthDate");
+            throw new BusinessLogicException(ExceptionCode.INCORRECT_DOG_BIRTHDATE);
         }
         return dogRepository.save(dog);
     }
@@ -66,14 +67,14 @@ public class DogService {
     @Transactional(readOnly = true)
     public Dog findVerifiedDog(long dogId) {
         Optional<Dog> optionalDog = dogRepository.findById(dogId);
-        Dog findDog = optionalDog.orElseThrow(() -> null);
+        Dog findDog = optionalDog.orElseThrow(() -> new BusinessLogicException(ExceptionCode.DOG_NOT_FOUND));
 
         return findDog;
     }
     @Transactional(readOnly = true)
     public Dog findVerifiedDogAndMember(long dogId, Member member) {
         Optional<Dog> optionalDog = dogRepository.findByDogIdAndMember(dogId, member);
-        Dog findDogAndMember = optionalDog.orElseThrow(() -> null);
+        Dog findDogAndMember = optionalDog.orElseThrow(() -> new BusinessLogicException(ExceptionCode.NOT_YOUR_DOG));
 
         return findDogAndMember;
     }

@@ -3,10 +3,17 @@ import { IoIosCut } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../modules/redux/modalSlice';
 import { REVIEWMODAL } from '../../modules/ModalContainer';
+import moment from 'moment/moment';
+import 'moment/locale/ko';
 
 export default function ReserveItem({ reserve }) {
   const dispatch = useDispatch();
   const { reservationId, hairShopId } = reserve;
+  const now = moment().format('YYYY-MM-DD HH:mm');
+  const reserveDay = moment(reserve.reserveDate + ' ' + reserve.reserveTime).format(
+    'YYYY-MM-DD HH:mm',
+  );
+  const reviewAble = reserveDay <= now;
   const handleOpenTypeModal = () => {
     dispatch(
       openModal({
@@ -23,7 +30,9 @@ export default function ReserveItem({ reserve }) {
           <IoIosCut className="icon" />
           {reserve.hairShopName}
         </S.HairshopName>
-        <S.Button onClick={handleOpenTypeModal}>{'리뷰 작성'}</S.Button>
+        <S.Button disabled={!reviewAble} onClick={handleOpenTypeModal}>
+          {'리뷰 작성'}
+        </S.Button>
       </div>
       <S.ReserveInfo>
         <div className="info">

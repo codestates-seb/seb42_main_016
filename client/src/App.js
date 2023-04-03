@@ -4,6 +4,9 @@ import GlobalStyle from './components/style/GlobalStyle';
 import ModalContainer from './modules/ModalContainer';
 import Loading from './components/Loading';
 import { Toaster } from 'react-hot-toast';
+import { useSelector } from 'react-redux';
+import { selectUser } from './modules/redux/userSlice';
+import TokenChecker from './components/TokenChecker';
 import {
   HOME,
   LOGIN,
@@ -20,7 +23,7 @@ import {
   NOTFOUND,
   WRITEREVIEW,
   READREVIEW,
-  ABOUT,
+  BEST,
   PRE,
 } from './modules/routes';
 
@@ -38,15 +41,18 @@ const WriteReview = lazy(() => import('./components/mypageReview/WriteReview'));
 const MyReviewList = lazy(() => import('./components/mypageReview/MyReviewList'));
 const Mydog = lazy(() => import('./pages/Mydog'));
 const MydogEditor = lazy(() => import('./pages/MydogEditor'));
-const About = lazy(() => import('./pages/About'));
+const BestPage = lazy(() => import('./pages/BestPage'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Prepare = lazy(() => import('./pages/Prepare'));
 
 function App() {
+  const { user } = useSelector(selectUser);
+
   return (
     <BrowserRouter>
       <ModalContainer />
       <GlobalStyle />
+      {user && <TokenChecker />}
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path={HOME} element={<MainPage />} />
@@ -68,7 +74,7 @@ function App() {
             <Route path={MYDOGEDIT} element={<MydogEditor />} />
           </Route>
           <Route path={NOTFOUND} element={<NotFound />} />
-          <Route path={ABOUT} element={<About />} />
+          <Route path={BEST} element={<BestPage />} />
           <Route path={PRE} element={<Prepare />} />
         </Routes>
       </Suspense>

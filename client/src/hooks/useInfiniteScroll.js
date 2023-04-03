@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import API from '../modules/API';
 import { selectUser } from '../modules/redux/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,6 +13,8 @@ function useInfiniteScroll(url, perPage) {
   const { loading } = useSelector(selectLoading);
   const token = localStorage.getItem('accessToken');
   const refresh = localStorage.getItem('refresh');
+  const observer = useRef(null);
+  const lastRef = useRef(null);
 
   useEffect(() => {
     dispatch(setLoading(true));
@@ -34,14 +36,24 @@ function useInfiniteScroll(url, perPage) {
       .finally(() => dispatch(setLoading(false)));
   }, [page]);
 
-  const handleScroll = (e) => {
-    const bottom = e.target.scrollHeight - e.target.scrollTop <= e.target.clientHeight + 10;
-    if (bottom && !loading && hasMore) {
-      setPage((prevPage) => prevPage + 1);
+  useEffect(() => {
+    if (lastRef.current) {
+      observer.current = new IntersectionObserver((entries) => {
+        const target = entries[0];
+        if (target.isIntersecting && hasMore && !loading) {
+          setPage((prevPage) => prevPage + 1);
+        }
+      });
+      observer.current.observe(lastRef.current);
     }
-  };
+    return () => {
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+    };
+  }, [lastRef, hasMore, loading]);
 
-  return { data, handleScroll };
+  return { data, lastRef };
 }
 
 export default useInfiniteScroll;

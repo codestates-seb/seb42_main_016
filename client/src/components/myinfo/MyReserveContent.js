@@ -9,11 +9,14 @@ import { fetchReserve, selectReserve } from '../../modules/redux/reserveSlice';
 function MyReserveContent({ title, text, onClick }) {
   const dispatch = useDispatch();
   const reserve = useSelector(selectReserve);
+
   useEffect(() => {
     dispatch(fetchReserve(1));
   }, [dispatch]);
 
-  const filteredData = reserve.length > 0 ? [reserve[0], reserve[1]] : [];
+  const filteredData =
+    reserve.length >= 2 ? [reserve[0], reserve[1]] : reserve.length === 1 ? [reserve[0]] : [];
+
   return (
     <>
       <S.ContentTitleContainer>

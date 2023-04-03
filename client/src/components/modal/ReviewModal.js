@@ -78,7 +78,6 @@ function ReviewModal() {
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
-    console.log(event.target.files[0]);
     const reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
     return new Promise((resolve) => {

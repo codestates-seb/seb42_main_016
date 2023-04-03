@@ -77,6 +77,7 @@ export const ShopAddress = styled.p`
   padding-top: 6px;
   margin-bottom: 20px;
   color: rgba(0, 0, 0, 0.56);
+  word-break: keep-all;
 `;
 
 export const CommentBox = styled.div`
@@ -121,6 +122,14 @@ export const CommentText = styled.div`
   &.hide {
     height: 52px;
     text-overflow: ellipsis;
+  }
+  a {
+    height: auto;
+    font-size: 16px;
+    line-height: 26px;
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.56);
+    text-decoration: none;
   }
 `;
 

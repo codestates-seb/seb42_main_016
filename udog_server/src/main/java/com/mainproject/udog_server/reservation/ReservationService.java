@@ -1,6 +1,7 @@
 package com.mainproject.udog_server.reservation;
 
 import com.mainproject.udog_server.dog.*;
+import com.mainproject.udog_server.exception.*;
 import com.mainproject.udog_server.hairshop.*;
 import com.mainproject.udog_server.member.*;
 import com.mainproject.udog_server.review.*;
@@ -18,11 +19,30 @@ import java.util.stream.*;
 @Transactional
 public class ReservationService {
     private final ReservationRepository reservationRepository;
-    private final HairShopService hairShopService;
-    private final DogService dogService;
+
     public Reservation createReservation(Reservation reservation) {
+        LocalDate invalidDate = reservation.getReserveDate();
+        LocalTime invalidTime = reservation.getReserveTime();
 
+        if(invalidDate.isAfter(LocalDate.now().plusMonths(1)) || invalidDate.isBefore(LocalDate.now())) {
+            throw new BusinessLogicException(ExceptionCode.INVALID_RESERVATION_DATE);
+        }
 
+        List<Reservation> reservations = reservationRepository.findByReserveDateAndHairShopHairShopId(reservation.getReserveDate(), reservation.getHairShop().getHairShopId());
+        List<LocalTime> reservedTime = reservations.stream().map(Reservation::getReserveTime).collect(Collectors.toList());
+
+        List<LocalTime> availableTime = new ArrayList<>();
+        for(int i = 10; i <= 20; i++) {
+            availableTime.add(LocalTime.of(i,0));
+        }
+
+       if(!availableTime.contains(invalidTime)) {
+           throw new BusinessLogicException(ExceptionCode.INVALID_RESERVATION_TIME);
+       }
+
+       if(reservedTime.contains(invalidTime)) {
+           throw new BusinessLogicException(ExceptionCode.ALREADY_EXISTING_TIME);
+       }
         return reservationRepository.save(reservation);
     }
 
@@ -41,13 +61,6 @@ public class ReservationService {
 
 
     public Page<Reservation> findNoReviewsReservations(Member member, int page, int size) {
-//        Page<Reservation> reservations = reservationRepository.findAllByMember
-//                (member, PageRequest.of(page, size, Sort.by("reservationId").descending()));
-//        List<Reservation> noReviewReservations = reservations.stream().filter(reservation -> reservation.getReview() == null).collect(Collectors.toList());
-//        int start = (int) reservations.getPageable().getOffset();
-//        int end = Math.min((start + reservations.getPageable().getPageSize()),noReviewReservations.size());
-//        Page<Reservation> result = new PageImpl<>(noReviewReservations.subList(start,end), reservations.getPageable(), noReviewReservations.size());
-//        return result;
         return reservationRepository.findAllByMemberAndReviewIsNull(member, PageRequest.of(page, size, Sort.by("reservationId").descending()));
     }
 
@@ -65,7 +78,7 @@ public class ReservationService {
         Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
 
         Reservation findReservation =
-                optionalReservation.orElseThrow(() -> null);
+                optionalReservation.orElseThrow(() -> new BusinessLogicException(ExceptionCode.RESERVATION_NOT_FOUND));
 
         return findReservation;
     }
@@ -75,12 +88,25 @@ public class ReservationService {
         List<Reservation> reservations = reservationRepository.findByReserveDateAndHairShopHairShopId(reserveDate, hairShopId);
         List<LocalTime> reservedTime = reservations.stream().map(Reservation::getReserveTime).collect(Collectors.toList());
 
+        List<LocalTime> availableTime = new ArrayList<>();
+        for(int i = 10; i <= 20; i++) {
+            availableTime.add(LocalTime.of(i,0));
+        }
+
+        List<LocalTime> invalidTime = reservedTime.stream()
+                .filter(time -> !availableTime.contains(time))
+                .collect(Collectors.toList());
+
+        if(!invalidTime.isEmpty()) {
+            throw new BusinessLogicException(ExceptionCode.INVALID_RESERVATION_TIME);
+        }
+
         return reservedTime;
     }
 
 
     // principal memberId와 DB에 저장된 ReservationMemberId가 같은지 검증
     private void compareIdAndLoginId(Long id, Long memberId) {
-        if(!id.equals(memberId)) throw null;
+        if(!id.equals(memberId)) throw new BusinessLogicException(ExceptionCode.INVALID_MEMBER_ID);
     }
 }

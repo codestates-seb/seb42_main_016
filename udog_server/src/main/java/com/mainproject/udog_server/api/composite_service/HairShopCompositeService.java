@@ -6,6 +6,8 @@ import com.mainproject.udog_server.hairshopLike.*;
 import com.mainproject.udog_server.member.*;
 import com.mainproject.udog_server.review.*;
 import com.mainproject.udog_server.styleLike.*;
+import com.mainproject.udog_server.topHairShop.TopHairShop;
+import com.mainproject.udog_server.topHairShop.TopHairShopService;
 import lombok.*;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.*;
@@ -22,7 +24,7 @@ import java.util.stream.*;
 public class HairShopCompositeService {
     private final HairShopService hairShopService;
 
-    private final HairShopLikeService hairShopLikeService;
+    private final TopHairShopService topHairShopService;
 
     private final MemberService memberService;
 
@@ -48,9 +50,8 @@ public class HairShopCompositeService {
 
     @Transactional(readOnly = true)
     public Page<HairShop> getTopHairSHops(Principal principal){
-        List<HairShop> topHairShops = hairShopLikeService.findTopHairShopsByDay();
-        Page<HairShop> pageTopHairShops = hairShopService.findTopHairShops(topHairShops);
-        return setLikeCountAndHairShopLikeId(principal, pageTopHairShops);
+        Page<HairShop> topHairShops = topHairShopService.findTopHairShop();
+        return setLikeCountAndHairShopLikeId(principal, topHairShops);
     }
 
     public Page<HairShop> setLikeCountAndHairShopLikeId(Principal principal, Page<HairShop> hairShops){
