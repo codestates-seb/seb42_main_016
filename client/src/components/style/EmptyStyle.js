@@ -14,4 +14,5 @@ export const Empty = styled.p`
   font-size: 16px;
   font-weight: 400;
   opacity: 0.4;
+  cursor: ${(props) => props.onClick && 'pointer'};
 `;
