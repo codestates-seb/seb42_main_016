@@ -116,3 +116,35 @@ export const LikeWrapper = styled.div`
     margin-right: 5px;
   }
 `;
+
+export const CommentWrapper = styled.section`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 81px 0;
+`;
+
+export const CommentStyle = styled.header`
+  white-space: nowrap;
+`;
+
+export const CommentTitle = styled.h1`
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+  color: cornflowerblue;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+`;
+
+export const CommentSub = styled.h2`
+  font-size: 14px;
+  text-align: center;
+  color: #666;
+  font-weight: 400;
+  white-space: pre;
+  line-height: normal;
+  letter-spacing: 1.5px;
+`;
