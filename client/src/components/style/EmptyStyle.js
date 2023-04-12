@@ -11,7 +11,8 @@ export const EmptyContainer = styled.div`
 export const Empty = styled.p`
   margin-top: 10px;
   color: #3b3d40;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   opacity: 0.4;
+  cursor: ${(props) => props.onClick && 'pointer'};
 `;
