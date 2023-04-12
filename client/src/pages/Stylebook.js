@@ -25,6 +25,16 @@ function Stylebook() {
   return (
     <S.StyleScrollArea onScroll={handleScrollEvent} ref={scrollAreaRef}>
       <Header />
+      <S.CommentWrapper>
+        <S.CommentStyle>
+          <S.CommentTitle>강아지에게 어울리는 스타일을 찾아보세요</S.CommentTitle>
+          <S.CommentSub>
+            스타일북에는 전체 미용실의 리뷰 사진들이 모여있습니다. <br />
+            마음에 드는 스타일에 좋아요를 누르고, 가위 아이콘을 눌러 해당 미용실로 바로
+            이동해보세요.
+          </S.CommentSub>
+        </S.CommentStyle>
+      </S.CommentWrapper>
       <S.StylebookWrap>
         <StylebookList data={data} />
         {showButton && <ScrollTopButton area={scrollAreaRef} />}

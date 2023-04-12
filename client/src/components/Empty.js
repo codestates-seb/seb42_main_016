@@ -1,10 +1,10 @@
 import * as S from './style/EmptyStyle';
 
-function Empty({ text }) {
+function Empty({ text, onClick }) {
   return (
     <>
       <S.EmptyContainer>
-        <S.Empty>{text}</S.Empty>
+        <S.Empty onClick={onClick}>{text}</S.Empty>
       </S.EmptyContainer>
     </>
   );
