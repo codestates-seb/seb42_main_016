@@ -38,7 +38,7 @@ function Stylebook() {
       <S.StylebookWrap>
         <StylebookList data={data} />
         {showButton && <ScrollTopButton area={scrollAreaRef} />}
-        <div ref={lastRef}></div>
+        <div ref={lastRef} style={{ height: '10px' }}></div>
       </S.StylebookWrap>
     </S.StyleScrollArea>
   );
