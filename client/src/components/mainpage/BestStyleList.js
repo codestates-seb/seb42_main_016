@@ -13,17 +13,16 @@ export default function BestStyleList() {
   return (
     <S.StylebookWrap>
       <S.Container>
-        {data ? (
-          data.map((style) => (
-            <StylebookItem key={style.reviewId} style={style} src={style.reviewImage} />
-          ))
-        ) : (
-          <Empty
-            text={'지난 24시간 동안 등록된 좋아요가 없습니다. 스타일 좋아요를 눌러주세요.'}
-            onClick={() => navigate(STYLEBOOK)}
-          />
-        )}
+        {data?.map((style) => (
+          <StylebookItem key={style.reviewId} style={style} src={style.reviewImage} />
+        ))}
       </S.Container>
+      {!data.length && (
+        <Empty
+          text={'지난 24시간 동안 등록된 좋아요가 없습니다. 스타일 좋아요를 눌러주세요.'}
+          onClick={() => navigate(STYLEBOOK)}
+        />
+      )}
     </S.StylebookWrap>
   );
 }
